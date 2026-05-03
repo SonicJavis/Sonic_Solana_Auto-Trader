@@ -12,7 +12,7 @@
     "dev:worker": "pnpm --filter @sonic/worker dev",
     "dev:telegram": "pnpm --filter @sonic/telegram-bot dev",
     "lint": "eslint . --max-warnings 0",
-    "typecheck": "tsc --build --noEmit",
+    "typecheck": "tsc --build",
     "test": "vitest run",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
