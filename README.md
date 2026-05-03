@@ -13,6 +13,13 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 - `FULL_AUTO` and `LIMITED_LIVE` modes locked
 - TypeScript pnpm monorepo with strict settings
 
+## Safety Notice
+
+- **NO LIVE TRADING**: All trading functionality is strictly disabled in this phase.
+- **NO EXECUTION**: The system has no capability to send transactions to the Solana network.
+- **NO WALLET / PRIVATE KEYS**: Private key handling, wallet loading, and transaction signing are NOT implemented. The system is physically incapable of moving funds.
+- **READ-ONLY FIRST**: The foundation is built for read-only market data and control visibility.
+
 ## Workspace packages
 
 - `packages/shared` — constants, modes, types

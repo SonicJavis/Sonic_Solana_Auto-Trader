@@ -3,7 +3,7 @@ import type { Context } from 'telegraf';
 
 export interface TelegramUserInfo {
   userId: number;
-  username?: string;
+  username?: string | undefined;
   chatId: number;
 }
 
