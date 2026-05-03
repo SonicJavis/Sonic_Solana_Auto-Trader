@@ -33,17 +33,17 @@ export async function handleKillCallback(
     await auditTelegramCallback(auditLogger, {
       info,
       callbackId: data,
-      accepted: result.success,
-      reason: result.success ? 'kill-switch-activated' : ('error' in result ? result.error : 'unknown'),
+      accepted: result.accepted,
+      reason: result.accepted ? 'kill-switch-activated' : (result.error ?? 'unknown'),
       modeBefore,
       modeAfter,
     });
-    if (result.success) {
+    if (result.accepted) {
       await ctx.answerCbQuery('KILL SWITCH activated.');
       await ctx.editMessageText('KILL SWITCH ACTIVATED. All operations halted. Mode: KILL_SWITCH');
     } else {
       await ctx.answerCbQuery('Failed to activate kill switch.');
-      await ctx.editMessageText(`Failed to activate kill switch: ${'error' in result ? result.error : 'unknown error'}`);
+      await ctx.editMessageText(`Failed to activate kill switch: ${result.error ?? 'unknown error'}`);
     }
   } else if (data === 'kill:cancel') {
     await auditTelegramCallback(auditLogger, {

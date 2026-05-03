@@ -114,6 +114,6 @@ export async function handleMode(ctx: Context, config: AppConfig, modeManager: M
       reason: result.error,
       modeBefore: currentMode,
     });
-    await ctx.reply(`Failed to change mode: ${result.error}`);
+    await ctx.reply(`Failed to change mode: ${result.error ?? 'unknown error'}`);
   }
 }

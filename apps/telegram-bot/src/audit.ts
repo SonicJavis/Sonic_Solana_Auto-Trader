@@ -7,20 +7,20 @@ export interface TelegramCommandAuditParams {
   info: TelegramUserInfo;
   command: string;
   accepted: boolean;
-  reason?: string;
-  modeBefore?: AppMode;
-  modeAfter?: AppMode;
-  phase?: string;
+  reason?: string | undefined;
+  modeBefore?: AppMode | undefined;
+  modeAfter?: AppMode | undefined;
+  phase?: string | undefined;
 }
 
 export interface TelegramCallbackAuditParams {
   info: TelegramUserInfo;
   callbackId: string;
   accepted: boolean;
-  reason?: string;
-  modeBefore?: AppMode;
-  modeAfter?: AppMode;
-  phase?: string;
+  reason?: string | undefined;
+  modeBefore?: AppMode | undefined;
+  modeAfter?: AppMode | undefined;
+  phase?: string | undefined;
 }
 
 export async function auditTelegramCommand(

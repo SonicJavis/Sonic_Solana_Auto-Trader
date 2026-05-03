@@ -1,12 +1,25 @@
 import type { AppMode } from '@sonic/shared';
+import type { RuntimeSafetyStatus } from '@sonic/shared';
 
-export function formatSafety(opts: {
+export interface FormatSafetyOpts {
   mode: AppMode;
   adminConfigured: boolean;
   killSwitchActive: boolean;
-}): string {
+  runtimeSafety?: RuntimeSafetyStatus | undefined;
+}
+
+export function formatSafety(opts: FormatSafetyOpts): string {
+  const safety = opts.runtimeSafety;
+  const unsafeFlagsDetected = safety?.unsafeFlagsDetected ?? false;
+  const unsafeFlags = safety?.unsafeFlags ?? [];
+  const warnings = safety ? [...(safety.warnings ?? [])] : [];
+
+  if (unsafeFlagsDetected && !warnings.some((w) => w.includes('Unsafe flags'))) {
+    warnings.push(`Unsafe flags detected: ${unsafeFlags.join(', ')} — capabilities remain disabled`);
+  }
+
   return [
-    'Safety Posture',
+    '🛡️ Safety Posture',
     '',
     'READ_ONLY default: enabled',
     'Live trading: disabled',
@@ -15,7 +28,9 @@ export function formatSafety(opts: {
     'Transaction sending: disabled',
     'Private key handling: not implemented',
     'Wallet loading: not implemented',
-    'Solana RPC connection: not implemented',
+    'Solana RPC: disabled / not implemented',
+    'Jito: disabled / not implemented',
+    'Pump.fun trading: disabled / not implemented',
     '',
     'FULL_AUTO: locked',
     'LIMITED_LIVE: locked',
@@ -26,5 +41,7 @@ export function formatSafety(opts: {
     `Kill switch active: ${opts.killSwitchActive}`,
     `Admin allowlist: ${opts.adminConfigured ? 'configured' : 'not configured'}`,
     `Current mode: ${opts.mode}`,
+    `Unsafe flags detected: ${unsafeFlagsDetected}`,
+    ...(warnings.length > 0 ? ['', 'Warnings:', ...warnings.map((w) => `  ⚠️ ${w}`)] : []),
   ].join('\n');
 }
