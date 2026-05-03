@@ -1,0 +1,9 @@
+{
+  "name": "@sonic/dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "echo 'Dashboard placeholder - not implemented in Phase 1'",
+    "build": "echo 'Dashboard placeholder - not implemented in Phase 1'"
+  }
+}

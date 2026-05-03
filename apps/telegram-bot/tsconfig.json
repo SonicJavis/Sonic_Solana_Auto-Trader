@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "composite": true
+  },
+  "references": [
+    { "path": "../../packages/shared" },
+    { "path": "../../packages/config" },
+    { "path": "../../packages/observability" },
+    { "path": "../../packages/db" },
+    { "path": "../../packages/mode-manager" }
+  ],
+  "include": ["src/**/*"]
+}
