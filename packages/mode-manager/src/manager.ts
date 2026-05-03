@@ -29,7 +29,7 @@ export class ModeManager {
     if (LOCKED_MODES.includes(newMode)) {
       return {
         success: false,
-        error: `Mode ${newMode} is locked and cannot be activated in Phase 1`,
+        error: `Mode ${newMode} is locked and cannot be activated in Phase 2`,
       };
     }
 

@@ -19,7 +19,7 @@ if (!config.TELEGRAM_BOT_TOKEN) {
   process.exit(0);
 }
 
-const bot = createBot(config, modeManager, logger);
+const bot = createBot(config, modeManager, auditLogger, logger);
 bot.launch();
 logger.info('Telegram bot started');
 
