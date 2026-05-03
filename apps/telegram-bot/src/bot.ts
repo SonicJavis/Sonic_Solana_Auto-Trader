@@ -12,6 +12,7 @@ import { handleKill } from './commands/kill.js';
 import { handleAudit } from './commands/audit.js';
 import { handleSafety } from './commands/safety.js';
 import { handleVersion } from './commands/version.js';
+import { handleSystem } from './commands/system.js';
 import { handleKillCallback } from './callbacks/kill.js';
 import { getTelegramUserInfo } from './permissions.js';
 import { auditTelegramCallback } from './audit.js';
@@ -110,6 +111,16 @@ export function createBot(
       await handleVersion(ctx, config, auditLogger);
     } catch (err) {
       logger.error({ err }, 'Error handling /version');
+      await ctx.reply('An error occurred. Please try again.');
+    }
+  });
+
+  bot.command('system', async (ctx) => {
+    logger.info({ userId: ctx.from?.id, command: 'system' }, 'Command received');
+    try {
+      await handleSystem(ctx, config, modeManager, auditLogger);
+    } catch (err) {
+      logger.error({ err }, 'Error handling /system');
       await ctx.reply('An error occurred. Please try again.');
     }
   });

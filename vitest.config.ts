@@ -12,6 +12,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
+      '@sonic/state': resolve(__dirname, 'packages/state/src/index.ts'),
       '@sonic/shared': resolve(__dirname, 'packages/shared/src/index.ts'),
       '@sonic/config': resolve(__dirname, 'packages/config/src/index.ts'),
       '@sonic/db': resolve(__dirname, 'packages/db/src/index.ts'),

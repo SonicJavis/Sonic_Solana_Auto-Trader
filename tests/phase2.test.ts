@@ -240,9 +240,9 @@ describe('Audit formatter', () => {
 });
 
 describe('Version formatter', () => {
-  it('includes Phase 3', () => {
+  it('includes current phase', () => {
     const text = formatVersion('test');
-    expect(text).toContain('Phase: 3');
+    expect(text).toContain('Phase: 5');
   });
 
   it('includes safety notice', () => {

@@ -1,31 +1,34 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 4 — Database + Persistent Audit Logs**
+**Phase 5 — State Store and Safe Read Models**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in Phase 4.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in Phase 5.
 
-## Features (Phase 4)
+## Features (Phase 5)
 
+- Safe read-only state/read-model layer (`packages/state`)
+- `SystemStateSnapshot` — aggregated system state: phase, mode, readiness, DB, audit, worker, safety
+- Readiness calculation: `ready` / `degraded` / `unsafe` / `unknown` with documented rules
+- Audit read model: stats, last startup/heartbeat/unsafe-flags timestamps
+- Config read model: safe summary (no raw tokens, DATABASE_URL, or credentials)
+- Mode read model: current mode, locked modes, mode safety status
+- Worker read model: health derived from heartbeat age
+- Telegram `/system` command with subcommands: health, safety, audit, worker, config, help
+- All `/system` output is secret-safe (no raw credentials, no detailsJson)
 - SQLite + Drizzle ORM persistent audit log (`audit_events` table)
-- All audit events persist across restarts
-- Database init is idempotent — missing directories created automatically
-- Worker fails closed if DB initialisation fails
-- Retention/rotation policy: delete events older than `AUDIT_RETENTION_DAYS`, cap at `AUDIT_MAX_EVENTS`
-- Telegram `/audit` enhanced: recent, page, severity, type, source, stats sub-commands
-- All audit output is secret-safe (no raw credentials in Telegram messages)
 - Telegram bot, admin allowlist enforcement (fail-closed)
-- Full command suite: `/start`, `/help`, `/status`, `/mode`, `/pause`, `/kill`, `/audit`, `/safety`, `/version`
-- Kill switch requires two-step inline keyboard confirmation
+- Full command suite: `/start`, `/help`, `/status`, `/mode`, `/pause`, `/kill`, `/audit`, `/safety`, `/version`, `/system`
 - `FULL_AUTO` and `LIMITED_LIVE` modes remain locked
 - TypeScript pnpm monorepo with strict settings
 
 ## Safety Notice
 
-- **NO LIVE TRADING**: All trading functionality is strictly disabled in Phase 4.
+- **NO LIVE TRADING**: All trading functionality is strictly disabled in Phase 5.
 - **NO EXECUTION**: The system has no capability to send transactions to the Solana network.
 - **NO WALLET / PRIVATE KEYS**: Private key handling, wallet loading, and transaction signing are NOT implemented.
-- **NO SOLANA RPC**: No Solana RPC connections in Phase 4.
+- **NO SOLANA RPC**: No Solana RPC connections in Phase 5.
 - **NO JITO / PUMP.FUN**: Not implemented in any phase.
+- **NO MARKET DATA**: Not yet implemented.
 - **READ-ONLY FIRST**: The foundation is built for infrastructure only.
 - **FULL_AUTO and LIMITED_LIVE remain locked**.
 
@@ -35,6 +38,7 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 - `packages/config` — environment schema and loader
 - `packages/db` — SQLite/Drizzle persistent audit repository + in-memory fallback
 - `packages/mode-manager` — mode state machine
+- `packages/state` — safe read-only state/read-model layer (Phase 5)
 - `packages/observability` — logger
 - `packages/risk-engine` — risk checks
 - `apps/telegram-bot` — Telegram control interface
@@ -43,7 +47,7 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 ## Commands
 
 ```sh
-pnpm test        # run tests (201 tests in Phase 4)
+pnpm test        # run tests (291 tests in Phase 5)
 pnpm lint        # lint all packages
 pnpm typecheck   # type check all packages
 pnpm build       # build all packages
@@ -57,3 +61,4 @@ AUDIT_RETENTION_DAYS=30                              # 1–365, default 30
 AUDIT_MAX_EVENTS=10000                               # 100–1000000, default 10000
 AUDIT_ROTATION_ENABLED=true                          # default true
 ```
+

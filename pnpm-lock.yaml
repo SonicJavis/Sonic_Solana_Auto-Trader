@@ -46,6 +46,9 @@ importers:
       '@sonic/shared':
         specifier: workspace:*
         version: link:../../packages/shared
+      '@sonic/state':
+        specifier: workspace:*
+        version: link:../../packages/state
       telegraf:
         specifier: ^4.16.3
         version: 4.16.3
@@ -173,6 +176,28 @@ importers:
 
   packages/shared:
     devDependencies:
+      typescript:
+        specifier: '*'
+        version: 5.9.3
+
+  packages/state:
+    dependencies:
+      '@sonic/config':
+        specifier: workspace:*
+        version: link:../config
+      '@sonic/db':
+        specifier: workspace:*
+        version: link:../db
+      '@sonic/mode-manager':
+        specifier: workspace:*
+        version: link:../mode-manager
+      '@sonic/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      '@types/node':
+        specifier: ^20.12.0
+        version: 20.19.39
       typescript:
         specifier: '*'
         version: 5.9.3

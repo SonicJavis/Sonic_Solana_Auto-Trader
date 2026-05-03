@@ -1,25 +1,27 @@
 {
-  "name": "@sonic/telegram-bot",
+  "name": "@sonic/state",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
-    "dev": "tsx src/index.ts",
     "build": "tsc --build",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@sonic/config": "workspace:*",
     "@sonic/shared": "workspace:*",
-    "@sonic/observability": "workspace:*",
-    "@sonic/mode-manager": "workspace:*",
+    "@sonic/config": "workspace:*",
     "@sonic/db": "workspace:*",
-    "@sonic/state": "workspace:*",
-    "telegraf": "^4.16.3"
+    "@sonic/mode-manager": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20.12.0",
-    "tsx": "^4.7.3",
     "typescript": "*"
   }
 }

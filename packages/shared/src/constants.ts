@@ -1,5 +1,5 @@
 export const APP_VERSION = '0.1.0';
-export const PHASE = 3;
-export const PHASE_NAME = 'Config, Modes, Secrets, and Safety Foundation Hardening';
+export const PHASE = 5;
+export const PHASE_NAME = 'State Store and Safe Read Models';
 export const HEARTBEAT_INTERVAL_MS = 30_000;
 export const LOG_CONTEXT = 'sonic';

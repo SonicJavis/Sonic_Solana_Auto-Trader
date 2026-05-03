@@ -54,3 +54,40 @@ packages/db/src/
 - Circular references in `details` handled safely
 - No Solana RPC, signing, sending, wallets, Jito, Pump.fun in any path
 - `FULL_AUTO` and `LIMITED_LIVE` remain locked
+
+## Phase 5: State / Read-Model Layer
+
+```
+packages/state/src/
+  types.ts              — SystemStateSnapshot, ConfigStateSnapshot, ModeStateSnapshot,
+                          RuntimeSafetyStateSnapshot, AuditStateSnapshot, WorkerStateSnapshot,
+                          DatabaseStateSnapshot, UnsafeFlagStateSnapshot, SystemReadiness
+  audit-read-model.ts   — buildAuditStateSnapshot() — stats, timestamps from IAuditRepository
+  config-read-model.ts  — buildConfigStateSnapshot() — safe config (no raw secrets)
+  mode-read-model.ts    — buildModeStateSnapshot() — mode, locked modes, safety status
+  worker-read-model.ts  — buildWorkerStateSnapshot() — health from heartbeat age
+  health-read-model.ts  — calculateReadiness() — ready/degraded/unsafe/unknown rules
+  state-service.ts      — buildSystemStateSnapshot() — top-level aggregator
+  index.ts              — barrel exports
+```
+
+## Package dependency graph (Phase 5)
+
+```
+shared ← config ← db ← mode-manager ← state ← apps/telegram-bot
+                                             ← apps/worker
+```
+
+`packages/state` depends on: shared, config, db, mode-manager.
+`packages/state` does NOT depend on: apps/telegram-bot, apps/worker.
+No circular imports.
+
+## State Snapshot Safety Invariants (Phase 5)
+
+- All snapshots are read-only — no state mutation
+- No raw DATABASE_URL in any snapshot
+- No raw TELEGRAM_BOT_TOKEN in any snapshot
+- No raw detailsJson exposed (only stats and safe timestamps)
+- No private keys, seed phrases, mnemonic, or credentials in any snapshot
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No Solana RPC, market data, wallets, signing, sending, Jito, Pump.fun in any path

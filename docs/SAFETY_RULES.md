@@ -23,3 +23,14 @@
 19. **Phase 4**: `details` and `safeSummary` are redacted before persistence — no raw secrets stored
 20. **Phase 4**: Retention never deletes the DB file; it only removes old/excess rows
 21. **Phase 4**: No Solana RPC, Jito, Pump.fun, signing, sending, wallet loading — not in scope
+
+## Phase 5 Additional Safety Rules
+
+22. **Phase 5**: State/read-model snapshots are read-only — no snapshot mutates any system state
+23. **Phase 5**: No raw DATABASE_URL, TELEGRAM_BOT_TOKEN, or credential-like values in any snapshot
+24. **Phase 5**: No raw detailsJson exposed by read models or Telegram `/system` output
+25. **Phase 5**: No Solana RPC, market data, wallets, signing, sending, Jito, Pump.fun, or execution code added
+26. **Phase 5**: `packages/state` does not depend on apps/telegram-bot or apps/worker (no circular imports)
+27. **Phase 5**: `/system` and all subcommands are read-only — no mode mutation, no execution trigger
+28. **Phase 5**: Readiness calculation is conservative — defaults to `unsafe` on any invariant failure
+29. **Phase 5**: FULL_AUTO and LIMITED_LIVE remain locked
