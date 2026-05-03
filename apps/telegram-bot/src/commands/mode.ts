@@ -1,7 +1,7 @@
 import type { Context } from 'telegraf';
 import type { AppConfig } from '@sonic/config';
 import type { ModeManager } from '@sonic/mode-manager';
-import type { IAuditLogger } from '@sonic/db';
+import type { IAuditRepository } from '@sonic/db';
 import type { AppMode } from '@sonic/shared';
 import { ALL_MODES, LOCKED_MODES } from '@sonic/shared';
 import { getTelegramUserInfo, requireAdmin } from '../permissions.js';
@@ -18,7 +18,7 @@ function normalizeMode(input: string): AppMode | null {
   return null;
 }
 
-export async function handleMode(ctx: Context, config: AppConfig, modeManager: ModeManager, auditLogger: IAuditLogger): Promise<void> {
+export async function handleMode(ctx: Context, config: AppConfig, modeManager: ModeManager, auditLogger: IAuditRepository): Promise<void> {
   const info = getTelegramUserInfo(ctx);
   const currentMode = modeManager.getMode();
 

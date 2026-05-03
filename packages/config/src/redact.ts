@@ -19,6 +19,18 @@ const SENSITIVE_KEY_PATTERNS: readonly RegExp[] = [
   /auth/i,
 ];
 
+/**
+ * Exact key names (case-insensitive) that must always be redacted.
+ * Covers database connection strings and other URLs with embedded credentials.
+ */
+const SENSITIVE_KEY_EXACT: readonly string[] = [
+  'database_url',
+  'db_url',
+  'connection_url',
+  'connection_string',
+  'jdbc_url',
+];
+
 /** Value patterns that look like secrets regardless of key */
 const SENSITIVE_VALUE_PATTERNS: readonly RegExp[] = [
   // JWT: three base64url segments separated by dots
@@ -34,6 +46,8 @@ const SENSITIVE_VALUE_PATTERNS: readonly RegExp[] = [
 ];
 
 export function isSensitiveKey(key: string): boolean {
+  const lower = key.toLowerCase();
+  if (SENSITIVE_KEY_EXACT.includes(lower)) return true;
   return SENSITIVE_KEY_PATTERNS.some((p) => p.test(key));
 }
 

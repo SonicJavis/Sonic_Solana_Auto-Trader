@@ -35,3 +35,27 @@
 - Phase 3 test suite: 58 new tests covering config, redaction, provenance, safety status, mode manager, formatters
 - All 119 tests passing
 
+## Phase 4 - Database + Persistent Audit Logs
+- SQLite + Drizzle ORM (`drizzle-orm@0.45.2`, `better-sqlite3@12.9.0`) persistent audit log
+- `packages/db`: schema, client, migrate, `SqliteAuditRepository`, `InMemoryAuditLogger`, retention, types, exports
+- `audit_events` table: id, timestamp, phase, event_type, severity, source, mode, message, details_json, safe_summary, created_at
+- Indexes on: timestamp, event_type, severity, source, mode
+- DB init idempotent — `CREATE TABLE IF NOT EXISTS`, `CREATE INDEX IF NOT EXISTS`
+- Missing data directory created automatically on startup
+- Worker fails closed if DB init fails (exits with code 1)
+- Retention policy: `AUDIT_ROTATION_ENABLED`, `AUDIT_RETENTION_DAYS` (1–365), `AUDIT_MAX_EVENTS` (100–1,000,000)
+- `applyRetention()` records `RETENTION_APPLIED` or `RETENTION_FAILED`; failure is warn, not fatal
+- Worker boot sequence: load config → init DB → apply retention → init mode manager → safety check → persist startup events
+- New config fields: `DATABASE_PATH`, `AUDIT_RETENTION_DAYS`, `AUDIT_MAX_EVENTS`, `AUDIT_ROTATION_ENABLED`
+- `DATABASE_URL` and `TELEGRAM_BOT_TOKEN` raw values never persisted (new `SENSITIVE_KEY_EXACT` list in redact.ts)
+- `details` and `safeSummary` redacted before DB insertion via `redactObject` / `redactString`
+- Circular references in `details` are handled safely (no crash)
+- Telegram `/audit` enhanced: `recent`, `page N`, `severity X`, `type X`, `source X`, `stats` sub-commands
+- `formatAuditRecords`, `formatPersistentAuditRecord`, `formatAuditStats`, `formatAuditHelp` added to formatter
+- Legacy `formatAuditLog` / `formatAuditRecord` preserved for backward compat (Phase 2 tests)
+- `SqliteAuditRepository` implements `IAuditRepository` (extends `IAuditLogger`) — fully backward-compatible
+- `InMemoryAuditLogger` now also implements `IAuditRepository` — tests use in-memory without file I/O
+- All ModeManager transitions persisted to SQLite
+- Phase 4 test suite: 82 new tests covering config, DB init, repository, redaction, retention, worker events, mode manager, Telegram formatter, regression
+- All 201 tests passing (82 new + 119 regression)
+

@@ -1,7 +1,7 @@
 import { Telegraf } from 'telegraf';
 import type { AppConfig } from '@sonic/config';
 import type { ModeManager } from '@sonic/mode-manager';
-import type { IAuditLogger } from '@sonic/db';
+import type { IAuditRepository } from '@sonic/db';
 import type { Logger } from '@sonic/observability';
 import { handleStart } from './commands/start.js';
 import { handleHelp } from './commands/help.js';
@@ -19,7 +19,7 @@ import { auditTelegramCallback } from './audit.js';
 export function createBot(
   config: AppConfig,
   modeManager: ModeManager,
-  auditLogger: IAuditLogger,
+  auditLogger: IAuditRepository,
   logger: Logger,
 ): Telegraf {
   const bot = new Telegraf(config.TELEGRAM_BOT_TOKEN!);

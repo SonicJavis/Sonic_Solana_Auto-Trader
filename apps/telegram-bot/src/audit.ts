@@ -1,7 +1,8 @@
 import { randomUUID } from 'crypto';
-import type { IAuditLogger } from '@sonic/db';
+import type { IAuditRepository } from '@sonic/db';
 import type { AppMode } from '@sonic/shared';
 import type { TelegramUserInfo } from './permissions.js';
+import { PHASE } from '@sonic/shared';
 
 export interface TelegramCommandAuditParams {
   info: TelegramUserInfo;
@@ -24,17 +25,17 @@ export interface TelegramCallbackAuditParams {
 }
 
 export async function auditTelegramCommand(
-  auditLogger: IAuditLogger,
+  auditLogger: IAuditRepository,
   params: TelegramCommandAuditParams,
 ): Promise<void> {
-  await auditLogger.log({
-    id: randomUUID(),
-    timestamp: new Date().toISOString(),
+  auditLogger.record({
     eventType: 'TELEGRAM_COMMAND',
     severity: params.accepted ? 'info' : 'warn',
+    source: 'telegram',
+    mode: params.modeBefore,
+    phase: params.phase ?? `Phase ${PHASE}`,
+    message: `Telegram command ${params.command} — ${params.accepted ? 'accepted' : 'rejected'}`,
     details: {
-      source: 'telegram',
-      phase: params.phase ?? 'Phase 2',
       command: params.command,
       userId: params.info.userId,
       username: params.info.username,
@@ -48,17 +49,17 @@ export async function auditTelegramCommand(
 }
 
 export async function auditTelegramCallback(
-  auditLogger: IAuditLogger,
+  auditLogger: IAuditRepository,
   params: TelegramCallbackAuditParams,
 ): Promise<void> {
-  await auditLogger.log({
-    id: randomUUID(),
-    timestamp: new Date().toISOString(),
+  auditLogger.record({
     eventType: 'TELEGRAM_CALLBACK',
     severity: params.accepted ? 'info' : 'warn',
+    source: 'telegram',
+    mode: params.modeBefore,
+    phase: params.phase ?? `Phase ${PHASE}`,
+    message: `Telegram callback ${params.callbackId} — ${params.accepted ? 'accepted' : 'rejected'}`,
     details: {
-      source: 'telegram',
-      phase: params.phase ?? 'Phase 2',
       callbackId: params.callbackId,
       userId: params.info.userId,
       username: params.info.username,
@@ -69,4 +70,9 @@ export async function auditTelegramCallback(
       modeAfter: params.modeAfter,
     },
   });
+}
+
+/** Synthesize a legacy AuditEvent UUID for backward compat */
+export function makeAuditId(): string {
+  return randomUUID();
 }

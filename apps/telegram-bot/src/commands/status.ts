@@ -4,7 +4,7 @@ import { collectUnsafeFlags } from '@sonic/config';
 import { buildRuntimeSafetyStatus } from '@sonic/shared';
 import { PHASE } from '@sonic/shared';
 import type { ModeManager } from '@sonic/mode-manager';
-import type { IAuditLogger } from '@sonic/db';
+import type { IAuditRepository } from '@sonic/db';
 import { getTelegramUserInfo, hasConfiguredAdmins } from '../permissions.js';
 import { auditTelegramCommand } from '../audit.js';
 import { formatStatus } from '../formatters/status.js';
@@ -15,7 +15,7 @@ export async function handleStatus(
   ctx: Context,
   config: AppConfig,
   modeManager: ModeManager,
-  auditLogger: IAuditLogger,
+  auditLogger: IAuditRepository,
 ): Promise<void> {
   const info = getTelegramUserInfo(ctx);
   const mode = modeManager.getMode();

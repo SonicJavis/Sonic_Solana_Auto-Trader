@@ -6,6 +6,9 @@ dist/
 .DS_Store
 *.db
 *.sqlite
+*.sqlite-shm
+*.sqlite-wal
+data/
 coverage/
 .turbo/
 *.tsbuildinfo
