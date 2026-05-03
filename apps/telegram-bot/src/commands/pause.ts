@@ -35,6 +35,6 @@ export async function handlePause(ctx: Context, config: AppConfig, modeManager: 
       reason: result.error,
       modeBefore,
     });
-    await ctx.reply(`Failed to pause: ${result.error}`);
+    await ctx.reply(`Failed to pause: ${result.error ?? 'unknown error'}`);
   }
 }

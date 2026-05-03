@@ -25,9 +25,21 @@ function makeConfig(overrides: Partial<AppConfig> = {}): AppConfig {
     NODE_ENV: 'test',
     LOG_LEVEL: 'info',
     APP_MODE: 'READ_ONLY',
+    APP_VERSION: '0.1.0',
+    SAFETY_PROFILE: 'strict',
     TELEGRAM_BOT_TOKEN: undefined,
     TELEGRAM_ADMIN_IDS: [],
     DATABASE_URL: './data/sonic.db',
+    ENABLE_LIVE_TRADING: false,
+    ENABLE_AUTO_TRADING: false,
+    ENABLE_TRANSACTION_SIGNING: false,
+    ENABLE_TRANSACTION_SENDING: false,
+    ENABLE_WALLET_LOADING: false,
+    ENABLE_SOLANA_RPC: false,
+    ENABLE_JITO: false,
+    ENABLE_PUMPFUN_TRADING: false,
+    FULL_AUTO_UNLOCKED: false,
+    LIMITED_LIVE_UNLOCKED: false,
     ...overrides,
   };
 }
@@ -228,9 +240,9 @@ describe('Audit formatter', () => {
 });
 
 describe('Version formatter', () => {
-  it('includes Phase 2', () => {
+  it('includes Phase 3', () => {
     const text = formatVersion('test');
-    expect(text).toContain('Phase: 2');
+    expect(text).toContain('Phase: 3');
   });
 
   it('includes safety notice', () => {
