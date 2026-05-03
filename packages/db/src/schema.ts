@@ -12,6 +12,7 @@ import { sql } from 'drizzle-orm';
 export const auditEvents = sqliteTable(
   'audit_events',
   {
+    /** UUID v4, generated via randomUUID() at insert time (see SqliteAuditRepository.record). */
     id: text('id').primaryKey(),
     timestamp: text('timestamp').notNull(),
     phase: text('phase'),

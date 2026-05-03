@@ -38,6 +38,7 @@ export const envSchema = z.object({
   // Phase 4: local SQLite audit database path (not a secret — local filesystem path)
   DATABASE_PATH: z.string().default('./data/sonic-solana-autotrader.sqlite'),
   // Phase 4: audit retention settings
+  // Bounds: retentionDays 1–365, maxEvents 100–1,000,000 (mirrored in packages/db/src/types.ts constants)
   AUDIT_RETENTION_DAYS: z
     .preprocess(
       (v) => (v === '' || v === undefined || v === null ? undefined : Number(v)),

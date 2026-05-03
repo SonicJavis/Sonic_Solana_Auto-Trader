@@ -34,6 +34,18 @@ export interface SettingRecord {
 /** Allowed severity levels for persistent audit events */
 export type AuditSeverity = 'debug' | 'info' | 'warn' | 'error' | 'critical';
 
+/**
+ * Bounds for retention configuration.
+ * These constants are the single source of truth — used by both
+ * the config schema (schema.ts) and buildRetentionPolicy() (retention.ts).
+ */
+export const RETENTION_DAYS_MIN = 1;
+export const RETENTION_DAYS_MAX = 365;
+export const RETENTION_DAYS_DEFAULT = 30;
+export const RETENTION_MAX_EVENTS_MIN = 100;
+export const RETENTION_MAX_EVENTS_MAX = 1_000_000;
+export const RETENTION_MAX_EVENTS_DEFAULT = 10_000;
+
 /** Input for recording a persistent audit event */
 export interface PersistentAuditEventInput {
   readonly eventType: string;

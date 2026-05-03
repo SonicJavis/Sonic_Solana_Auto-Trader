@@ -1,5 +1,11 @@
 import type { IAuditRepository } from './audit-repository.js';
 import type { RetentionPolicy, RetentionResult, PersistentAuditEventInput } from './types.js';
+import {
+  RETENTION_DAYS_MIN,
+  RETENTION_DAYS_MAX,
+  RETENTION_MAX_EVENTS_MIN,
+  RETENTION_MAX_EVENTS_MAX,
+} from './types.js';
 
 export type { RetentionPolicy, RetentionResult };
 
@@ -71,8 +77,7 @@ export function buildRetentionPolicy(opts: {
 }): RetentionPolicy {
   return {
     enabled: opts.enabled,
-    // Clamp to spec bounds in case config validation missed something
-    retentionDays: Math.max(1, Math.min(365, opts.retentionDays)),
-    maxEvents: Math.max(100, Math.min(1_000_000, opts.maxEvents)),
+    retentionDays: Math.max(RETENTION_DAYS_MIN, Math.min(RETENTION_DAYS_MAX, opts.retentionDays)),
+    maxEvents: Math.max(RETENTION_MAX_EVENTS_MIN, Math.min(RETENTION_MAX_EVENTS_MAX, opts.maxEvents)),
   };
 }

@@ -36,7 +36,12 @@ const CREATE_MODE_IDX = `CREATE INDEX IF NOT EXISTS audit_events_mode_idx ON aud
 export function ensureDataDir(dbPath: string): void {
   const dir = dirname(dbPath);
   if (dir && dir !== '.') {
-    mkdirSync(dir, { recursive: true });
+    try {
+      mkdirSync(dir, { recursive: true });
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : String(err);
+      throw new Error(`Failed to create data directory "${dir}": ${message}`);
+    }
   }
 }
 

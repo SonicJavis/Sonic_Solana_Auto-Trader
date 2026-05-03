@@ -201,6 +201,14 @@ describe('Phase 4 — DB Init', () => {
     expect(() => openDatabase('')).toThrow();
   });
 
+  it('throws on remote URL DATABASE_PATH', () => {
+    expect(() => openDatabase('postgres://user:pass@host/db')).toThrow(/local filesystem/);
+  });
+
+  it('throws on null-byte DATABASE_PATH', () => {
+    expect(() => openDatabase('/tmp/file\0.sqlite')).toThrow(/invalid characters/);
+  });
+
   it(':memory: path works (in-memory DB for tests)', () => {
     const { client, sqlite } = openDatabase(':memory:');
     initSchema(sqlite);
