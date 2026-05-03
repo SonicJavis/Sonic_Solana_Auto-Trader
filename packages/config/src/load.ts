@@ -1,5 +1,4 @@
 import { envSchema, UNSAFE_FLAG_FIELDS, type AppConfig } from './schema.js';
-import { redactObject } from './redact.js';
 
 let _config: AppConfig | null = null;
 
@@ -89,16 +88,23 @@ export function resetConfig(): void {
 
 /**
  * Returns a safe, redacted summary of the config — never exposes raw secrets.
+ * All sensitive fields are manually replaced with [REDACTED] or a safe display value
+ * before being returned. No raw secrets are ever included.
  */
 export function safeConfigSummary(config: AppConfig): Record<string, unknown> {
-  const raw: Record<string, unknown> = {
+  // Manually build safe display values for each field — no raw secrets.
+  // DATABASE_URL and TELEGRAM_BOT_TOKEN are always redacted regardless of presence.
+  return {
     NODE_ENV: config.NODE_ENV,
     LOG_LEVEL: config.LOG_LEVEL,
     APP_MODE: config.APP_MODE,
     APP_VERSION: config.APP_VERSION,
     SAFETY_PROFILE: config.SAFETY_PROFILE,
     TELEGRAM_BOT_TOKEN: config.TELEGRAM_BOT_TOKEN !== undefined ? '[REDACTED]' : 'not set',
-    TELEGRAM_ADMIN_IDS: config.TELEGRAM_ADMIN_IDS.length > 0 ? `[${config.TELEGRAM_ADMIN_IDS.length} configured]` : 'none',
+    TELEGRAM_ADMIN_IDS:
+      config.TELEGRAM_ADMIN_IDS.length > 0
+        ? `[${config.TELEGRAM_ADMIN_IDS.length} configured]`
+        : 'none',
     DATABASE_URL: '[REDACTED]',
     ENABLE_LIVE_TRADING: config.ENABLE_LIVE_TRADING,
     ENABLE_AUTO_TRADING: config.ENABLE_AUTO_TRADING,
@@ -111,5 +117,4 @@ export function safeConfigSummary(config: AppConfig): Record<string, unknown> {
     FULL_AUTO_UNLOCKED: config.FULL_AUTO_UNLOCKED,
     LIMITED_LIVE_UNLOCKED: config.LIMITED_LIVE_UNLOCKED,
   };
-  return redactObject(raw);
 }

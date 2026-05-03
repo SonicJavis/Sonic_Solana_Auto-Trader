@@ -116,11 +116,11 @@ describe('safeConfigSummary', () => {
     expect(summary['TELEGRAM_BOT_TOKEN']).toBe('[REDACTED]');
   });
 
-  it('shows "not set" marker for TELEGRAM_BOT_TOKEN when missing (before final redact pass)', () => {
+  it('shows "not set" when TELEGRAM_BOT_TOKEN is missing', () => {
     const config = loadConfig({});
-    // TELEGRAM_BOT_TOKEN is always redacted in summary (key contains 'token')
+    // TELEGRAM_BOT_TOKEN is undefined — summary shows 'not set' (no token = no redaction needed)
     const summary = safeConfigSummary(config);
-    expect(summary['TELEGRAM_BOT_TOKEN']).toBe('[REDACTED]');
+    expect(summary['TELEGRAM_BOT_TOKEN']).toBe('not set');
   });
 
   it('includes all unsafe flags in summary', () => {

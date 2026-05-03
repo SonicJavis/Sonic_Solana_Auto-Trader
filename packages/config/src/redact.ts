@@ -88,10 +88,12 @@ export function redactObject(
 }
 
 export function redactString(value: string): string {
-  // Redact long hex strings (with upper bound to prevent ReDoS)
-  let result = value.replace(/\b[0-9a-fA-F]{32,200}\b/g, '[REDACTED]');
-  // Redact long alphanumeric strings that look like tokens/keys (with upper bound)
-  result = result.replace(/\b[A-Za-z0-9_/-]{40,500}\b/g, '[REDACTED]');
+  // Pre-check: only scan strings that could contain secrets
+  if (value.length < 32) return value;
+  // Redact long hex strings — tight upper bound (128) prevents ReDoS
+  let result = value.replace(/\b[0-9a-fA-F]{32,128}\b/g, '[REDACTED]');
+  // Redact long alphanumeric token-like strings — tight upper bound (100) prevents ReDoS
+  result = result.replace(/\b[A-Za-z0-9_/-]{40,100}\b/g, '[REDACTED]');
   return result;
 }
 

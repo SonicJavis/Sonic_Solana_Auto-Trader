@@ -37,6 +37,12 @@ export class ModeManager {
     return this.currentMode;
   }
 
+  /**
+   * Attempt a mode transition. Accepts a string to enable runtime detection of
+   * unknown modes (e.g. from user input in Telegram commands). Type validation
+   * is performed at runtime — unknown modes are rejected before any state change.
+   * Both `accepted` and the backward-compatible `success` alias are returned.
+   */
   async setMode(
     newMode: string,
     triggeredBy: string,
