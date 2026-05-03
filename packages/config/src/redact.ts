@@ -88,10 +88,10 @@ export function redactObject(
 }
 
 export function redactString(value: string): string {
-  // Redact long hex strings
-  let result = value.replace(/\b[0-9a-fA-F]{32,}\b/g, '[REDACTED]');
-  // Redact long alphanumeric strings that look like tokens/keys
-  result = result.replace(/\b[A-Za-z0-9_/-]{40,}\b/g, '[REDACTED]');
+  // Redact long hex strings (with upper bound to prevent ReDoS)
+  let result = value.replace(/\b[0-9a-fA-F]{32,200}\b/g, '[REDACTED]');
+  // Redact long alphanumeric strings that look like tokens/keys (with upper bound)
+  result = result.replace(/\b[A-Za-z0-9_/-]{40,500}\b/g, '[REDACTED]');
   return result;
 }
 

@@ -12,6 +12,10 @@ export interface ConfigLoadResult {
 }
 
 function detectUnsafeFlags(config: AppConfig): string[] {
+  return collectUnsafeFlags(config);
+}
+
+export function collectUnsafeFlags(config: AppConfig): string[] {
   const detected: string[] = [];
   for (const field of UNSAFE_FLAG_FIELDS) {
     const val = (config as unknown as Record<string, unknown>)[field];

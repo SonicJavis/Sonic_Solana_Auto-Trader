@@ -1,5 +1,6 @@
 import type { Context } from 'telegraf';
 import type { AppConfig } from '@sonic/config';
+import { collectUnsafeFlags } from '@sonic/config';
 import { buildRuntimeSafetyStatus } from '@sonic/shared';
 import { PHASE } from '@sonic/shared';
 import type { ModeManager } from '@sonic/mode-manager';
@@ -24,17 +25,7 @@ export async function handleSafety(
     phase: `Phase ${PHASE}`,
   });
 
-  const unsafeFlags: string[] = [];
-  if (config.ENABLE_LIVE_TRADING) unsafeFlags.push('ENABLE_LIVE_TRADING');
-  if (config.ENABLE_AUTO_TRADING) unsafeFlags.push('ENABLE_AUTO_TRADING');
-  if (config.ENABLE_TRANSACTION_SIGNING) unsafeFlags.push('ENABLE_TRANSACTION_SIGNING');
-  if (config.ENABLE_TRANSACTION_SENDING) unsafeFlags.push('ENABLE_TRANSACTION_SENDING');
-  if (config.ENABLE_WALLET_LOADING) unsafeFlags.push('ENABLE_WALLET_LOADING');
-  if (config.ENABLE_SOLANA_RPC) unsafeFlags.push('ENABLE_SOLANA_RPC');
-  if (config.ENABLE_JITO) unsafeFlags.push('ENABLE_JITO');
-  if (config.ENABLE_PUMPFUN_TRADING) unsafeFlags.push('ENABLE_PUMPFUN_TRADING');
-  if (config.FULL_AUTO_UNLOCKED) unsafeFlags.push('FULL_AUTO_UNLOCKED');
-  if (config.LIMITED_LIVE_UNLOCKED) unsafeFlags.push('LIMITED_LIVE_UNLOCKED');
+  const unsafeFlags = collectUnsafeFlags(config);
 
   const runtimeSafety = buildRuntimeSafetyStatus({
     currentPhase: PHASE,
