@@ -10,7 +10,7 @@ export interface TelegramUserInfo {
 export function getTelegramUserInfo(ctx: Context): TelegramUserInfo {
   return {
     userId: ctx.from?.id ?? 0,
-    username: ctx.from?.username,
+    ...(ctx.from?.username !== undefined ? { username: ctx.from.username } : {}),
     chatId: ctx.chat?.id ?? 0,
   };
 }
