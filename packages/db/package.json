@@ -15,9 +15,13 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@sonic/shared": "workspace:*"
+    "@sonic/config": "workspace:*",
+    "@sonic/shared": "workspace:*",
+    "better-sqlite3": "12.9.0",
+    "drizzle-orm": "0.45.2"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "7.6.13",
     "typescript": "*"
   }
 }

@@ -1,12 +1,12 @@
 import type { Context } from 'telegraf';
 import type { AppConfig } from '@sonic/config';
 import type { ModeManager } from '@sonic/mode-manager';
-import type { IAuditLogger } from '@sonic/db';
+import type { IAuditRepository } from '@sonic/db';
 import { Markup } from 'telegraf';
 import { getTelegramUserInfo, requireAdmin } from '../permissions.js';
 import { auditTelegramCommand } from '../audit.js';
 
-export async function handleKill(ctx: Context, config: AppConfig, modeManager: ModeManager, auditLogger: IAuditLogger): Promise<void> {
+export async function handleKill(ctx: Context, config: AppConfig, modeManager: ModeManager, auditLogger: IAuditRepository): Promise<void> {
   const info = getTelegramUserInfo(ctx);
   const modeBefore = modeManager.getMode();
 

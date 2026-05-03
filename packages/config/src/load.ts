@@ -62,7 +62,7 @@ export function loadConfigWithResult(
 
   if (unsafeFlags.length > 0) {
     warnings.push(
-      `Unsafe flags detected: ${unsafeFlags.join(', ')} — all unsafe capabilities remain DISABLED in Phase 3`,
+      `Unsafe flags detected: ${unsafeFlags.join(', ')} — all unsafe capabilities remain DISABLED in Phase 4`,
     );
   }
 
@@ -106,6 +106,10 @@ export function safeConfigSummary(config: AppConfig): Record<string, unknown> {
         ? `[${config.TELEGRAM_ADMIN_IDS.length} configured]`
         : 'none',
     DATABASE_URL: '[REDACTED]',
+    DATABASE_PATH: config.DATABASE_PATH,
+    AUDIT_RETENTION_DAYS: config.AUDIT_RETENTION_DAYS,
+    AUDIT_MAX_EVENTS: config.AUDIT_MAX_EVENTS,
+    AUDIT_ROTATION_ENABLED: config.AUDIT_ROTATION_ENABLED,
     ENABLE_LIVE_TRADING: config.ENABLE_LIVE_TRADING,
     ENABLE_AUTO_TRADING: config.ENABLE_AUTO_TRADING,
     ENABLE_TRANSACTION_SIGNING: config.ENABLE_TRANSACTION_SIGNING,

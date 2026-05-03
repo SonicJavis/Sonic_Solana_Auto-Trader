@@ -35,6 +35,20 @@ export const envSchema = z.object({
       val ? val.split(',').map((id) => id.trim()).filter(Boolean) : [],
     ),
   DATABASE_URL: z.string().default('./data/sonic.db'),
+  // Phase 4: local SQLite audit database path (not a secret — local filesystem path)
+  DATABASE_PATH: z.string().default('./data/sonic-solana-autotrader.sqlite'),
+  // Phase 4: audit retention settings
+  AUDIT_RETENTION_DAYS: z
+    .preprocess(
+      (v) => (v === '' || v === undefined || v === null ? undefined : Number(v)),
+      z.number().int().min(1).max(365).default(30),
+    ),
+  AUDIT_MAX_EVENTS: z
+    .preprocess(
+      (v) => (v === '' || v === undefined || v === null ? undefined : Number(v)),
+      z.number().int().min(100).max(1_000_000).default(10_000),
+    ),
+  AUDIT_ROTATION_ENABLED: boolFromEnv.default(true),
   // Unsafe capability flags — all default false.
   // Even if set to true, they do NOT activate any unsafe functionality in Phase 3.
   // Prefer fail-closed: unsafe flags are detected, warned, and capabilities stay disabled.
