@@ -1,8 +1,22 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 7A — Event Engine Core Interfaces + In-Memory Event Bus**
+**Phase 7B — Disabled Read-Only Provider Boundaries**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 7A.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 7B.
+
+## Features (Phase 7B — adds to Phase 7A)
+
+- Disabled read-only provider boundaries (`packages/event-engine`) — defines where future event providers could plug in
+- `EventProviderType` — 6 disabled provider types (helius_disabled, websocket_disabled, yellowstone_disabled, polling_disabled, mock_disabled, unknown_disabled)
+- `EventProviderStatus` — disabled / unavailable / unsupported / mock_only / future_not_available
+- `EventProviderConfig` — all 8 live/network/execution permission fields permanently `false`
+- `EventProviderCapabilities` — all 12 capability flags permanently `false` (including hasRuntimeDependency, canUseNetwork, canUseSolanaRpc, canUseWebSocket, canUseYellowstone, canUseGeyser, canEmitLiveEvents, canTriggerExecution, canAccessWallets, canAccessPrivateKeys)
+- `ProviderErrorCode` — 13 safe error codes (PROVIDER_DISABLED, SOLANA_RPC_FORBIDDEN, WEBSOCKET_FORBIDDEN, etc.)
+- `EventProviderBoundary` interface + `DisabledEventProvider` — always disabled; lifecycle methods return safe forbidden results
+- `createDisabledEventProvider` factory — fail-closed; all unsafe enable/live/network attempts coerced to disabled
+- Named helpers: `createDisabledHeliusProvider`, `createDisabledWebSocketProvider`, `createDisabledYellowstoneProvider`, `createDisabledPollingProvider`
+- `EventProviderRegistry` — registry of disabled providers; all entries disabled; no provider startup
+- 195 new tests in `tests/phase7b.test.ts` — 862 total, all passing
 
 ## Features (Phase 7A)
 
@@ -72,10 +86,10 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 
 ## Safety Notice
 
-- **NO LIVE TRADING**: All trading functionality is strictly disabled in Phases 6A/6B/6C/7A.
+- **NO LIVE TRADING**: All trading functionality is strictly disabled in Phases 6A/6B/6C/7A/7B.
 - **NO EXECUTION**: The system has no capability to send transactions to the Solana network.
 - **NO WALLET / PRIVATE KEYS**: Private key handling, wallet loading, and transaction signing are NOT implemented.
-- **NO SOLANA RPC**: No Solana RPC connections in any phase through 7A.
+- **NO SOLANA RPC**: No Solana RPC connections in any phase through 7B.
 - **NO JITO / PUMP.FUN TRADING**: No Pump.fun buying/selling. No PumpSwap buying/selling. No Jito.
 - **NO TRANSACTION BUILDING**: No real transaction instruction building or construction.
 - **NO ACCOUNT METAS**: No AccountMeta objects are returned.

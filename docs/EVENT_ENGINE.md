@@ -1,4 +1,4 @@
-# Event Engine — Phase 7A
+# Event Engine — Phase 7A/7B
 
 ## Overview
 
@@ -237,10 +237,120 @@ All errors have `safeToDisplay: true`. No stack traces or secrets are included.
 
 ---
 
+---
+
+## Phase 7B: Disabled Provider Boundaries
+
+Phase 7B extends `packages/event-engine` with disabled read-only provider boundaries for future event providers.
+
+### What Phase 7B provides
+
+- `EventProviderType` — 6 disabled provider type values (helius_disabled, websocket_disabled, yellowstone_disabled, polling_disabled, mock_disabled, unknown_disabled)
+- `EventProviderStatus` — 5 provider status values (disabled, unavailable, unsupported, mock_only, future_not_available)
+- `EventProviderConfig` — provider config model; all 8 live/network/execution permission fields permanently `false`
+- `EventProviderCapabilities` — provider capability model; all 12 capability flags permanently `false`
+- `DISABLED_PROVIDER_CONFIG` / `DISABLED_PROVIDER_CAPABILITIES` / `PHASE_7B_PROVIDER_CAPABILITIES` — authoritative constants
+- `ProviderErrorCode` — 13 safe provider error codes (PROVIDER_DISABLED, SOLANA_RPC_FORBIDDEN, WEBSOCKET_FORBIDDEN, etc.)
+- `ProviderError` / `ProviderResult<T>` — safe provider result/error types, all with `safeToDisplay: true`
+- `EventProviderBoundary` — interface for disabled provider boundaries
+- `DisabledEventProvider` — single disabled implementation; returns disabled status, all caps false, safe errors from lifecycle methods
+- `createDisabledEventProvider` — factory; always returns disabled provider; unsafe enable attempts are coerced to disabled (fail-closed)
+- `createDisabledHeliusProvider` / `createDisabledWebSocketProvider` / `createDisabledYellowstoneProvider` / `createDisabledPollingProvider` — named factory helpers
+- `EventProviderRegistry` / `getEventProviderRegistry` — registry of disabled providers; all entries disabled
+- 195 new tests in `tests/phase7b.test.ts` — 862 total, all passing
+
+### What Phase 7B does NOT provide
+
+- Helius SDK or Helius runtime integration
+- WebSocket client or WebSocket runtime integration
+- Yellowstone / Geyser packages or gRPC runtime integration
+- Solana RPC connections or `@solana/web3.js`
+- Live polling, live streaming, live market data ingestion
+- Live chain events or token launch detection
+- Provider API keys or RPC URL usage for live connections
+- Wallet / private key handling
+- Transaction construction, signing, or sending
+- Trade execution or swap logic
+- Jito integration
+- FULL_AUTO or LIMITED_LIVE unlock
+- New Telegram event-stream or trade commands
+
+### Phase 7B Architecture
+
+```
+packages/event-engine/src/
+  provider-types.ts        — EventProviderType, EventProviderStatus
+  provider-capabilities.ts — EventProviderConfig, EventProviderCapabilities,
+                             DISABLED_PROVIDER_CONFIG, DISABLED_PROVIDER_CAPABILITIES,
+                             PHASE_7B_PROVIDER_CAPABILITIES
+  disabled-provider.ts     — ProviderErrorCode, ProviderError, ProviderResult<T>,
+                             EventProviderBoundary interface, DisabledEventProvider class
+  provider-factory.ts      — createDisabledEventProvider + named helpers
+  provider-registry.ts     — EventProviderRegistry, getEventProviderRegistry
+```
+
+### Phase 7B Safety
+
+All provider capability flags are `false`:
+
+```typescript
+PHASE_7B_PROVIDER_CAPABILITIES = {
+  hasRuntimeDependency: false,
+  canUseNetwork: false,
+  canUseSolanaRpc: false,
+  canUseWebSocket: false,
+  canUseYellowstone: false,
+  canUseGeyser: false,
+  canPoll: false,
+  canStream: false,
+  canEmitLiveEvents: false,
+  canTriggerExecution: false,
+  canAccessWallets: false,
+  canAccessPrivateKeys: false,
+}
+```
+
+All provider config permissions are `false`:
+
+```typescript
+DISABLED_PROVIDER_CONFIG = {
+  enabled: false,
+  allowNetwork: false,
+  allowSolanaRpc: false,
+  allowWebSocket: false,
+  allowLiveEvents: false,
+  allowPolling: false,
+  allowStreaming: false,
+  allowExecutionTriggers: false,
+}
+```
+
+### Phase 7B Provider Error Codes
+
+| Code                          | When                                                    |
+|-------------------------------|---------------------------------------------------------|
+| `PROVIDER_DISABLED`           | connect/start called on disabled provider               |
+| `PROVIDER_RUNTIME_NOT_INSTALLED` | provider SDK not installed (always true in Phase 7B) |
+| `PROVIDER_NETWORK_FORBIDDEN`  | network access attempted                                |
+| `SOLANA_RPC_FORBIDDEN`        | Solana RPC access attempted                             |
+| `WEBSOCKET_FORBIDDEN`         | WebSocket connection attempted                          |
+| `YELLOWSTONE_FORBIDDEN`       | Yellowstone gRPC access attempted                       |
+| `GEYSER_FORBIDDEN`            | Geyser access attempted                                 |
+| `LIVE_EVENTS_FORBIDDEN`       | subscribe/live events attempted                         |
+| `POLLING_FORBIDDEN`           | poll() called on disabled provider                      |
+| `STREAMING_FORBIDDEN`         | streaming attempted                                     |
+| `EXECUTION_TRIGGER_FORBIDDEN` | execution trigger attempted                             |
+| `WALLET_ACCESS_FORBIDDEN`     | wallet access attempted                                 |
+| `API_KEY_USAGE_FORBIDDEN`     | API key usage attempted                                 |
+
+All errors have `safeToDisplay: true`. No stack traces, no RPC URLs, no API keys, no secrets.
+
+---
+
 ## Future Phases
 
-- **Phase 7B** may add disabled read-only provider boundaries (Helius, Yellowstone, etc.) — structurally present but not connected
-- **Phase 7C+** may add provider client scaffolding with all live capabilities disabled
+- **Phase 7B** adds disabled read-only provider boundaries (Helius, Yellowstone, WebSocket, polling) — structurally present but not connected, no SDK loaded (complete)
+- **Phase 7C** may add controlled mock providers or replayable fixture events — still without live providers, still no network, no Solana RPC, no execution
 - Market data ingestion, wallet handling, signing, sending, and execution remain forbidden until explicit future phase unlocks after full safety gate validation
 
 ---
@@ -249,8 +359,11 @@ All errors have `safeToDisplay: true`. No stack traces or secrets are included.
 
 ```
 tests/phase7a.test.ts — 119 tests
+tests/phase7b.test.ts — 195 tests
 ```
 
-Coverage: types/models, event bus publish/reject/subscribe/unsubscribe/failure isolation/bounded history/stats, dedupe/TTL, validation/errors, safety capability checks, regression.
+Coverage (Phase 7A): types/models, event bus publish/reject/subscribe/unsubscribe/failure isolation/bounded history/stats, dedupe/TTL, validation/errors, safety capability checks, regression.
+
+Coverage (Phase 7B): provider types/status/config/capability shapes, all capability flags false, disabled providers for all 4 types, lifecycle methods return disabled/forbidden, factory fail-closed on unsafe inputs, registry lists disabled providers only, error safety (no stack traces/secrets), regression.
 
 No network, no Solana RPC, no wallet, no private keys required.

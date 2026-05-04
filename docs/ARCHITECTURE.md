@@ -10,13 +10,35 @@ Monorepo with pnpm workspaces.
 - `mode-manager`: Mode state machine (transitions persisted to audit DB in Phase 4)
 - `risk-engine`: Safety gates
 - `pump-adapter`: Pump adapter interfaces, quote models, instruction intent models, and disabled SDK wrapper boundary (Phases 6A/6B/6C, inert — no RPC, no execution, no real Pump SDK, no Solana SDK)
-- `event-engine`: Local in-memory event bus, event envelope types, source status models, dedupe/TTL helpers, validation (Phase 7A — no network, no execution)
+- `event-engine`: Local in-memory event bus, event envelope types, source status models, dedupe/TTL helpers, validation (Phase 7A), and disabled read-only provider boundaries (Phase 7B — no network, no execution)
 - `testing`: Shared test utilities
 
 ## Apps
 - `telegram-bot`: Telegram command interface (uses `SqliteAuditRepository`)
 - `worker`: Safe heartbeat loop (DB init + retention on startup)
 - `dashboard`: Placeholder
+
+## Phase 7B: Disabled Provider Boundaries
+
+Phase 7B extends `packages/event-engine` with disabled read-only provider boundary models. See [docs/EVENT_ENGINE.md](./EVENT_ENGINE.md) for full details.
+
+```
+packages/event-engine/src/
+  provider-types.ts        — EventProviderType (6 disabled types), EventProviderStatus
+  provider-capabilities.ts — EventProviderConfig, EventProviderCapabilities,
+                             DISABLED_PROVIDER_CONFIG, DISABLED_PROVIDER_CAPABILITIES,
+                             PHASE_7B_PROVIDER_CAPABILITIES
+  disabled-provider.ts     — ProviderErrorCode (13 safe codes), ProviderError,
+                             ProviderResult<T>, EventProviderBoundary interface,
+                             DisabledEventProvider class
+  provider-factory.ts      — createDisabledEventProvider (fail-closed), named helpers
+  provider-registry.ts     — EventProviderRegistry, getEventProviderRegistry
+```
+
+No Helius SDK. No WebSocket client. No Yellowstone/Geyser. No `@solana/web3.js`.
+No network, no Solana RPC, no wallets, no execution.
+All `EventProviderCapabilities` flags are `false`.
+`FULL_AUTO` and `LIMITED_LIVE` remain locked.
 
 ## Phase 7A: Event Engine Core
 
