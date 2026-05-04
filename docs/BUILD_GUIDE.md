@@ -150,3 +150,34 @@ The `packages/pump-adapter` extension adds:
 
 ## Phase 6C: Test count
 548 tests (73 new Phase 6C tests + 475 regression tests).
+
+## Phase 7A: Event Engine Core
+
+The new `packages/event-engine` package provides:
+- `EventEnvelope` — canonical event container with full validation
+- `IEventBus` / `InMemoryEventBus` — bounded, isolated, in-memory pub/sub
+- `EventSourceCapabilities` — all network/execution/wallet flags permanently `false`
+- `DedupeStore` — in-memory TTL deduplication
+- `validateEventEnvelope` — full structural and safety validation
+- `EventEngineResult<T>` — safe result/error type
+
+### Build event-engine package
+
+```
+pnpm --filter @sonic/event-engine build
+```
+
+### Phase 7A: Limitations
+
+- No Solana RPC, no Helius, no QuickNode, no WebSocket providers.
+- No Yellowstone / Geyser. No Pump SDK runtime. No @solana/web3.js.
+- No market data ingestion. No wallet/private keys.
+- No transaction construction, simulation, signing, or sending.
+- No trade execution, swap logic, or Jito.
+- future_chain and future_market categories are model-only placeholders.
+- FULL_AUTO and LIMITED_LIVE remain locked.
+- No new Telegram trade/event-stream commands.
+- Phase 7B may add disabled read-only provider boundaries.
+
+## Phase 7A: Test count
+667 tests (119 new Phase 7A tests + 548 regression tests).

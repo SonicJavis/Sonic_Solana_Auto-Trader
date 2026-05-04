@@ -10,6 +10,7 @@ Monorepo with pnpm workspaces.
 - `mode-manager`: Mode state machine (transitions persisted to audit DB in Phase 4)
 - `risk-engine`: Safety gates
 - `pump-adapter`: Pump adapter interfaces, quote models, instruction intent models, and disabled SDK wrapper boundary (Phases 6A/6B/6C, inert — no RPC, no execution, no real Pump SDK, no Solana SDK)
+- `event-engine`: Local in-memory event bus, event envelope types, source status models, dedupe/TTL helpers, validation (Phase 7A — no network, no execution)
 - `testing`: Shared test utilities
 
 ## Apps
@@ -17,7 +18,30 @@ Monorepo with pnpm workspaces.
 - `worker`: Safe heartbeat loop (DB init + retention on startup)
 - `dashboard`: Placeholder
 
-## Phase 4: Database Layer
+## Phase 7A: Event Engine Core
+
+Phase 7A adds the local in-memory event engine package. See [docs/EVENT_ENGINE.md](./EVENT_ENGINE.md) for full details.
+
+```
+packages/event-engine/src/
+  types.ts              — EventCategory, EventSourceType, EventSeverity
+  event-envelope.ts     — EventEnvelope, EventPayload
+  source-status.ts      — EventSourceStatus, EventSourceCapabilities, EventSourceHealth
+                          EventEngineSystemStatus, PHASE_7A_SOURCE_CAPABILITIES
+  errors.ts             — EventEngineErrorCode, EventEngineError, EventEngineResult
+  event-bus.ts          — IEventBus, SubscriptionId, EventBusStats, EventHandler
+  in-memory-event-bus.ts — InMemoryEventBus, createInMemoryEventBus, buildTestEvent
+  dedupe.ts             — DedupeStore, isEventExpired, buildDedupeKey, ClockFn
+  validation.ts         — validateEventEnvelope and helper validators
+  index.ts              — public barrel
+```
+
+No dependency on other `@sonic/*` packages.
+No network, no Solana RPC, no wallets, no execution.
+All `EventSourceCapabilities` flags are `false`.
+`FULL_AUTO` and `LIMITED_LIVE` remain locked.
+
+
 
 ```
 packages/db/src/
