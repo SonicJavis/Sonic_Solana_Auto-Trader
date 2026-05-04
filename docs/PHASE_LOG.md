@@ -1,5 +1,27 @@
 # Phase Log
 
+## Phase 7E — Event Engine Final Gate + Provider Readiness Surface
+
+- Extends `packages/state` with a Phase 7E Event Engine readiness read model
+- `EventEngineReadinessSnapshot` — safe top-level snapshot of Event Engine state; all live/network/execution fields are 'forbidden'
+- `ProviderReadinessSummary` — safe summary of provider readiness counts and state (no raw URLs/API keys)
+- `Phase8ReadinessGate` — static Phase 8 readiness checklist; readyForTokenIntelligence is true only when all Phase 0–7 local foundations are represented and all safety conditions hold
+- `buildEventEngineReadinessSnapshot()` — builds complete snapshot using Phase 7D provider readiness report
+- `buildProviderReadinessSummary()` — derives safe summary from ProviderReadinessReport
+- `buildPhase8ReadinessGate()` — evaluates Phase 8 readiness gate from provider summary + lock flags
+- `PHASE_7E_EVENT_ENGINE_SUMMARY` — static constant safe for /system output
+- `EVENT_ENGINE_READINESS_CODES` — 6 safe error/readiness codes
+- `PHASE_8_REQUIRED_FOUNDATIONS` — 9 required Phase 0–7E local foundations
+- `PHASE_8_REQUIRED_SAFETY_CONDITIONS` — 9 required safety conditions
+- Telegram `/system engine` — Event Engine readiness output (local-only status, provider summary, Phase 8 gate)
+- Telegram `/system phase8` — Phase 8 Token Intelligence readiness gate output
+- `PHASE_NAME` updated to 'Event Engine Final Gate + Provider Readiness Surface'
+- Phase 7E test suite: 107 new tests (1148 total passing, 13 test files)
+- No live providers. No network access. No Solana RPC. No WebSocket. No API key usage. No wallet. No signing. No sending. No execution. No Jito.
+- FULL_AUTO and LIMITED_LIVE remain locked
+- Phase 8 readiness means readiness for Token Intelligence model work only — NOT live data, trading, or execution
+- Next phase: Phase 8 Token Intelligence v1
+
 ## Phase 7D - Disabled Provider Config + Readiness Checks
 - Extends `packages/event-engine` (Phase 7A/7B/7C) with disabled provider configuration models and readiness checks
 - `ProviderConfigMode` — disabled, mock_only, future_live_not_available

@@ -15,6 +15,7 @@ import { buildRuntimeSafetyStatus, PHASE } from '@sonic/shared';
 import {
   buildSystemStateSnapshot,
   buildConfigStateSnapshot,
+  buildEventEngineReadinessSnapshot,
 } from '@sonic/state';
 import { getTelegramUserInfo, hasConfiguredAdmins, requireAdmin } from '../permissions.js';
 import { auditTelegramCommand } from '../audit.js';
@@ -27,6 +28,8 @@ import {
   formatSystemConfig,
   formatSystemHelp,
   formatSystemUnknown,
+  formatSystemEngine,
+  formatPhase8Readiness,
 } from '../formatters/system.js';
 
 /** Parse the text after /system into a subcommand */
@@ -122,6 +125,22 @@ export async function handleSystem(
     case 'config': {
       const configSnapshot = buildConfigStateSnapshot(config);
       await ctx.reply(formatSystemConfig(configSnapshot));
+      break;
+    }
+    case 'engine': {
+      const engineSnapshot = buildEventEngineReadinessSnapshot({
+        fullAutoLocked: true,
+        limitedLiveLocked: true,
+      });
+      await ctx.reply(formatSystemEngine(engineSnapshot));
+      break;
+    }
+    case 'phase8': {
+      const engineSnapshot = buildEventEngineReadinessSnapshot({
+        fullAutoLocked: true,
+        limitedLiveLocked: true,
+      });
+      await ctx.reply(formatPhase8Readiness(engineSnapshot.phase8Readiness));
       break;
     }
     case 'help':

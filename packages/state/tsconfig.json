@@ -9,7 +9,8 @@
     { "path": "../shared" },
     { "path": "../config" },
     { "path": "../db" },
-    { "path": "../mode-manager" }
+    { "path": "../mode-manager" },
+    { "path": "../event-engine" }
   ],
   "include": ["src/**/*"]
 }

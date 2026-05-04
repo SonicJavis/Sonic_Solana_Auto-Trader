@@ -11,6 +11,7 @@ Monorepo with pnpm workspaces.
 - `risk-engine`: Safety gates
 - `pump-adapter`: Pump adapter interfaces, quote models, instruction intent models, and disabled SDK wrapper boundary (Phases 6A/6B/6C, inert — no RPC, no execution, no real Pump SDK, no Solana SDK)
 - `event-engine`: Local in-memory event bus, event envelope types, source status models, dedupe/TTL helpers, validation, disabled provider boundaries, mock provider, fixture events and replay, disabled provider config/readiness (Phases 7A/7B/7C/7D — no network, no execution)
+- `state`: Safe read models for system, config, mode, audit, worker, health readiness, and Phase 7E Event Engine/provider readiness + Phase 8 readiness gate
 - `testing`: Shared test utilities
 
 ## Apps
@@ -40,9 +41,26 @@ No network, no Solana RPC, no wallets, no execution.
 All `EventProviderCapabilities` flags are `false`.
 `FULL_AUTO` and `LIMITED_LIVE` remain locked.
 
-## Phase 7A/7B/7C/7D: Event Engine Core + Disabled Providers + Mock Providers + Provider Config/Readiness
+## Phase 7A/7B/7C/7D/7E: Event Engine Core + Disabled Providers + Mock Providers + Provider Config/Readiness + Readiness Surface
 
-Phase 7A adds the local in-memory event engine package. Phase 7B adds disabled provider boundaries. Phase 7C adds controlled mock providers and replayable fixture events. Phase 7D adds disabled provider configuration models and readiness checks. See [docs/EVENT_ENGINE.md](./EVENT_ENGINE.md) for full details.
+Phase 7A adds the local in-memory event engine package. Phase 7B adds disabled provider boundaries. Phase 7C adds controlled mock providers and replayable fixture events. Phase 7D adds disabled provider configuration models and readiness checks. Phase 7E surfaces provider readiness into `@sonic/state` and adds the Phase 8 Token Intelligence readiness gate. See [docs/EVENT_ENGINE.md](./EVENT_ENGINE.md) for full details.
+
+```
+packages/event-engine/src/
+  ... (Phase 7A–7D files unchanged)
+  provider-config.ts      — Phase 7D: ProviderConfigSafe, validateProviderConfig
+  provider-readiness.ts   — Phase 7D: ProviderReadinessReport, buildProviderReadinessReport
+
+packages/state/src/
+  event-engine-read-model.ts — Phase 7E: EventEngineReadinessSnapshot, ProviderReadinessSummary,
+                                Phase8ReadinessGate, buildEventEngineReadinessSnapshot,
+                                buildPhase8ReadinessGate, PHASE_7E_EVENT_ENGINE_SUMMARY
+```
+
+Telegram `/system engine` — Event Engine local-only status and provider readiness.
+Telegram `/system phase8` — Phase 8 Token Intelligence readiness gate.
+
+Phase 8 readiness means ready to build Token Intelligence models locally — NOT live data, trading, or execution.
 
 ```
 packages/event-engine/src/

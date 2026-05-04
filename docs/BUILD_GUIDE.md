@@ -249,7 +249,33 @@ Phase 7D adds disabled provider configuration models and readiness checks to `pa
 - Phase 7E may add controlled read-only configuration/replay integration — still without execution.
 
 ## Phase 7D: Test count
-798+ passing tests (81 new Phase 7D tests + 717 regression tests passing; 3 pre-existing failures due to missing telegraf/drizzle-orm packages).
+1041 passing tests (81 new Phase 7D tests + prior regression tests). Previous pre-existing failures from missing telegraf/drizzle-orm resolved with pnpm workflow.
+
+## Phase 7E: Event Engine Final Gate + Provider Readiness Surface
+
+Phase 7E surfaces Event Engine and provider readiness into `@sonic/state` and adds a Phase 8 Token Intelligence readiness gate.
+
+### What Phase 7E adds
+
+- `EventEngineReadinessSnapshot` (in `packages/state`) — safe top-level snapshot; all live/network/execution fields 'forbidden'
+- `ProviderReadinessSummary` (in `packages/state`) — safe counts/state summary; no raw URLs/API keys
+- `Phase8ReadinessGate` (in `packages/state`) — static Phase 8 readiness checklist
+- `buildEventEngineReadinessSnapshot()` — complete snapshot builder
+- `buildPhase8ReadinessGate()` — Phase 8 gate evaluator
+- `PHASE_7E_EVENT_ENGINE_SUMMARY`, `EVENT_ENGINE_READINESS_CODES` — safe constants
+- Telegram `/system engine` and `/system phase8` subcommands
+- `PHASE_NAME` updated to 'Event Engine Final Gate + Provider Readiness Surface'
+
+### Phase 7E: Limitations
+
+- No live providers. No network access. No Solana RPC. No WebSocket.
+- No Helius, WebSocket, Yellowstone, Geyser SDKs.
+- No API key usage. No wallet handling. No signing. No sending. No execution.
+- Phase 8 readiness means Token Intelligence model work only — NOT live data, trading, or execution.
+- FULL_AUTO and LIMITED_LIVE remain locked.
+
+## Phase 7E: Test count
+1148 passing tests (107 new Phase 7E tests + 1041 regression tests). 13 test files.
 
 ## Phase 7C: Test count
 Tests from Phase 7C remain part of the full suite.

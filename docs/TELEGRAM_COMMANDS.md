@@ -62,17 +62,24 @@ Showing 3 event(s)
 
 ## Phase 5 - State Store and Safe Read Models
 
-### /system sub-commands (Phase 5, admin-only)
+### /system sub-commands (Phase 5 + Phase 7E, admin-only)
 
-| Command           | Description                                          |
-|-------------------|------------------------------------------------------|
-| `/system`         | System overview: phase, mode, readiness, DB, worker  |
-| `/system health`  | Readiness, worker status, recent warn/error counts   |
-| `/system safety`  | Runtime safety locks, locked modes, unsafe flags     |
-| `/system audit`   | Audit log statistics and last event timestamps       |
-| `/system worker`  | Last startup, last heartbeat, heartbeat age, status  |
-| `/system config`  | Safe config summary (no secrets or credentials)      |
-| `/system help`    | Show /system help text                               |
+| Command            | Description                                          |
+|--------------------|------------------------------------------------------|
+| `/system`          | System overview: phase, mode, readiness, DB, worker  |
+| `/system health`   | Readiness, worker status, recent warn/error counts   |
+| `/system safety`   | Runtime safety locks, locked modes, unsafe flags     |
+| `/system audit`    | Audit log statistics and last event timestamps       |
+| `/system worker`   | Last startup, last heartbeat, heartbeat age, status  |
+| `/system config`   | Safe config summary (no secrets or credentials)      |
+| `/system engine`   | Event Engine readiness: local-only status, provider summary, Phase 8 gate |
+| `/system phase8`   | Phase 8 Token Intelligence readiness gate            |
+| `/system help`     | Show /system help text                               |
+
+**Phase 7E additions:**
+
+- `/system engine` — Shows Event Engine core status (local-only), mock/fixture replay status, provider readiness summary, and Phase 8 readiness gate. All live/network/execution fields report 'forbidden'. No raw URLs or API keys.
+- `/system phase8` — Shows Phase 8 readiness gate with required foundations checklist, safety conditions, blockers, and warnings. `readyForTokenIntelligence: true` means ready to begin Token Intelligence model work — NOT live data, trading, or execution.
 
 ### Readiness values
 
@@ -114,9 +121,11 @@ Use /system help for subcommands.
 
 ### Notes
 
-- No trading commands exist. Trading is disabled in Phase 5.
+- No trading commands exist. Trading is disabled in Phase 7E.
 - `LIMITED_LIVE` and `FULL_AUTO` are locked and cannot be set by any command.
 - No `/system` subcommand can unlock modes or trigger execution.
 - `/system config` never displays raw TELEGRAM_BOT_TOKEN, DATABASE_URL, or any credentials.
 - `/system audit` never shows raw detailsJson — only stats and safe timestamps.
+- `/system engine` never shows raw provider URLs, API keys, or endpoint values.
+- `/system phase8` Phase 8 readiness means Token Intelligence model work only — NOT live providers, market data, wallets, signing, sending, or execution.
 - All /system commands are audit logged as `TELEGRAM_SYSTEM_REQUESTED` events.
