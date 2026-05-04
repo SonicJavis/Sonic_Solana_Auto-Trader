@@ -27,8 +27,8 @@ export function buildWorkerStateSnapshot(audit: AuditStateSnapshot): WorkerState
   } else if (lastHeartbeatTimestamp !== null) {
     const heartbeatMs = Date.parse(lastHeartbeatTimestamp);
     if (!Number.isNaN(heartbeatMs)) {
-      heartbeatAgeSeconds = Math.floor((Date.now() - heartbeatMs) / 1000);
       const ageMs = Date.now() - heartbeatMs;
+      heartbeatAgeSeconds = Math.floor(ageMs / 1000);
       status = ageMs > HEARTBEAT_STALE_THRESHOLD_MS ? 'degraded' : 'healthy';
     } else {
       status = 'degraded';
