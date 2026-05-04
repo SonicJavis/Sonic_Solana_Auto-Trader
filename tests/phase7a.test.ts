@@ -126,7 +126,7 @@ describe('Phase 7A — A.2 EventSourceType', () => {
     for (const src of expected) {
       expect(EVENT_SOURCE_TYPES).toContain(src);
     }
-    expect(EVENT_SOURCE_TYPES).toHaveLength(7);
+    expect(EVENT_SOURCE_TYPES).toHaveLength(8);
   });
 
   it('isValidSourceType accepts all EventSourceType values', () => {
