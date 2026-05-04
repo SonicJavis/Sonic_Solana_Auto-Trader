@@ -1,8 +1,19 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 6A — Pump Adapter Interfaces + Safe Quote Models**
+**Phase 6B — Local Instruction Intent and Transaction Plan Placeholder Models**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in Phase 6A.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in Phase 6A/6B.
+
+## Features (Phase 6B — adds to Phase 6A)
+
+- Instruction intent models: `PumpInstructionIntent` (local planning model, not executable)
+- Transaction plan placeholder models: `PumpTransactionPlan` (local placeholder, not a transaction)
+- Builder request/result types: `PumpInstructionBuilderRequest`, `PumpInstructionBuilderResult`
+- Warning codes: MODEL_ONLY, EXECUTION_FORBIDDEN, SIGNING_FORBIDDEN, SENDING_FORBIDDEN, LIVE_RPC_FORBIDDEN, REAL_INSTRUCTIONS_FORBIDDEN
+- Error codes: 12 forbidden-operation codes (INSTRUCTION_BUILDING_FORBIDDEN, EXECUTABLE_INSTRUCTIONS_FORBIDDEN, etc.)
+- Phase 6B safety capability guard: `PHASE_6B_BUILDER_CAPABILITIES` — all 12 prohibited capabilities permanently false
+- Mock instruction builder: `MockInstructionBuilder`, `createMockInstructionBuilder`
+- Input validation helpers: allowExecutableInstructions guard, quote success, venue allow-list, positive amounts, slippage bounds
 
 ## Features (Phase 6A)
 
@@ -32,15 +43,18 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 
 ## Safety Notice
 
-- **NO LIVE TRADING**: All trading functionality is strictly disabled in Phase 6A.
+- **NO LIVE TRADING**: All trading functionality is strictly disabled in Phases 6A/6B.
 - **NO EXECUTION**: The system has no capability to send transactions to the Solana network.
 - **NO WALLET / PRIVATE KEYS**: Private key handling, wallet loading, and transaction signing are NOT implemented.
-- **NO SOLANA RPC**: No Solana RPC connections in Phase 6A.
+- **NO SOLANA RPC**: No Solana RPC connections in Phases 6A/6B.
 - **NO JITO / PUMP.FUN TRADING**: No Pump.fun buying/selling. No PumpSwap buying/selling. No Jito.
-- **NO TRANSACTION BUILDING**: No transaction instruction building or construction.
+- **NO TRANSACTION BUILDING**: No real transaction instruction building or construction.
+- **NO ACCOUNT METAS**: No AccountMeta objects are returned.
+- **NO BINARY INSTRUCTION DATA**: No binary instruction data is returned.
 - **NO SIMULATION**: No transaction simulation.
-- **NO MARKET DATA**: Not yet implemented.
 - **PUMP ADAPTER IS INERT**: `packages/pump-adapter` is model-only — no live RPC, no execution, no signing, no sending.
+- **INSTRUCTION INTENTS ARE LOCAL MODELS ONLY**: `PumpInstructionIntent` is a planning model, not an executable instruction.
+- **TRANSACTION PLANS ARE PLACEHOLDERS ONLY**: `PumpTransactionPlan` is a placeholder, not a Solana transaction.
 - **READ-ONLY FIRST**: The foundation is built for infrastructure only.
 - **FULL_AUTO and LIMITED_LIVE remain locked**.
 
