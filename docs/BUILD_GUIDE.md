@@ -112,3 +112,41 @@ pnpm --filter @sonic/pump-adapter build
 
 ## Phase 6A: Test count
 397 tests (106 new Phase 6A tests + 291 regression tests).
+
+## Phase 6B: Instruction Intent Models
+
+The `packages/pump-adapter` extension adds:
+- `PumpInstructionIntent` — local planning model only
+- `PumpTransactionPlan` — local placeholder only
+- `MockInstructionBuilder` — mock builder for tests
+- `PHASE_6B_BUILDER_CAPABILITIES` — all 12 prohibited capabilities permanently false
+
+### Phase 6B: Limitations
+
+- No Solana RPC. No Pump SDK runtime. No real instruction building.
+- No account metas, no binary instruction data, no transaction construction, simulation, signing, sending.
+- FULL_AUTO and LIMITED_LIVE remain locked.
+
+## Phase 6B: Test count
+475 tests (78 new Phase 6B tests + 397 regression tests).
+
+## Phase 6C: Disabled Pump SDK Wrapper Boundary
+
+The `packages/pump-adapter` extension adds:
+- `DisabledPumpSdkWrapper` — disabled boundary wrapper; never imports SDK or uses RPC
+- `createPumpSdkWrapper()` — factory; always returns disabled wrapper (fail-closed)
+- `PUMP_SDK_WRAPPER_CAPABILITIES` — all 12 wrapper capability flags permanently false
+- `DISABLED_WRAPPER_CONFIG` — all live/executable permission fields permanently false
+
+### Phase 6C: Limitations
+
+- No real Pump SDK runtime integration. No `@solana/web3.js`. No Solana SDK.
+- No live RPC, real instruction building, account metas, binary instruction data.
+- No transaction construction, simulation, signing, sending, wallet access, or execution.
+- Unsafe enable/live/executable config attempts are coerced to disabled (fail-closed).
+- FULL_AUTO and LIMITED_LIVE remain locked.
+- No new Telegram trade/quote commands.
+- Phase 7 should be read-only event engine or further disabled wrapper hardening — not execution.
+
+## Phase 6C: Test count
+548 tests (73 new Phase 6C tests + 475 regression tests).

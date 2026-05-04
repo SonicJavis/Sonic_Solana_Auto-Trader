@@ -9,7 +9,7 @@ Monorepo with pnpm workspaces.
 - `db`: SQLite + Drizzle ORM persistent audit repository; `InMemoryAuditLogger` fallback
 - `mode-manager`: Mode state machine (transitions persisted to audit DB in Phase 4)
 - `risk-engine`: Safety gates
-- `pump-adapter`: Pump adapter interfaces and quote models (Phase 6A, inert — no RPC, no execution)
+- `pump-adapter`: Pump adapter interfaces, quote models, instruction intent models, and disabled SDK wrapper boundary (Phases 6A/6B/6C, inert — no RPC, no execution, no real Pump SDK, no Solana SDK)
 - `testing`: Shared test utilities
 
 ## Apps
@@ -136,5 +136,45 @@ No circular imports.
 - Quote results marked `isMockResult: true` — not executed trades
 - Bonding curve state marked `isMockState: true` — not fetched from chain
 - All errors carry `safeToDisplay: true`
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram trade/quote commands
+
+## Phase 6B: Instruction Intent Models
+
+```
+packages/pump-adapter/src/
+  instruction-intent-types.ts — PumpInstructionIntentType, PumpTradeSide, PumpInstructionIntent
+  transaction-plan-types.ts   — PumpTransactionPlanType, PumpTransactionPlan
+  builder-types.ts            — Phase6BWarningCode, Phase6BErrorCode, Phase6BErrorResult,
+                                Phase6BBuilderCapabilities, PumpInstructionBuilderRequest,
+                                PumpInstructionBuilderResult
+  instruction-builder.ts      — PumpInstructionIntentBuilder interface
+  instruction-validation.ts   — phase6bError, validateAllowExecutableInstructions,
+                                validateBuilderQuote, validateBuilderVenue, etc.
+  mock-instruction-builder.ts — MockInstructionBuilder, PHASE_6B_BUILDER_CAPABILITIES,
+                                getPhase6BBuilderCapabilities(), createMockInstructionBuilder()
+```
+
+## Phase 6C: Disabled SDK Wrapper Boundary
+
+```
+packages/pump-adapter/src/
+  sdk-wrapper-types.ts     — PumpSdkWrapperMode, PumpSdkWrapperStatus, PumpSdkWrapperConfig,
+                             PumpSdkWrapperCapabilities, PumpSdkWrapperErrorCode,
+                             PumpSdkWrapperDisabledResult, PumpSdkWrapper interface,
+                             DISABLED_WRAPPER_CONFIG, PUMP_SDK_WRAPPER_CAPABILITIES
+  disabled-sdk-wrapper.ts  — DisabledPumpSdkWrapper, DISABLED_PUMP_SDK_WRAPPER,
+                             createDisabledSdkWrapper()
+  sdk-wrapper-factory.ts   — PumpSdkWrapperFactoryInput, createPumpSdkWrapper()
+```
+
+## Phase 6C Safety Invariants
+
+- `packages/pump-adapter` has no dependencies on Pump SDK, @solana/web3.js, wallet libraries, or RPC clients
+- All wrapper capability flags (`hasPumpSdkRuntime`, `hasSolanaSdkRuntime`, `canUseLiveRpc`, `canBuildRealInstructions`, `canReturnAccountMetas`, `canReturnBinaryInstructionData`, `canSimulateTransactions`, `canSignTransactions`, `canSendTransactions`, `canExecuteTrades`, `canAccessWallets`, `canAccessPrivateKeys`) are permanently `false`
+- `createPumpSdkWrapper` factory always returns a disabled wrapper (fail-closed)
+- Unsafe enable/live/executable config attempts are coerced to disabled
+- Optional live methods return only safe forbidden result objects (never account metas, never binary data)
+- All errors carry `safeToDisplay: true` — no raw secrets, no stack traces, no RPC URLs
 - FULL_AUTO and LIMITED_LIVE remain locked
 - No new Telegram trade/quote commands

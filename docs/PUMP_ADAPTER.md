@@ -1,4 +1,4 @@
-# Pump Adapter — Phase 6A/6B
+# Pump Adapter — Phase 6A/6B/6C
 
 ## Overview
 
@@ -6,8 +6,136 @@
 
 **Phase 6A** added adapter-design and quote-model infrastructure.
 **Phase 6B** adds local-only instruction intent and transaction plan placeholder models.
+**Phase 6C** adds a disabled Pump SDK wrapper boundary — defines where a future Pump SDK could plug in.
 
-Neither phase performs any network calls, RPC queries, transaction building, signing, sending, or trade execution.
+None of the phases perform any network calls, RPC queries, transaction building, signing, sending, or trade execution.
+
+## Phase 6C: Disabled Pump SDK Wrapper Boundary
+
+Phase 6C creates a disabled-by-default wrapper that defines where a future Pump SDK integration could be inserted.
+
+**This is a safety boundary only.** It must not and does not add real Pump SDK runtime integration, Solana SDK integration, Solana RPC, live quote fetching, real instruction building, account metas, binary instruction data, simulation, signing, sending, wallet access, or execution.
+
+### What Phase 6C implements
+
+- `PumpSdkWrapperMode` type: `disabled` | `mock` | `future_live_not_available`
+- `PumpSdkWrapperStatus` type: `disabled` | `unavailable` | `unsupported` | `mock_only`
+- `PumpSdkWrapperConfig` — all live/executable permission fields permanently `false`
+- `PumpSdkWrapperCapabilities` — 12 capability flags, all permanently `false`
+- `PumpSdkWrapperErrorCode` — 11 safe error codes
+- `PumpSdkWrapper` interface — getStatus, getCapabilities, getConfig, assertDisabled, explainDisabledReason, boundary placeholders for live methods
+- `DisabledPumpSdkWrapper` — always returns disabled/forbidden results; never imports SDK
+- `createPumpSdkWrapper` factory — always returns disabled wrapper; unsafe enable/live attempts coerced to disabled (fail-closed)
+- `DISABLED_WRAPPER_CONFIG`, `PUMP_SDK_WRAPPER_CAPABILITIES` constants
+
+### What Phase 6C does NOT implement
+
+| Prohibited capability | Status |
+|---|---|
+| Real Pump SDK runtime | ❌ Not installed or imported |
+| `@solana/web3.js` | ❌ Not imported |
+| Solana SDK runtime | ❌ Not present |
+| Live RPC access | ❌ Forbidden |
+| Real instruction building | ❌ Forbidden |
+| Account metas | ❌ Not returned |
+| Binary instruction data | ❌ Not returned |
+| Transaction construction | ❌ Not implemented |
+| Transaction simulation | ❌ Forbidden |
+| Transaction signing | ❌ Forbidden |
+| Transaction sending | ❌ Forbidden |
+| Wallet / keypair handling | ❌ Not implemented |
+| Private keys / seed phrases | ❌ Not implemented |
+| Jito | ❌ Not implemented |
+| Live or auto trading | ❌ Not implemented |
+| FULL_AUTO or LIMITED_LIVE unlock | ❌ Remain locked |
+| Telegram trade/quote commands | ❌ Not added |
+
+### Phase 6C safety capability guard
+
+All 12 wrapper capability flags are permanently `false`:
+
+```typescript
+import { PUMP_SDK_WRAPPER_CAPABILITIES } from '@sonic/pump-adapter';
+
+PUMP_SDK_WRAPPER_CAPABILITIES.hasPumpSdkRuntime           // false
+PUMP_SDK_WRAPPER_CAPABILITIES.hasSolanaSdkRuntime         // false
+PUMP_SDK_WRAPPER_CAPABILITIES.canUseLiveRpc               // false
+PUMP_SDK_WRAPPER_CAPABILITIES.canBuildRealInstructions    // false
+PUMP_SDK_WRAPPER_CAPABILITIES.canReturnAccountMetas       // false
+PUMP_SDK_WRAPPER_CAPABILITIES.canReturnBinaryInstructionData // false
+PUMP_SDK_WRAPPER_CAPABILITIES.canSimulateTransactions     // false
+PUMP_SDK_WRAPPER_CAPABILITIES.canSignTransactions         // false
+PUMP_SDK_WRAPPER_CAPABILITIES.canSendTransactions         // false
+PUMP_SDK_WRAPPER_CAPABILITIES.canExecuteTrades            // false
+PUMP_SDK_WRAPPER_CAPABILITIES.canAccessWallets            // false
+PUMP_SDK_WRAPPER_CAPABILITIES.canAccessPrivateKeys        // false
+```
+
+### Phase 6C wrapper config
+
+All live/executable permissions are permanently `false`:
+
+```typescript
+import { DISABLED_WRAPPER_CONFIG } from '@sonic/pump-adapter';
+
+DISABLED_WRAPPER_CONFIG.enabled                    // false
+DISABLED_WRAPPER_CONFIG.allowLiveRpc               // false
+DISABLED_WRAPPER_CONFIG.allowInstructionBuilding   // false
+DISABLED_WRAPPER_CONFIG.allowExecutableInstructions // false
+DISABLED_WRAPPER_CONFIG.allowSigning               // false
+DISABLED_WRAPPER_CONFIG.allowSending               // false
+DISABLED_WRAPPER_CONFIG.allowWalletAccess          // false
+```
+
+### Phase 6C factory — fail-closed
+
+```typescript
+import { createPumpSdkWrapper } from '@sonic/pump-adapter';
+
+// Default: returns disabled wrapper
+const wrapper = createPumpSdkWrapper();
+
+// Unsafe config is coerced to disabled (fail-closed):
+const unsafe = createPumpSdkWrapper({ enabled: true, allowLiveRpc: true, allowSigning: true });
+unsafe.getStatus(); // 'disabled' — unsafe attempts are ignored
+```
+
+### Phase 6C disabled wrapper
+
+```typescript
+import { createDisabledSdkWrapper } from '@sonic/pump-adapter';
+
+const wrapper = createDisabledSdkWrapper();
+
+wrapper.getStatus();           // 'disabled'
+wrapper.assertDisabled();      // { ok: false, code: 'SDK_WRAPPER_DISABLED', safeToDisplay: true, ... }
+wrapper.explainDisabledReason(); // human-readable explanation, safe to display
+
+// Optional live methods — always return forbidden results:
+wrapper.getLiveQuote('TokMint', 'buy');            // { ok: false, error: { code: 'EXECUTION_FORBIDDEN', ... } }
+wrapper.getLiveBondingCurveState('TokMint');       // { ok: false, error: { code: 'EXECUTION_FORBIDDEN', ... } }
+wrapper.buildRealInstruction('buy_intent');        // { ok: false, error: { code: 'EXECUTION_FORBIDDEN', ... } }
+```
+
+### Phase 6C error codes
+
+All errors have `safeToDisplay: true` — no raw secrets, no stack traces.
+
+| Code | Meaning |
+|---|---|
+| `SDK_WRAPPER_DISABLED` | Wrapper is disabled (Phase 6C default) |
+| `SDK_RUNTIME_NOT_INSTALLED` | Pump SDK runtime is not installed |
+| `SOLANA_SDK_FORBIDDEN` | Solana SDK usage is forbidden |
+| `LIVE_RPC_FORBIDDEN` | Live RPC access is forbidden |
+| `REAL_INSTRUCTION_BUILDING_FORBIDDEN` | Real instruction building is forbidden |
+| `ACCOUNT_METAS_FORBIDDEN` | Account metas cannot be returned |
+| `BINARY_DATA_FORBIDDEN` | Binary instruction data cannot be returned |
+| `WALLET_ACCESS_FORBIDDEN` | Wallet/private key access is forbidden |
+| `SIGNING_FORBIDDEN` | Transaction signing is forbidden |
+| `SENDING_FORBIDDEN` | Transaction sending is forbidden |
+| `EXECUTION_FORBIDDEN` | Trade execution is forbidden |
+
+---
 
 ## What Phase 6B implements
 

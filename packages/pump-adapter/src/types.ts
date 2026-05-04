@@ -36,3 +36,15 @@ export type {
   PumpInstructionBuilderResult,
 } from './builder-types.js';
 export type { PumpInstructionIntentBuilder } from './instruction-builder.js';
+
+// Phase 6C — disabled Pump SDK wrapper boundary types
+export type {
+  PumpSdkWrapperMode,
+  PumpSdkWrapperStatus,
+  PumpSdkWrapperConfig,
+  PumpSdkWrapperCapabilities,
+  PumpSdkWrapperErrorCode,
+  PumpSdkWrapperDisabledResult,
+  PumpSdkWrapper,
+} from './sdk-wrapper-types.js';
+export type { PumpSdkWrapperFactoryInput } from './sdk-wrapper-factory.js';
