@@ -177,7 +177,9 @@ pnpm --filter @sonic/event-engine build
 - future_chain and future_market categories are model-only placeholders.
 - FULL_AUTO and LIMITED_LIVE remain locked.
 - No new Telegram trade/event-stream commands.
-- Phase 7B may add disabled read-only provider boundaries.
+
+## Phase 7A: Test count
+667 tests (119 new Phase 7A tests + 548 regression tests).
 
 ## Phase 7B: Disabled Provider Boundaries
 
@@ -199,7 +201,30 @@ The `packages/event-engine` extension (Phase 7B) adds:
 - All unsafe enable/live/network config attempts are coerced to disabled (fail-closed).
 - FULL_AUTO and LIMITED_LIVE remain locked.
 - No new Telegram event-stream or trade commands.
-- Phase 7C may add controlled mock providers or replayable fixture events — still without live providers.
 
 ## Phase 7B: Test count
 862 tests (195 new Phase 7B tests + 667 regression tests).
+
+## Phase 7C: Mock Providers + Fixture Replay
+
+Phase 7C adds controlled mock providers and replayable fixture events.
+
+New exports in `packages/event-engine`:
+- `MockProviderStatus`, `MOCK_PROVIDER_CAPABILITIES`, `createControlledMockProvider()`
+- `FixtureEvent`, `validateFixtureEvent()`, `BUILTIN_FIXTURE_EVENTS`, built-in fixtures
+- `FixtureSequence`, `validateFixtureSequence()`, `buildFixtureSequence()`, `BUILTIN_SEQUENCE_ALL`
+- `ReplayStatus`, `ReplayStats`, `replayFixtureSequence()`, `replayAndCollect()`
+
+### Phase 7C: Limitations
+
+- No live providers of any kind (Helius, WebSocket, Yellowstone, Geyser, QuickNode, Triton, Alchemy).
+- No Solana RPC. No market data ingestion. No live chain events.
+- No wallet/private keys. No transaction construction, signing, or sending.
+- Mock provider can only replay synthetic fixture events locally.
+- All disabled provider boundaries are fail-closed (connect/disconnect always return appropriate results).
+- FULL_AUTO and LIMITED_LIVE remain locked.
+- No new Telegram trade/event-stream commands.
+- Phase 7D may add disabled provider config/readiness checks (still without live providers).
+
+## Phase 7C: Test count
+960 tests (98 new Phase 7C tests + 862 regression tests).

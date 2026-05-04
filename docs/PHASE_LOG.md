@@ -130,6 +130,50 @@
 - future_chain and future_market categories are model-only placeholders — no provider logic
 - Phase 7B may add disabled read-only provider boundaries (Helius, Yellowstone, etc.)
 
+
+## Phase 7B - Disabled Event Provider Boundaries (included in Phase 7C branch)
+- Extends `packages/event-engine` (Phase 7A) with disabled provider boundaries
+- `EventProviderType` — 6 disabled variants: helius_disabled, websocket_disabled, yellowstone_disabled, quicknode_disabled, triton_disabled, alchemy_disabled
+- `EventProviderCapabilities` — 12 capability flags all false: canUseNetwork, canUseSolanaRpc, canUseWebSocket, canUseYellowstone, canUseGeyser, canEmitLiveEvents, canReplayFixtureEvents, canTriggerExecution, canAccessWallets, canAccessPrivateKeys, canFetchMarketData, canSubscribeToChainEvents
+- `PHASE_7B_PROVIDER_CAPABILITIES` constant — all 12 flags false
+- `DisabledEventProvider` interface — providerType, capabilities, disabled:true, connect() (fail-closed), disconnect() (fail-closed), getStatus() → 'disabled'
+- `createDisabledEventProvider(type)` — fail-closed factory; connect/disconnect always return LIVE_PROVIDER_FORBIDDEN error
+- `EventProviderBoundary` interface — providerType, capabilities, disabled:true, reason string
+- `EventProviderRegistry` interface — providers Map, getProvider(), getAllProviders()
+- `buildDisabledProviderRegistry()` — builds registry with all 6 disabled provider boundaries
+- No network calls. No live providers. No RPC. No WebSocket. No wallet. No execution.
+- FULL_AUTO and LIMITED_LIVE remain locked
+
+
+## Phase 7C - Controlled Mock Providers + Replayable Fixture Events
+- Extends `packages/event-engine` (Phase 7A/7B) with mock providers and fixture replay
+- `EventSourceType` updated: `mock_provider` added as valid source for mock/fixture events
+- `EventEngineErrorCode` extended with 11 Phase 7C codes: INVALID_FIXTURE_ID, INVALID_FIXTURE_SEQUENCE, INVALID_FIXTURE_EVENT, FIXTURE_SEQUENCE_TOO_LARGE, INVALID_REPLAY_OFFSET, MOCK_PROVIDER_DISABLED, MOCK_PROVIDER_NOT_LOADED, MOCK_REPLAY_FAILED, LIVE_EVENT_FORBIDDEN, NETWORK_REPLAY_FORBIDDEN, UNSAFE_FIXTURE_PAYLOAD
+- `MockProviderStatus` — idle / loaded / replaying / completed / failed / stopped
+- `MockProviderCapabilities` — 12 flags; only canReplayFixtureEvents:true, all others false
+- `MOCK_PROVIDER_CAPABILITIES` constant — authoritative mock provider capability constant
+- `ControlledMockProvider` interface — getStatus(), getCapabilities(), loadFixtureSequence(), clearFixtureSequence(), replay(), stop(), getStats()
+- `createControlledMockProvider()` — stateful mock provider factory; replay is synchronous, deterministic, local-only
+- `FixtureEvent` — wrapper: fixtureId, event (EventEnvelope), offsetMs, mock:true, replay:true, live:false
+- `validateFixtureEvent()` — validates fixture ID, mock/replay/live flags, offset bounds, envelope validity
+- Built-in synthetic fixtures: FIXTURE_SYSTEM_STARTUP, FIXTURE_PUMP_ADAPTER_STATUS, FIXTURE_FUTURE_CHAIN_PLACEHOLDER, FIXTURE_SAFETY_EVENT; BUILTIN_FIXTURE_EVENTS[]
+- `FixtureSequence` — sequenceId, name, description, events, createdAt, maxReplayEvents, safeToDisplay
+- `validateFixtureSequence()` — validates ID/name lengths, event array, per-event validation, sequence length bounds (max 1000)
+- `buildFixtureSequence(options)` — sorts events by offsetMs, validates, returns sequence or error
+- `BUILTIN_SEQUENCE_ALL` — pre-built sequence of all 4 built-in fixture events
+- `ReplayStatus` — idle / running / completed / failed / stopped
+- `ReplayStats` — sequenceId, eventsPlanned, eventsPublished, eventsRejected, startedAt, completedAt, status
+- `ReplayResult` — EventEngineResult<ReplayStats>
+- `replayFixtureSequence(sequence, bus, options?)` — stateless replay function; validates sequence, publishes events synchronously, returns stats
+- `replayAndCollect(sequence, bus, options?)` — convenience alias for replayFixtureSequence
+- `ReplayOptions` — optional maxEvents cap
+- MAX_FIXTURE_OFFSET_MS: 600,000ms (10 minutes). MAX_FIXTURE_SEQUENCE_LENGTH: 1,000. MAX_FIXTURE_ID_LENGTH: 128.
+- Phase 7C test suite: 98 new tests (765 total, all passing)
+- No live providers. No Solana RPC. No Helius. No WebSocket. No Yellowstone. No Geyser. No Pump SDK runtime. No @solana/web3.js. No wallet/private keys. No market data ingestion. No transaction construction. No simulation. No signing. No sending. No live trading. No Jito.
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram trade/event-stream commands
+- Phase 7D may add disabled provider config/readiness checks (still without live providers)
+
 ## Phase 6C - Disabled Pump SDK Wrapper Boundary
 - Extends `packages/pump-adapter` (Phase 6A/6B) with a disabled wrapper boundary
 - `PumpSdkWrapperMode` — disabled / mock / future_live_not_available

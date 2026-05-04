@@ -1,8 +1,8 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 7B — Disabled Read-Only Provider Boundaries**
+**Phase 7C — Controlled Mock Providers + Replayable Fixture Events**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 7B.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 7C.
 
 ## Features (Phase 7B — adds to Phase 7A)
 
@@ -18,20 +18,40 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 - `EventProviderRegistry` — registry of disabled providers; all entries disabled; no provider startup
 - 195 new tests in `tests/phase7b.test.ts` — 862 total, all passing
 
-## Features (Phase 7A)
+## Features (Phase 7C — adds to Phase 7A)
+
+- `mock_provider` added to `EventSourceType` — valid source for mock/fixture events
+- `EventProviderType` — 6 disabled provider boundaries (Phase 7B): helius_disabled, websocket_disabled, yellowstone_disabled, quicknode_disabled, triton_disabled, alchemy_disabled
+- `EventProviderCapabilities` — 12 capability flags all false for disabled providers
+- `createDisabledEventProvider()` — fail-closed factory; connect/disconnect always return LIVE_PROVIDER_FORBIDDEN
+- `buildDisabledProviderRegistry()` — registry of all 6 disabled provider boundaries
+- `MockProviderStatus` — idle / loaded / replaying / completed / failed / stopped
+- `MockProviderCapabilities` — 12 flags; only `canReplayFixtureEvents: true`, all others false
+- `createControlledMockProvider()` — stateful mock provider for deterministic local replay
+- `FixtureEvent` — fixture wrapper with `mock: true`, `replay: true`, `live: false`, `offsetMs`
+- `validateFixtureEvent()` — validates ID, flags, offset bounds, envelope validity
+- Built-in synthetic fixtures: `FIXTURE_SYSTEM_STARTUP`, `FIXTURE_PUMP_ADAPTER_STATUS`, `FIXTURE_FUTURE_CHAIN_PLACEHOLDER`, `FIXTURE_SAFETY_EVENT`
+- `FixtureSequence` — ordered sequence of fixtures; max 1,000 events; optional `maxReplayEvents` cap
+- `buildFixtureSequence()` — sorts by `offsetMs`, validates, returns safe result
+- `BUILTIN_SEQUENCE_ALL` — pre-built sequence of all 4 built-in fixtures
+- `replayFixtureSequence()` — stateless deterministic synchronous replay into `InMemoryEventBus`
+- `ReplayStats` — eventsPlanned, eventsPublished, eventsRejected, startedAt, completedAt, status
+- 11 new Phase 7C error codes (INVALID_FIXTURE_ID, FIXTURE_SEQUENCE_TOO_LARGE, LIVE_EVENT_FORBIDDEN, etc.)
+- 98 new tests in `tests/phase7c.test.ts` — 765 total, all passing
+
+## Features (Phase 7A — event engine core)
 
 - New `packages/event-engine` package — local-only, no network dependencies
 - `EventEnvelope` — canonical event container with safe payload, safeToPersist, safeToDisplay
 - `EventCategory` — system, config, mode, safety, audit, pump_adapter, future_chain (placeholder), future_market (placeholder), unknown
-- `EventSourceType` — internal, worker, telegram, audit_repository, state_service, pump_adapter_mock, future_provider_disabled
+- `EventSourceType` — internal, worker, telegram, audit_repository, state_service, pump_adapter_mock, mock_provider, future_provider_disabled
 - `EventSeverity` — debug, info, warn, error, critical
 - `EventSourceCapabilities` — all 5 network/execution/wallet flags permanently `false`
 - `IEventBus` interface + `InMemoryEventBus` implementation — bounded history (default 1000), handler failure isolation, idempotent unsubscribe
 - `DedupeStore` — in-memory TTL deduplication with clock injection for deterministic tests
 - `validateEventEnvelope` — full structural and safety validation (rejects functions, class instances, circular refs, raw Errors)
-- `EventEngineResult<T>` — safe result/error type with 17 error codes; all errors `safeToDisplay: true`
+- `EventEngineResult<T>` — safe result/error type with 28 error codes; all errors `safeToDisplay: true`
 - `buildEventEngineSystemStatus` — reports liveProviders:disabled, networkEvents:forbidden, executionTriggers:forbidden, solanaRpc:forbidden
-- 119 new tests in `tests/phase7a.test.ts` — 667 total, all passing
 - PHASE constant updated to 7
 
 ## Features (Phase 6C — adds to Phase 6A/6B)
@@ -86,10 +106,10 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 
 ## Safety Notice
 
-- **NO LIVE TRADING**: All trading functionality is strictly disabled in Phases 6A/6B/6C/7A/7B.
+- **NO LIVE TRADING**: All trading functionality is strictly disabled in Phases 6A/6B/6C/7A/7B/7C.
 - **NO EXECUTION**: The system has no capability to send transactions to the Solana network.
 - **NO WALLET / PRIVATE KEYS**: Private key handling, wallet loading, and transaction signing are NOT implemented.
-- **NO SOLANA RPC**: No Solana RPC connections in any phase through 7B.
+- **NO SOLANA RPC**: No Solana RPC connections in any phase through 7C.
 - **NO JITO / PUMP.FUN TRADING**: No Pump.fun buying/selling. No PumpSwap buying/selling. No Jito.
 - **NO TRANSACTION BUILDING**: No real transaction instruction building or construction.
 - **NO ACCOUNT METAS**: No AccountMeta objects are returned.
@@ -100,7 +120,11 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 - **INSTRUCTION INTENTS ARE LOCAL MODELS ONLY**: `PumpInstructionIntent` is a planning model, not an executable instruction.
 - **TRANSACTION PLANS ARE PLACEHOLDERS ONLY**: `PumpTransactionPlan` is a placeholder, not a Solana transaction.
 - **EVENT ENGINE IS LOCAL ONLY**: `packages/event-engine` is in-memory infrastructure only — no network, no Solana RPC, no live providers, no execution triggers, no wallet access.
-- **EVENT SOURCE CAPABILITIES ARE ALL FALSE**: `canUseNetwork`, `canUseSolanaRpc`, `canEmitLiveEvents`, `canTriggerExecution`, `canAccessWallets` are all permanently `false` in Phase 7A.
+- **EVENT SOURCE CAPABILITIES ARE ALL FALSE**: All network/execution/wallet capability flags are permanently `false` for disabled and source providers.
+- **MOCK PROVIDER IS FIXTURE-ONLY**: `ControlledMockProvider` can only replay synthetic fixture events locally — no live events, no network, no execution triggers.
+- **DISABLED PROVIDERS ARE INERT**: All 6 Phase 7B disabled provider boundaries (Helius, WebSocket, Yellowstone, etc.) always return LIVE_PROVIDER_FORBIDDEN — no connections possible.
+- **NO LIVE PROVIDERS**: No Helius, WebSocket, Yellowstone, Geyser, QuickNode, Triton, or Alchemy integration.
+- **NO MARKET DATA INGESTION**: No live token launch detection or market data.
 - **READ-ONLY FIRST**: The foundation is built for infrastructure only.
 - **FULL_AUTO and LIMITED_LIVE remain locked**.
 
@@ -121,7 +145,7 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 ## Commands
 
 ```sh
-pnpm test        # run tests (397 tests in Phase 6A)
+pnpm test        # run tests (765 tests as of Phase 7C)
 pnpm lint        # lint all packages
 pnpm typecheck   # type check all packages
 pnpm build       # build all packages

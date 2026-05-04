@@ -44,10 +44,13 @@ export const EVENT_CATEGORIES: readonly EventCategory[] = [
 ] as const;
 
 /**
- * Origin of an event — all internal/local in Phase 7A.
+ * Origin of an event — all internal/local in Phase 7A/7B/7C.
  *
  * future_provider_disabled is a placeholder for a future disabled provider
  * boundary. It must not imply any live network capability.
+ *
+ * mock_provider is the source type for controlled mock provider events
+ * (Phase 7C). It carries no live network capability.
  */
 export type EventSourceType =
   | 'internal'
@@ -56,6 +59,7 @@ export type EventSourceType =
   | 'audit_repository'
   | 'state_service'
   | 'pump_adapter_mock'
+  | 'mock_provider'
   | 'future_provider_disabled';
 
 export const EVENT_SOURCE_TYPES: readonly EventSourceType[] = [
@@ -65,6 +69,7 @@ export const EVENT_SOURCE_TYPES: readonly EventSourceType[] = [
   'audit_repository',
   'state_service',
   'pump_adapter_mock',
+  'mock_provider',
   'future_provider_disabled',
 ] as const;
 

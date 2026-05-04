@@ -72,6 +72,22 @@
 72. **Phase 7B**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram event-stream or trade commands.
 64. **Phase 7A**: FULL_AUTO and LIMITED_LIVE remain locked. `RuntimeSafetyStatus` still returns all unsafe capability flags as `false`.
 
+## Phase 7B/7C Additional Safety Rules
+
+65. **Phase 7B**: All 6 disabled provider boundaries (helius_disabled, websocket_disabled, etc.) cannot connect — `connect()` and `disconnect()` always return `LIVE_PROVIDER_FORBIDDEN` errors
+66. **Phase 7B**: `PHASE_7B_PROVIDER_CAPABILITIES` has all 12 capability flags as `false` — including `canReplayFixtureEvents: false` for disabled providers
+67. **Phase 7B**: `buildDisabledProviderRegistry()` returns a read-only registry of inert provider boundaries — no connections possible
+68. **Phase 7C**: `ControlledMockProvider` can ONLY replay synthetic fixture events locally — `canReplayFixtureEvents: true` is its only capability; all other 11 flags are `false`
+69. **Phase 7C**: Fixture events must have `mock: true`, `replay: true`, `live: false` — any attempt to replay a live event is rejected with `LIVE_EVENT_FORBIDDEN`
+70. **Phase 7C**: Fixture event payloads must not contain secrets, private keys, RPC URLs, API keys, wallet data, or non-serializable values
+71. **Phase 7C**: `offsetMs` is bounded to [0, 600,000] ms — no unbounded delays allowed
+72. **Phase 7C**: Sequence length is bounded to 1,000 events — no unbounded sequences
+73. **Phase 7C**: All Phase 7C error codes have `safeToDisplay: true` — no stack traces, no secrets, no credentials
+74. **Phase 7C**: `mock_provider` source type is safe — it implies no live network capability, only local fixture replay
+75. **Phase 7C**: No Helius, WebSocket, Yellowstone, Geyser, QuickNode, Triton, or Alchemy integration added
+76. **Phase 7C**: No market data ingestion, no live chain events, no transaction construction, no signing, no sending
+77. **Phase 7C**: FULL_AUTO and LIMITED_LIVE remain locked.
+
 
 30. **Phase 6A**: `packages/pump-adapter` is inert — no Solana RPC, no network calls, no transaction building, no signing, no sending, no execution
 31. **Phase 6A**: All pump adapter capability flags (`canSignTransactions`, `canSendTransactions`, `canExecuteTrades`, `canAccessPrivateKeys`, `canUseLiveRpc`, `canUseJito`, `canBuildTransactions`, `canBuildInstructions`) are permanently `false`

@@ -1,9 +1,10 @@
 /**
- * Phase 7A — @sonic/event-engine public API barrel.
+ * Phase 7A/7B/7C — @sonic/event-engine public API barrel.
  *
- * Exports all Phase 7A event engine types, interfaces, and implementations.
+ * Exports all Phase 7A, 7B, and 7C event engine types, interfaces, and implementations.
  *
  * What this package provides:
+ *   Phase 7A:
  *   - EventEnvelope, EventPayload types
  *   - EventCategory, EventSourceType, EventSeverity literals + constants
  *   - EventSourceStatus, EventSourceCapabilities, EventSourceHealth
@@ -14,13 +15,33 @@
  *   - Validation helpers
  *   - Event engine system status model
  *
- * What this package does NOT provide (Phase 7A):
+ *   Phase 7B:
+ *   - EventProviderType (6 disabled variants), EventProviderStatus
+ *   - EventProviderConfig, EventProviderCapabilities (12 false flags)
+ *   - DISABLED_PROVIDER_CONFIG, DISABLED_PROVIDER_CAPABILITIES, PHASE_7B_PROVIDER_CAPABILITIES
+ *   - ProviderErrorCode (13 safe codes), ProviderError, ProviderResult<T>
+ *   - EventProviderBoundary interface + DisabledEventProvider class
+ *   - createDisabledEventProvider factory + named helpers
+ *   - EventProviderRegistry, IEventProviderRegistry, getEventProviderRegistry
+ *
+ *   Phase 7C:
+ *   - MockProviderStatus, MockProviderCapabilities, MOCK_PROVIDER_CAPABILITIES
+ *   - ControlledMockProvider interface + createControlledMockProvider()
+ *   - FixtureEvent, validateFixtureEvent
+ *   - Built-in fixture events (FIXTURE_SYSTEM_STARTUP, etc.)
+ *   - FixtureSequence, validateFixtureSequence, buildFixtureSequence
+ *   - BUILTIN_SEQUENCE_ALL
+ *   - ReplayStatus, ReplayStats, ReplayResult
+ *   - replayFixtureSequence, replayAndCollect
+ *
+ * What this package does NOT provide:
  *   - No Solana RPC
- *   - No Helius / WebSocket / Yellowstone providers
+ *   - No Helius / WebSocket / Yellowstone / Geyser providers
  *   - No live market data ingestion
  *   - No wallet / private key handling
  *   - No transaction construction / signing / sending
  *   - No trade execution
+ *   - No network calls of any kind
  */
 
 export * from './types.js';
@@ -37,3 +58,9 @@ export * from './provider-capabilities.js';
 export * from './disabled-provider.js';
 export * from './provider-factory.js';
 export * from './provider-registry.js';
+// Phase 7C: mock providers and fixture replay
+export * from './replay-types.js';
+export * from './fixture-events.js';
+export * from './fixture-sequence.js';
+export * from './mock-provider.js';
+export * from './replay-controller.js';

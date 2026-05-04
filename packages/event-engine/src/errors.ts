@@ -26,7 +26,19 @@ export type EventEngineErrorCode =
   | 'INVALID_DEDUPE_KEY'
   | 'INVALID_TTL'
   | 'INVALID_SUBSCRIPTION_ID'
-  | 'INVALID_LIMIT';
+  | 'INVALID_LIMIT'
+  // Phase 7C — mock provider and fixture replay error codes
+  | 'INVALID_FIXTURE_ID'
+  | 'INVALID_FIXTURE_SEQUENCE'
+  | 'INVALID_FIXTURE_EVENT'
+  | 'FIXTURE_SEQUENCE_TOO_LARGE'
+  | 'INVALID_REPLAY_OFFSET'
+  | 'MOCK_PROVIDER_DISABLED'
+  | 'MOCK_PROVIDER_NOT_LOADED'
+  | 'MOCK_REPLAY_FAILED'
+  | 'LIVE_EVENT_FORBIDDEN'
+  | 'NETWORK_REPLAY_FORBIDDEN'
+  | 'UNSAFE_FIXTURE_PAYLOAD';
 
 /**
  * A safe error from the event engine.

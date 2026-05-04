@@ -10,7 +10,7 @@ Monorepo with pnpm workspaces.
 - `mode-manager`: Mode state machine (transitions persisted to audit DB in Phase 4)
 - `risk-engine`: Safety gates
 - `pump-adapter`: Pump adapter interfaces, quote models, instruction intent models, and disabled SDK wrapper boundary (Phases 6A/6B/6C, inert — no RPC, no execution, no real Pump SDK, no Solana SDK)
-- `event-engine`: Local in-memory event bus, event envelope types, source status models, dedupe/TTL helpers, validation (Phase 7A), and disabled read-only provider boundaries (Phase 7B — no network, no execution)
+- `event-engine`: Local in-memory event bus, event envelope types, source status models, dedupe/TTL helpers, validation, disabled provider boundaries, mock provider, fixture events and replay (Phases 7A/7B/7C — no network, no execution)
 - `testing`: Shared test utilities
 
 ## Apps
@@ -40,27 +40,41 @@ No network, no Solana RPC, no wallets, no execution.
 All `EventProviderCapabilities` flags are `false`.
 `FULL_AUTO` and `LIMITED_LIVE` remain locked.
 
-## Phase 7A: Event Engine Core
+## Phase 7A/7B/7C: Event Engine Core + Disabled Providers + Mock Providers
 
-Phase 7A adds the local in-memory event engine package. See [docs/EVENT_ENGINE.md](./EVENT_ENGINE.md) for full details.
+Phase 7A adds the local in-memory event engine package. Phase 7B adds disabled provider boundaries. Phase 7C adds controlled mock providers and replayable fixture events. See [docs/EVENT_ENGINE.md](./EVENT_ENGINE.md) for full details.
 
 ```
 packages/event-engine/src/
-  types.ts              — EventCategory, EventSourceType, EventSeverity
-  event-envelope.ts     — EventEnvelope, EventPayload
-  source-status.ts      — EventSourceStatus, EventSourceCapabilities, EventSourceHealth
-                          EventEngineSystemStatus, PHASE_7A_SOURCE_CAPABILITIES
-  errors.ts             — EventEngineErrorCode, EventEngineError, EventEngineResult
-  event-bus.ts          — IEventBus, SubscriptionId, EventBusStats, EventHandler
-  in-memory-event-bus.ts — InMemoryEventBus, createInMemoryEventBus, buildTestEvent
-  dedupe.ts             — DedupeStore, isEventExpired, buildDedupeKey, ClockFn
-  validation.ts         — validateEventEnvelope and helper validators
-  index.ts              — public barrel
+  types.ts                — EventCategory, EventSourceType (incl. mock_provider), EventSeverity
+  event-envelope.ts       — EventEnvelope, EventPayload
+  source-status.ts        — EventSourceStatus, EventSourceCapabilities, EventSourceHealth
+                            EventEngineSystemStatus, PHASE_7A_SOURCE_CAPABILITIES
+  errors.ts               — EventEngineErrorCode (28 codes), EventEngineError, EventEngineResult
+  event-bus.ts            — IEventBus, SubscriptionId, EventBusStats, EventHandler
+  in-memory-event-bus.ts  — InMemoryEventBus, createInMemoryEventBus, buildTestEvent
+  dedupe.ts               — DedupeStore, isEventExpired, buildDedupeKey, ClockFn
+  validation.ts           — validateEventEnvelope and helper validators
+  disabled-provider.ts    — EventProviderType (6 disabled), EventProviderCapabilities (12 false),
+                            PHASE_7B_PROVIDER_CAPABILITIES, DisabledEventProvider,
+                            createDisabledEventProvider, EventProviderBoundary,
+                            EventProviderRegistry, buildDisabledProviderRegistry
+  replay-types.ts         — ReplayStatus, ReplayStats, ReplayResult
+  fixture-events.ts       — FixtureEvent, validateFixtureEvent, BUILTIN_FIXTURE_EVENTS,
+                            FIXTURE_SYSTEM_STARTUP, FIXTURE_PUMP_ADAPTER_STATUS,
+                            FIXTURE_FUTURE_CHAIN_PLACEHOLDER, FIXTURE_SAFETY_EVENT
+  fixture-sequence.ts     — FixtureSequence, validateFixtureSequence, buildFixtureSequence,
+                            BUILTIN_SEQUENCE_ALL, MAX_FIXTURE_SEQUENCE_LENGTH
+  mock-provider.ts        — MockProviderStatus, MockProviderCapabilities,
+                            MOCK_PROVIDER_CAPABILITIES, ControlledMockProvider,
+                            createControlledMockProvider
+  replay-controller.ts    — replayFixtureSequence, replayAndCollect, ReplayOptions
+  index.ts                — public barrel (all phases)
 ```
 
 No dependency on other `@sonic/*` packages.
-No network, no Solana RPC, no wallets, no execution.
-All `EventSourceCapabilities` flags are `false`.
+No network, no Solana RPC, no wallets, no execution, no live providers.
+All capability flags are `false` except `canReplayFixtureEvents: true` in mock provider.
 `FULL_AUTO` and `LIMITED_LIVE` remain locked.
 
 
