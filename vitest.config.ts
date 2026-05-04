@@ -21,6 +21,7 @@ export default defineConfig({
       '@sonic/risk-engine': resolve(__dirname, 'packages/risk-engine/src/index.ts'),
       '@sonic/pump-adapter': resolve(__dirname, 'packages/pump-adapter/src/index.ts'),
       '@sonic/event-engine': resolve(__dirname, 'packages/event-engine/src/index.ts'),
+      '@sonic/token-intelligence': resolve(__dirname, 'packages/token-intelligence/src/index.ts'),
       '@sonic/testing': resolve(__dirname, 'packages/testing/src/index.ts'),
     },
   },

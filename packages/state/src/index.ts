@@ -7,3 +7,5 @@ export * from './health-read-model.js';
 export * from './state-service.js';
 // Phase 7E: Event Engine readiness read model + Phase 8 gate
 export * from './event-engine-read-model.js';
+// Phase 8: Token Intelligence static status
+export * from './token-intelligence-read-model.js';
