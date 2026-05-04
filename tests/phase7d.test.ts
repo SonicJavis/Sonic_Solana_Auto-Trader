@@ -773,8 +773,10 @@ describe('Phase 7D — F.2 Regression: Phase 7B provider exports intact', () => 
   it('getEventProviderRegistry still returns a registry with all providers', () => {
     const registry = getEventProviderRegistry();
     const types = registry.listProviderTypes();
-    // Registry registers 5 named provider types (unknown_disabled is not pre-registered)
-    expect(types.length).toBeGreaterThanOrEqual(5);
+    // Registry pre-registers 5 named provider types (helius, websocket, yellowstone, polling, mock)
+    // unknown_disabled is not pre-registered; it is used on-demand only
+    const EXPECTED_MIN_REGISTERED_PROVIDER_TYPES = 5;
+    expect(types.length).toBeGreaterThanOrEqual(EXPECTED_MIN_REGISTERED_PROVIDER_TYPES);
   });
 });
 
