@@ -80,6 +80,26 @@
 - No Solana RPC, market data, wallets, signing, sending, Jito, Pump.fun, or execution code added
 
 
+## Phase 7B - Disabled Read-Only Provider Boundaries
+- Extends `packages/event-engine` (Phase 7A) with disabled read-only provider boundary models
+- `EventProviderType` — 6 disabled provider type values: helius_disabled / websocket_disabled / yellowstone_disabled / polling_disabled / mock_disabled / unknown_disabled
+- `EventProviderStatus` — disabled / unavailable / unsupported / mock_only / future_not_available
+- `EventProviderConfig` — all 8 live/network/execution permission fields permanently `false`: enabled, allowNetwork, allowSolanaRpc, allowWebSocket, allowLiveEvents, allowPolling, allowStreaming, allowExecutionTriggers
+- `EventProviderCapabilities` — all 12 capability flags permanently `false`: hasRuntimeDependency, canUseNetwork, canUseSolanaRpc, canUseWebSocket, canUseYellowstone, canUseGeyser, canPoll, canStream, canEmitLiveEvents, canTriggerExecution, canAccessWallets, canAccessPrivateKeys
+- `DISABLED_PROVIDER_CONFIG`, `DISABLED_PROVIDER_CAPABILITIES`, `PHASE_7B_PROVIDER_CAPABILITIES` — authoritative constants
+- `ProviderErrorCode` — 13 safe error codes: PROVIDER_DISABLED, PROVIDER_RUNTIME_NOT_INSTALLED, PROVIDER_NETWORK_FORBIDDEN, SOLANA_RPC_FORBIDDEN, WEBSOCKET_FORBIDDEN, YELLOWSTONE_FORBIDDEN, GEYSER_FORBIDDEN, LIVE_EVENTS_FORBIDDEN, POLLING_FORBIDDEN, STREAMING_FORBIDDEN, EXECUTION_TRIGGER_FORBIDDEN, WALLET_ACCESS_FORBIDDEN, API_KEY_USAGE_FORBIDDEN
+- `ProviderError` / `ProviderResult<T>` / `providerOk` / `providerErr` / `isProviderOk` / `isProviderErr` — safe result/error pattern; all errors carry `safeToDisplay: true`
+- `EventProviderBoundary` interface — getType, getStatus, getCapabilities, getConfig, explainDisabledReason, assertDisabled, plus optional lifecycle methods (connect, disconnect, poll, subscribe, start, stop)
+- `DisabledEventProvider` — only implementation; returns disabled status + all caps false + safe human-readable reason; lifecycle methods return disabled/forbidden results; never connects, streams, polls, or triggers execution
+- `createDisabledEventProvider(type, input?)` — factory that always returns disabled provider; all unsafe enable/live/network fields in input are coerced to disabled (fail-closed)
+- `createDisabledHeliusProvider`, `createDisabledWebSocketProvider`, `createDisabledYellowstoneProvider`, `createDisabledPollingProvider` — named factory helpers
+- `EventProviderRegistry` / `getEventProviderRegistry` — registry of disabled providers; all entries disabled; no provider startup
+- Phase 7B test suite: 195 new tests (862 total, all passing)
+- No Helius SDK. No WebSocket client. No Yellowstone or Geyser packages. No `@solana/web3.js`. No wallet/private keys. No market data ingestion. No transaction construction. No simulation. No signing. No sending. No live trading. No Jito.
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram event-stream or trade commands
+- Phase 7C may add controlled mock providers or replayable fixture events — still without live providers, no network, no Solana RPC, no execution
+
 ## Phase 7A - Event Engine Core Interfaces + In-Memory Event Bus
 - PHASE constant updated to 7; PHASE_NAME updated to "Event Engine Core Interfaces + In-Memory Event Bus"
 - New `packages/event-engine` package: local-only, no dependencies on other @sonic/* packages

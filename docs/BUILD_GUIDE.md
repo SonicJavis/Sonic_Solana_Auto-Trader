@@ -181,27 +181,50 @@ pnpm --filter @sonic/event-engine build
 ## Phase 7A: Test count
 667 tests (119 new Phase 7A tests + 548 regression tests).
 
-## Phase 7B/7C: Disabled Providers + Mock Providers + Fixture Replay
+## Phase 7B: Disabled Provider Boundaries
 
-Phase 7B adds disabled event provider boundaries. Phase 7C adds controlled mock providers and replayable fixture events.
+The `packages/event-engine` extension (Phase 7B) adds:
+- `EventProviderType` / `EventProviderStatus` — disabled provider type/status models
+- `EventProviderConfig` / `EventProviderCapabilities` — all permissions/capabilities permanently `false`
+- `PHASE_7B_PROVIDER_CAPABILITIES` — canonical Phase 7B capability guard
+- `EventProviderBoundary` interface + `DisabledEventProvider` — disabled boundary; lifecycle methods return safe forbidden results
+- `createDisabledEventProvider` — factory; always returns disabled provider (fail-closed)
+- Named helpers: `createDisabledHeliusProvider`, `createDisabledWebSocketProvider`, `createDisabledYellowstoneProvider`, `createDisabledPollingProvider`
+- `EventProviderRegistry` / `getEventProviderRegistry` — registry of disabled providers
+
+### Phase 7B: Limitations
+
+- No Helius SDK. No WebSocket client. No Yellowstone or Geyser packages. No `@solana/web3.js`.
+- No Solana RPC, no live polling, no live streaming, no market data ingestion.
+- No wallet/private keys. No transaction construction, simulation, signing, or sending.
+- No trade execution, swap logic, or Jito.
+- All unsafe enable/live/network config attempts are coerced to disabled (fail-closed).
+- FULL_AUTO and LIMITED_LIVE remain locked.
+- No new Telegram event-stream or trade commands.
+
+## Phase 7B: Test count
+862 tests (195 new Phase 7B tests + 667 regression tests).
+
+## Phase 7C: Mock Providers + Fixture Replay
+
+Phase 7C adds controlled mock providers and replayable fixture events.
 
 New exports in `packages/event-engine`:
-- `EventProviderType`, `PHASE_7B_PROVIDER_CAPABILITIES`, `createDisabledEventProvider()`, `buildDisabledProviderRegistry()`
 - `MockProviderStatus`, `MOCK_PROVIDER_CAPABILITIES`, `createControlledMockProvider()`
 - `FixtureEvent`, `validateFixtureEvent()`, `BUILTIN_FIXTURE_EVENTS`, built-in fixtures
 - `FixtureSequence`, `validateFixtureSequence()`, `buildFixtureSequence()`, `BUILTIN_SEQUENCE_ALL`
 - `ReplayStatus`, `ReplayStats`, `replayFixtureSequence()`, `replayAndCollect()`
 
-### Phase 7B/7C: Limitations
+### Phase 7C: Limitations
 
 - No live providers of any kind (Helius, WebSocket, Yellowstone, Geyser, QuickNode, Triton, Alchemy).
 - No Solana RPC. No market data ingestion. No live chain events.
 - No wallet/private keys. No transaction construction, signing, or sending.
 - Mock provider can only replay synthetic fixture events locally.
-- All disabled provider boundaries are fail-closed (connect/disconnect always return errors).
+- All disabled provider boundaries are fail-closed (connect/disconnect always return appropriate results).
 - FULL_AUTO and LIMITED_LIVE remain locked.
 - No new Telegram trade/event-stream commands.
 - Phase 7D may add disabled provider config/readiness checks (still without live providers).
 
-## Phase 7B/7C: Test count
-765 tests (98 new Phase 7C tests + 667 regression tests).
+## Phase 7C: Test count
+960 tests (98 new Phase 7C tests + 862 regression tests).

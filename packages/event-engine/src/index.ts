@@ -16,12 +16,13 @@
  *   - Event engine system status model
  *
  *   Phase 7B:
- *   - EventProviderType (6 disabled variants)
- *   - EventProviderCapabilities (12 false flags)
- *   - PHASE_7B_PROVIDER_CAPABILITIES constant
- *   - DisabledEventProvider interface + createDisabledEventProvider (fail-closed)
- *   - EventProviderBoundary interface
- *   - EventProviderRegistry interface + buildDisabledProviderRegistry()
+ *   - EventProviderType (6 disabled variants), EventProviderStatus
+ *   - EventProviderConfig, EventProviderCapabilities (12 false flags)
+ *   - DISABLED_PROVIDER_CONFIG, DISABLED_PROVIDER_CAPABILITIES, PHASE_7B_PROVIDER_CAPABILITIES
+ *   - ProviderErrorCode (13 safe codes), ProviderError, ProviderResult<T>
+ *   - EventProviderBoundary interface + DisabledEventProvider class
+ *   - createDisabledEventProvider factory + named helpers
+ *   - EventProviderRegistry, IEventProviderRegistry, getEventProviderRegistry
  *
  *   Phase 7C:
  *   - MockProviderStatus, MockProviderCapabilities, MOCK_PROVIDER_CAPABILITIES
@@ -51,8 +52,12 @@ export * from './event-bus.js';
 export * from './in-memory-event-bus.js';
 export * from './dedupe.js';
 export * from './validation.js';
-// Phase 7B: disabled provider boundaries
+// Phase 7B — Disabled provider boundaries
+export * from './provider-types.js';
+export * from './provider-capabilities.js';
 export * from './disabled-provider.js';
+export * from './provider-factory.js';
+export * from './provider-registry.js';
 // Phase 7C: mock providers and fixture replay
 export * from './replay-types.js';
 export * from './fixture-events.js';

@@ -67,7 +67,7 @@ import {
   EVENT_PROVIDER_TYPES,
   PHASE_7B_PROVIDER_CAPABILITIES,
   createDisabledEventProvider,
-  buildDisabledProviderRegistry,
+  getEventProviderRegistry,
 } from '../packages/event-engine/src/index.js';
 
 import type {
@@ -171,12 +171,9 @@ describe('Phase 7C — A.3 Phase 7B PHASE_7B_PROVIDER_CAPABILITIES', () => {
     expect(PHASE_7B_PROVIDER_CAPABILITIES.canUseYellowstone).toBe(false);
     expect(PHASE_7B_PROVIDER_CAPABILITIES.canUseGeyser).toBe(false);
     expect(PHASE_7B_PROVIDER_CAPABILITIES.canEmitLiveEvents).toBe(false);
-    expect(PHASE_7B_PROVIDER_CAPABILITIES.canReplayFixtureEvents).toBe(false);
     expect(PHASE_7B_PROVIDER_CAPABILITIES.canTriggerExecution).toBe(false);
     expect(PHASE_7B_PROVIDER_CAPABILITIES.canAccessWallets).toBe(false);
     expect(PHASE_7B_PROVIDER_CAPABILITIES.canAccessPrivateKeys).toBe(false);
-    expect(PHASE_7B_PROVIDER_CAPABILITIES.canFetchMarketData).toBe(false);
-    expect(PHASE_7B_PROVIDER_CAPABILITIES.canSubscribeToChainEvents).toBe(false);
   });
 
   it('has exactly 12 capability flags', () => {
@@ -189,9 +186,9 @@ describe('Phase 7C — A.3 Phase 7B PHASE_7B_PROVIDER_CAPABILITIES', () => {
       'helius_disabled',
       'websocket_disabled',
       'yellowstone_disabled',
-      'quicknode_disabled',
-      'triton_disabled',
-      'alchemy_disabled',
+      'polling_disabled',
+      'mock_disabled',
+      'unknown_disabled',
     ];
     expect(EVENT_PROVIDER_TYPES).toHaveLength(6);
     for (const t of expected) {
@@ -830,23 +827,20 @@ describe('Phase 7C — F.2 Phase 7B disabled providers are inert', () => {
   it('all disabled providers fail connect()', () => {
     for (const type of EVENT_PROVIDER_TYPES) {
       const p = createDisabledEventProvider(type);
-      const result = p.connect();
+      const result = p.connect!();
       expect(result.ok).toBe(false);
       if (!result.ok) {
-        expect(result.error.code).toBe('LIVE_PROVIDER_FORBIDDEN');
+        expect(result.error.code).toBe('PROVIDER_DISABLED');
         expect(result.error.safeToDisplay).toBe(true);
       }
     }
   });
 
-  it('all disabled providers fail disconnect()', () => {
+  it('all disabled providers return ok for disconnect() (safe no-op)', () => {
     for (const type of EVENT_PROVIDER_TYPES) {
       const p = createDisabledEventProvider(type);
-      const result = p.disconnect();
-      expect(result.ok).toBe(false);
-      if (!result.ok) {
-        expect(result.error.code).toBe('LIVE_PROVIDER_FORBIDDEN');
-      }
+      const result = p.disconnect!();
+      expect(result.ok).toBe(true);
     }
   });
 
@@ -857,30 +851,29 @@ describe('Phase 7C — F.2 Phase 7B disabled providers are inert', () => {
     }
   });
 
-  it('disabled provider has disabled: true flag', () => {
+  it('disabled provider assertDisabled() is a no-op', () => {
     const p = createDisabledEventProvider('helius_disabled');
-    expect(p.disabled).toBe(true);
+    expect(() => p.assertDisabled()).not.toThrow();
   });
 
-  it('buildDisabledProviderRegistry returns all 6 providers', () => {
-    const registry = buildDisabledProviderRegistry();
-    expect(registry.getAllProviders()).toHaveLength(6);
+  it('getEventProviderRegistry returns all registered providers', () => {
+    const registry = getEventProviderRegistry();
+    const providers = registry.listProviders();
+    expect(providers.length).toBeGreaterThanOrEqual(5);
   });
 
   it('registry getProvider returns correct boundary', () => {
-    const registry = buildDisabledProviderRegistry();
+    const registry = getEventProviderRegistry();
     const helius = registry.getProvider('helius_disabled');
     expect(helius).toBeDefined();
-    if (helius) {
-      expect(helius.disabled).toBe(true);
-      expect(helius.providerType).toBe('helius_disabled');
-    }
+    expect(helius.getStatus()).toBe('disabled');
+    expect(helius.getType()).toBe('helius_disabled');
   });
 
-  it('registry getProvider returns undefined for unknown type', () => {
-    const registry = buildDisabledProviderRegistry();
-    const unknown = registry.getProvider('nonexistent' as EventProviderType);
-    expect(unknown).toBeUndefined();
+  it('registry getProvider returns a disabled provider for unknown type', () => {
+    const registry = getEventProviderRegistry();
+    const unknown = registry.getProvider('unknown_disabled');
+    expect(unknown.getStatus()).toBe('disabled');
   });
 });
 

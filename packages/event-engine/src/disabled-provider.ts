@@ -1,197 +1,236 @@
 /**
- * Phase 7B — Disabled event provider boundaries.
+ * Phase 7B — Disabled provider error types, boundary interface, and base implementation.
  *
- * Defines structural boundaries for external event providers that are
- * explicitly disabled. These providers exist as type-level and structural
- * placeholders only — no network connections, no RPC calls, no live data
- * ingestion, no WebSocket connections.
- *
- * All capability flags are false.
- * createDisabledEventProvider() is fail-closed — all operations return errors.
+ * All provider implementations are permanently disabled.
+ * No SDK is loaded, no network calls are made, no WebSocket connections are opened,
+ * no Solana RPC is used, no live events are emitted, no execution is triggered.
  *
  * Safety invariants:
- *   - No network calls may be made
- *   - No WebSocket connections may be opened
- *   - No Solana RPC calls may be made
- *   - No live events may be emitted
- *   - No execution may be triggered
- *   - No wallet access may occur
- *   - No private keys may be accessed
+ *   - DisabledEventProvider never connects, streams, polls, or emits live events.
+ *   - All optional lifecycle methods return safe disabled/forbidden results.
+ *   - No raw secrets, private keys, stack traces, or RPC URLs appear in errors.
  */
 
-import type { EventEngineResult } from './errors.js';
-import { engineErr } from './errors.js';
+import type { EventProviderType, EventProviderStatus } from './provider-types.js';
+import type { EventProviderCapabilities, EventProviderConfig } from './provider-capabilities.js';
+import { DISABLED_PROVIDER_CAPABILITIES, DISABLED_PROVIDER_CONFIG } from './provider-capabilities.js';
 
 /**
- * Provider type identifiers — all are disabled in Phase 7B.
- * These represent future live providers that are structurally present
- * but functionally inert.
+ * Machine-readable error codes for provider boundary operations.
+ * All codes are safe to log and display.
  */
-export type EventProviderType =
-  | 'helius_disabled'
-  | 'websocket_disabled'
-  | 'yellowstone_disabled'
-  | 'quicknode_disabled'
-  | 'triton_disabled'
-  | 'alchemy_disabled';
-
-export const EVENT_PROVIDER_TYPES: readonly EventProviderType[] = [
-  'helius_disabled',
-  'websocket_disabled',
-  'yellowstone_disabled',
-  'quicknode_disabled',
-  'triton_disabled',
-  'alchemy_disabled',
-] as const;
+export type ProviderErrorCode =
+  | 'PROVIDER_DISABLED'
+  | 'PROVIDER_RUNTIME_NOT_INSTALLED'
+  | 'PROVIDER_NETWORK_FORBIDDEN'
+  | 'SOLANA_RPC_FORBIDDEN'
+  | 'WEBSOCKET_FORBIDDEN'
+  | 'YELLOWSTONE_FORBIDDEN'
+  | 'GEYSER_FORBIDDEN'
+  | 'LIVE_EVENTS_FORBIDDEN'
+  | 'POLLING_FORBIDDEN'
+  | 'STREAMING_FORBIDDEN'
+  | 'EXECUTION_TRIGGER_FORBIDDEN'
+  | 'WALLET_ACCESS_FORBIDDEN'
+  | 'API_KEY_USAGE_FORBIDDEN';
 
 /**
- * Capability flags for an event provider.
- *
- * All flags are false in Phase 7B — no live, network, WebSocket, Yellowstone,
- * Geyser, market data, chain subscription, execution, wallet, or private key
- * access is permitted.
- *
- * These are read-only structural assertions — no runtime code unlocks them.
+ * A safe error from a provider boundary operation.
+ * Never contains raw secrets, private keys, stack traces, RPC URLs, or API keys.
  */
-export interface EventProviderCapabilities {
-  /** Network calls of any kind. Always false — disabled. */
-  readonly canUseNetwork: false;
-  /** Solana RPC connections. Always false — disabled. */
-  readonly canUseSolanaRpc: false;
-  /** WebSocket connections. Always false — disabled. */
-  readonly canUseWebSocket: false;
-  /** Yellowstone gRPC connections. Always false — disabled. */
-  readonly canUseYellowstone: false;
-  /** Geyser plugin connections. Always false — disabled. */
-  readonly canUseGeyser: false;
-  /** Live on-chain event emission. Always false — disabled. */
-  readonly canEmitLiveEvents: false;
-  /** Fixture event replay. Always false for disabled providers. */
-  readonly canReplayFixtureEvents: false;
-  /** Trade execution triggers. Always false — disabled. */
-  readonly canTriggerExecution: false;
-  /** Wallet/keypair access. Always false — disabled. */
-  readonly canAccessWallets: false;
-  /** Private key access. Always false — disabled. */
-  readonly canAccessPrivateKeys: false;
-  /** Live market data ingestion. Always false — disabled. */
-  readonly canFetchMarketData: false;
-  /** On-chain event subscription. Always false — disabled. */
-  readonly canSubscribeToChainEvents: false;
+export interface ProviderError {
+  /** Machine-readable error code — safe to display */
+  readonly code: ProviderErrorCode;
+  /** Human-readable message — safe to display */
+  readonly message: string;
+  /** Always true — this error is safe to display in logs or Telegram */
+  readonly safeToDisplay: true;
 }
 
 /**
- * Phase 7B provider capabilities — all false.
- * Authoritative constant for all disabled provider boundaries.
+ * A successful provider result.
  */
-export const PHASE_7B_PROVIDER_CAPABILITIES: EventProviderCapabilities = {
-  canUseNetwork: false,
-  canUseSolanaRpc: false,
-  canUseWebSocket: false,
-  canUseYellowstone: false,
-  canUseGeyser: false,
-  canEmitLiveEvents: false,
-  canReplayFixtureEvents: false,
-  canTriggerExecution: false,
-  canAccessWallets: false,
-  canAccessPrivateKeys: false,
-  canFetchMarketData: false,
-  canSubscribeToChainEvents: false,
-} as const;
-
-/**
- * A disabled event provider — structurally present, functionally inert.
- * All operations fail safely with a disabled error.
- * No network calls, no live data ingestion, no execution.
- */
-export interface DisabledEventProvider {
-  readonly providerType: EventProviderType;
-  readonly capabilities: EventProviderCapabilities;
-  readonly disabled: true;
-  /** Always returns an error — provider is disabled. */
-  connect(): EventEngineResult<never>;
-  /** Always returns an error — provider is disabled. */
-  disconnect(): EventEngineResult<never>;
-  /** Always returns 'disabled'. */
-  getStatus(): 'disabled';
+export interface ProviderOk<T> {
+  readonly ok: true;
+  readonly value: T;
 }
 
 /**
- * A boundary record representing a single disabled provider.
+ * A failed provider result.
+ */
+export interface ProviderErr {
+  readonly ok: false;
+  readonly error: ProviderError;
+}
+
+/**
+ * Result type for provider boundary operations.
+ * Methods return this instead of throwing for expected disabled/forbidden conditions.
+ */
+export type ProviderResult<T> = ProviderOk<T> | ProviderErr;
+
+/** Construct a successful provider result. */
+export function providerOk<T>(value: T): ProviderOk<T> {
+  return { ok: true, value };
+}
+
+/** Construct a failed provider result. */
+export function providerErr(code: ProviderErrorCode, message: string): ProviderErr {
+  return { ok: false, error: { code, message, safeToDisplay: true } };
+}
+
+/** Type guard: returns true if the result is successful. */
+export function isProviderOk<T>(result: ProviderResult<T>): result is ProviderOk<T> {
+  return result.ok;
+}
+
+/** Type guard: returns true if the result is an error. */
+export function isProviderErr<T>(result: ProviderResult<T>): result is ProviderErr {
+  return !result.ok;
+}
+
+/**
+ * Boundary interface for a read-only event provider.
+ *
+ * Defines what a provider boundary exposes — type, status, capabilities, config,
+ * and human-readable explanation of why it is disabled.
+ *
+ * All Phase 7B implementations are permanently disabled.
+ * Optional lifecycle methods, if present, always return disabled/forbidden results.
+ * They must never connect, stream, poll, emit live events, or trigger execution.
  */
 export interface EventProviderBoundary {
-  readonly providerType: EventProviderType;
-  readonly capabilities: EventProviderCapabilities;
-  readonly disabled: true;
-  readonly reason: string;
+  /** Returns the provider type classification. */
+  getType(): EventProviderType;
+  /** Returns the operational status. Always 'disabled' in Phase 7B. */
+  getStatus(): EventProviderStatus;
+  /** Returns all capability flags. All false in Phase 7B. */
+  getCapabilities(): EventProviderCapabilities;
+  /** Returns provider config. All permissions false in Phase 7B. */
+  getConfig(): EventProviderConfig;
+  /** Returns a human-readable explanation of why this provider is disabled. Safe to display. */
+  explainDisabledReason(): string;
+  /**
+   * Asserts the provider is disabled. Always a no-op — provider is always disabled.
+   * Does not throw.
+   */
+  assertDisabled(): void;
+
+  // Optional lifecycle methods — always return disabled/forbidden results if present.
+  // Must never connect, stream, poll, emit live events, or trigger execution.
+
+  /** Attempt to connect — always returns PROVIDER_DISABLED error. */
+  connect?(): ProviderResult<never>;
+  /** Attempt to disconnect — always returns ok (no-op; was never connected). */
+  disconnect?(): ProviderResult<void>;
+  /** Attempt to poll — always returns POLLING_FORBIDDEN error. */
+  poll?(): ProviderResult<never>;
+  /** Attempt to subscribe — always returns LIVE_EVENTS_FORBIDDEN error. */
+  subscribe?(): ProviderResult<never>;
+  /** Attempt to start — always returns PROVIDER_DISABLED error. */
+  start?(): ProviderResult<never>;
+  /** Attempt to stop — always returns ok (no-op; was never started). */
+  stop?(): ProviderResult<void>;
 }
 
 /**
- * Registry of disabled event providers.
- * All registered providers are inert — no network, no live data.
+ * Human-readable disabled reasons for each provider type.
+ * Safe to display in logs and Telegram.
  */
-export interface EventProviderRegistry {
-  readonly providers: ReadonlyMap<EventProviderType, EventProviderBoundary>;
-  getProvider(type: EventProviderType): EventProviderBoundary | undefined;
-  getAllProviders(): readonly EventProviderBoundary[];
-}
+const PROVIDER_DISABLED_REASONS: Record<EventProviderType, string> = {
+  helius_disabled:
+    'Helius provider boundary: disabled. No Helius SDK installed. ' +
+    'No RPC endpoint configured. No live event streaming. Phase 7B only.',
+  websocket_disabled:
+    'WebSocket provider boundary: disabled. No WebSocket client installed. ' +
+    'No connection attempted. No live event streaming. Phase 7B only.',
+  yellowstone_disabled:
+    'Yellowstone/Geyser provider boundary: disabled. No Yellowstone or Geyser ' +
+    'packages installed. No gRPC connection. No live event streaming. Phase 7B only.',
+  polling_disabled:
+    'Polling provider boundary: disabled. No polling loop. ' +
+    'No external endpoints polled. No live event ingestion. Phase 7B only.',
+  mock_disabled:
+    'Mock provider boundary: disabled. No mock events emitted. ' +
+    'No network simulation. Phase 7B only.',
+  unknown_disabled:
+    'Unknown provider boundary: disabled. Provider type unrecognised. Phase 7B only.',
+};
 
 /**
- * Create a disabled event provider (fail-closed).
+ * A fully-disabled event provider boundary.
  *
- * Returns a provider that always rejects connect/disconnect with
- * LIVE_PROVIDER_FORBIDDEN errors. Status is always 'disabled'.
- * Safe to instantiate — no side effects, no network, no I/O.
+ * Safe to instantiate and inspect. Never connects, never streams, never polls,
+ * never emits live events, never triggers execution, and loads no SDK.
+ *
+ * All lifecycle methods return safe disabled/forbidden result objects.
  */
-export function createDisabledEventProvider(
-  providerType: EventProviderType,
-): DisabledEventProvider {
-  return {
-    providerType,
-    capabilities: PHASE_7B_PROVIDER_CAPABILITIES,
-    disabled: true,
-    connect(): EventEngineResult<never> {
-      return engineErr(
-        'LIVE_PROVIDER_FORBIDDEN',
-        `Provider "${providerType}" is disabled — no live providers in Phase 7B`,
-      );
-    },
-    disconnect(): EventEngineResult<never> {
-      return engineErr(
-        'LIVE_PROVIDER_FORBIDDEN',
-        `Provider "${providerType}" is disabled — no live providers in Phase 7B`,
-      );
-    },
-    getStatus(): 'disabled' {
-      return 'disabled';
-    },
-  };
-}
+export class DisabledEventProvider implements EventProviderBoundary {
+  private readonly _type: EventProviderType;
 
-/**
- * Build the Phase 7B disabled provider registry.
- * Registers all known provider types as disabled boundaries.
- * Safe to call — no network, no I/O, no side effects.
- */
-export function buildDisabledProviderRegistry(): EventProviderRegistry {
-  const boundaries: EventProviderBoundary[] = EVENT_PROVIDER_TYPES.map((type) => ({
-    providerType: type,
-    capabilities: PHASE_7B_PROVIDER_CAPABILITIES,
-    disabled: true as const,
-    reason: `Phase 7B: "${type}" is a disabled provider boundary — not connected, not live`,
-  }));
+  constructor(type: EventProviderType = 'unknown_disabled') {
+    this._type = type;
+  }
 
-  const map = new Map<EventProviderType, EventProviderBoundary>(
-    boundaries.map((b) => [b.providerType, b]),
-  );
+  getType(): EventProviderType {
+    return this._type;
+  }
 
-  return {
-    providers: map,
-    getProvider(type: EventProviderType): EventProviderBoundary | undefined {
-      return map.get(type);
-    },
-    getAllProviders(): readonly EventProviderBoundary[] {
-      return boundaries;
-    },
-  };
+  getStatus(): EventProviderStatus {
+    return 'disabled';
+  }
+
+  getCapabilities(): EventProviderCapabilities {
+    return DISABLED_PROVIDER_CAPABILITIES;
+  }
+
+  getConfig(): EventProviderConfig {
+    return DISABLED_PROVIDER_CONFIG;
+  }
+
+  explainDisabledReason(): string {
+    return PROVIDER_DISABLED_REASONS[this._type];
+  }
+
+  assertDisabled(): void {
+    // Provider is always disabled — this assertion always passes silently.
+  }
+
+  connect(): ProviderResult<never> {
+    return providerErr(
+      'PROVIDER_DISABLED',
+      `connect() forbidden: ${this.explainDisabledReason()}`,
+    );
+  }
+
+  disconnect(): ProviderResult<void> {
+    // No-op: provider was never started; disconnect is always safe.
+    return providerOk(undefined);
+  }
+
+  poll(): ProviderResult<never> {
+    return providerErr(
+      'POLLING_FORBIDDEN',
+      'poll() forbidden: polling is disabled. No external endpoints polled. Phase 7B only.',
+    );
+  }
+
+  subscribe(): ProviderResult<never> {
+    return providerErr(
+      'LIVE_EVENTS_FORBIDDEN',
+      'subscribe() forbidden: live event subscription is disabled. No streaming. Phase 7B only.',
+    );
+  }
+
+  start(): ProviderResult<never> {
+    return providerErr(
+      'PROVIDER_DISABLED',
+      `start() forbidden: ${this.explainDisabledReason()}`,
+    );
+  }
+
+  stop(): ProviderResult<void> {
+    // No-op: provider was never started; stop is always safe.
+    return providerOk(undefined);
+  }
 }

@@ -4,6 +4,20 @@
 
 A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 7C.
 
+## Features (Phase 7B — adds to Phase 7A)
+
+- Disabled read-only provider boundaries (`packages/event-engine`) — defines where future event providers could plug in
+- `EventProviderType` — 6 disabled provider types (helius_disabled, websocket_disabled, yellowstone_disabled, polling_disabled, mock_disabled, unknown_disabled)
+- `EventProviderStatus` — disabled / unavailable / unsupported / mock_only / future_not_available
+- `EventProviderConfig` — all 8 live/network/execution permission fields permanently `false`
+- `EventProviderCapabilities` — all 12 capability flags permanently `false` (including hasRuntimeDependency, canUseNetwork, canUseSolanaRpc, canUseWebSocket, canUseYellowstone, canUseGeyser, canEmitLiveEvents, canTriggerExecution, canAccessWallets, canAccessPrivateKeys)
+- `ProviderErrorCode` — 13 safe error codes (PROVIDER_DISABLED, SOLANA_RPC_FORBIDDEN, WEBSOCKET_FORBIDDEN, etc.)
+- `EventProviderBoundary` interface + `DisabledEventProvider` — always disabled; lifecycle methods return safe forbidden results
+- `createDisabledEventProvider` factory — fail-closed; all unsafe enable/live/network attempts coerced to disabled
+- Named helpers: `createDisabledHeliusProvider`, `createDisabledWebSocketProvider`, `createDisabledYellowstoneProvider`, `createDisabledPollingProvider`
+- `EventProviderRegistry` — registry of disabled providers; all entries disabled; no provider startup
+- 195 new tests in `tests/phase7b.test.ts` — 862 total, all passing
+
 ## Features (Phase 7C — adds to Phase 7A)
 
 - `mock_provider` added to `EventSourceType` — valid source for mock/fixture events

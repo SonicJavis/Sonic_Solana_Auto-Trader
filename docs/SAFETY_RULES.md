@@ -58,6 +58,18 @@
 61. **Phase 7A**: `future_chain` and `future_market` event categories are model-only placeholders — they must not trigger any provider, RPC, or network logic
 62. **Phase 7A**: `future_provider_disabled` source type is a model-only placeholder — it implies no live capability
 63. **Phase 7A**: No new Telegram trade/event-stream commands added
+
+## Phase 7B Additional Safety Rules
+
+64. **Phase 7B**: All `EventProviderCapabilities` flags are permanently `false` — including `hasRuntimeDependency`, `canUseNetwork`, `canUseSolanaRpc`, `canUseWebSocket`, `canUseYellowstone`, `canUseGeyser`, `canPoll`, `canStream`, `canEmitLiveEvents`, `canTriggerExecution`, `canAccessWallets`, `canAccessPrivateKeys`
+65. **Phase 7B**: All `EventProviderConfig` permission fields are permanently `false` — `enabled`, `allowNetwork`, `allowSolanaRpc`, `allowWebSocket`, `allowLiveEvents`, `allowPolling`, `allowStreaming`, `allowExecutionTriggers`
+66. **Phase 7B**: `DisabledEventProvider` never connects, polls, streams, or emits live events — all lifecycle methods return safe disabled/forbidden result objects
+67. **Phase 7B**: `createDisabledEventProvider` factory always returns a disabled provider — unsafe enable/live/network attempts are coerced to disabled (fail-closed)
+68. **Phase 7B**: All `ProviderError` results carry `safeToDisplay: true` — no raw secrets, no stack traces, no RPC URLs, no API keys, no credentials
+69. **Phase 7B**: No Helius SDK installed. No WebSocket client installed. No Yellowstone or Geyser packages installed. No `@solana/web3.js`. No wallet libraries.
+70. **Phase 7B**: `EventProviderRegistry` contains only disabled providers — no provider is started, connected, or given live capability
+71. **Phase 7B**: Provider type names all end with `_disabled` — no provider type implies live or network capability
+72. **Phase 7B**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram event-stream or trade commands.
 64. **Phase 7A**: FULL_AUTO and LIMITED_LIVE remain locked. `RuntimeSafetyStatus` still returns all unsafe capability flags as `false`.
 
 ## Phase 7B/7C Additional Safety Rules
