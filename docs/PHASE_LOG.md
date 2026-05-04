@@ -80,6 +80,28 @@
 - No Solana RPC, market data, wallets, signing, sending, Jito, Pump.fun, or execution code added
 
 
+## Phase 6C - Disabled Pump SDK Wrapper Boundary
+- Extends `packages/pump-adapter` (Phase 6A/6B) with a disabled wrapper boundary
+- `PumpSdkWrapperMode` — disabled / mock / future_live_not_available
+- `PumpSdkWrapperStatus` — disabled / unavailable / unsupported / mock_only
+- `PumpSdkWrapperConfig` — all 7 live/executable permission fields permanently `false`
+- `PumpSdkWrapperCapabilities` — all 12 capability flags permanently `false` (including hasPumpSdkRuntime, hasSolanaSdkRuntime)
+- `PumpSdkWrapperErrorCode` — 11 safe error codes (SDK_WRAPPER_DISABLED, LIVE_RPC_FORBIDDEN, etc.)
+- `PumpSdkWrapperDisabledResult` — safe disabled/forbidden result type; always `safeToDisplay: true`
+- `PumpSdkWrapper` interface — getStatus, getCapabilities, getConfig, assertDisabled, explainDisabledReason, boundary placeholders for live methods
+- `DisabledPumpSdkWrapper` — only implementation; always returns disabled/forbidden results; no SDK imported
+- `DISABLED_PUMP_SDK_WRAPPER` — shared disabled instance
+- `createDisabledSdkWrapper` — convenience factory
+- `createPumpSdkWrapper(config?)` — factory that always returns disabled wrapper; unsafe enable/live/executable attempts coerced to disabled (fail-closed); accepts `PumpSdkWrapperFactoryInput`
+- `DISABLED_WRAPPER_CONFIG`, `PUMP_SDK_WRAPPER_CAPABILITIES` constants
+- Optional live methods return forbidden results: getLiveQuote, getLiveBondingCurveState, buildRealInstruction
+- Phase 6C test suite: 73 new tests (548 total, all passing)
+- No Solana RPC. No Pump SDK runtime. No @solana/web3.js. No wallet/private keys. No account metas. No binary instruction data. No transaction construction. No simulation. No signing. No sending. No live trading. No Jito.
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram trade/quote commands
+- Phase 7 should be read-only event engine or further disabled wrapper hardening — not execution
+
+
 ## Phase 6B - Instruction Intent and Transaction Plan Placeholder Models
 - Extends `packages/pump-adapter` (Phase 6A) with local-only planning model types
 - `PumpInstructionIntentType` (buy_intent, sell_intent, approve_intent, close_intent, unknown_intent)

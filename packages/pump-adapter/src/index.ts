@@ -55,6 +55,18 @@ export type {
   PumpInstructionIntentBuilder,
 } from './types.js';
 
+// Phase 6C types
+export type {
+  PumpSdkWrapperMode,
+  PumpSdkWrapperStatus,
+  PumpSdkWrapperConfig,
+  PumpSdkWrapperCapabilities,
+  PumpSdkWrapperErrorCode,
+  PumpSdkWrapperDisabledResult,
+  PumpSdkWrapper,
+  PumpSdkWrapperFactoryInput,
+} from './types.js';
+
 // ── Phase 6A runtime helpers ──────────────────────────────────────────────────
 
 // Error helpers
@@ -103,3 +115,21 @@ export {
   MockInstructionBuilder,
   createMockInstructionBuilder,
 } from './mock-instruction-builder.js';
+
+// ── Phase 6C runtime helpers ──────────────────────────────────────────────────
+
+// Phase 6C constants
+export {
+  DISABLED_WRAPPER_CONFIG,
+  PUMP_SDK_WRAPPER_CAPABILITIES,
+} from './sdk-wrapper-types.js';
+
+// Disabled SDK wrapper implementation
+export {
+  DisabledPumpSdkWrapper,
+  DISABLED_PUMP_SDK_WRAPPER,
+  createDisabledSdkWrapper,
+} from './disabled-sdk-wrapper.js';
+
+// Wrapper factory
+export { createPumpSdkWrapper } from './sdk-wrapper-factory.js';

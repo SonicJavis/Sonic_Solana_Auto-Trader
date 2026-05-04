@@ -35,6 +35,17 @@
 44. **Phase 6B**: No new Solana SDK imports. No Pump SDK runtime dependency added. No wallet/keypair handling.
 45. **Phase 6B**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/quote commands.
 
+## Phase 6C Additional Safety Rules
+
+46. **Phase 6C**: `DisabledPumpSdkWrapper` is a disabled boundary only — no real Pump SDK runtime, no Solana SDK, no live RPC, no instruction building, no account metas, no binary data, no wallet access, no signing, no sending, no execution
+47. **Phase 6C**: All `PumpSdkWrapperCapabilities` flags are permanently `false` — including `hasPumpSdkRuntime` and `hasSolanaSdkRuntime`
+48. **Phase 6C**: All `PumpSdkWrapperConfig` live/executable permission fields are permanently `false`
+49. **Phase 6C**: `createPumpSdkWrapper` factory always returns a disabled wrapper — unsafe enable/live attempts are coerced to disabled (fail-closed)
+50. **Phase 6C**: Optional live methods (`getLiveQuote`, `getLiveBondingCurveState`, `buildRealInstruction`) always return safe forbidden result objects
+51. **Phase 6C**: All wrapper error results carry `safeToDisplay: true` — no raw secrets, no stack traces, no RPC URLs, no credentials
+52. **Phase 6C**: No real Pump SDK dependency installed. No `@solana/web3.js`. No wallet libraries. No RPC provider SDKs.
+53. **Phase 6C**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/quote commands.
+
 
 30. **Phase 6A**: `packages/pump-adapter` is inert — no Solana RPC, no network calls, no transaction building, no signing, no sending, no execution
 31. **Phase 6A**: All pump adapter capability flags (`canSignTransactions`, `canSendTransactions`, `canExecuteTrades`, `canAccessPrivateKeys`, `canUseLiveRpc`, `canUseJito`, `canBuildTransactions`, `canBuildInstructions`) are permanently `false`
