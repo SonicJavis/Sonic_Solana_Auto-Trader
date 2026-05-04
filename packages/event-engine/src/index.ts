@@ -31,3 +31,9 @@ export * from './event-bus.js';
 export * from './in-memory-event-bus.js';
 export * from './dedupe.js';
 export * from './validation.js';
+// Phase 7B — Disabled provider boundaries
+export * from './provider-types.js';
+export * from './provider-capabilities.js';
+export * from './disabled-provider.js';
+export * from './provider-factory.js';
+export * from './provider-registry.js';
