@@ -97,3 +97,17 @@
 35. **Phase 6A**: All error results carry `safeToDisplay: true` — never contain raw secrets or stack traces
 36. **Phase 6A**: No Pump.fun buying/selling. No PumpSwap buying/selling. No Jito. No wallet access.
 37. **Phase 6A**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/quote commands.
+
+
+## Phase 7D Additional Safety Rules
+
+78. **Phase 7D**: `validateProviderConfig()` is fail-closed — any unsafe flag (enabled, allowNetwork, allowSolanaRpc, allowWebSocket, allowPolling, allowStreaming, allowLiveEvents, allowApiKeyUsage) set to `true` is captured in `unsafeReasons` and `unsafeRequested=true`; the output config always has all permissions `false`
+79. **Phase 7D**: Raw endpoint URLs and API key values are never stored in `ProviderConfigSafe` — only boolean presence (`endpointConfigured`, `apiKeyConfigured`) is surfaced
+80. **Phase 7D**: `ProviderReadinessEntry.canConnect`, `canEmitLiveEvents`, and `canTriggerExecution` are always `false` — no readiness state implies live or network readiness
+81. **Phase 7D**: Unsafe provider config attempts result in `unsafe_requested` readiness — visible in the report and via `assertAllProvidersSafe()`
+82. **Phase 7D**: `buildProviderReadinessReport()` notes are safe to display — no raw URLs, API keys, secrets, or stack traces
+83. **Phase 7D**: `enabledProviderCount`, `liveProviderCount`, and `networkProviderCount` must all be 0 for a safe Phase 7D report
+84. **Phase 7D**: `PHASE_7D_READINESS_SUMMARY` reports all providers as disabled and all live/network/execution/wallet/API-key access as forbidden
+85. **Phase 7D**: No Helius, WebSocket, Yellowstone, Geyser, or any other provider SDK is loaded or connected
+86. **Phase 7D**: No market data ingestion, no live chain events, no transaction construction, no signing, no sending, no execution
+87. **Phase 7D**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram event-stream or trade commands.

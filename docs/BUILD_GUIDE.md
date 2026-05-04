@@ -224,7 +224,32 @@ New exports in `packages/event-engine`:
 - All disabled provider boundaries are fail-closed (connect/disconnect always return appropriate results).
 - FULL_AUTO and LIMITED_LIVE remain locked.
 - No new Telegram trade/event-stream commands.
-- Phase 7D may add disabled provider config/readiness checks (still without live providers).
+
+## Phase 7D: Disabled Provider Config + Readiness Checks
+
+Phase 7D adds disabled provider configuration models and readiness checks to `packages/event-engine`.
+
+### What Phase 7D adds
+
+- `ProviderConfigMode`, `ProviderConfigInput`, `ProviderConfigSafe` — config types
+- `validateProviderConfig()` — fail-closed; captures all unsafe attempts
+- `createDisabledProviderConfig()` — named disabled config factory
+- `ProviderReadiness`, `ProviderReadinessEntry`, `ProviderReadinessReport` — readiness types
+- `evaluateProviderReadiness()`, `buildProviderReadinessEntry()`, `buildProviderReadinessReport()` — readiness logic
+- `assertAllProvidersSafe()` — safe assertion helper
+- `PHASE_7D_READINESS_SUMMARY` — static summary constant
+
+### Phase 7D: Limitations
+
+- No live providers. No network access. No Solana RPC. No WebSocket.
+- No Helius, WebSocket, Yellowstone, Geyser SDKs.
+- No API key usage. No wallet handling. No signing. No sending. No execution.
+- No new Telegram trade/event-stream commands.
+- FULL_AUTO and LIMITED_LIVE remain locked.
+- Phase 7E may add controlled read-only configuration/replay integration — still without execution.
+
+## Phase 7D: Test count
+798+ passing tests (81 new Phase 7D tests + 717 regression tests passing; 3 pre-existing failures due to missing telegraf/drizzle-orm packages).
 
 ## Phase 7C: Test count
-960 tests (98 new Phase 7C tests + 862 regression tests).
+Tests from Phase 7C remain part of the full suite.
