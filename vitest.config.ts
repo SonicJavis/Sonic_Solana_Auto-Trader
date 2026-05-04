@@ -19,6 +19,7 @@ export default defineConfig({
       '@sonic/mode-manager': resolve(__dirname, 'packages/mode-manager/src/index.ts'),
       '@sonic/observability': resolve(__dirname, 'packages/observability/src/index.ts'),
       '@sonic/risk-engine': resolve(__dirname, 'packages/risk-engine/src/index.ts'),
+      '@sonic/pump-adapter': resolve(__dirname, 'packages/pump-adapter/src/index.ts'),
       '@sonic/testing': resolve(__dirname, 'packages/testing/src/index.ts'),
     },
   },

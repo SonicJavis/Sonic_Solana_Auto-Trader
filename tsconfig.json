@@ -8,6 +8,7 @@
     { "path": "./packages/mode-manager" },
     { "path": "./packages/state" },
     { "path": "./packages/risk-engine" },
+    { "path": "./packages/pump-adapter" },
     { "path": "./packages/testing" },
     { "path": "./apps/telegram-bot" },
     { "path": "./apps/worker" }

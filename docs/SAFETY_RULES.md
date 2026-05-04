@@ -24,13 +24,13 @@
 20. **Phase 4**: Retention never deletes the DB file; it only removes old/excess rows
 21. **Phase 4**: No Solana RPC, Jito, Pump.fun, signing, sending, wallet loading — not in scope
 
-## Phase 5 Additional Safety Rules
+## Phase 6A Additional Safety Rules
 
-22. **Phase 5**: State/read-model snapshots are read-only — no snapshot mutates any system state
-23. **Phase 5**: No raw DATABASE_URL, TELEGRAM_BOT_TOKEN, or credential-like values in any snapshot
-24. **Phase 5**: No raw detailsJson exposed by read models or Telegram `/system` output
-25. **Phase 5**: No Solana RPC, market data, wallets, signing, sending, Jito, Pump.fun, or execution code added
-26. **Phase 5**: `packages/state` does not depend on apps/telegram-bot or apps/worker (no circular imports)
-27. **Phase 5**: `/system` and all subcommands are read-only — no mode mutation, no execution trigger
-28. **Phase 5**: Readiness calculation is conservative — defaults to `unsafe` on any invariant failure
-29. **Phase 5**: FULL_AUTO and LIMITED_LIVE remain locked
+30. **Phase 6A**: `packages/pump-adapter` is inert — no Solana RPC, no network calls, no transaction building, no signing, no sending, no execution
+31. **Phase 6A**: All pump adapter capability flags (`canSignTransactions`, `canSendTransactions`, `canExecuteTrades`, `canAccessPrivateKeys`, `canUseLiveRpc`, `canUseJito`, `canBuildTransactions`, `canBuildInstructions`) are permanently `false`
+32. **Phase 6A**: `PumpAdapterStatusReport.isLiveCapable` is always `false`; `executionForbidden` is always `true`
+33. **Phase 6A**: Quote results always carry `isMockResult: true` — they do not represent executed trades
+34. **Phase 6A**: Bonding curve state always carries `isMockState: true` — not fetched from chain
+35. **Phase 6A**: All error results carry `safeToDisplay: true` — never contain raw secrets or stack traces
+36. **Phase 6A**: No Pump.fun buying/selling. No PumpSwap buying/selling. No Jito. No wallet access.
+37. **Phase 6A**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/quote commands.

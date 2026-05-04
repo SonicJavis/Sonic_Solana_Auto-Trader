@@ -83,3 +83,32 @@ pnpm --filter @sonic/state build
 
 ## Phase 5: Test count
 291 tests (88 new Phase 5 tests + 203 regression tests).
+
+## Phase 6A: Pump Adapter Interfaces + Safe Quote Models
+
+The `packages/pump-adapter` package provides:
+- Pure TypeScript interfaces and models for future Pump.fun/PumpSwap support
+- Inert in Phase 6A — no live RPC, no execution, no network calls
+- `PUMP_ADAPTER_CAPABILITIES` — all prohibited capabilities permanently false
+- `MockPumpAdapter` — configurable mock for tests
+
+### Build pump-adapter package
+
+```
+pnpm --filter @sonic/pump-adapter build
+```
+
+### Phase 6A: Limitations
+
+- No Solana RPC (not yet implemented)
+- No Pump SDK runtime integration (not yet implemented)
+- No transaction instruction building (not yet implemented)
+- No transaction construction, simulation, signing, or sending
+- No Pump.fun buying/selling, no PumpSwap buying/selling, no Jito
+- No market data ingestion
+- No live or auto trading
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram trade/quote commands
+
+## Phase 6A: Test count
+397 tests (106 new Phase 6A tests + 291 regression tests).

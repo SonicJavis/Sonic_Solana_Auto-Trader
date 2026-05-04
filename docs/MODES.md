@@ -25,7 +25,7 @@ Phase 5 adds read-only mode status reporting via packages/state:
 - Mode safety status: safe (current mode is a safe mode), locked (kill switch active), unsafe (otherwise)
 - /system safety Telegram command displays locked modes and runtime safety booleans
 
-## Locked Modes (Phase 5)
+## Locked Modes (Phase 6A)
 
-LIMITED_LIVE, FULL_AUTO — remain locked. No Phase 5 code unlocks these modes.
-Mode read models are read-only — no mode mutation from packages/state is possible.
+LIMITED_LIVE, FULL_AUTO — remain locked. No Phase 6A code unlocks these modes.
+The pump adapter is inert — it cannot trigger mode changes or execute trades.
