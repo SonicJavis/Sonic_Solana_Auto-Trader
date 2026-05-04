@@ -1,10 +1,12 @@
-# Event Engine — Phase 7A/7B/7C/7D
+# Event Engine — Phase 7A/7B/7C/7D/7E
 
 ## Overview
 
-Phases 7A, 7B, 7C, and 7D introduce the `@sonic/event-engine` package: local, in-memory event infrastructure for the Sonic Solana Auto-Trader.
+Phases 7A–7E introduce the `@sonic/event-engine` package and Event Engine readiness surface: local, in-memory event infrastructure for the Sonic Solana Auto-Trader.
 
 This is the foundation for future read-only event capture. It is entirely local — no network calls, no Solana RPC, no live providers, no wallet handling.
+
+Phase 7E surfaces provider readiness into the `@sonic/state` package and adds a Phase 8 Token Intelligence readiness gate.
 
 ---
 
@@ -47,6 +49,27 @@ This is the foundation for future read-only event capture. It is entirely local 
 - `replayAndCollect()` — convenience replay alias
 - 11 Phase 7C error codes (INVALID_FIXTURE_ID, INVALID_FIXTURE_SEQUENCE, etc.)
 
+### What Phase 7D provides
+
+- `ProviderConfigMode` — disabled, mock_only, future_live_not_available
+- `ProviderConfigInput` / `ProviderConfigSafe` — fail-closed config validation; all unsafe flags captured, never honoured
+- `validateProviderConfig()` / `createDisabledProviderConfig()` — config builders
+- `ProviderReadiness`, `ProviderReadinessEntry`, `ProviderReadinessReport` — per-provider and aggregate readiness
+- `buildProviderReadinessReport()` / `assertAllProvidersSafe()` — readiness aggregation and safety assertion
+- `PHASE_7D_READINESS_SUMMARY` — static constant safe for /system output
+
+### What Phase 7E provides
+
+- `EventEngineReadinessSnapshot` (in `@sonic/state`) — safe top-level state snapshot; live/network/execution fields always 'forbidden'
+- `ProviderReadinessSummary` (in `@sonic/state`) — safe provider readiness counts; no raw URLs/API keys
+- `Phase8ReadinessGate` (in `@sonic/state`) — static Phase 8 readiness checklist
+- `buildEventEngineReadinessSnapshot()` — builds complete snapshot using Phase 7D provider readiness
+- `buildProviderReadinessSummary()` — derives safe summary from ProviderReadinessReport
+- `buildPhase8ReadinessGate()` — evaluates Phase 8 readiness (Token Intelligence models only)
+- `PHASE_7E_EVENT_ENGINE_SUMMARY` — static constant safe for /system output
+- `EVENT_ENGINE_READINESS_CODES` — 6 safe error/readiness codes
+- Telegram `/system engine` and `/system phase8` subcommands
+
 ### What these phases do NOT provide
 
 - Solana RPC connections
@@ -60,6 +83,7 @@ This is the foundation for future read-only event capture. It is entirely local 
 - Trade execution or swap logic
 - Jito integration
 - FULL_AUTO or LIMITED_LIVE unlock
+- Live provider API key usage
 
 ---
 
@@ -82,10 +106,17 @@ packages/event-engine/
     fixture-sequence.ts     — Phase 7C: FixtureSequence, validateFixtureSequence, buildFixtureSequence
     mock-provider.ts        — Phase 7C: MockProviderStatus, MockProviderCapabilities, ControlledMockProvider
     replay-controller.ts    — Phase 7C: replayFixtureSequence, replayAndCollect
+    provider-config.ts      — Phase 7D: ProviderConfigSafe, validateProviderConfig
+    provider-readiness.ts   — Phase 7D: ProviderReadinessReport, buildProviderReadinessReport
     index.ts                — public barrel (all phases)
+
+packages/state/
+  src/
+    event-engine-read-model.ts — Phase 7E: EventEngineReadinessSnapshot, ProviderReadinessSummary,
+                                  Phase8ReadinessGate, builders, constants
 ```
 
-No dependency on other `@sonic/*` packages. No app, worker, Telegram, RPC, Solana SDK, Pump SDK, or wallet dependencies.
+No dependency on other `@sonic/*` packages from event-engine. No app, worker, Telegram, RPC, Solana SDK, Pump SDK, or wallet dependencies.
 
 ---
 

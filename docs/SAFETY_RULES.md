@@ -111,3 +111,15 @@
 85. **Phase 7D**: No Helius, WebSocket, Yellowstone, Geyser, or any other provider SDK is loaded or connected
 86. **Phase 7D**: No market data ingestion, no live chain events, no transaction construction, no signing, no sending, no execution
 87. **Phase 7D**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram event-stream or trade commands.
+
+
+## Phase 7E Additional Safety Rules
+
+88. **Phase 7E**: `EventEngineReadinessSnapshot.liveProviders`, `networkAccess`, `solanaRpc`, `executionTriggers`, `walletAccess`, and `apiKeyUsage` fields are always `'forbidden'` — no snapshot value implies live or execution readiness
+89. **Phase 7E**: `ProviderReadinessSummary` never contains raw provider URLs, API key values, endpoint configurations, or credential data — only safe counts and state strings
+90. **Phase 7E**: `buildPhase8ReadinessGate()` returns `readyForTokenIntelligence: true` only when all safety conditions hold (all live/network/enabled/unsafe counts are 0, FULL_AUTO and LIMITED_LIVE locked)
+91. **Phase 7E**: Phase 8 readiness means readiness to build Token Intelligence models locally only — it does NOT imply live data ingestion, market data access, wallet access, signing, sending, or execution
+92. **Phase 7E**: Telegram `/system engine` and `/system phase8` commands never display raw URLs, API keys, secrets, or detailsJson — all output is safe to display
+93. **Phase 7E**: No new live providers, provider SDK imports, RPC clients, WebSocket clients, or network calls are introduced
+94. **Phase 7E**: `@sonic/event-engine` remains a dependency-free local package — `@sonic/state` imports from it but no reverse dependency exists
+95. **Phase 7E**: FULL_AUTO and LIMITED_LIVE remain locked.

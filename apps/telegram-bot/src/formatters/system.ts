@@ -1,5 +1,5 @@
 /**
- * Telegram /system command formatters — Phase 5.
+ * Telegram /system command formatters — Phase 5 / Phase 7E.
  *
  * All formatters produce secret-safe output.
  * No raw secrets, tokens, DATABASE_URL, or detailsJson are ever displayed.
@@ -12,6 +12,8 @@ import type {
   AuditStateSnapshot,
   RuntimeSafetyStateSnapshot,
   SystemReadiness,
+  EventEngineReadinessSnapshot,
+  Phase8ReadinessGate,
 } from '@sonic/state';
 
 const READINESS_ICONS: Record<SystemReadiness, string> = {
@@ -187,6 +189,8 @@ export function formatSystemHelp(): string {
     '/system audit    — Audit log statistics',
     '/system worker   — Worker startup and heartbeat status',
     '/system config   — Safe config summary',
+    '/system engine   — Event Engine readiness (local/disabled only)',
+    '/system phase8   — Phase 8 Token Intelligence readiness gate',
     '/system help     — Show this help',
     '',
     'No secrets, tokens, or raw details are ever shown.',
@@ -194,12 +198,90 @@ export function formatSystemHelp(): string {
   ].join('\n');
 }
 
+/** Format /system engine — Event Engine readiness (Phase 7E) */
+export function formatSystemEngine(snapshot: EventEngineReadinessSnapshot): string {
+  const summary = snapshot.providerReadinessSummary;
+  const lines = [
+    '🔌 Event Engine Status',
+    '',
+    `Event Engine core: ${snapshot.eventEngineCore}`,
+    `In-memory bus: ${snapshot.inMemoryBus}`,
+    `Mock providers: ${snapshot.mockProviders}`,
+    `Fixture replay: ${snapshot.fixtureReplay}`,
+    `Disabled providers: ${snapshot.disabledProviders}`,
+    '',
+    'Provider readiness:',
+    `  Overall: ${summary.overallReadiness}`,
+    `  Provider count: ${summary.providerCount}`,
+    `  Unsafe requests: ${summary.unsafeProviderCount}`,
+    `  Enabled: ${summary.enabledProviderCount}`,
+    `  Live: ${summary.liveProviderCount}`,
+    `  Network: ${summary.networkProviderCount}`,
+    '',
+    `Live providers: ${snapshot.liveProviders}`,
+    `Network access: ${snapshot.networkAccess}`,
+    `Solana RPC: ${snapshot.solanaRpc}`,
+    `Execution triggers: ${snapshot.executionTriggers}`,
+    `Wallet access: ${snapshot.walletAccess}`,
+    `API key usage: ${snapshot.apiKeyUsage}`,
+    '',
+    `Phase 8 readiness: ${snapshot.phase8Readiness.readyForTokenIntelligence ? '✅ ready (Token Intelligence models only)' : '⛔ not ready'}`,
+    '',
+    `Generated: ${fmtTs(snapshot.generatedAt)}`,
+  ];
+  return lines.join('\n');
+}
+
+/** Format /system phase8 — Phase 8 Token Intelligence readiness gate (Phase 7E) */
+export function formatPhase8Readiness(gate: Phase8ReadinessGate): string {
+  const ready = gate.readyForTokenIntelligence;
+  const lines = [
+    `${ready ? '✅' : '⛔'} Phase 8 Token Intelligence Readiness`,
+    '',
+    `Ready for Token Intelligence models: ${ready}`,
+    '',
+    'IMPORTANT: Phase 8 readiness means ready to build Token Intelligence',
+    'models locally. It does NOT mean ready for live data, market ingestion,',
+    'wallet access, signing, sending, or trade execution.',
+    '',
+  ];
+
+  if (gate.blockers.length > 0) {
+    lines.push('Blockers:');
+    for (const b of gate.blockers) {
+      lines.push(`  ⛔ ${b}`);
+    }
+    lines.push('');
+  }
+
+  if (gate.warnings.length > 0) {
+    lines.push('Warnings:');
+    for (const w of gate.warnings) {
+      lines.push(`  ⚠️ ${w}`);
+    }
+    lines.push('');
+  }
+
+  lines.push('Required foundations:');
+  for (const f of gate.requiredCompletedPhases) {
+    lines.push(`  ✓ ${f}`);
+  }
+
+  lines.push('', 'Required safety conditions:');
+  for (const s of gate.requiredSafetyConditions) {
+    lines.push(`  🔒 ${s}`);
+  }
+
+  lines.push('', `Generated: ${fmtTs(gate.generatedAt)}`);
+  return lines.join('\n');
+}
+
 /** Format an unknown subcommand response */
 export function formatSystemUnknown(sub: string): string {
   return [
     `Unknown /system subcommand: ${sub}`,
     '',
-    'Supported: health, safety, audit, worker, config, help',
+    'Supported: health, safety, audit, worker, config, engine, phase8, help',
     'Use /system help for details.',
   ].join('\n');
 }

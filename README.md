@@ -1,8 +1,22 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 7D — Disabled Provider Config + Readiness Checks**
+**Phase 7E — Event Engine Final Gate + Provider Readiness Surface**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 7D.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 7E.
+
+## Features (Phase 7E — adds to Phase 7A/7B/7C/7D)
+
+- `EventEngineReadinessSnapshot` (in `@sonic/state`) — safe top-level snapshot; all live/network/execution fields always `'forbidden'`
+- `ProviderReadinessSummary` (in `@sonic/state`) — safe provider readiness counts and overall state; no raw URLs/API keys
+- `Phase8ReadinessGate` (in `@sonic/state`) — static Phase 8 Token Intelligence readiness checklist
+- `buildEventEngineReadinessSnapshot()` — builds complete snapshot using Phase 7D provider readiness
+- `buildPhase8ReadinessGate()` — evaluates Phase 8 readiness; `readyForTokenIntelligence: true` only when all local foundations and safety conditions hold
+- `PHASE_7E_EVENT_ENGINE_SUMMARY` — static constant safe for `/system` output
+- `EVENT_ENGINE_READINESS_CODES` — 6 safe error/readiness codes
+- Telegram `/system engine` — Event Engine local-only status and provider readiness summary
+- Telegram `/system phase8` — Phase 8 Token Intelligence readiness gate
+- 107 new tests in `tests/phase7e.test.ts` — **1148 passing** (13 test files)
+- **Phase 8 readiness means ready to build Token Intelligence models locally only** — NOT live data, trading, or execution
 
 ## Features (Phase 7D — adds to Phase 7A/7B/7C)
 
@@ -19,7 +33,7 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 - `buildProviderReadinessReport()` — generates report with safe-to-display notes
 - `assertAllProvidersSafe()` — throws safe error if any provider requested unsafe permissions
 - `PHASE_7D_READINESS_SUMMARY` — static summary constant safe for `/system` output
-- 81 new tests in `tests/phase7d.test.ts` — 798+ passing
+- 81 new tests in `tests/phase7d.test.ts` — 1041+ passing
 
 ## Features (Phase 7B — adds to Phase 7A)
 
@@ -162,7 +176,7 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 ## Commands
 
 ```sh
-pnpm test        # run tests (798+ passing as of Phase 7D)
+pnpm test        # run tests (1148 passing as of Phase 7E)
 pnpm lint        # lint all packages
 pnpm typecheck   # type check all packages
 pnpm build       # build all packages

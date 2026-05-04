@@ -18,7 +18,8 @@
     "@sonic/shared": "workspace:*",
     "@sonic/config": "workspace:*",
     "@sonic/db": "workspace:*",
-    "@sonic/mode-manager": "workspace:*"
+    "@sonic/mode-manager": "workspace:*",
+    "@sonic/event-engine": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20.12.0",
