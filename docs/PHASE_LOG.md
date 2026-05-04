@@ -80,7 +80,28 @@
 - No Solana RPC, market data, wallets, signing, sending, Jito, Pump.fun, or execution code added
 
 
-## Phase 6A - Pump Adapter Interfaces + Safe Quote Models
+## Phase 6B - Instruction Intent and Transaction Plan Placeholder Models
+- Extends `packages/pump-adapter` (Phase 6A) with local-only planning model types
+- `PumpInstructionIntentType` (buy_intent, sell_intent, approve_intent, close_intent, unknown_intent)
+- `PumpTradeSide` (buy, sell)
+- `PumpInstructionIntent` — local planning model; `executionForbidden: true`, `isExecutable: false` always; no account metas, no binary data, no wallet/signer fields
+- `PumpTransactionPlanType` (buy_plan, sell_plan, unknown_plan)
+- `PumpTransactionPlan` — local placeholder; `executionForbidden: true`, `isExecutable: false`, `requiresWallet: false`, `requiresSignature: false`, `requiresRpc: false` always; no blockhash, no fee payer, no signatures, no transaction bytes
+- `PumpInstructionBuilderRequest` — `allowExecutableInstructions: false` (literal type + runtime guard)
+- `PumpInstructionBuilderResult` — plan | null, warnings, safety snapshot, optional error
+- `Phase6BWarningCode` — MODEL_ONLY, EXECUTION_FORBIDDEN, SIGNING_FORBIDDEN, SENDING_FORBIDDEN, LIVE_RPC_FORBIDDEN, REAL_INSTRUCTIONS_FORBIDDEN
+- `Phase6BErrorCode` — 12 forbidden-operation error codes
+- `PumpInstructionIntentBuilder` interface — buildBuyIntent(), buildSellIntent(), buildPlanFromQuote(), getCapabilities()
+- `PHASE_6B_BUILDER_CAPABILITIES` safety guard — all 12 prohibited capability flags permanently false
+- `MockInstructionBuilder` — accepts successful Phase 6A quotes, rejects failed quotes/bad venues/executable flag
+- `phase6bError`, validation helpers — allowExecutableInstructions, quote success, venue allow-list, positive amounts, slippage bounds
+- Phase 6B test suite: 78 new tests (475 total, all passing)
+- No Solana RPC. No Pump SDK. No @solana/web3.js. No wallet/private keys. No account metas. No binary instruction data. No transaction construction. No simulation. No signing. No sending. No live trading. No Jito.
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram trade/quote commands
+- Phase 6C may add a disabled Pump SDK wrapper boundary (still without signing/sending)
+
+
 - New `packages/pump-adapter` package: pure TypeScript adapter boundary, inert, no Solana dependency
 - `PumpVenueType` (pump_curve, pumpswap, unknown, unsupported)
 - `PumpAdapterStatus` (available, unavailable, disabled, unsupported)

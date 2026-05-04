@@ -1,42 +1,132 @@
-# Pump Adapter — Phase 6A
+# Pump Adapter — Phase 6A/6B
 
 ## Overview
 
-`packages/pump-adapter` is a safe TypeScript adapter boundary for future Pump.fun/PumpSwap quote support.
+`packages/pump-adapter` is a safe TypeScript adapter boundary for future Pump.fun/PumpSwap support.
 
-**Phase 6A is adapter-design and quote-model infrastructure only.**
+**Phase 6A** added adapter-design and quote-model infrastructure.
+**Phase 6B** adds local-only instruction intent and transaction plan placeholder models.
 
-## What this phase implements
+Neither phase performs any network calls, RPC queries, transaction building, signing, sending, or trade execution.
 
-- TypeScript interfaces and models (venues, quote requests/results, bonding curve state)
-- Safe result/error types with display-safe error codes
-- Input validation helpers (structural only, no Solana library)
-- Safety capability guard (`PUMP_ADAPTER_CAPABILITIES` — all false)
-- Mock adapter implementation for tests
+## What Phase 6B implements
 
-## What this phase does NOT implement
+- Instruction intent types (`PumpInstructionIntent`, `PumpInstructionIntentType`, `PumpTradeSide`)
+- Transaction plan placeholder types (`PumpTransactionPlan`, `PumpTransactionPlanType`)
+- Builder request/result types (`PumpInstructionBuilderRequest`, `PumpInstructionBuilderResult`)
+- Warning and error codes (`Phase6BWarningCode`, `Phase6BErrorCode`, `Phase6BErrorResult`)
+- Builder interface (`PumpInstructionIntentBuilder`)
+- Phase 6B safety capability guard (`PHASE_6B_BUILDER_CAPABILITIES` — 12 flags, all false)
+- Mock instruction builder (`MockInstructionBuilder`, `createMockInstructionBuilder`)
+- Input validation helpers
+
+## What Phase 6B does NOT implement
 
 | Prohibited capability | Status |
 |---|---|
-| Solana RPC | ❌ Not implemented |
-| Helius / QuickNode / Triton / Alchemy clients | ❌ Not implemented |
-| Pump SDK runtime integration | ❌ Not implemented |
+| Real Solana instructions | ❌ Not implemented |
+| AccountMeta / account metas | ❌ Not returned |
+| Binary instruction data | ❌ Not returned |
 | `@solana/web3.js` | ❌ Not imported |
+| Pump SDK runtime integration | ❌ Not implemented |
 | Wallet / keypair handling | ❌ Not implemented |
-| Private keys / seed phrases / mnemonics | ❌ Not implemented |
-| Transaction instruction building | ❌ Not implemented |
+| Private keys / seed phrases | ❌ Not implemented |
 | Transaction construction | ❌ Not implemented |
 | Transaction simulation | ❌ Not implemented |
 | Transaction signing | ❌ Not implemented |
 | Transaction sending | ❌ Not implemented |
-| Pump.fun buying/selling | ❌ Not implemented |
-| PumpSwap buying/selling | ❌ Not implemented |
+| Solana RPC | ❌ Not implemented |
 | Jito | ❌ Not implemented |
-| Jupiter / Raydium / Orca / Meteora swaps | ❌ Not implemented |
-| Market data ingestion | ❌ Not implemented |
 | Live or auto trading | ❌ Not implemented |
 | FULL_AUTO or LIMITED_LIVE unlock | ❌ Remain locked |
 | Telegram trade/quote commands | ❌ Not added |
+
+## Phase 6B safety flags
+
+Every `PumpInstructionIntent` carries:
+```typescript
+executionForbidden: true   // always
+isExecutable: false        // always
+safeToDisplay: true        // always
+```
+
+Every `PumpTransactionPlan` carries:
+```typescript
+executionForbidden: true   // always
+isExecutable: false        // always
+requiresWallet: false      // always
+requiresSignature: false   // always
+requiresRpc: false         // always
+```
+
+Builder requests require:
+```typescript
+allowExecutableInstructions: false  // literal type + runtime guard
+```
+
+## Phase 6B safety capability guard
+
+```typescript
+import { PHASE_6B_BUILDER_CAPABILITIES } from '@sonic/pump-adapter';
+
+// All 12 values are permanently false in Phase 6B:
+PHASE_6B_BUILDER_CAPABILITIES.canSignTransactions          // false
+PHASE_6B_BUILDER_CAPABILITIES.canSendTransactions          // false
+PHASE_6B_BUILDER_CAPABILITIES.canExecuteTrades             // false
+PHASE_6B_BUILDER_CAPABILITIES.canAccessPrivateKeys         // false
+PHASE_6B_BUILDER_CAPABILITIES.canUseLiveRpc                // false
+PHASE_6B_BUILDER_CAPABILITIES.canUseJito                   // false
+PHASE_6B_BUILDER_CAPABILITIES.canBuildTransactions         // false
+PHASE_6B_BUILDER_CAPABILITIES.canBuildInstructions         // false
+PHASE_6B_BUILDER_CAPABILITIES.canBuildExecutableInstructions // false
+PHASE_6B_BUILDER_CAPABILITIES.canSimulateTransactions      // false
+PHASE_6B_BUILDER_CAPABILITIES.canReturnAccountMetas        // false
+PHASE_6B_BUILDER_CAPABILITIES.canReturnBinaryInstructionData // false
+```
+
+## Mock instruction builder
+
+```typescript
+import { createMockInstructionBuilder, pumpOk } from '@sonic/pump-adapter';
+
+const builder = createMockInstructionBuilder();
+
+// Build a buy intent from a successful Phase 6A quote result:
+const result = builder.buildBuyIntent({
+  quote: availableAdapter.getBuyQuote(request),  // must be PumpAdapterOk<PumpQuoteResult>
+  requestedAt: new Date().toISOString(),
+  allowExecutableInstructions: false,            // must be false — type + runtime enforced
+});
+// result.plan.executionForbidden === true
+// result.plan.isExecutable === false
+// result.warnings includes 'MODEL_ONLY', 'EXECUTION_FORBIDDEN', etc.
+// result.safety — all 12 capability flags false
+```
+
+## Phase 6B error codes
+
+All errors have `safeToDisplay: true` — no raw secrets, no stack traces.
+
+| Code | Meaning |
+|---|---|
+| `INSTRUCTION_BUILDING_FORBIDDEN` | Real instruction building is forbidden |
+| `EXECUTABLE_INSTRUCTIONS_FORBIDDEN` | `allowExecutableInstructions` must be false |
+| `TRANSACTION_BUILDING_FORBIDDEN` | Real transaction building is forbidden |
+| `SIMULATION_FORBIDDEN` | Transaction simulation is forbidden |
+| `QUOTE_REQUIRED` | A successful quote is required |
+| `UNSAFE_QUOTE_RESULT` | Quote was not successful |
+| `UNSUPPORTED_INTENT` | Intent side does not match quote side |
+| `UNSUPPORTED_VENUE` | Venue not supported for intent building |
+| `ACCOUNT_METAS_FORBIDDEN` | Account metas cannot be returned |
+| `BINARY_DATA_FORBIDDEN` | Binary instruction data cannot be returned |
+| `LIVE_RPC_FORBIDDEN` | Live RPC access is forbidden |
+| `WALLET_ACCESS_FORBIDDEN` | Wallet/private key access is forbidden |
+
+---
+
+## Phase 6A content
+
+
 
 ## Safety capability guard
 
