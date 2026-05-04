@@ -59,3 +59,64 @@ Showing 3 event(s)
 - `detailsJson` is never shown in Telegram output; only `safeSummary` or `message`.
 - No Telegram command can unlock modes or trigger execution.
 
+
+## Phase 5 - State Store and Safe Read Models
+
+### /system sub-commands (Phase 5, admin-only)
+
+| Command           | Description                                          |
+|-------------------|------------------------------------------------------|
+| `/system`         | System overview: phase, mode, readiness, DB, worker  |
+| `/system health`  | Readiness, worker status, recent warn/error counts   |
+| `/system safety`  | Runtime safety locks, locked modes, unsafe flags     |
+| `/system audit`   | Audit log statistics and last event timestamps       |
+| `/system worker`  | Last startup, last heartbeat, heartbeat age, status  |
+| `/system config`  | Safe config summary (no secrets or credentials)      |
+| `/system help`    | Show /system help text                               |
+
+### Readiness values
+
+| Value    | Meaning                                                             |
+|----------|---------------------------------------------------------------------|
+| `READY`  | Safe mode, DB available, safety check passed, worker healthy        |
+| `DEGRADED` | Worker stale/unknown, or recent warn/error events               |
+| `UNSAFE` | Safety check failed, locked modes not locked, or DB unavailable    |
+| `UNKNOWN`| No startup event recorded yet (insufficient data)                  |
+
+### /system example output
+
+```
+⚙️ System State
+
+App: Sonic Solana Auto-Trader
+Version: 0.1.0
+Phase: 5 — State Store and Safe Read Models
+Mode: READ_ONLY
+App mode (config): READ_ONLY
+Safety profile: strict
+
+Readiness: ✅ READY
+
+DB available: true
+Audit events total: 42
+Last startup: 2024-06-01 12:00:00 UTC
+Last heartbeat: 2024-06-01 12:05:00 UTC
+Worker status: healthy
+
+FULL_AUTO locked: true
+LIMITED_LIVE locked: true
+Unsafe flags detected: false
+
+Generated: 2024-06-01 12:05:30 UTC
+
+Use /system help for subcommands.
+```
+
+### Notes
+
+- No trading commands exist. Trading is disabled in Phase 5.
+- `LIMITED_LIVE` and `FULL_AUTO` are locked and cannot be set by any command.
+- No `/system` subcommand can unlock modes or trigger execution.
+- `/system config` never displays raw TELEGRAM_BOT_TOKEN, DATABASE_URL, or any credentials.
+- `/system audit` never shows raw detailsJson — only stats and safe timestamps.
+- All /system commands are audit logged as `TELEGRAM_SYSTEM_REQUESTED` events.

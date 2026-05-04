@@ -6,6 +6,7 @@
     { "path": "./packages/observability" },
     { "path": "./packages/db" },
     { "path": "./packages/mode-manager" },
+    { "path": "./packages/state" },
     { "path": "./packages/risk-engine" },
     { "path": "./packages/testing" },
     { "path": "./apps/telegram-bot" },

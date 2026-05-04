@@ -46,3 +46,40 @@ AUDIT_ROTATION_ENABLED=true
 
 ## Phase 4: Test count
 201 tests (82 new Phase 4 tests + 119 regression tests).
+
+## Phase 5: State Store and Safe Read Models
+
+The `packages/state` package provides:
+- `buildSystemStateSnapshot()` — full safe system state snapshot
+- `buildAuditStateSnapshot()` — audit stats and timestamps
+- `buildConfigStateSnapshot()` — safe config summary
+- `buildModeStateSnapshot()` — mode status and locked modes
+- `buildWorkerStateSnapshot()` — worker health from heartbeat age
+- `calculateReadiness()` — SystemReadiness: ready/degraded/unsafe/unknown
+
+### Build state package
+
+```
+pnpm --filter @sonic/state build
+```
+
+### New Telegram command
+
+`/system` — system state overview
+`/system health` — readiness and worker details
+`/system safety` — runtime safety locks
+`/system audit` — audit statistics
+`/system worker` — startup and heartbeat info
+`/system config` — safe config summary
+`/system help` — subcommand list
+
+### Phase 5: Limitations
+
+- No Solana RPC (not yet implemented)
+- No market data (not yet implemented)
+- No Pump SDK adapter (not yet implemented)
+- No trading, wallet, signing, sending, Jito, Pump.fun, or execution
+- FULL_AUTO and LIMITED_LIVE remain locked
+
+## Phase 5: Test count
+291 tests (88 new Phase 5 tests + 203 regression tests).

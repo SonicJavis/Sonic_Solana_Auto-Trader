@@ -59,3 +59,22 @@
 - Phase 4 test suite: 82 new tests covering config, DB init, repository, redaction, retention, worker events, mode manager, Telegram formatter, regression
 - All 201 tests passing (82 new + 119 regression)
 
+
+## Phase 5 - State Store and Safe Read Models
+- PHASE constant updated to 5; PHASE_NAME updated to "State Store and Safe Read Models"
+- New `packages/state` package: safe read-only state/read-model layer
+- `SystemStateSnapshot`, `ConfigStateSnapshot`, `ModeStateSnapshot`, `RuntimeSafetyStateSnapshot`, `AuditStateSnapshot`, `WorkerStateSnapshot`, `DatabaseStateSnapshot`, `UnsafeFlagStateSnapshot`, `SystemReadiness` types
+- `buildAuditStateSnapshot()` — derives audit stats, last startup/heartbeat/unsafe-flags timestamps from IAuditRepository
+- `buildConfigStateSnapshot()` — safe config summary (no raw DATABASE_URL, TELEGRAM_BOT_TOKEN, or credentials)
+- `buildModeStateSnapshot()` — reports current mode, locked modes (FULL_AUTO/LIMITED_LIVE), mode safety status
+- `buildWorkerStateSnapshot()` — worker health (healthy/degraded/unknown) derived from audit heartbeat age
+- `calculateReadiness()` — SystemReadiness: ready/degraded/unsafe/unknown (rules documented and tested)
+- `buildSystemStateSnapshot()` — aggregates all read models into a single safe snapshot
+- Telegram `/system` command added with subcommands: health, safety, audit, worker, config, help
+- `/system` formatters: `formatSystemOverview`, `formatSystemHealth`, `formatSystemSafety`, `formatSystemAudit`, `formatSystemWorker`, `formatSystemConfig`, `formatSystemHelp`, `formatSystemUnknown`
+- Telegram output: no raw secrets, no raw detailsJson, never exposes DATABASE_URL or TELEGRAM_BOT_TOKEN
+- `packages/state` depends on shared/config/db/mode-manager — no dependency on apps/telegram-bot or apps/worker
+- Phase 5 test suite: 88 new tests covering types, read models, readiness, redaction, worker events, Telegram formatters, regression
+- All 291 tests passing (88 new + 203 regression)
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No Solana RPC, market data, wallets, signing, sending, Jito, Pump.fun, or execution code added

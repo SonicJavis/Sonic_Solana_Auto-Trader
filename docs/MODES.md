@@ -17,3 +17,15 @@
 `LIMITED_LIVE`, `FULL_AUTO` — locked at both the config schema level and the ModeManager level.
 Setting `FULL_AUTO_UNLOCKED=true` or `LIMITED_LIVE_UNLOCKED=true` in env does **not** unlock these modes.
 Mode transitions (accepted and rejected) are now persisted to the SQLite audit database.
+
+## Phase 5 Mode Reporting
+
+Phase 5 adds read-only mode status reporting via packages/state:
+- buildModeStateSnapshot() returns a ModeStateSnapshot with current mode, allowed safe modes, locked modes, and mode safety status
+- Mode safety status: safe (current mode is a safe mode), locked (kill switch active), unsafe (otherwise)
+- /system safety Telegram command displays locked modes and runtime safety booleans
+
+## Locked Modes (Phase 5)
+
+LIMITED_LIVE, FULL_AUTO — remain locked. No Phase 5 code unlocks these modes.
+Mode read models are read-only — no mode mutation from packages/state is possible.
