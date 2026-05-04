@@ -199,7 +199,7 @@ describe('Phase 5 — State types', () => {
       runtimeSafetyStatus: safety, killSwitchActive: false,
     });
     expect(snapshot.phase).toBe(PHASE);
-    expect(snapshot.phase).toBe(5);
+    expect(snapshot.phase).toBe(6);
   });
 
   it('snapshot phaseName matches PHASE_NAME constant', () => {
@@ -770,7 +770,7 @@ describe('Phase 5 — Telegram /system formatters', () => {
   it('formatSystemOverview contains phase number', () => {
     const snap = makeFullSnapshot();
     const text = formatSystemOverview(snap);
-    expect(text).toContain('Phase: 5');
+    expect(text).toContain('Phase: 6');
   });
 
   it('formatSystemOverview contains mode', () => {
@@ -931,12 +931,12 @@ describe('Phase 5 — Regression', () => {
     expect(records[0]!.eventType).toBe('TEST_EVENT');
   });
 
-  it('PHASE constant is 5', () => {
-    expect(PHASE).toBe(5);
+  it('PHASE constant is 6', () => {
+    expect(PHASE).toBe(6);
   });
 
-  it('PHASE_NAME matches Phase 5', () => {
-    expect(PHASE_NAME).toContain('State');
+  it('PHASE_NAME matches Phase 6A', () => {
+    expect(PHASE_NAME).toContain('Pump Adapter');
   });
 
   it('LOCKED_MODES still contains FULL_AUTO and LIMITED_LIVE', () => {

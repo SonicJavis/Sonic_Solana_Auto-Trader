@@ -9,6 +9,7 @@ Monorepo with pnpm workspaces.
 - `db`: SQLite + Drizzle ORM persistent audit repository; `InMemoryAuditLogger` fallback
 - `mode-manager`: Mode state machine (transitions persisted to audit DB in Phase 4)
 - `risk-engine`: Safety gates
+- `pump-adapter`: Pump adapter interfaces and quote models (Phase 6A, inert — no RPC, no execution)
 - `testing`: Shared test utilities
 
 ## Apps
@@ -91,3 +92,49 @@ No circular imports.
 - No private keys, seed phrases, mnemonic, or credentials in any snapshot
 - FULL_AUTO and LIMITED_LIVE remain locked
 - No Solana RPC, market data, wallets, signing, sending, Jito, Pump.fun in any path
+
+## Phase 6A: Pump Adapter Package
+
+```
+packages/pump-adapter/src/
+  venue-types.ts          — PumpVenueType, PumpAdapterStatus, PumpAdapterStatusReport
+  quote-types.ts          — PumpQuoteSide, PumpQuoteInputUnit, PumpQuoteRequest,
+                            PumpBuyQuoteRequest, PumpSellQuoteRequest, PumpQuoteResult
+  bonding-curve-types.ts  — BondingCurveState (mock-safe, not fetched from chain)
+  errors.ts               — PumpAdapterErrorCode, PumpAdapterError, PumpAdapterResult,
+                            pumpOk(), pumpErr(), isPumpOk(), isPumpErr()
+  adapter.ts              — PumpAdapter interface (all methods inert in Phase 6A)
+  safety.ts               — PUMP_ADAPTER_CAPABILITIES guard (all false), getPumpAdapterCapabilities()
+  validation.ts           — validateTokenMint, validateInputAmount, validateSlippageBps,
+                            validateRequestedAt, validateQuoteRequest
+  mock-adapter.ts         — MockPumpAdapter, createDisabledMockAdapter(), createAvailableMockAdapter()
+  types.ts                — re-exported convenience type barrel
+  index.ts                — barrel exports
+```
+
+## Package dependency graph (Phase 6A)
+
+```
+shared ← config ← db ← mode-manager ← state ← apps/telegram-bot
+                                             ← apps/worker
+
+pump-adapter  (no dependencies on any other package — pure TypeScript models)
+```
+
+`packages/pump-adapter` has NO dependencies on: shared, config, db, mode-manager, state, apps.
+`packages/pump-adapter` does NOT import: @solana/web3.js, Pump SDK, wallet libraries, RPC clients.
+No circular imports.
+
+## Phase 6A Safety Invariants
+
+- All pump adapter capability flags are permanently false
+- `PumpAdapterStatusReport.isLiveCapable` is always false; `executionForbidden` is always true
+- No Solana RPC calls in any code path
+- No transaction building, construction, simulation, signing, or sending
+- No wallet or private key access
+- No Pump.fun buying/selling, no PumpSwap buying/selling, no Jito
+- Quote results marked `isMockResult: true` — not executed trades
+- Bonding curve state marked `isMockState: true` — not fetched from chain
+- All errors carry `safeToDisplay: true`
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram trade/quote commands

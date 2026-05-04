@@ -78,3 +78,24 @@
 - All 291 tests passing (88 new + 203 regression)
 - FULL_AUTO and LIMITED_LIVE remain locked
 - No Solana RPC, market data, wallets, signing, sending, Jito, Pump.fun, or execution code added
+
+
+## Phase 6A - Pump Adapter Interfaces + Safe Quote Models
+- New `packages/pump-adapter` package: pure TypeScript adapter boundary, inert, no Solana dependency
+- `PumpVenueType` (pump_curve, pumpswap, unknown, unsupported)
+- `PumpAdapterStatus` (available, unavailable, disabled, unsupported)
+- `PumpAdapterStatusReport` — status, isLiveCapable: false, hasLiveRpc: false, executionForbidden: true
+- `PumpQuoteRequest`, `PumpBuyQuoteRequest`, `PumpSellQuoteRequest`, `PumpQuoteResult`
+- `BondingCurveState` — model only, isMockState: true, not fetched from chain
+- `PumpAdapterResult<T>` — safe result/error type (no throws for normal adapter errors)
+- Error codes: ADAPTER_DISABLED, ADAPTER_UNAVAILABLE, UNSUPPORTED_VENUE, INVALID_TOKEN_MINT, INVALID_AMOUNT, INVALID_SLIPPAGE, QUOTE_UNAVAILABLE, NETWORK_NOT_IMPLEMENTED, EXECUTION_FORBIDDEN, SIGNING_FORBIDDEN, SENDING_FORBIDDEN, WALLET_ACCESS_FORBIDDEN
+- `PumpAdapter` interface — getStatus(), detectVenue(), getBondingCurveState(), getBuyQuote(), getSellQuote()
+- `PUMP_ADAPTER_CAPABILITIES` safety guard — all 8 prohibited capability flags permanently false
+- `validateTokenMint`, `validateInputAmount`, `validateSlippageBps`, `validateRequestedAt`, `validateQuoteRequest` — structural validation only, no Solana library
+- `MockPumpAdapter` — inert mock implementation for tests; `createDisabledMockAdapter()`, `createAvailableMockAdapter()`
+- Phase 6A test suite: 106 new tests covering types, validation, mock adapter, safety guard, redaction/safety, regression
+- All 397 tests passing (106 new Phase 6A + 291 regression)
+- PHASE constant updated to 6 in packages/shared/src/constants.ts
+- No Solana RPC. No Pump SDK runtime integration. No transaction instruction building. No transaction construction. No simulation. No signing. No sending. No wallet/private key handling. No live trading. No Jito.
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram trade/quote commands
