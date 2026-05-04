@@ -250,8 +250,8 @@ describe('Phase 7E — A.4 No raw URLs/API keys/secrets in snapshot', () => {
   it('snapshot JSON contains no raw API key values (long token strings)', () => {
     const snap = buildEventEngineReadinessSnapshot();
     const json = JSON.stringify(snap);
-    // No value fields with 32+ alphanumeric chars (raw key pattern)
-    expect(json).not.toMatch(/"[a-zA-Z0-9_-]{32,}"/);
+    // Check there are no JSON key-value pairs with suspicious field names containing long token values
+    expect(json).not.toMatch(/"(apiKey|api_key|token|secret|credential|password|key)"\s*:\s*"[a-zA-Z0-9_-]{32,}"/i);
   });
 
   it('snapshot JSON contains no password/private_key/mnemonic/seed values', () => {

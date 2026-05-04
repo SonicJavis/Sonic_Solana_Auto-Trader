@@ -223,6 +223,7 @@ export function buildPhase8ReadinessGate(
   const blockers: string[] = [];
   const warnings: string[] = [];
 
+  // Fail-safe defaults: treat undefined as locked (true) to prevent unsafe gates
   const fullAutoLocked = opts?.fullAutoLocked !== false;
   const limitedLiveLocked = opts?.limitedLiveLocked !== false;
 
