@@ -1,8 +1,24 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 6C — Disabled Pump SDK Wrapper Boundary**
+**Phase 7A — Event Engine Core Interfaces + In-Memory Event Bus**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in Phases 6A/6B/6C.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 7A.
+
+## Features (Phase 7A)
+
+- New `packages/event-engine` package — local-only, no network dependencies
+- `EventEnvelope` — canonical event container with safe payload, safeToPersist, safeToDisplay
+- `EventCategory` — system, config, mode, safety, audit, pump_adapter, future_chain (placeholder), future_market (placeholder), unknown
+- `EventSourceType` — internal, worker, telegram, audit_repository, state_service, pump_adapter_mock, future_provider_disabled
+- `EventSeverity` — debug, info, warn, error, critical
+- `EventSourceCapabilities` — all 5 network/execution/wallet flags permanently `false`
+- `IEventBus` interface + `InMemoryEventBus` implementation — bounded history (default 1000), handler failure isolation, idempotent unsubscribe
+- `DedupeStore` — in-memory TTL deduplication with clock injection for deterministic tests
+- `validateEventEnvelope` — full structural and safety validation (rejects functions, class instances, circular refs, raw Errors)
+- `EventEngineResult<T>` — safe result/error type with 17 error codes; all errors `safeToDisplay: true`
+- `buildEventEngineSystemStatus` — reports liveProviders:disabled, networkEvents:forbidden, executionTriggers:forbidden, solanaRpc:forbidden
+- 119 new tests in `tests/phase7a.test.ts` — 667 total, all passing
+- PHASE constant updated to 7
 
 ## Features (Phase 6C — adds to Phase 6A/6B)
 
@@ -56,10 +72,10 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 
 ## Safety Notice
 
-- **NO LIVE TRADING**: All trading functionality is strictly disabled in Phases 6A/6B/6C.
+- **NO LIVE TRADING**: All trading functionality is strictly disabled in Phases 6A/6B/6C/7A.
 - **NO EXECUTION**: The system has no capability to send transactions to the Solana network.
 - **NO WALLET / PRIVATE KEYS**: Private key handling, wallet loading, and transaction signing are NOT implemented.
-- **NO SOLANA RPC**: No Solana RPC connections in Phases 6A/6B/6C.
+- **NO SOLANA RPC**: No Solana RPC connections in any phase through 7A.
 - **NO JITO / PUMP.FUN TRADING**: No Pump.fun buying/selling. No PumpSwap buying/selling. No Jito.
 - **NO TRANSACTION BUILDING**: No real transaction instruction building or construction.
 - **NO ACCOUNT METAS**: No AccountMeta objects are returned.
@@ -69,6 +85,8 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 - **PUMP SDK WRAPPER IS DISABLED**: `DisabledPumpSdkWrapper` defines only the boundary where a future Pump SDK could plug in. No real Pump SDK runtime. No Solana SDK. All wrapper capabilities are false.
 - **INSTRUCTION INTENTS ARE LOCAL MODELS ONLY**: `PumpInstructionIntent` is a planning model, not an executable instruction.
 - **TRANSACTION PLANS ARE PLACEHOLDERS ONLY**: `PumpTransactionPlan` is a placeholder, not a Solana transaction.
+- **EVENT ENGINE IS LOCAL ONLY**: `packages/event-engine` is in-memory infrastructure only — no network, no Solana RPC, no live providers, no execution triggers, no wallet access.
+- **EVENT SOURCE CAPABILITIES ARE ALL FALSE**: `canUseNetwork`, `canUseSolanaRpc`, `canEmitLiveEvents`, `canTriggerExecution`, `canAccessWallets` are all permanently `false` in Phase 7A.
 - **READ-ONLY FIRST**: The foundation is built for infrastructure only.
 - **FULL_AUTO and LIMITED_LIVE remain locked**.
 

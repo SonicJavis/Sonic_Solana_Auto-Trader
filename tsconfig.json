@@ -9,6 +9,7 @@
     { "path": "./packages/state" },
     { "path": "./packages/risk-engine" },
     { "path": "./packages/pump-adapter" },
+    { "path": "./packages/event-engine" },
     { "path": "./packages/testing" },
     { "path": "./apps/telegram-bot" },
     { "path": "./apps/worker" }

@@ -80,6 +80,36 @@
 - No Solana RPC, market data, wallets, signing, sending, Jito, Pump.fun, or execution code added
 
 
+## Phase 7A - Event Engine Core Interfaces + In-Memory Event Bus
+- PHASE constant updated to 7; PHASE_NAME updated to "Event Engine Core Interfaces + In-Memory Event Bus"
+- New `packages/event-engine` package: local-only, no dependencies on other @sonic/* packages
+- `EventCategory` — system / config / mode / safety / audit / pump_adapter / future_chain / future_market / unknown
+- `EventSourceType` — internal / worker / telegram / audit_repository / state_service / pump_adapter_mock / future_provider_disabled
+- `EventSeverity` — debug / info / warn / error / critical
+- `EventEnvelope` — canonical event container: id, category, type, source, severity, timestamp, optional dedupeKey/ttlMs, payload, safeToPersist, safeToDisplay
+- `EventPayload` — serializable plain-object type; no functions, class instances, circular refs, or raw Errors
+- `EventSourceCapabilities` — all 5 network/execution/wallet flags permanently `false`: canUseNetwork, canUseSolanaRpc, canEmitLiveEvents, canTriggerExecution, canAccessWallets
+- `PHASE_7A_SOURCE_CAPABILITIES` constant — all capability flags false
+- `EventSourceHealth` — named source status + capabilities + lastUpdated
+- `EventEngineSystemStatus` — coreEventBus:available, liveProviders:disabled, networkEvents:forbidden, executionTriggers:forbidden, solanaRpc:forbidden
+- `EventEngineErrorCode` — 17 safe error codes (INVALID_EVENT_ID, UNSAFE_EVENT_PAYLOAD, NETWORK_EVENTS_FORBIDDEN, EXECUTION_TRIGGER_FORBIDDEN, etc.)
+- `EventEngineResult<T>` — safe result/error type; all errors have safeToDisplay:true
+- `IEventBus` interface — publish, subscribe, unsubscribe, getRecent, getStats, clear
+- `InMemoryEventBus` — bounded history (default 1000, configurable 1–10,000), handler failure isolation, idempotent unsubscribe, full stats tracking
+- `DedupeStore` — in-memory TTL deduplication with clock injection for deterministic tests
+- `isEventExpired` — TTL expiry check with injected clock support
+- `buildDedupeKey` — deterministic key generation from category + type + optional extra
+- `validateEventEnvelope` — full structural and safety validation (id, category, type, source, severity, timestamp, payload, dedupeKey, ttlMs, safeToPersist, safeToDisplay)
+- `isSafePayload` — recursive check for plain objects (no functions, class instances, circular refs); uses visited-set to avoid stack overflow on circular refs
+- `isPayloadWithinSizeLimit` — max 10,240 character serialized payload limit
+- `buildTestEvent` — test utility for creating minimal valid envelopes
+- Phase 7A test suite: 119 new tests (667 total, all passing)
+- No Solana RPC. No Helius. No QuickNode. No WebSocket providers. No Yellowstone. No Geyser. No Pump SDK runtime. No @solana/web3.js. No wallet/private keys. No market data ingestion. No transaction construction. No simulation. No signing. No sending. No live trading. No Jito.
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram trade/event-stream commands
+- future_chain and future_market categories are model-only placeholders — no provider logic
+- Phase 7B may add disabled read-only provider boundaries (Helius, Yellowstone, etc.)
+
 ## Phase 6C - Disabled Pump SDK Wrapper Boundary
 - Extends `packages/pump-adapter` (Phase 6A/6B) with a disabled wrapper boundary
 - `PumpSdkWrapperMode` — disabled / mock / future_live_not_available

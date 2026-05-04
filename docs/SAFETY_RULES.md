@@ -46,6 +46,20 @@
 52. **Phase 6C**: No real Pump SDK dependency installed. No `@solana/web3.js`. No wallet libraries. No RPC provider SDKs.
 53. **Phase 6C**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/quote commands.
 
+## Phase 7A Additional Safety Rules
+
+54. **Phase 7A**: `packages/event-engine` is local-only infrastructure — no network calls, no Solana RPC, no Helius, no WebSocket, no Yellowstone, no Geyser, no live providers of any kind
+55. **Phase 7A**: All `EventSourceCapabilities` flags are permanently `false`: `canUseNetwork: false`, `canUseSolanaRpc: false`, `canEmitLiveEvents: false`, `canTriggerExecution: false`, `canAccessWallets: false`
+56. **Phase 7A**: `buildEventEngineSystemStatus()` reports `liveProviders: 'disabled'`, `networkEvents: 'forbidden'`, `executionTriggers: 'forbidden'`, `solanaRpc: 'forbidden'`
+57. **Phase 7A**: `InMemoryEventBus` cannot trigger execution — it dispatches events to registered handlers only; handlers run in-process with no side effects outside what they explicitly code
+58. **Phase 7A**: Handler failures are caught and isolated — one failing handler does not crash the bus or other handlers
+59. **Phase 7A**: `EventPayload` validation rejects functions, class instances (including `Error`), circular references, and Symbols — plain serializable objects only
+60. **Phase 7A**: All `EventEngineError` results carry `safeToDisplay: true` — no raw secrets, no stack traces, no RPC URLs, no private keys
+61. **Phase 7A**: `future_chain` and `future_market` event categories are model-only placeholders — they must not trigger any provider, RPC, or network logic
+62. **Phase 7A**: `future_provider_disabled` source type is a model-only placeholder — it implies no live capability
+63. **Phase 7A**: No new Telegram trade/event-stream commands added
+64. **Phase 7A**: FULL_AUTO and LIMITED_LIVE remain locked. `RuntimeSafetyStatus` still returns all unsafe capability flags as `false`.
+
 
 30. **Phase 6A**: `packages/pump-adapter` is inert — no Solana RPC, no network calls, no transaction building, no signing, no sending, no execution
 31. **Phase 6A**: All pump adapter capability flags (`canSignTransactions`, `canSendTransactions`, `canExecuteTrades`, `canAccessPrivateKeys`, `canUseLiveRpc`, `canUseJito`, `canBuildTransactions`, `canBuildInstructions`) are permanently `false`

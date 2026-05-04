@@ -242,7 +242,7 @@ describe('Audit formatter', () => {
 describe('Version formatter', () => {
   it('includes current phase', () => {
     const text = formatVersion('test');
-    expect(text).toContain('Phase: 6');
+    expect(text).toContain('Phase: 7');
   });
 
   it('includes safety notice', () => {
