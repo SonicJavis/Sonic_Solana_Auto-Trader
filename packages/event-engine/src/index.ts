@@ -1,5 +1,5 @@
 /**
- * Phase 7A/7B/7C — @sonic/event-engine public API barrel.
+ * Phase 7A/7B/7C/7D — @sonic/event-engine public API barrel.
  *
  * Exports all Phase 7A, 7B, and 7C event engine types, interfaces, and implementations.
  *
@@ -34,6 +34,17 @@
  *   - ReplayStatus, ReplayStats, ReplayResult
  *   - replayFixtureSequence, replayAndCollect
  *
+ *   Phase 7D:
+ *   - ProviderConfigMode, ProviderConfigInput, ProviderConfigSafe
+ *   - ProviderConfigErrorCode, ProviderConfigError, ProviderConfigResult
+ *   - DEFAULT_PROVIDER_CONFIG_SAFE, PHASE_7D_PROVIDER_TYPES
+ *   - validateProviderConfig, createDisabledProviderConfig
+ *   - ProviderReadiness, OverallProviderReadiness, ProviderReadinessErrorCode
+ *   - ProviderReadinessEntry, ProviderReadinessReport
+ *   - evaluateProviderReadiness, buildProviderReadinessEntry
+ *   - buildProviderReadinessReport, assertAllProvidersSafe
+ *   - PHASE_7D_READINESS_SUMMARY
+ *
  * What this package does NOT provide:
  *   - No Solana RPC
  *   - No Helius / WebSocket / Yellowstone / Geyser providers
@@ -64,3 +75,6 @@ export * from './fixture-events.js';
 export * from './fixture-sequence.js';
 export * from './mock-provider.js';
 export * from './replay-controller.js';
+// Phase 7D: disabled provider config and readiness
+export * from './provider-config.js';
+export * from './provider-readiness.js';

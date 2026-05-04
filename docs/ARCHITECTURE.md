@@ -10,7 +10,7 @@ Monorepo with pnpm workspaces.
 - `mode-manager`: Mode state machine (transitions persisted to audit DB in Phase 4)
 - `risk-engine`: Safety gates
 - `pump-adapter`: Pump adapter interfaces, quote models, instruction intent models, and disabled SDK wrapper boundary (Phases 6A/6B/6C, inert — no RPC, no execution, no real Pump SDK, no Solana SDK)
-- `event-engine`: Local in-memory event bus, event envelope types, source status models, dedupe/TTL helpers, validation, disabled provider boundaries, mock provider, fixture events and replay (Phases 7A/7B/7C — no network, no execution)
+- `event-engine`: Local in-memory event bus, event envelope types, source status models, dedupe/TTL helpers, validation, disabled provider boundaries, mock provider, fixture events and replay, disabled provider config/readiness (Phases 7A/7B/7C/7D — no network, no execution)
 - `testing`: Shared test utilities
 
 ## Apps
@@ -40,9 +40,9 @@ No network, no Solana RPC, no wallets, no execution.
 All `EventProviderCapabilities` flags are `false`.
 `FULL_AUTO` and `LIMITED_LIVE` remain locked.
 
-## Phase 7A/7B/7C: Event Engine Core + Disabled Providers + Mock Providers
+## Phase 7A/7B/7C/7D: Event Engine Core + Disabled Providers + Mock Providers + Provider Config/Readiness
 
-Phase 7A adds the local in-memory event engine package. Phase 7B adds disabled provider boundaries. Phase 7C adds controlled mock providers and replayable fixture events. See [docs/EVENT_ENGINE.md](./EVENT_ENGINE.md) for full details.
+Phase 7A adds the local in-memory event engine package. Phase 7B adds disabled provider boundaries. Phase 7C adds controlled mock providers and replayable fixture events. Phase 7D adds disabled provider configuration models and readiness checks. See [docs/EVENT_ENGINE.md](./EVENT_ENGINE.md) for full details.
 
 ```
 packages/event-engine/src/

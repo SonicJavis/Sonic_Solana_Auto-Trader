@@ -1,6 +1,29 @@
 # Phase Log
 
-## Phase 1 - Safe Foundation
+## Phase 7D - Disabled Provider Config + Readiness Checks
+- Extends `packages/event-engine` (Phase 7A/7B/7C) with disabled provider configuration models and readiness checks
+- `ProviderConfigMode` — disabled, mock_only, future_live_not_available
+- `ProviderConfigInput` — raw input shape; unsafe flags captured, never honoured
+- `ProviderConfigSafe` — validated safe config; all live/network/API-key permissions always false
+- `ProviderConfigErrorCode` — 9 safe error codes (PROVIDER_CONFIG_DISABLED, _UNSAFE_REQUESTED, _NETWORK_FORBIDDEN, _SOLANA_RPC_FORBIDDEN, _WEBSOCKET_FORBIDDEN, _POLLING_FORBIDDEN, _STREAMING_FORBIDDEN, _LIVE_EVENTS_FORBIDDEN, _API_KEY_FORBIDDEN)
+- `DEFAULT_PROVIDER_CONFIG_SAFE`, `PHASE_7D_PROVIDER_TYPES` — authoritative constants
+- `validateProviderConfig()` — fail-closed: captures all unsafe flag attempts as unsafeRequested + reasons; raw URLs/API keys never stored
+- `createDisabledProviderConfig()` — creates a named disabled safe config
+- `ProviderReadiness` — disabled_safe, mock_only_ready, unsafe_requested, unavailable, unknown
+- `ProviderReadinessEntry` — per-provider readiness; canConnect/canEmitLiveEvents/canTriggerExecution always false
+- `ProviderReadinessReport` — aggregated report; enabledProviderCount/liveProviderCount/networkProviderCount always 0 for safe state
+- `ProviderReadinessErrorCode` — PROVIDER_READINESS_UNSAFE, PROVIDER_READINESS_UNKNOWN
+- `evaluateProviderReadiness()` — derives readiness from safe config; unsafe requests fail-closed to unsafe_requested
+- `buildProviderReadinessEntry()` — builds per-provider entry with safe status strings
+- `buildProviderReadinessReport()` — aggregates all providers; generates notes safe to display
+- `assertAllProvidersSafe()` — throws safe error if any unsafe provider is present
+- `PHASE_7D_READINESS_SUMMARY` — static summary constant safe for /system output
+- Phase 7D test suite: 81 new tests (798 total passing, 3 pre-existing failures due to missing telegraf/drizzle-orm packages)
+- No live providers. No network access. No Solana RPC. No WebSocket. No API key usage. No wallet. No signing. No sending. No execution. No Jito.
+- FULL_AUTO and LIMITED_LIVE remain locked
+- Phase 7E may add controlled read-only configuration or replay integration — still without execution
+
+
 - pnpm workspaces TypeScript monorepo
 - Strict TypeScript with NodeNext module resolution
 - All execution paths blocked

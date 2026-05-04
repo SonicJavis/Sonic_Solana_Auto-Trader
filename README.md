@@ -1,8 +1,25 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 7C — Controlled Mock Providers + Replayable Fixture Events**
+**Phase 7D — Disabled Provider Config + Readiness Checks**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 7C.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 7D.
+
+## Features (Phase 7D — adds to Phase 7A/7B/7C)
+
+- `ProviderConfigMode` — `disabled`, `mock_only`, `future_live_not_available`
+- `ProviderConfigInput` — raw input shape; all unsafe live/network/API-key flags are captured, never honoured
+- `ProviderConfigSafe` — validated safe config; all permissions always `false`; raw URLs/API keys never stored
+- `ProviderConfigErrorCode` — 9 safe error codes for validation failures
+- `validateProviderConfig()` — fail-closed validation; unsafe attempts produce `unsafeRequested=true` + reasons
+- `createDisabledProviderConfig()` — creates a named disabled safe config for any provider type
+- `ProviderReadiness` — `disabled_safe`, `mock_only_ready`, `unsafe_requested`, `unavailable`, `unknown`
+- `ProviderReadinessEntry` — per-provider entry; `canConnect`/`canEmitLiveEvents`/`canTriggerExecution` always `false`
+- `ProviderReadinessReport` — aggregated readiness report; counts all 0 for safe Phase 7D state
+- `evaluateProviderReadiness()` — derives readiness from safe config
+- `buildProviderReadinessReport()` — generates report with safe-to-display notes
+- `assertAllProvidersSafe()` — throws safe error if any provider requested unsafe permissions
+- `PHASE_7D_READINESS_SUMMARY` — static summary constant safe for `/system` output
+- 81 new tests in `tests/phase7d.test.ts` — 798+ passing
 
 ## Features (Phase 7B — adds to Phase 7A)
 
@@ -145,7 +162,7 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 ## Commands
 
 ```sh
-pnpm test        # run tests (765 tests as of Phase 7C)
+pnpm test        # run tests (798+ passing as of Phase 7D)
 pnpm lint        # lint all packages
 pnpm typecheck   # type check all packages
 pnpm build       # build all packages
