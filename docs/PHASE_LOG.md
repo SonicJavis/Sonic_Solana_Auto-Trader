@@ -1,5 +1,36 @@
 # Phase Log
 
+## Phase 11 — Bundle / Manipulation Detector v1
+
+- New `packages/manipulation-detector` package (no Solana SDK, no provider SDK, no network, no wallet)
+- `BundleSignal` — local bundle/manipulation signal model; `fixtureOnly: true`, `liveData: false`; 9 `BundleSignalType` values (same_slot_participation, same_funding_source, coordinated_entry, coordinated_exit, wash_trade_cycle, creator_linked_wallets, fresh_wallet_farm, bot_noise, unknown_fixture)
+- `ManipulationPattern` — local manipulation pattern model; 9 `ManipulationPatternType` values (likely_bundle, possible_bundle, likely_wash_trade, possible_wash_trade, coordinated_dump, creator_linked_manipulation, fresh_wallet_farm_pattern, bot_noise_pattern, unknown_fixture)
+- `CoordinatedActivitySnapshot` — coordinated activity counts per token; `fixtureOnly: true`, `liveData: false`
+- `BundleRiskScore` — same-slot, same-funding, coordinated-entry, coordinated-exit penalties; 0–100
+- `WashTradeScore` — wash-cycle penalty, repeated-counterparty placeholder, volume-symmetry placeholder; 0–100
+- `CoordinationScore` — participant quality, coordination penalty, coordinated-dump penalty, bot-noise penalty; 0–100
+- `FundingPatternScore` — diversity placeholder, same-funding penalty, suspicious-funding placeholder; 0–100
+- `CreatorLinkScore` — creator-linked wallet penalty, creator-history placeholder, relationship-unknown penalty; 0–100
+- `ManipulationRiskFlag` — 17 risk flag codes (INSUFFICIENT_MANIPULATION_DATA, SAME_SLOT_PARTICIPATION_PLACEHOLDER, SAME_FUNDING_SOURCE_PLACEHOLDER, COORDINATED_ENTRY_PLACEHOLDER, COORDINATED_EXIT_PLACEHOLDER, WASH_TRADE_CYCLE_PLACEHOLDER, CREATOR_LINKED_WALLETS_PLACEHOLDER, FRESH_WALLET_FARM_PLACEHOLDER, BOT_NOISE_PATTERN, LIKELY_BUNDLE_PATTERN, POSSIBLE_BUNDLE_PATTERN, LIKELY_WASH_TRADE_PATTERN, POSSIBLE_WASH_TRADE_PATTERN, COORDINATED_DUMP_PATTERN, LIVE_DATA_UNAVAILABLE, WALLET_CLUSTER_CONTEXT_UNKNOWN, CREATOR_CONTEXT_UNKNOWN)
+- `ManipulationClassification` — 5 safe values: reject, watch_only, analysis_only, insufficient_data, fixture_only (no trade/copy wording)
+- `ManipulationDetectorCapabilities` — all unsafe fields false; `canTrade/canExecute/canUseSolanaRpc/canUseProviderApis/canAccessPrivateKeys/canCreateTradeIntents/canCreateEnforcementActions` all false; `fixtureOnly: true`
+- `ManipulationDetectionResult` — complete result; `actionAllowed/tradingAllowed/executionAllowed/enforcementAllowed` always false; `liveData: false`; `safeToDisplay: true`
+- `buildManipulationDetectionResult()` — validates inputs, scores, classifies, builds result; returns safe MdResult (never throws)
+- `buildManipulationRiskFlags()` — deterministic risk flag generation from signals + patterns + activity
+- `classifyManipulation()` — safe classification; critical flags → reject; likely bundle/wash/dump → reject; insufficient data → insufficient_data
+- `getManipulationDetectorCapabilities()` — static safety capabilities (all unsafe false)
+- `validateBundleSignal()`, `validateManipulationPattern()`, `validateCoordinatedActivity()`, `validateSignalId()`, `validatePatternId()`, `validateTokenMint()` — structural validation, no Solana SDK
+- `MdResult<T>`, `mdOk()`, `mdErr()` — safe result type (no throws for normal validation failures)
+- 8 deterministic synthetic fixture groups: clean_activity, likely_bundle, possible_bundle, likely_wash_trade, coordinated_dump, creator_linked_manipulation, fresh_wallet_farm_manipulation, bot_noise
+- Severe fixtures (likely bundle/wash/dump) classify as reject; clean fixture classifies as analysis_only
+- All fixture token mints begin with FIXTURE_; all wallet IDs begin with fixture_; no real addresses
+- Phase 11 test suite: 84 new tests (1450 total, all passing)
+- docs/MANIPULATION_DETECTOR.md added
+- No live bundle detector. No live wash-trade detector. No providers. No Solana RPC. No Helius/WebSocket/Yellowstone. No live wallet/funding-source fetching. No enforcement actions. No trade intents. No transaction construction/signing/sending. No wallet/private key handling. No live trading. No Jito.
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram trade commands
+- Next phase: Risk Engine v1 model layer (not execution)
+
 ## Phase 10 — Wallet Cluster Intelligence v1
 
 - New `packages/wallet-intelligence` package (no Solana SDK, no provider SDK, no network, no wallet)

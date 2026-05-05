@@ -1,8 +1,25 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 10 — Wallet Cluster Intelligence v1**
+**Phase 11 — Bundle / Manipulation Detector v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 10.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 11.
+
+## Features (Phase 11 — adds to Phase 10)
+
+- New `packages/manipulation-detector` — local bundle/manipulation detector layer (no Solana SDK, no provider SDK, no network, no wallet, no private keys, no enforcement)
+- `BundleSignal` — local bundle/manipulation signal model; 9 `BundleSignalType` values; `fixtureOnly: true`, `liveData: false`
+- `ManipulationPattern` — local manipulation pattern model; 9 `ManipulationPatternType` values; `fixtureOnly: true`, `liveData: false`
+- `CoordinatedActivitySnapshot` — coordinated activity counts per token; `fixtureOnly: true`, `liveData: false`
+- `BundleRiskScore`, `WashTradeScore`, `CoordinationScore`, `FundingPatternScore`, `CreatorLinkScore` — deterministic component scores (0–100)
+- 17 `ManipulationRiskFlag` codes (LIKELY_BUNDLE_PATTERN, LIKELY_WASH_TRADE_PATTERN, COORDINATED_DUMP_PATTERN, placeholder flags, etc.)
+- `ManipulationClassification` — 5 safe values: `reject`, `watch_only`, `analysis_only`, `insufficient_data`, `fixture_only` (no trade/copy wording)
+- `ManipulationDetectorCapabilities` — all unsafe flags `false`: `canTrade`, `canExecute`, `canUseSolanaRpc`, `canUseProviderApis`, `canAccessPrivateKeys`, `canCreateTradeIntents`, `canCreateEnforcementActions`
+- `ManipulationDetectionResult` — `actionAllowed/tradingAllowed/executionAllowed/enforcementAllowed` always `false`; `liveData: false`; `safeToDisplay: true`
+- `buildManipulationDetectionResult()` — validates inputs, scores, classifies, returns safe result (never throws)
+- 8 deterministic synthetic fixture groups: clean_activity, likely_bundle, possible_bundle, likely_wash_trade, coordinated_dump, creator_linked_manipulation, fresh_wallet_farm_manipulation, bot_noise
+- 84 new tests in `tests/phase11.test.ts` — **1450 passing** (17 test files)
+- **Fixture/local detection only** — no live bundle detection, no live wash-trade detection, no Solana RPC, no provider APIs, no enforcement actions, no trade intents
+- See [docs/MANIPULATION_DETECTOR.md](./docs/MANIPULATION_DETECTOR.md) for full details
 
 ## Features (Phase 10 — adds to Phase 9)
 

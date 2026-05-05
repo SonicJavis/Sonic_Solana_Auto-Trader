@@ -170,3 +170,19 @@
 131. **Phase 10**: Funding source analysis, same-slot coordination, creator-linked wallet analysis, and bundle detection are placeholder flags only — no runtime enforcement implemented
 132. **Phase 10**: No live wallet fetching, no live funding-source analysis, no live creator-linked wallet analysis, no live copy-trading logic
 133. **Phase 10**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/wallet-lookup/copy-trading commands.
+
+## Phase 11 Additional Safety Rules
+
+134. **Phase 11**: `packages/manipulation-detector` has no dependencies on Solana SDK, Pump SDK, Helius SDK, WebSocket clients, Yellowstone/Geyser packages, wallet libraries, RPC providers, or any app packages
+135. **Phase 11**: All `ManipulationDetectorCapabilities` unsafe fields are permanently `false`: `canUseLiveData`, `canUseSolanaRpc`, `canUseProviderApis`, `canAccessPrivateKeys`, `canTrade`, `canCreateTradeIntents`, `canCreateEnforcementActions`, `canExecute`
+136. **Phase 11**: `ManipulationDetectionResult.actionAllowed`, `tradingAllowed`, `executionAllowed`, and `enforcementAllowed` are always `false` — enforced at construction time
+137. **Phase 11**: `ManipulationDetectionResult.liveData` is always `false`; `fixtureOnly` is always `true` for fixture data
+138. **Phase 11**: All `ManipulationClassification` values are safe — no value uses buy, sell, execute, trade, snipe, live_candidate, auto_candidate, enter, copy, or mirror wording
+139. **Phase 11**: Manipulation detection outputs are analysis-only — they must never be interpreted as or converted to trade signals, enforcement actions, or copy-trading signals
+140. **Phase 11**: All `ManipulationDetectorError` results carry `safeToDisplay: true` — no raw secrets, no stack traces, no RPC URLs, no API keys, no wallet data, no private keys
+141. **Phase 11**: `buildManipulationDetectionResult()` never throws for normal validation failures — it returns safe MdResult errors
+142. **Phase 11**: Fixture token mints begin with `FIXTURE_`; fixture wallet IDs begin with `fixture_` — not real on-chain addresses; no real wallet addresses, real RPC URLs, API keys, or private data
+143. **Phase 11**: `tokenMint` is a public identifier model field only — no wallet access, no signing, no private keys, no fund access
+144. **Phase 11**: No live bundle detection, no live wash-trade detection, no live funding-source analysis — placeholder flags only; no runtime enforcement
+145. **Phase 11**: No live wallet fetching, no live creator-linked wallet analysis, no live coordination analysis
+146. **Phase 11**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/wallet-lookup/enforcement commands.

@@ -14,6 +14,7 @@ Monorepo with pnpm workspaces.
 - `token-intelligence`: Local token profile models, deterministic component scoring, risk flags, classification, fixture profiles, token intelligence engine (Phase 8 — no network, no Solana RPC, no provider APIs, no execution)
 - `creator-intelligence`: Local creator profile models, deterministic component scoring, risk flags, classification, fixture profiles, creator intelligence engine (Phase 9 — no network, no Solana RPC, no provider APIs, no wallet data, no execution)
 - `wallet-intelligence`: Local wallet profile models, wallet cluster models, deterministic component scoring (wallet quality, cluster quality, leader-follower, fresh-wallet risk, funding source), risk flags, classification, fixture clusters, wallet cluster intelligence engine (Phase 10 — no network, no Solana RPC, no provider APIs, no wallet data, no private keys, no copy trading, no execution)
+- `manipulation-detector`: Local bundle/manipulation detector models, deterministic component scoring (bundle risk, wash trade, coordination, funding pattern, creator link), risk flags, classification, 8 synthetic fixture groups, manipulation detector engine (Phase 11 — no network, no Solana RPC, no provider APIs, no live bundle detection, no live wash-trade detection, no enforcement actions, no trade intents, no execution)
 - `state`: Safe read models for system, config, mode, audit, worker, health readiness, Phase 7E Event Engine/provider readiness + Phase 8 readiness gate, and Phase 8 Token Intelligence static status
 - `testing`: Shared test utilities
 
