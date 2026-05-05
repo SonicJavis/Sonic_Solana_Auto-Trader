@@ -1,8 +1,24 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 8 — Token Intelligence v1**
+**Phase 9 — Creator Intelligence v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 8.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 9.
+
+## Features (Phase 9 — adds to Phase 8)
+
+- New `packages/creator-intelligence` — local creator intelligence layer (no Solana SDK, no provider SDK, no network, no wallet)
+- `CreatorProfile` — local-only creator identity model; `fixtureOnly: true`, `liveData: false`; `creatorAddress` is a public identifier model only
+- `CreatorLaunchHistorySnapshot` — local launch history metrics snapshot; `fixtureOnly: true`, `liveData: false`
+- `CreatorSuccessScore`, `CreatorLaunchQualityScore`, `CreatorConsistencyScore`, `CreatorSuspiciousPatternScore` — deterministic component scores (0–100)
+- 14 `CreatorRiskFlag` codes (INSUFFICIENT_CREATOR_DATA, HIGH_FAILURE_RATE, RUG_LIKE_HISTORY, placeholder flags, etc.)
+- `CreatorClassification` — 5 safe values: `reject`, `watch_only`, `analysis_only`, `insufficient_data`, `fixture_only` (no trade wording)
+- `CreatorIntelligenceCapabilities` — all unsafe flags `false`: `canTrade`, `canExecute`, `canUseSolanaRpc`, `canUseProviderApis`, `canUseWalletData`, `canCreateTradeIntents`
+- `CreatorIntelligenceResult` — `actionAllowed/tradingAllowed/executionAllowed` always `false`; `liveData: false`; `safeToDisplay: true`
+- `buildCreatorIntelligenceResult()` — validates inputs, scores, classifies, returns safe result (never throws)
+- 6 deterministic synthetic fixtures: strong, new, fast_dump, repeated_metadata, suspicious_funding, rug_like
+- 73 new tests in `tests/phase9.test.ts` — **1304 passing** (15 test files)
+- **Fixture/local scoring only** — no live data, no Solana RPC, no provider APIs, no wallet data, no trade actions
+- See [docs/CREATOR_INTELLIGENCE.md](./docs/CREATOR_INTELLIGENCE.md) for full details
 
 ## Features (Phase 8 — adds to Phase 7A/7B/7C/7D/7E)
 

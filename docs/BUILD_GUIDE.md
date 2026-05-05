@@ -314,3 +314,36 @@ pnpm --filter @sonic/token-intelligence build
 ## Phase 8: Test count
 1231 passing tests (83 new Phase 8 tests + 1148 regression tests). 14 test files.
 
+## Phase 9: Creator Intelligence v1
+
+`packages/creator-intelligence` adds the first local creator intelligence layer.
+
+### Phase 9: What is provided
+
+- `CreatorProfile` — local creator identity model; `fixtureOnly: true`, `liveData: false`
+- `CreatorLaunchHistorySnapshot` — local launch history metrics snapshot
+- `CreatorSuccessScore`, `CreatorLaunchQualityScore`, `CreatorConsistencyScore`, `CreatorSuspiciousPatternScore` — deterministic component scores (0–100)
+- `CreatorRiskFlag` — 14 risk flag codes
+- `CreatorClassification` — 5 safe values (no trade wording)
+- `CreatorIntelligenceCapabilities` — all unsafe fields false
+- `CreatorIntelligenceResult` — complete result; safety invariants enforced
+- `buildCreatorIntelligenceResult()`, `scoreCreatorProfile()`, `buildCreatorRiskFlags()`, `classifyCreator()`, `getCreatorIntelligenceCapabilities()`
+- 6 fixture creator profiles for tests
+
+### Phase 9: Limitations
+
+- Fixture/local scoring only — no live data
+- No wallet cluster intelligence (placeholder flags only)
+- No bundle detector (placeholder flags only)
+- No live provider connections
+- No Solana RPC
+- No wallet/private key handling
+- No trade intents
+- No transaction construction/signing/sending
+- No trade execution
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram trade commands; no live creator lookup command
+
+## Phase 9: Test count
+1304 passing tests (73 new Phase 9 tests + 1231 regression tests). 15 test files.
+

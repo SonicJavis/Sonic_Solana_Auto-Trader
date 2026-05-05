@@ -138,3 +138,19 @@
 105. **Phase 8**: `@sonic/state` Phase 8 static status uses no import from `@sonic/token-intelligence` — the status is a pure static value, avoiding circular dependency risk
 106. **Phase 8**: No market data ingestion, no live chain events, no transaction construction, no signing, no sending, no execution
 107. **Phase 8**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/token-lookup commands.
+
+## Phase 9 Additional Safety Rules
+
+108. **Phase 9**: `packages/creator-intelligence` has no dependencies on Solana SDK, Pump SDK, Helius SDK, WebSocket clients, Yellowstone/Geyser packages, wallet libraries, RPC providers, or any app packages
+109. **Phase 9**: All `CreatorIntelligenceCapabilities` unsafe fields are permanently `false`: `canUseLiveData`, `canUseSolanaRpc`, `canUseProviderApis`, `canUseWalletData`, `canTrade`, `canCreateTradeIntents`, `canExecute`
+110. **Phase 9**: `CreatorIntelligenceResult.actionAllowed`, `tradingAllowed`, and `executionAllowed` are always `false` — enforced at construction time
+111. **Phase 9**: `CreatorIntelligenceResult.liveData` is always `false`; `fixtureOnly` is always `true` for fixture data
+112. **Phase 9**: All `CreatorClassification` values are safe — no value uses buy, sell, execute, trade, snipe, live_candidate, auto_candidate, or enter wording
+113. **Phase 9**: Creator Intelligence scoring outputs are analysis-only — they must never be interpreted as or converted to trade signals
+114. **Phase 9**: All `CreatorIntelligenceError` results carry `safeToDisplay: true` — no raw secrets, no stack traces, no RPC URLs, no API keys, no wallet data
+115. **Phase 9**: `buildCreatorIntelligenceResult()` never throws for normal validation failures — it returns safe CiResult errors
+116. **Phase 9**: Fixture profiles use synthetic creator addresses — not real on-chain addresses; no real wallet addresses, real RPC URLs, API keys, or private data appear in fixture data
+117. **Phase 9**: `creatorAddress` is a public identifier model field only — no wallet access, no signing, no private keys, no fund access
+118. **Phase 9**: Wallet cluster intelligence and bundle detection are placeholder flags only — no runtime enforcement implemented
+119. **Phase 9**: No live creator/dev wallet fetching, no live launch-history fetching, no live funding-source analysis
+120. **Phase 9**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/creator-lookup commands.
