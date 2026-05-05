@@ -68,6 +68,9 @@ export function scoreWashTradePatterns(
     reasons.push(`Likely wash-trade patterns: ${likelyWashPatterns.length} (placeholder)`);
   }
 
+  // Weights: wash cycles get highest weight (0.50) as the primary observable signal;
+  // repeated-counterparty gets 0.30 as secondary pattern signal;
+  // volume-symmetry gets 0.20 as a tertiary placeholder. Weights sum to 1.0.
   const avgPenalty =
     washCyclePenalty * 0.50 +
     repeatedCounterpartyPlaceholderPenalty * 0.30 +

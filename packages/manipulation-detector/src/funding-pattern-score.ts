@@ -68,6 +68,10 @@ export function scoreFundingPatterns(
     );
   }
 
+  // Score formula: diversity quality contributes positively while funding penalties subtract.
+  // This mixed approach (vs. starting at 100) is intentional: when diversity is low and
+  // penalties are high, the score approaches 0. The clamp handles negative raw values.
+  // Weights sum to 1.0 (0.40 + 0.40 + 0.20).
   const score = clamp(
     Math.round(
       diversityPlaceholderQuality * 0.40 -

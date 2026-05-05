@@ -93,7 +93,10 @@ export function scoreCoordination(
     reasons.push(`Bot-noise signals: ${totalBotNoise}`);
   }
 
-  // Final score: participant quality minus weighted penalties
+  // Final score: participant quality contributes positively; penalties subtract.
+  // Unlike bundle-score.ts (which starts at 100), this formula starts from participant
+  // quality and subtracts penalties — producing lower raw scores for high-coordination
+  // scenarios. Negative raw scores are clamped to 0. Absolute coefficient sum = 1.0.
   const rawScore =
     participantQuality * 0.30 -
     coordinationPenalty * 0.35 -
