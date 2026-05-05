@@ -11,7 +11,8 @@ Monorepo with pnpm workspaces.
 - `risk-engine`: Safety gates
 - `pump-adapter`: Pump adapter interfaces, quote models, instruction intent models, and disabled SDK wrapper boundary (Phases 6A/6B/6C, inert — no RPC, no execution, no real Pump SDK, no Solana SDK)
 - `event-engine`: Local in-memory event bus, event envelope types, source status models, dedupe/TTL helpers, validation, disabled provider boundaries, mock provider, fixture events and replay, disabled provider config/readiness (Phases 7A/7B/7C/7D — no network, no execution)
-- `state`: Safe read models for system, config, mode, audit, worker, health readiness, and Phase 7E Event Engine/provider readiness + Phase 8 readiness gate
+- `token-intelligence`: Local token profile models, deterministic component scoring, risk flags, classification, fixture profiles, token intelligence engine (Phase 8 — no network, no Solana RPC, no provider APIs, no execution)
+- `state`: Safe read models for system, config, mode, audit, worker, health readiness, Phase 7E Event Engine/provider readiness + Phase 8 readiness gate, and Phase 8 Token Intelligence static status
 - `testing`: Shared test utilities
 
 ## Apps
@@ -43,7 +44,7 @@ All `EventProviderCapabilities` flags are `false`.
 
 ## Phase 7A/7B/7C/7D/7E: Event Engine Core + Disabled Providers + Mock Providers + Provider Config/Readiness + Readiness Surface
 
-Phase 7A adds the local in-memory event engine package. Phase 7B adds disabled provider boundaries. Phase 7C adds controlled mock providers and replayable fixture events. Phase 7D adds disabled provider configuration models and readiness checks. Phase 7E surfaces provider readiness into `@sonic/state` and adds the Phase 8 Token Intelligence readiness gate. See [docs/EVENT_ENGINE.md](./EVENT_ENGINE.md) for full details.
+Phase 7A adds the local in-memory event engine package. Phase 7B adds disabled provider boundaries. Phase 7C adds controlled mock providers and replayable fixture events. Phase 7D adds disabled provider configuration models and readiness checks. Phase 7E surfaces provider readiness into `@sonic/state` and adds the Phase 8 Token Intelligence readiness gate. Phase 8 adds the `@sonic/token-intelligence` package with local token profile models, deterministic scoring, risk flags, and classification. See [docs/EVENT_ENGINE.md](./EVENT_ENGINE.md) and [docs/TOKEN_INTELLIGENCE.md](./TOKEN_INTELLIGENCE.md) for full details.
 
 ```
 packages/event-engine/src/
@@ -95,7 +96,44 @@ No network, no Solana RPC, no wallets, no execution, no live providers.
 All capability flags are `false` except `canReplayFixtureEvents: true` in mock provider.
 `FULL_AUTO` and `LIMITED_LIVE` remain locked.
 
+## Phase 8: Token Intelligence v1
 
+```
+packages/token-intelligence/src/
+  token-profile.ts              — TokenProfile, TokenMetricSnapshot (local model, fixtureOnly: true, liveData: false)
+  score-types.ts                — MetadataQualityScore, CurveQualityScore, HolderConcentrationScore,
+                                  LiquidityQualityScore, OrganicMomentumScore, TokenComponentScores
+  metadata-score.ts             — scoreMetadata() — deterministic metadata quality scoring
+  curve-score.ts                — scoreCurve() — bonding curve progress scoring
+  holder-score.ts               — scoreHolderConcentration() — holder distribution scoring
+  liquidity-score.ts            — scoreLiquidity() — virtual liquidity scoring
+  momentum-score.ts             — scoreMomentum() — buy/sell balance and volume trend scoring
+  risk-flags.ts                 — TokenRiskFlag (13 codes), TokenRiskFlagEntry, makeRiskFlag(),
+                                  hasCriticalFlag(), filterFlagsBySeverity()
+  classifier.ts                 — TokenClassification (5 safe values), TOKEN_CLASSIFICATIONS,
+                                  isTokenClassification(), isClassificationSafe()
+  types.ts                      — TokenIntelligenceCapabilities (all unsafe false), TokenIntelligenceResult
+  errors.ts                     — TokenIntelligenceError, TiResult<T>, tiOk(), tiErr(), isTiOk(), isTiErr()
+  validation.ts                 — validateTokenProfile(), validateTokenMetrics(), validateTokenMint(),
+                                  validateScoreBounds(), validateConfidenceBounds()
+  fixtures.ts                   — 5 deterministic synthetic fixture profiles + metrics, ALL_FIXTURE_TOKEN_PAIRS
+  token-intelligence-engine.ts  — scoreTokenProfile(), buildTokenRiskFlags(), classifyToken(),
+                                  buildTokenIntelligenceResult(), getTokenIntelligenceCapabilities()
+  index.ts                      — public barrel (all Phase 8 exports)
+
+packages/state/src/
+  token-intelligence-read-model.ts — Phase 8: TokenIntelligenceStatusSnapshot,
+                                      PHASE_8_TOKEN_INTELLIGENCE_STATUS,
+                                      buildTokenIntelligenceStatusSnapshot()
+```
+
+No dependency on Solana SDK, provider SDKs, wallet libraries, or any other `@sonic/*` package.
+No network, no Solana RPC, no provider APIs, no live data, no market data ingestion.
+All `TokenIntelligenceCapabilities` unsafe flags are `false`.
+`actionAllowed`, `tradingAllowed`, `executionAllowed` always `false` in every result.
+`FULL_AUTO` and `LIMITED_LIVE` remain locked.
+
+See [docs/TOKEN_INTELLIGENCE.md](./TOKEN_INTELLIGENCE.md) for full details.
 
 ```
 packages/db/src/
