@@ -10,6 +10,7 @@
     { "path": "./packages/risk-engine" },
     { "path": "./packages/pump-adapter" },
     { "path": "./packages/event-engine" },
+    { "path": "./packages/token-intelligence" },
     { "path": "./packages/testing" },
     { "path": "./apps/telegram-bot" },
     { "path": "./apps/worker" }

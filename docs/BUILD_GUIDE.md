@@ -279,3 +279,38 @@ Phase 7E surfaces Event Engine and provider readiness into `@sonic/state` and ad
 
 ## Phase 7C: Test count
 Tests from Phase 7C remain part of the full suite.
+
+## Phase 8: Token Intelligence v1
+
+The new `packages/token-intelligence` package provides:
+- `TokenProfile` and `TokenMetricSnapshot` — local-only token identity and metric models
+- `MetadataQualityScore`, `CurveQualityScore`, `HolderConcentrationScore`, `LiquidityQualityScore`, `OrganicMomentumScore` — deterministic component scores (0–100)
+- `TokenRiskFlag` (13 codes), `TokenRiskFlagEntry` — risk flag model
+- `TokenClassification` (5 safe values) — never uses trade wording
+- `TokenIntelligenceCapabilities` — all unsafe capability fields permanently `false`
+- `TokenIntelligenceResult` — complete result; `actionAllowed/tradingAllowed/executionAllowed` always `false`
+- `buildTokenIntelligenceResult()` — validates, scores, classifies, returns safe TiResult
+- 5 synthetic fixture profiles: good, missing_metadata, concentrated_holder, low_liquidity, high_sell_pressure
+- `@sonic/state` extended with `PHASE_8_TOKEN_INTELLIGENCE_STATUS` static snapshot
+
+### Build token-intelligence package
+
+```
+pnpm --filter @sonic/token-intelligence build
+```
+
+### Phase 8: Limitations
+
+- No live token data, holder data, or social data fetched
+- No Solana RPC. No Helius, WebSocket, Yellowstone, Geyser. No provider API keys.
+- No market data ingestion. No live chain events.
+- No wallet/private keys. No transaction construction, simulation, signing, or sending.
+- No trade execution, swap logic, or Jito.
+- Scores and classifications are analysis-only — they do not imply permission to trade.
+- FULL_AUTO and LIMITED_LIVE remain locked.
+- No new Telegram trade/token-lookup commands.
+- Phase 9 may add creator/wallet/bundle intelligence or controlled read-only ingestion — not execution.
+
+## Phase 8: Test count
+1231 passing tests (83 new Phase 8 tests + 1148 regression tests). 14 test files.
+

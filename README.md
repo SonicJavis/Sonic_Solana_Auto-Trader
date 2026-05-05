@@ -1,8 +1,24 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 7E — Event Engine Final Gate + Provider Readiness Surface**
+**Phase 8 — Token Intelligence v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 7E.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 8.
+
+## Features (Phase 8 — adds to Phase 7A/7B/7C/7D/7E)
+
+- New `packages/token-intelligence` — local token intelligence layer (no Solana SDK, no provider SDK, no network, no wallet)
+- `TokenProfile` — local-only token identity model; boolean social/image presence; `fixtureOnly: true`, `liveData: false`
+- `TokenMetricSnapshot` — local quantitative metrics snapshot; `fixtureOnly: true`, `liveData: false`
+- `MetadataQualityScore`, `CurveQualityScore`, `HolderConcentrationScore`, `LiquidityQualityScore`, `OrganicMomentumScore` — deterministic component scores (0–100)
+- 13 `TokenRiskFlag` codes (MISSING_METADATA, HIGH_TOP_HOLDER_CONCENTRATION, LOW_LIQUIDITY, SELL_PRESSURE_HIGH, CURVE_TOO_EARLY/ADVANCED, placeholder flags, etc.)
+- `TokenClassification` — 5 safe values: `reject`, `watch_only`, `analysis_only`, `insufficient_data`, `fixture_only` (no trade wording)
+- `TokenIntelligenceCapabilities` — all unsafe flags `false`: `canTrade`, `canExecute`, `canUseSolanaRpc`, `canUseProviderApis`, etc.
+- `TokenIntelligenceResult` — `actionAllowed/tradingAllowed/executionAllowed` always `false`; `liveData: false`; `safeToDisplay: true`
+- `buildTokenIntelligenceResult()` — validates inputs, scores, classifies, returns safe result (never throws)
+- 5 deterministic synthetic fixtures: good, missing_metadata, concentrated_holder, low_liquidity, high_sell_pressure
+- `PHASE_8_TOKEN_INTELLIGENCE_STATUS` (in `@sonic/state`) — static safe status snapshot
+- 83 new tests in `tests/phase8.test.ts` — **1231 passing** (14 test files)
+- **Fixture/local scoring only** — no live data, no Solana RPC, no provider APIs, no trade actions
 
 ## Features (Phase 7E — adds to Phase 7A/7B/7C/7D)
 

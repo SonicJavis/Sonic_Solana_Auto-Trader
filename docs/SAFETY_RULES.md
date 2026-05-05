@@ -123,3 +123,18 @@
 93. **Phase 7E**: No new live providers, provider SDK imports, RPC clients, WebSocket clients, or network calls are introduced
 94. **Phase 7E**: `@sonic/event-engine` remains a dependency-free local package — `@sonic/state` imports from it but no reverse dependency exists
 95. **Phase 7E**: FULL_AUTO and LIMITED_LIVE remain locked.
+
+## Phase 8 Additional Safety Rules
+
+96. **Phase 8**: `packages/token-intelligence` has no dependencies on Solana SDK, Pump SDK, Helius SDK, WebSocket clients, Yellowstone/Geyser packages, wallet libraries, RPC providers, or any app packages
+97. **Phase 8**: All `TokenIntelligenceCapabilities` unsafe fields are permanently `false`: `canUseLiveData`, `canUseSolanaRpc`, `canUseProviderApis`, `canTrade`, `canCreateTradeIntents`, `canExecute`
+98. **Phase 8**: `TokenIntelligenceResult.actionAllowed`, `tradingAllowed`, and `executionAllowed` are always `false` — enforced at construction time
+99. **Phase 8**: `TokenIntelligenceResult.liveData` is always `false`; `fixtureOnly` is always `true` for fixture data
+100. **Phase 8**: All `TokenClassification` values are safe — no value uses buy, sell, execute, trade, snipe, live_candidate, or auto_candidate wording
+101. **Phase 8**: Token Intelligence scoring outputs are analysis-only — they must never be interpreted as or converted to trade signals
+102. **Phase 8**: All `TokenIntelligenceError` results carry `safeToDisplay: true` — no raw secrets, no stack traces, no RPC URLs, no API keys, no wallet data
+103. **Phase 8**: `buildTokenIntelligenceResult()` never throws for normal validation failures — it returns safe TiResult errors
+104. **Phase 8**: Fixture profiles use synthetic token mints — not real on-chain addresses; no real wallet addresses, real RPC URLs, or API keys appear in fixture data
+105. **Phase 8**: `@sonic/state` Phase 8 static status uses no import from `@sonic/token-intelligence` — the status is a pure static value, avoiding circular dependency risk
+106. **Phase 8**: No market data ingestion, no live chain events, no transaction construction, no signing, no sending, no execution
+107. **Phase 8**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/token-lookup commands.

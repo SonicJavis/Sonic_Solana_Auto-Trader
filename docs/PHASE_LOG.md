@@ -1,5 +1,35 @@
 # Phase Log
 
+## Phase 8 — Token Intelligence v1
+
+- New `packages/token-intelligence` package (no Solana SDK, no provider SDK, no network, no wallet)
+- `TokenProfile` — local-only token identity model; boolean social/image presence (no raw URLs); `fixtureOnly: true`, `liveData: false`
+- `TokenMetricSnapshot` — local quantitative metrics snapshot; `fixtureOnly: true`, `liveData: false`
+- `MetadataQualityScore` — metadata completeness, name/symbol quality, image/social presence; 0–100
+- `CurveQualityScore` — curve progress quality, reserve quality, too-early/too-late penalty; 0–100
+- `HolderConcentrationScore` — top-holder penalty, holder count quality, concentration risk; 0–100
+- `LiquidityQualityScore` — virtual liquidity and reserve quality; 0–100
+- `OrganicMomentumScore` — buy/sell balance, unique buyer quality, volume trend; 0–100
+- `TokenRiskFlag` — 13 risk flag codes (MISSING_METADATA, HIGH_TOP_HOLDER_CONCENTRATION, LOW_LIQUIDITY, SELL_PRESSURE_HIGH, CURVE_TOO_EARLY/ADVANCED, placeholder flags, etc.)
+- `TokenClassification` — 5 safe values: reject, watch_only, analysis_only, insufficient_data, fixture_only (no trade wording)
+- `TokenIntelligenceCapabilities` — all unsafe fields false; `canTrade/canExecute/canUseSolanaRpc/canUseProviderApis` all false; `fixtureOnly: true`
+- `TokenIntelligenceResult` — complete result; `actionAllowed/tradingAllowed/executionAllowed` always false; `liveData: false`; `safeToDisplay: true`
+- `buildTokenIntelligenceResult()` — validates inputs, scores, classifies, builds result; returns safe TiResult (never throws)
+- `scoreTokenProfile()` — deterministic component scoring + confidence calculation
+- `buildTokenRiskFlags()` — deterministic risk flag generation from profile + metrics
+- `classifyToken()` — safe classification; critical flags → reject; low confidence → insufficient_data
+- `getTokenIntelligenceCapabilities()` — returns static capabilities object (all unsafe false)
+- 5 deterministic synthetic fixture profiles: good, missing_metadata, concentrated_holder, low_liquidity, high_sell_pressure
+- Validation helpers: `validateTokenProfile`, `validateTokenMetrics`, `validateTokenMint`, `validateScoreBounds`, `validateConfidenceBounds`
+- Error codes: INVALID_TOKEN_PROFILE, INVALID_TOKEN_METRICS, INVALID_TOKEN_MINT, LIVE_DATA_FORBIDDEN, TOKEN_INTELLIGENCE_FIXTURE_ONLY, TOKEN_SCORE_OUT_OF_RANGE, TOKEN_CONFIDENCE_OUT_OF_RANGE, UNSAFE_TOKEN_OUTPUT, PROVIDER_DATA_FORBIDDEN
+- `@sonic/state` extended with `TokenIntelligenceStatusSnapshot`, `PHASE_8_TOKEN_INTELLIGENCE_STATUS`, `buildTokenIntelligenceStatusSnapshot()` (static, safe, no import of token-intelligence package)
+- docs/TOKEN_INTELLIGENCE.md added
+- Phase 8 test suite: 83 new tests (1231 total passing, 14 test files)
+- No live providers. No network access. No Solana RPC. No WebSocket. No API key usage. No wallet. No signing. No sending. No execution. No Jito.
+- FULL_AUTO and LIMITED_LIVE remain locked
+- Token Intelligence outputs are analysis-only; no classification implies permission to trade
+- Next phase: Phase 9 may add creator/wallet/bundle intelligence or controlled read-only ingestion — not execution
+
 ## Phase 7E — Event Engine Final Gate + Provider Readiness Surface
 
 - Extends `packages/state` with a Phase 7E Event Engine readiness read model
