@@ -384,3 +384,42 @@ pnpm --filter @sonic/wallet-intelligence build
 
 ## Phase 10: Test count
 1366 passing tests (62 new Phase 10 tests + 1304 regression tests). 16 test files.
+
+## Phase 11: Bundle / Manipulation Detector v1
+
+The `packages/manipulation-detector` package provides:
+
+- `BundleSignal` — local bundle/manipulation signal model (9 signal types)
+- `ManipulationPattern` — local manipulation pattern model (9 pattern types)
+- `CoordinatedActivitySnapshot` — coordinated activity counts per token
+- `BundleRiskScore`, `WashTradeScore`, `CoordinationScore`, `FundingPatternScore`, `CreatorLinkScore` — deterministic component scores (0–100)
+- 17 `ManipulationRiskFlag` codes
+- `ManipulationClassification` — 5 safe values (no trade/copy wording)
+- `ManipulationDetectionResult` — complete result (all action/trading/execution/enforcement flags false)
+- `buildManipulationDetectionResult()`, `buildManipulationRiskFlags()`, `classifyManipulation()`, `getManipulationDetectorCapabilities()`
+- 8 deterministic synthetic fixture groups
+
+### Build manipulation-detector package
+
+```
+pnpm --filter @sonic/manipulation-detector build
+```
+
+### Phase 11: Limitations
+
+- Fixture/local detection only — no live data
+- No live bundle detector
+- No live wash-trade detector
+- No live funding-source analysis
+- No live provider connections
+- No Solana RPC
+- No wallet/private key handling
+- No enforcement actions
+- No trade intents
+- No transaction construction/signing/sending
+- No trade execution
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram trade/enforcement commands
+
+## Phase 11: Test count
+1450 passing tests (84 new Phase 11 tests + 1366 regression tests). 17 test files.
