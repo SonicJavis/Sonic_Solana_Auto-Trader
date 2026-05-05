@@ -1,5 +1,34 @@
 # Phase Log
 
+## Phase 9 — Creator Intelligence v1
+
+- New `packages/creator-intelligence` package (no Solana SDK, no provider SDK, no network, no wallet)
+- `CreatorProfile` — local-only creator identity model; `fixtureOnly: true`, `liveData: false`; `creatorAddress` is a public identifier model only (no wallet access, no signing, no private keys)
+- `CreatorLaunchHistorySnapshot` — local launch history metrics snapshot; `fixtureOnly: true`, `liveData: false`
+- `CreatorSuccessScore` — launch count quality, migration rate quality, peak quality, failure penalty; 0–100
+- `CreatorLaunchQualityScore` — holder quality, liquidity quality, metadata/momentum placeholders; 0–100
+- `CreatorConsistencyScore` — repeatability quality, positive history consistency, negative history penalty; 0–100
+- `CreatorSuspiciousPatternScore` — suspicious funding/metadata/bundle/rug/dump penalties; 0–100 where **higher = safer**
+- `CreatorRiskFlag` — 14 risk flag codes (INSUFFICIENT_CREATOR_DATA, LOW_LAUNCH_COUNT, HIGH_FAILURE_RATE, LOW_MIGRATION_RATE, FAST_DUMP_HISTORY, LOW_HOLDER_QUALITY, LOW_LIQUIDITY_QUALITY, SUSPICIOUS_FUNDING_PLACEHOLDER, REPEATED_METADATA_PLACEHOLDER, BUNDLE_ABUSE_PLACEHOLDER, RUG_LIKE_HISTORY, LIVE_DATA_UNAVAILABLE, WALLET_CLUSTER_UNKNOWN, BUNDLE_RISK_UNKNOWN)
+- `CreatorClassification` — 5 safe values: reject, watch_only, analysis_only, insufficient_data, fixture_only (no trade wording)
+- `CreatorIntelligenceCapabilities` — all unsafe fields false; `canTrade/canExecute/canUseSolanaRpc/canUseProviderApis/canUseWalletData/canCreateTradeIntents` all false; `fixtureOnly: true`
+- `CreatorIntelligenceResult` — complete result; `actionAllowed/tradingAllowed/executionAllowed` always false; `liveData: false`; `safeToDisplay: true`
+- `buildCreatorIntelligenceResult()` — validates inputs, scores, classifies, builds result; returns safe CiResult (never throws)
+- `scoreCreatorProfile()` — deterministic component scoring + confidence calculation
+- `buildCreatorRiskFlags()` — deterministic risk flag generation from profile + history
+- `classifyCreator()` — safe classification; critical flags → reject; insufficient data → insufficient_data
+- `getCreatorIntelligenceCapabilities()` — static safety capabilities (all unsafe false)
+- `validateCreatorProfile()`, `validateCreatorHistory()`, `validateCreatorId()`, `validateCreatorAddress()` — structural validation, no Solana SDK
+- `CiResult<T>`, `ciOk()`, `ciErr()` — safe result type (no throws for normal validation failures)
+- 6 fixture creator pairs: strong, new, fast_dump, repeated_metadata, suspicious_funding, rug_like
+- All fixture addresses are synthetic — no real wallet addresses
+- Phase 9 test suite: 73 new tests (1304 total, all passing)
+- docs/CREATOR_INTELLIGENCE.md added
+- No live provider. No Solana RPC. No Helius/WebSocket/Yellowstone. No live creator/wallet/funding-source fetching. No wallet cluster intelligence (placeholder only). No bundle detector (placeholder only). No market data ingestion. No wallet/private key handling. No transaction construction/signing/sending. No trade intents. No live trading. No Jito.
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram trade commands; no live creator lookup command
+- Next phase: Wallet Cluster Intelligence v1 or Bundle/Manipulation Placeholder Models
+
 ## Phase 8 — Token Intelligence v1
 
 - New `packages/token-intelligence` package (no Solana SDK, no provider SDK, no network, no wallet)

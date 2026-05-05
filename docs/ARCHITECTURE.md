@@ -12,6 +12,7 @@ Monorepo with pnpm workspaces.
 - `pump-adapter`: Pump adapter interfaces, quote models, instruction intent models, and disabled SDK wrapper boundary (Phases 6A/6B/6C, inert — no RPC, no execution, no real Pump SDK, no Solana SDK)
 - `event-engine`: Local in-memory event bus, event envelope types, source status models, dedupe/TTL helpers, validation, disabled provider boundaries, mock provider, fixture events and replay, disabled provider config/readiness (Phases 7A/7B/7C/7D — no network, no execution)
 - `token-intelligence`: Local token profile models, deterministic component scoring, risk flags, classification, fixture profiles, token intelligence engine (Phase 8 — no network, no Solana RPC, no provider APIs, no execution)
+- `creator-intelligence`: Local creator profile models, deterministic component scoring, risk flags, classification, fixture profiles, creator intelligence engine (Phase 9 — no network, no Solana RPC, no provider APIs, no wallet data, no execution)
 - `state`: Safe read models for system, config, mode, audit, worker, health readiness, Phase 7E Event Engine/provider readiness + Phase 8 readiness gate, and Phase 8 Token Intelligence static status
 - `testing`: Shared test utilities
 
@@ -134,6 +135,42 @@ All `TokenIntelligenceCapabilities` unsafe flags are `false`.
 `FULL_AUTO` and `LIMITED_LIVE` remain locked.
 
 See [docs/TOKEN_INTELLIGENCE.md](./TOKEN_INTELLIGENCE.md) for full details.
+
+## Phase 9: Creator Intelligence v1
+
+```
+packages/creator-intelligence/src/
+  creator-profile.ts              — CreatorProfile, CreatorProfileSource (local model, fixtureOnly: true, liveData: false)
+  creator-history.ts              — CreatorLaunchHistorySnapshot (local model, fixtureOnly: true, liveData: false)
+  score-types.ts                  — CreatorSuccessScore, CreatorLaunchQualityScore, CreatorConsistencyScore,
+                                    CreatorSuspiciousPatternScore, CreatorComponentScores
+  success-score.ts                — scoreSuccess() — deterministic launch success scoring
+  launch-quality-score.ts         — scoreLaunchQuality() — average launch quality scoring
+  consistency-score.ts            — scoreConsistency() — creator consistency scoring
+  suspicious-pattern-score.ts     — scoreSuspiciousPatterns() — safety quality scoring (higher = safer)
+  risk-flags.ts                   — CreatorRiskFlag (14 codes), CreatorRiskFlagEntry, makeCreatorRiskFlag(),
+                                    hasCreatorCriticalFlag(), filterCreatorFlagsBySeverity()
+  classifier.ts                   — CreatorClassification (5 safe values), CREATOR_CLASSIFICATIONS,
+                                    isCreatorClassification(), isCreatorClassificationSafe()
+  types.ts                        — CreatorIntelligenceCapabilities (all unsafe false), CreatorIntelligenceResult
+  errors.ts                       — CreatorIntelligenceError, CiResult<T>, ciOk(), ciErr(), isCiOk(), isCiErr()
+  validation.ts                   — validateCreatorProfile(), validateCreatorHistory(), validateCreatorId(),
+                                    validateCreatorAddress(), validateCreatorScoreBounds(),
+                                    validateCreatorConfidenceBounds()
+  fixtures.ts                     — 6 deterministic synthetic fixture profiles + histories, ALL_FIXTURE_CREATOR_PAIRS
+  creator-intelligence-engine.ts  — scoreCreatorProfile(), buildCreatorRiskFlags(), classifyCreator(),
+                                    buildCreatorIntelligenceResult(), getCreatorIntelligenceCapabilities()
+  index.ts                        — public barrel (all Phase 9 exports)
+```
+
+No dependency on Solana SDK, provider SDKs, wallet libraries, or any other `@sonic/*` package.
+No network, no Solana RPC, no provider APIs, no live data, no live creator/wallet/funding-source fetching.
+No wallet cluster intelligence (placeholder flags only). No bundle detector (placeholder flags only).
+All `CreatorIntelligenceCapabilities` unsafe flags are `false`.
+`actionAllowed`, `tradingAllowed`, `executionAllowed` always `false` in every result.
+`FULL_AUTO` and `LIMITED_LIVE` remain locked.
+
+See [docs/CREATOR_INTELLIGENCE.md](./CREATOR_INTELLIGENCE.md) for full details.
 
 ```
 packages/db/src/
