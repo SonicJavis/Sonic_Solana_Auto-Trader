@@ -15,6 +15,7 @@
     { "path": "./packages/wallet-intelligence" },
     { "path": "./packages/manipulation-detector" },
     { "path": "./packages/testing" },
+    { "path": "./packages/replay-lab" },
     { "path": "./apps/telegram-bot" },
     { "path": "./apps/worker" }
   ]

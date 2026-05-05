@@ -186,3 +186,16 @@
 144. **Phase 11**: No live bundle detection, no live wash-trade detection, no live funding-source analysis — placeholder flags only; no runtime enforcement
 145. **Phase 11**: No live wallet fetching, no live creator-linked wallet analysis, no live coordination analysis
 146. **Phase 11**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/wallet-lookup/enforcement commands.
+
+## Phase 13 Additional Safety Rules
+
+147. **Phase 13**: `packages/replay-lab` has no dependencies on Solana SDK, Pump SDK, Helius SDK, WebSocket clients, Yellowstone/Geyser packages, wallet libraries, RPC providers, or any app packages
+148. **Phase 13**: All `ReplayLabCapabilities` unsafe fields are permanently `false`: `canUseLiveData`, `canUseSolanaRpc`, `canUseProviderApis`, `canAccessPrivateKeys`, `canCreateTradeIntents`, `canCreateExecutionPlans`, `canPaperTrade`, `canTrade`, `canExecute`
+149. **Phase 13**: `ReplayRun.liveData` is always `false`; `fixtureOnly` is always `true`; `safeToDisplay` is always `true`
+150. **Phase 13**: All `ReplayVerdict` values are safe — no value uses buy, sell, execute, trade, snipe, live_candidate, auto_candidate, enter, copy, or mirror wording
+151. **Phase 13**: Replay lab outputs are analysis-only — they must never be interpreted as or converted to trade signals, execution plans, or paper-trading signals
+152. **Phase 13**: All `ReplayLabError` results carry no stack traces, no RPC URLs, no API keys, no wallet data, no private keys — enforced by `isSafeErrorMessage()`
+153. **Phase 13**: `runReplayScenario()` never throws for normal validation failures — it returns safe `RlResult` errors
+154. **Phase 13**: All fixture scenario data is synthetic and deterministic — no real addresses, no real RPC URLs, no real API keys, no real wallet data
+155. **Phase 13**: No live data ingestion, no live bundle detection, no live provider connections of any kind
+156. **Phase 13**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/execution commands.

@@ -1,8 +1,23 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 11 — Bundle / Manipulation Detector v1**
+**Phase 13 — Replay Lab v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 11.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 13.
+
+## Features (Phase 13 — adds to Phase 11)
+
+- New `packages/replay-lab` — local deterministic replay lab model layer (no Solana SDK, no provider SDK, no network, no wallet, no private keys, no trading, no execution)
+- `ReplayVerdict` — 5 safe outcome values: `passed`, `failed`, `degraded`, `inconclusive`, `fixture_only` (no buy/sell/execute/trade/live wording)
+- `ReplayLabCapabilities` — all 9 unsafe flags permanently `false`; `fixtureOnly: true`
+- `ReplayStep`, `ReplayScenario`, `ReplayRun`, `ReplayComparison` — complete model types; all with `liveData: false`, `fixtureOnly: true`, `safeToDisplay: true`
+- `buildReplayStepResult()` — deterministic step verdict engine (no fixtures → inconclusive; reject → failed; risky/risk → degraded; multi-warn → degraded; clean → fixture_only)
+- `runReplayScenario()` — execute a full scenario, returning a validated `ReplayRun`
+- `compareReplayRuns()` — regression comparison: score delta, confidence delta, verdict change detection
+- `getReplayLabCapabilities()` — all-false capability guard
+- 8 deterministic synthetic fixture scenarios: clean_token, risky_creator, wallet_cluster_risk, manipulation_reject, mixed_warning, missing_data, regression_baseline, regression_candidate
+- 85 new tests in `tests/phase13.test.ts` — **1600 passing** (19 test files)
+- **Fixture/local replay only** — no live data, no Solana RPC, no provider APIs, no trade intents, no execution plans, no paper trading
+- See [docs/REPLAY_LAB.md](./docs/REPLAY_LAB.md) for full details
 
 ## Features (Phase 11 — adds to Phase 10)
 
