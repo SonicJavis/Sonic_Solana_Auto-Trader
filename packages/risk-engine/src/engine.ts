@@ -1,3 +1,13 @@
+/**
+ * Phase 1 — RiskEngine: Safety gate for mode-manager actions.
+ *
+ * This class provides the Phase 1 action evaluation gate used by the worker
+ * and tested by tests/index.test.ts. It is distinct from the Phase 12 Risk
+ * Engine model layer (aggregate.ts / buildRiskAssessmentResult).
+ *
+ * No live data. No Solana RPC. No trading. No execution.
+ */
+
 import type { ActionType, RiskDecision } from '@sonic/shared';
 import { BLOCKED_ACTIONS } from '@sonic/shared';
 import type { ModeManager } from '@sonic/mode-manager';
