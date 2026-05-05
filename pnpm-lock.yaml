@@ -186,6 +186,13 @@ importers:
         version: 5.9.3
 
   packages/risk-engine:
+    dependencies:
+      '@sonic/mode-manager':
+        specifier: workspace:*
+        version: link:../mode-manager
+      '@sonic/shared':
+        specifier: workspace:*
+        version: link:../shared
     devDependencies:
       typescript:
         specifier: '*'
