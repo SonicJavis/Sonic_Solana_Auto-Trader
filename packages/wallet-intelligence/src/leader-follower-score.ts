@@ -22,7 +22,7 @@ export function scoreLeaderFollower(cluster: WalletCluster): LeaderFollowerScore
   const reasons: string[] = [];
 
   // Leader signal quality: higher leader-follower signal count indicates
-  // structured coordination — treated as a risk (lower = less risk risk, but
+  // structured coordination — treated as a risk (lower = less risk, but
   // medium leader signals can indicate a smart cluster).
   // We use a nuanced approach: very high leader signals are risky.
   const leaderSignalCount = cluster.leaderFollowerSignalCount;
