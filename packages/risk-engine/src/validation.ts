@@ -42,8 +42,8 @@ export function validateRiskAssessmentInput(unknown: unknown): ReResult<RiskAsse
     return reErr('LIVE_DATA_FORBIDDEN', 'liveData must be false — live data is forbidden');
   }
 
-  if (input['fixtureOnly'] === undefined || input['fixtureOnly'] === null) {
-    return reErr('INVALID_RISK_INPUT', 'fixtureOnly field is required');
+  if (input['fixtureOnly'] !== true && input['fixtureOnly'] !== false) {
+    return reErr('INVALID_RISK_INPUT', 'fixtureOnly must be a boolean');
   }
 
   if (typeof input['source'] !== 'string' || input['source'].trim() === '') {

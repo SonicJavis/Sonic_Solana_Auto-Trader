@@ -372,7 +372,7 @@ export function buildRiskAssessmentResult(
     `requestId=${input.requestId} source=${input.source} components=${componentCount}/4 fixtureOnly=true liveData=false`;
 
   const result: RiskAssessmentResult = {
-    resultId: `RE_${input.requestId}_${Date.now()}`,
+    resultId: `RE_${input.requestId}`,
     inputSummary,
     policy,
     componentScores: scores,
@@ -382,7 +382,7 @@ export function buildRiskAssessmentResult(
     blockingReasons,
     warnings,
     riskFlags: flags,
-    generatedAt: new Date().toISOString(),
+    generatedAt: input.requestedAt,
     fixtureOnly: true,
     liveData: false,
     actionAllowed: false,
