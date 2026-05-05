@@ -141,6 +141,12 @@ importers:
         specifier: '*'
         version: 5.9.3
 
+  packages/manipulation-detector:
+    devDependencies:
+      typescript:
+        specifier: '*'
+        version: 5.9.3
+
   packages/mode-manager:
     dependencies:
       '@sonic/db':
@@ -180,13 +186,6 @@ importers:
         version: 5.9.3
 
   packages/risk-engine:
-    dependencies:
-      '@sonic/mode-manager':
-        specifier: workspace:*
-        version: link:../mode-manager
-      '@sonic/shared':
-        specifier: workspace:*
-        version: link:../shared
     devDependencies:
       typescript:
         specifier: '*'
