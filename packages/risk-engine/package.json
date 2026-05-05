@@ -14,10 +14,6 @@
     "build": "tsc --build",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {
-    "@sonic/shared": "workspace:*",
-    "@sonic/mode-manager": "workspace:*"
-  },
   "devDependencies": {
     "typescript": "*"
   }
