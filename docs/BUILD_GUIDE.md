@@ -457,3 +457,64 @@ pnpm --filter @sonic/replay-lab build
 
 ## Phase 13: Test count
 1600 passing tests (85 new Phase 13 tests + 1515 regression tests). 19 test files.
+
+## Phase 14: Replay Reporting and Edge Diagnostics v1
+
+A read-only, fixture-only, analysis-only reporting and diagnostics layer on top of Phase 13 Replay Lab. Evidence-review only — no live data, no RPC, no trading, no execution.
+
+### Package: @sonic/replay-reporting
+
+- `buildScenarioIndex()` — deterministic scenario index
+- `buildReplayRunReport()` — per-run analysis report
+- `buildReplayComparisonReport()` — regression comparison report
+- `buildReplayDiagnostics()` — structured diagnostic findings
+- `exportReplayReportJson()` — deterministic JSON export with safety validation
+- `exportReplayReportMarkdown()` — safe Markdown export with safety footer
+- `getReplayReportingCapabilities()` — all 11 unsafe capability flags false
+
+### Build replay-reporting package
+
+```
+pnpm --filter @sonic/replay-reporting build
+```
+
+### Validation commands
+
+```
+pnpm install --no-frozen-lockfile  # if adding new package
+pnpm typecheck
+pnpm lint
+pnpm test
+```
+
+### Phase 14: Safe usage notes
+
+- All reports carry `fixtureOnly: true`, `liveData: false`, `safeToDisplay: true`
+- Reports are evidence review aids only — they do not recommend or enable trading
+- JSON exports validate all string content before export
+- Markdown exports include a mandatory safety footer
+- Validation rejects unsafe action text, secret patterns, and URL/RPC patterns
+
+### Phase 14: Limitations
+
+- Read-only, fixture-only, analysis-only — no live data
+- No Solana RPC
+- No provider APIs
+- No wallet/private key handling
+- No trade intents or execution plans
+- No paper trading
+- No trade execution
+- No database writes
+- No Telegram alerts
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram trade commands
+
+### PR workflow reminder
+
+- All changes go through PRs into `main`
+- Do not commit directly to `main`
+- Do not merge PRs without review
+- Branch naming: `copilot/phase-N-description`
+
+## Phase 14: Test count
+1750 passing tests (150 new Phase 14 tests + 1600 regression tests). 20 test files.

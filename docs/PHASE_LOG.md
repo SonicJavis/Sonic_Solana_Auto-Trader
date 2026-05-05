@@ -1,5 +1,33 @@
 # Phase Log
 
+## Phase 14 — Replay Reporting and Edge Diagnostics v1
+
+- New `packages/replay-reporting` package: read-only, fixture-only, analysis-only reporting layer on top of Phase 13 Replay Lab; no Solana SDK, no provider SDK, no network, no wallet, no trading, no execution
+- `ReplayReportingCapabilities` — all 11 unsafe fields permanently `false`; `fixtureOnly: true`
+- `ReplayScenarioIndex` / `ReplayScenarioIndexEntry` — deterministic scenario index with verdict distribution, step counts, and unique step types
+- `ReplayRunReport` / `ReplayStepReportRow` — per-run analysis report with step-level detail, warning/failure/degraded/inconclusive counts
+- `ReplaySummaryReport` — multi-run verdict distribution summary
+- `ReplayComparisonReport` — regression detection between baseline and candidate runs (scoreDelta > 0.05 threshold)
+- `ReplayDiagnostics` / `ReplayDiagnosticFinding` — structured diagnostic findings with severity counts (info/warning/risk/failure/inconclusive); no action-oriented severity names
+- `ReplayReportExport` — JSON export wrapper with stable key ordering and deterministic output
+- `RrResult<T>`, `rrOk`, `rrErr`, `ReplayReportingError`, `ReplayReportingErrorCode` — safe result/error pattern
+- `buildScenarioIndex` — deterministic index builder; rejects liveData=true, fixtureOnly=false, unsafe text
+- `buildReplayRunReport` — converts `ReplayRun` to `ReplayRunReport`; validates safety fields
+- `buildReplayComparisonReport` — converts `ReplayComparison` to `ReplayComparisonReport`; adds regression indicator and diagnostic findings
+- `buildReplayDiagnostics` — accepts `ReplayRun` or `ReplayRunReport`; produces structured findings with severity counts
+- `exportReplayReportJson` — deterministic JSON export; validates all string content for safety; stable key ordering
+- `exportReplayReportMarkdown` — safe Markdown export dispatcher; mandatory safety footer on all outputs
+- Specific Markdown exporters: `exportRunReportMarkdown`, `exportComparisonReportMarkdown`, `exportScenarioIndexMarkdown`, `exportDiagnosticsMarkdown`
+- Validation helpers: `validateSafeText`, `validateCapabilities`, `validateJsonSafe`, `containsUnsafeActionText`, `containsSecretPattern`, `containsUrlPattern`, `isDisplaySafe`
+- 5 deterministic synthetic fixtures + `ALL_REPLAY_REPORT_FIXTURES` array: CLEAN, DEGRADED, FAILED, INCONCLUSIVE, REGRESSION
+- `docs/REPLAY_REPORTING.md` documentation
+- Phase 14 test suite: 150 new tests (1750 total, all passing)
+- No live data. No Solana RPC. No provider APIs. No wallet/private key handling. No trade intents. No execution plans. No paper trading. No trade execution.
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram trade commands
+
+**Next phase guidance:** Phase 15 may build a live-gated evidence accumulator or a safe strategy scoring layer, but must first demonstrate that all Phase 13-14 evidence gates produce stable, reproducible results. Do not start Phase 15 without explicit sign-off. Live data, wallet access, trading, and execution remain forbidden.
+
 ## Phase 13 — Replay Lab v1
 
 - New `packages/replay-lab` package: local deterministic replay lab model layer; no Solana SDK, no provider SDK, no network, no wallet, no trading, no execution

@@ -16,6 +16,7 @@
     { "path": "./packages/manipulation-detector" },
     { "path": "./packages/testing" },
     { "path": "./packages/replay-lab" },
+    { "path": "./packages/replay-reporting" },
     { "path": "./apps/telegram-bot" },
     { "path": "./apps/worker" }
   ]

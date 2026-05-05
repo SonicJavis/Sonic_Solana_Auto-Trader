@@ -199,3 +199,19 @@
 154. **Phase 13**: All fixture scenario data is synthetic and deterministic — no real addresses, no real RPC URLs, no real API keys, no real wallet data
 155. **Phase 13**: No live data ingestion, no live bundle detection, no live provider connections of any kind
 156. **Phase 13**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/execution commands.
+
+## Phase 14 Additional Safety Rules
+
+157. **Phase 14**: `packages/replay-reporting` has no dependencies on Solana SDK, Pump SDK, Helius SDK, WebSocket clients, Yellowstone/Geyser packages, wallet libraries, RPC providers, or any app packages — only `@sonic/replay-lab`
+158. **Phase 14**: All `ReplayReportingCapabilities` unsafe fields are permanently `false`: `canUseLiveData`, `canUseSolanaRpc`, `canUseProviderApis`, `canAccessPrivateKeys`, `canCreateTradeIntents`, `canCreateExecutionPlans`, `canPaperTrade`, `canTrade`, `canExecute`, `canWriteToDatabase`, `canSendTelegramAlerts`
+159. **Phase 14**: Replay reporting **cannot create trade intents** — no `tradeIntent` or `createTradeIntent` field in any report output
+160. **Phase 14**: Replay reporting **cannot create execution plans** — no `executionPlan` or `createExecutionPlan` field in any report output
+161. **Phase 14**: Replay reporting **cannot use live data** — all outputs carry `liveData: false`; all inputs must have `liveData: false`
+162. **Phase 14**: Replay reporting **cannot recommend action decisions** — reports are evidence review aids only; no buy, sell, execute, snipe, copy, or auto-trade wording is permitted in report outputs
+163. **Phase 14**: Reports are evidence review aids only — they describe analysis outcomes but do not imply permission or intent to trade
+164. **Phase 14**: All report outputs carry `fixtureOnly: true`, `liveData: false`, `safeToDisplay: true` — these fields are not configurable
+165. **Phase 14**: Markdown exports include a mandatory safety footer stating that the output is a fixture-only analysis aid and does not recommend trading
+166. **Phase 14**: Validation rejects any string containing unsafe action text (buy, sell, execute, snipe, copy trade, etc.), secret-like patterns (privateKey, seedPhrase, apiKey, etc.), or URL/RPC-like patterns (wss://, helius.dev, mainnet-beta.solana.com, etc.)
+167. **Phase 14**: JSON exports validate all string values before export — unsafe content causes a safe typed error, never a thrown exception
+168. **Phase 14**: `ReplayDiagnosticSeverity` values are analysis-only: `info`, `warning`, `risk`, `failure`, `inconclusive` — no action-oriented severity names
+169. **Phase 14**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/execution commands.

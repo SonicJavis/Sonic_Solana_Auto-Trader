@@ -27,6 +27,7 @@ export default defineConfig({
       '@sonic/manipulation-detector': resolve(__dirname, 'packages/manipulation-detector/src/index.ts'),
       '@sonic/testing': resolve(__dirname, 'packages/testing/src/index.ts'),
       '@sonic/replay-lab': resolve(__dirname, 'packages/replay-lab/src/index.ts'),
+      '@sonic/replay-reporting': resolve(__dirname, 'packages/replay-reporting/src/index.ts'),
     },
   },
 });

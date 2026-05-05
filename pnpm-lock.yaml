@@ -191,6 +191,16 @@ importers:
         specifier: '*'
         version: 5.9.3
 
+  packages/replay-reporting:
+    dependencies:
+      '@sonic/replay-lab':
+        specifier: workspace:*
+        version: link:../replay-lab
+    devDependencies:
+      typescript:
+        specifier: '*'
+        version: 5.9.3
+
   packages/risk-engine:
     dependencies:
       '@sonic/mode-manager':
