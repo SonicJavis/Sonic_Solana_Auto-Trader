@@ -423,3 +423,37 @@ pnpm --filter @sonic/manipulation-detector build
 
 ## Phase 11: Test count
 1450 passing tests (84 new Phase 11 tests + 1366 regression tests). 17 test files.
+
+## Phase 13: Replay Lab v1
+
+### What is the Replay Lab?
+
+A local, deterministic model layer for replaying synthetic fixture scenarios across the intelligence stack. Fixture/local only — no live data, no RPC, no trading, no execution.
+
+### Package: @sonic/replay-lab
+
+- 8 deterministic fixture scenarios
+- `runReplayScenario()` — execute a full scenario
+- `compareReplayRuns()` — regression comparison between runs
+- `getReplayLabCapabilities()` — all unsafe capability flags false
+
+### Build replay-lab package
+
+```
+pnpm --filter @sonic/replay-lab build
+```
+
+### Phase 13: Limitations
+
+- Fixture/local replay only — no live data
+- No Solana RPC
+- No provider APIs
+- No wallet/private key handling
+- No trade intents or execution plans
+- No paper trading
+- No trade execution
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram trade commands
+
+## Phase 13: Test count
+1600 passing tests (85 new Phase 13 tests + 1515 regression tests). 19 test files.

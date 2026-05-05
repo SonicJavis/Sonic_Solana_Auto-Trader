@@ -1,5 +1,33 @@
 # Phase Log
 
+## Phase 13 — Replay Lab v1
+
+- New `packages/replay-lab` package: local deterministic replay lab model layer; no Solana SDK, no provider SDK, no network, no wallet, no trading, no execution
+- `ReplayVerdict` — 5 safe replay outcome values: `passed`, `failed`, `degraded`, `inconclusive`, `fixture_only` (no buy/sell/execute/trade/live wording)
+- `ReplayStepType` — 6 step types: `token_snapshot`, `creator_snapshot`, `wallet_cluster_snapshot`, `manipulation_snapshot`, `risk_assessment`, `aggregate_checkpoint`
+- `ReplayErrorCode` — 13 safe error codes covering invalid models, forbidden live/provider/private-key/trade/execution access
+- `ReplayLabCapabilities` — all 9 unsafe fields permanently `false`; `fixtureOnly: true`
+- `ReplayStep` — single scenario step; `fixtureOnly: true`, `liveData: false`, `safeToDisplay` required
+- `ReplayScenario` — ordered collection of steps with `expectedOutcome`; `liveData: false`
+- `ReplayRun` — result of executing a scenario; `fixtureOnly: true`, `liveData: false`, `safeToDisplay: true`
+- `ReplayComparison` — regression delta between two runs; `safeToDisplay: true`
+- Summary types: `TokenReplaySummary`, `CreatorReplaySummary`, `WalletReplaySummary`, `ManipulationReplaySummary`, `RiskReplaySummary`, `ReplaySummary`
+- `ReplayStepResult` — per-step outcome with optional summaries; `safeToDisplay: true`
+- `RlResult<T>` — safe result/error type (never throws for normal validation errors)
+- `rlOk`, `rlErr`, `isSafeErrorMessage` — error helpers; `isSafeErrorMessage` rejects messages with private keys, RPC URLs, API keys, secrets
+- `validateVerdict`, `validateReplayStep`, `validateReplayScenario`, `validateReplayStepResult`, `validateReplayRun`, `validateReplayComparison` — structural validation
+- `buildReplayStep`, `buildReplayScenario` — builders with built-in validation
+- `buildReplayStepResult` — deterministic step verdict engine: no fixtures → inconclusive; reject fixtures → failed; risky/risk fixtures → degraded; warn multi-ref → degraded; clean → fixture_only
+- `buildReplaySummary` — final verdict aggregation: failed > degraded > inconclusive > fixture_only/passed
+- `runReplayScenario` — full scenario execution returning a validated `ReplayRun`
+- `compareReplayRuns` — regression comparison: score delta, confidence delta, verdict change detection
+- `getReplayLabCapabilities` — returns all-false capability guard
+- 8 deterministic synthetic fixture scenarios + `ALL_REPLAY_FIXTURES` array
+- Phase 13 test suite: 85 new tests (1600 total, all passing)
+- No Solana RPC. No provider APIs. No live data. No wallet/private key handling. No trade intents. No execution plans. No paper trading. No trade execution.
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram trade commands
+
 ## Phase 11 — Bundle / Manipulation Detector v1
 
 - New `packages/manipulation-detector` package (no Solana SDK, no provider SDK, no network, no wallet)
