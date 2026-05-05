@@ -154,3 +154,19 @@
 118. **Phase 9**: Wallet cluster intelligence and bundle detection are placeholder flags only — no runtime enforcement implemented
 119. **Phase 9**: No live creator/dev wallet fetching, no live launch-history fetching, no live funding-source analysis
 120. **Phase 9**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/creator-lookup commands.
+
+## Phase 10 Additional Safety Rules
+
+121. **Phase 10**: `packages/wallet-intelligence` has no dependencies on Solana SDK, Pump SDK, Helius SDK, WebSocket clients, Yellowstone/Geyser packages, wallet libraries, RPC providers, or any app packages
+122. **Phase 10**: All `WalletIntelligenceCapabilities` unsafe fields are permanently `false`: `canUseLiveData`, `canUseSolanaRpc`, `canUseProviderApis`, `canAccessPrivateKeys`, `canTrade`, `canCreateTradeIntents`, `canCopyTrade`, `canExecute`
+123. **Phase 10**: `WalletClusterIntelligenceResult.actionAllowed`, `tradingAllowed`, `executionAllowed`, and `copyTradingAllowed` are always `false` — enforced at construction time
+124. **Phase 10**: `WalletClusterIntelligenceResult.liveData` is always `false`; `fixtureOnly` is always `true` for fixture data
+125. **Phase 10**: All `WalletClusterClassification` values are safe — no value uses buy, sell, execute, trade, snipe, live_candidate, auto_candidate, enter, copy, or mirror wording
+126. **Phase 10**: Wallet cluster intelligence scoring outputs are analysis-only — they must never be interpreted as or converted to trade signals or copy-trading signals
+127. **Phase 10**: All `WalletIntelligenceError` results carry `safeToDisplay: true` — no raw secrets, no stack traces, no RPC URLs, no API keys, no wallet data, no private keys
+128. **Phase 10**: `buildWalletClusterIntelligenceResult()` never throws for normal validation failures — it returns safe WiResult errors
+129. **Phase 10**: Fixture wallet addresses are synthetic (`FIXTURE_*` prefixed) — not real on-chain addresses; no real wallet addresses, real RPC URLs, API keys, or private data appear in fixture data
+130. **Phase 10**: `walletAddress` is a public identifier model field only — no wallet access, no signing, no private keys, no fund access
+131. **Phase 10**: Funding source analysis, same-slot coordination, creator-linked wallet analysis, and bundle detection are placeholder flags only — no runtime enforcement implemented
+132. **Phase 10**: No live wallet fetching, no live funding-source analysis, no live creator-linked wallet analysis, no live copy-trading logic
+133. **Phase 10**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/wallet-lookup/copy-trading commands.

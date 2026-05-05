@@ -23,6 +23,7 @@ export default defineConfig({
       '@sonic/event-engine': resolve(__dirname, 'packages/event-engine/src/index.ts'),
       '@sonic/token-intelligence': resolve(__dirname, 'packages/token-intelligence/src/index.ts'),
       '@sonic/creator-intelligence': resolve(__dirname, 'packages/creator-intelligence/src/index.ts'),
+      '@sonic/wallet-intelligence': resolve(__dirname, 'packages/wallet-intelligence/src/index.ts'),
       '@sonic/testing': resolve(__dirname, 'packages/testing/src/index.ts'),
     },
   },

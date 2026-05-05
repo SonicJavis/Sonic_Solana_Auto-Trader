@@ -1,8 +1,24 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 9 — Creator Intelligence v1**
+**Phase 10 — Wallet Cluster Intelligence v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 9.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 10.
+
+## Features (Phase 10 — adds to Phase 9)
+
+- New `packages/wallet-intelligence` — local wallet cluster intelligence layer (no Solana SDK, no provider SDK, no network, no wallet, no private keys, no copy trading)
+- `WalletProfile` — local-only wallet identity model; `fixtureOnly: true`, `liveData: false`; `walletAddress` is a public identifier model only
+- `WalletCluster` — local wallet cluster model; 9 `WalletClusterType` values; `fixtureOnly: true`, `liveData: false`
+- `WalletQualityScore`, `ClusterQualityScore`, `LeaderFollowerScore`, `FreshWalletRiskScore`, `FundingSourceScore` — deterministic component scores (0–100)
+- 16 `WalletClusterRiskFlag` codes (INSUFFICIENT_WALLET_DATA, FAST_DUMPER_HISTORY, BOT_NOISE_SIGNALS, FRESH_WALLET_FARM_PLACEHOLDER, COORDINATED_SELL_PLACEHOLDER, placeholder flags, etc.)
+- `WalletClusterClassification` — 5 safe values: `reject`, `watch_only`, `analysis_only`, `insufficient_data`, `fixture_only` (no trade/copy wording)
+- `WalletIntelligenceCapabilities` — all unsafe flags `false`: `canTrade`, `canExecute`, `canCopyTrade`, `canUseSolanaRpc`, `canUseProviderApis`, `canAccessPrivateKeys`, `canCreateTradeIntents`
+- `WalletClusterIntelligenceResult` — `actionAllowed/tradingAllowed/executionAllowed/copyTradingAllowed` always `false`; `liveData: false`; `safeToDisplay: true`
+- `buildWalletClusterIntelligenceResult()` — validates inputs, scores, classifies, returns safe result (never throws)
+- 7 deterministic synthetic fixture clusters: smart_accumulator, profitable_leader, fast_dumper, fresh_wallet_farm, same_funding_source, bot_noise, known_rug_cluster
+- 62 new tests in `tests/phase10.test.ts` — **1366 passing** (16 test files)
+- **Fixture/local scoring only** — no live data, no Solana RPC, no provider APIs, no wallet data, no trade actions, no copy trading
+- See [docs/WALLET_INTELLIGENCE.md](./docs/WALLET_INTELLIGENCE.md) for full details
 
 ## Features (Phase 9 — adds to Phase 8)
 

@@ -13,6 +13,7 @@ Monorepo with pnpm workspaces.
 - `event-engine`: Local in-memory event bus, event envelope types, source status models, dedupe/TTL helpers, validation, disabled provider boundaries, mock provider, fixture events and replay, disabled provider config/readiness (Phases 7A/7B/7C/7D — no network, no execution)
 - `token-intelligence`: Local token profile models, deterministic component scoring, risk flags, classification, fixture profiles, token intelligence engine (Phase 8 — no network, no Solana RPC, no provider APIs, no execution)
 - `creator-intelligence`: Local creator profile models, deterministic component scoring, risk flags, classification, fixture profiles, creator intelligence engine (Phase 9 — no network, no Solana RPC, no provider APIs, no wallet data, no execution)
+- `wallet-intelligence`: Local wallet profile models, wallet cluster models, deterministic component scoring (wallet quality, cluster quality, leader-follower, fresh-wallet risk, funding source), risk flags, classification, fixture clusters, wallet cluster intelligence engine (Phase 10 — no network, no Solana RPC, no provider APIs, no wallet data, no private keys, no copy trading, no execution)
 - `state`: Safe read models for system, config, mode, audit, worker, health readiness, Phase 7E Event Engine/provider readiness + Phase 8 readiness gate, and Phase 8 Token Intelligence static status
 - `testing`: Shared test utilities
 
