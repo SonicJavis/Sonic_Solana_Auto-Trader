@@ -347,3 +347,40 @@ pnpm --filter @sonic/token-intelligence build
 ## Phase 9: Test count
 1304 passing tests (73 new Phase 9 tests + 1231 regression tests). 15 test files.
 
+
+## Phase 10: Wallet Cluster Intelligence v1
+
+The `packages/wallet-intelligence` package provides:
+- `WalletProfile` — local-only wallet identity model (no wallet access, no private keys)
+- `WalletCluster` — local wallet cluster model with 9 cluster types
+- `WalletClusterHistoryMetrics` — cluster history metrics snapshot
+- `WalletQualityScore`, `ClusterQualityScore`, `LeaderFollowerScore`, `FreshWalletRiskScore`, `FundingSourceScore` — deterministic component scores (0–100)
+- 16 `WalletClusterRiskFlag` codes
+- `WalletClusterClassification` — 5 safe values (no trade/copy wording)
+- `WalletClusterIntelligenceResult` — complete result (all action/trading/execution/copy flags false)
+- `buildWalletClusterIntelligenceResult()`, `scoreWalletClusterGroup()`, `buildWalletClusterRiskFlags()`, `classifyWalletCluster()`, `getWalletIntelligenceCapabilities()`
+- 7 deterministic synthetic fixture clusters
+
+### Build wallet-intelligence package
+
+```
+pnpm --filter @sonic/wallet-intelligence build
+```
+
+### Phase 10: Limitations
+
+- Fixture/local scoring only — no live data
+- No bundle detector (placeholder flags only)
+- No creator-wallet graph analysis (placeholder flags only)
+- No live provider connections
+- No Solana RPC
+- No wallet/private key handling
+- No copy trading
+- No trade intents
+- No transaction construction/signing/sending
+- No trade execution
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram trade/wallet-lookup/copy-trading commands
+
+## Phase 10: Test count
+1366 passing tests (62 new Phase 10 tests + 1304 regression tests). 16 test files.

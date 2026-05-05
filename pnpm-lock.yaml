@@ -248,6 +248,12 @@ importers:
         specifier: '*'
         version: 5.9.3
 
+  packages/wallet-intelligence:
+    devDependencies:
+      typescript:
+        specifier: '*'
+        version: 5.9.3
+
 packages:
 
   '@esbuild/aix-ppc64@0.21.5':

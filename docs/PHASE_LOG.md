@@ -1,6 +1,37 @@
 # Phase Log
 
-## Phase 9 — Creator Intelligence v1
+## Phase 10 — Wallet Cluster Intelligence v1
+
+- New `packages/wallet-intelligence` package (no Solana SDK, no provider SDK, no network, no wallet)
+- `WalletProfile` — local-only wallet identity model; `fixtureOnly: true`, `liveData: false`; `walletAddress` is a public identifier model only (no wallet access, no signing, no private keys)
+- `WalletCluster` — local wallet cluster model; 9 `WalletClusterType` values; `fixtureOnly: true`, `liveData: false`
+- `WalletClusterHistoryMetrics` — local cluster history metrics snapshot
+- `WalletQualityScore` — wallet age, hold time, entry/exit timing, profitability placeholder, dump/bot penalties; 0–100
+- `ClusterQualityScore` — cluster type quality, representative wallet quality, coordination/creator-link penalties; 0–100
+- `LeaderFollowerScore` — leader signal quality, follower noise/same-slot/coordinated-sell penalties; 0–100
+- `FreshWalletRiskScore` — fresh-wallet/same-funding/low-age/farm penalties; 0–100 (higher = safer)
+- `FundingSourceScore` — same-funding penalty, suspicious placeholder penalty, diversity quality; 0–100
+- `WalletClusterRiskFlag` — 16 risk flag codes (INSUFFICIENT_WALLET_DATA, INSUFFICIENT_CLUSTER_DATA, LOW_WALLET_AGE, FAST_DUMPER_HISTORY, BOT_NOISE_SIGNALS, FRESH_WALLET_FARM_PLACEHOLDER, SAME_FUNDING_SOURCE_PLACEHOLDER, SAME_SLOT_COORDINATION_PLACEHOLDER, CREATOR_LINKED_WALLET_PLACEHOLDER, COORDINATED_SELL_PLACEHOLDER, LOW_HOLD_TIME, LOW_ENTRY_QUALITY, LOW_EXIT_QUALITY, LIVE_DATA_UNAVAILABLE, BUNDLE_RISK_UNKNOWN, CREATOR_RELATIONSHIP_UNKNOWN)
+- `WalletClusterClassification` — 5 safe values: reject, watch_only, analysis_only, insufficient_data, fixture_only (no trade/copy wording)
+- `WalletIntelligenceCapabilities` — all unsafe fields false; `canTrade/canExecute/canUseSolanaRpc/canUseProviderApis/canAccessPrivateKeys/canCreateTradeIntents/canCopyTrade` all false; `fixtureOnly: true`
+- `WalletClusterIntelligenceResult` — complete result; `actionAllowed/tradingAllowed/executionAllowed/copyTradingAllowed` always false; `liveData: false`; `safeToDisplay: true`
+- `buildWalletClusterIntelligenceResult()` — validates inputs, scores, classifies, builds result; returns safe WiResult (never throws)
+- `scoreWalletClusterGroup()` — deterministic component scoring + confidence calculation
+- `buildWalletClusterRiskFlags()` — deterministic risk flag generation from wallets + cluster
+- `classifyWalletCluster()` — safe classification; critical flags → reject; insufficient data → insufficient_data
+- `getWalletIntelligenceCapabilities()` — static safety capabilities (all unsafe false)
+- `validateWalletProfile()`, `validateWalletCluster()`, `validateWalletId()`, `validateWalletAddress()`, `validateClusterId()` — structural validation, no Solana SDK
+- `WiResult<T>`, `wiOk()`, `wiErr()` — safe result type (no throws for normal validation failures)
+- 7 fixture cluster pairs: smart_accumulator, profitable_leader, fast_dumper, fresh_wallet_farm, same_funding_source, bot_noise, known_rug_cluster
+- All fixture addresses are synthetic — no real wallet addresses
+- Phase 10 test suite: 62 new tests (1366 total, all passing)
+- docs/WALLET_INTELLIGENCE.md added
+- No live provider. No Solana RPC. No Helius/WebSocket/Yellowstone. No live wallet/funding-source fetching. No bundle detector (placeholder only). No creator-wallet graph (placeholder only). No market data ingestion. No wallet/private key handling. No transaction construction/signing/sending. No trade intents. No live trading. No copy trading. No Jito.
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram trade commands; no live wallet lookup command; no copy-trading command
+- Next phase: Bundle/Manipulation Detector v1 model infrastructure
+
+
 
 - New `packages/creator-intelligence` package (no Solana SDK, no provider SDK, no network, no wallet)
 - `CreatorProfile` — local-only creator identity model; `fixtureOnly: true`, `liveData: false`; `creatorAddress` is a public identifier model only (no wallet access, no signing, no private keys)

@@ -12,6 +12,7 @@
     { "path": "./packages/event-engine" },
     { "path": "./packages/token-intelligence" },
     { "path": "./packages/creator-intelligence" },
+    { "path": "./packages/wallet-intelligence" },
     { "path": "./packages/testing" },
     { "path": "./apps/telegram-bot" },
     { "path": "./apps/worker" }
