@@ -1,8 +1,23 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 21 — Local Read-Only API Query, Filter, and Pagination v1**
+**Phase 22 — Local Read-Only API Response Contracts, Error Envelope, and Endpoint Documentation v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 21.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 22.
+
+## Features (Phase 22 — adds to Phase 21)
+
+- Phase 22 adds a **standard JSON response contract layer** to all existing read-only GET endpoints
+- `ReadOnlyApiSuccessEnvelope<T>` — standard success envelope: `ok: true`, `endpoint`, `method`, `data`, `meta`, `generatedAt`
+- `ReadOnlyApiErrorEnvelope` — standard error envelope: `ok: false`, `error`, `meta`, `generatedAt`
+- `ReadOnlyApiContractMeta` — deterministic meta: `phase: 22`, `apiMode: "local_read_only"`, `deterministic: true`, `mutating: false`, `externalNetwork: false`, `generatedAt: "2026-01-01T00:00:00.000Z"`
+- 5 stable error codes: `READ_ONLY_API_INVALID_QUERY`, `READ_ONLY_API_UNSUPPORTED_ENDPOINT`, `READ_ONLY_API_METHOD_NOT_ALLOWED`, `READ_ONLY_API_SAFETY_REJECTION`, `READ_ONLY_API_INTERNAL_CONTRACT_ERROR`
+- Field-level `ReadOnlyApiErrorDetail`: `field`, `reason`, sanitized `received` value — no stack traces, no filesystem paths, no secrets
+- `buildReadOnlyApiSuccessEnvelope()`, `buildReadOnlyApiErrorEnvelope()`, `buildReadOnlyApiContractMeta()`, `buildReadOnlyApiQueryContractMeta()` — pure, deterministic envelope builders
+- `sanitizeReceivedValue()` — redacts secrets, URLs, and truncates long values in error details
+- 11 `PHASE_22_ENDPOINT_CONTRACTS` — per-endpoint descriptors with method, queryParams, supportsQuery
+- `LocalReadOnlyApiCapabilities` extended: `canServeResponseEnvelopes: true`, `canReturnErrorEnvelopes: true`, `canValidateQueryErrors: true`, `canProvideDeterministicMetadata: true`, `canProvideEndpointContracts: true`
+- All Phase 21 query/filter/sort/pagination metadata preserved in `meta` for queryable endpoints
+- 446 new Phase 22 tests; **3751 total tests** (28 test files)
 
 ## Features (Phase 21 — adds to Phase 20)
 
@@ -368,7 +383,7 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 ## Commands
 
 ```sh
-pnpm test        # run tests (3305 passing as of Phase 21)
+pnpm test        # run tests (3751 passing as of Phase 22)
 pnpm lint        # lint all packages
 pnpm typecheck   # type check all packages
 pnpm build       # build all packages
