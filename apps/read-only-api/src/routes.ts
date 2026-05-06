@@ -1,9 +1,10 @@
 /**
  * apps/read-only-api/src/routes.ts
  *
- * Phase 20 — Local Read-Only API route registration.
+ * Phase 21 — Local Read-Only API route registration (extends Phase 20).
  *
  * Registers GET-only read-only routes on the Fastify instance.
+ * Phase 21: passes query parameters to handlers for filter/sort/pagination.
  * All routes return deterministic fixture/contract data.
  * No POST/PUT/PATCH/DELETE handlers.
  * No mutations. No live data. No network calls.
@@ -39,6 +40,10 @@ import {
  *   GET /dashboard/evaluation
  *   GET /dashboard/evidence
  *   GET /dashboard/safety
+ *
+ * Phase 21: /dashboard, /dashboard/evidence, /dashboard/safety accept
+ * optional query params: limit, offset, cursor, severity, panel, sourceKind,
+ * classification, status, sortBy, sortDirection.
  */
 export async function registerReadOnlyApiRoutes(app: FastifyInstance): Promise<void> {
   app.get('/health', async () => handleHealth());
@@ -49,7 +54,7 @@ export async function registerReadOnlyApiRoutes(app: FastifyInstance): Promise<v
 
   app.get('/contracts/openapi-shape', async () => handleContractsOpenApiShape());
 
-  app.get('/dashboard', async () => handleDashboard());
+  app.get('/dashboard', async req => handleDashboard(req.query));
 
   app.get('/dashboard/overview', async () => handleDashboardOverview());
 
@@ -59,7 +64,7 @@ export async function registerReadOnlyApiRoutes(app: FastifyInstance): Promise<v
 
   app.get('/dashboard/evaluation', async () => handleDashboardEvaluation());
 
-  app.get('/dashboard/evidence', async () => handleDashboardEvidence());
+  app.get('/dashboard/evidence', async req => handleDashboardEvidence(req.query));
 
-  app.get('/dashboard/safety', async () => handleDashboardSafety());
+  app.get('/dashboard/safety', async req => handleDashboardSafety(req.query));
 }

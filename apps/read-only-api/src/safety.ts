@@ -142,6 +142,12 @@ export function validateLocalReadOnlyApiCapabilities(
     return lroApiErr('INVALID_LRO_API_INPUT', 'canServeReadOnlyContracts must be true');
   if (caps.canServeFixtureReadModels !== true)
     return lroApiErr('INVALID_LRO_API_INPUT', 'canServeFixtureReadModels must be true');
+  if (caps.canFilterFixtureData !== true)
+    return lroApiErr('INVALID_LRO_API_INPUT', 'canFilterFixtureData must be true');
+  if (caps.canPaginateFixtureData !== true)
+    return lroApiErr('INVALID_LRO_API_INPUT', 'canPaginateFixtureData must be true');
+  if (caps.canSortFixtureData !== true)
+    return lroApiErr('INVALID_LRO_API_INPUT', 'canSortFixtureData must be true');
   if (caps.fixtureOnly !== true)
     return lroApiErr('FIXTURE_ONLY_REQUIRED', 'fixtureOnly must be true');
   if (caps.analysisOnly !== true)
@@ -231,4 +237,75 @@ export function validateLocalReadOnlyApiSafety(
     return validateLocalReadOnlyApiCapabilities(value as LocalReadOnlyApiCapabilities);
   }
   return validateLroApiSafetyMeta(value as LroApiSafetyMeta);
+}
+
+// ─── Phase 21 — Query/filter/pagination/result safety validator ───────────────
+
+/**
+ * Validates query, filter, pagination, sort, and result safety invariants.
+ *
+ * Checks:
+ *   - All safety flags are correct
+ *   - No unsafe field paths
+ *   - No unsafe text in sort/filter fields
+ *   - No live data, no external lookups
+ */
+export function validateReadOnlyApiQuerySafety(
+  value: unknown,
+): LroApiResult<unknown> {
+  if (value === null || value === undefined) {
+    return lroApiErr('INVALID_LRO_API_INPUT', 'value must not be null or undefined');
+  }
+
+  if (typeof value !== 'object' || Array.isArray(value)) {
+    return lroApiErr('INVALID_LRO_API_INPUT', 'value must be an object');
+  }
+
+  const obj = value as Record<string, unknown>;
+
+  // Validate safety flags if present
+  if ('fixtureOnly' in obj && obj['fixtureOnly'] !== true) {
+    return lroApiErr('FIXTURE_ONLY_REQUIRED', 'fixtureOnly must be true');
+  }
+  if ('liveData' in obj && obj['liveData'] !== false) {
+    return lroApiErr('LIVE_DATA_FORBIDDEN', 'liveData must be false');
+  }
+  if ('safeToDisplay' in obj && obj['safeToDisplay'] !== true) {
+    return lroApiErr('SAFE_TO_DISPLAY_REQUIRED', 'safeToDisplay must be true');
+  }
+  if ('analysisOnly' in obj && obj['analysisOnly'] !== true) {
+    return lroApiErr('ANALYSIS_ONLY_REQUIRED', 'analysisOnly must be true');
+  }
+  if ('nonExecutable' in obj && obj['nonExecutable'] !== true) {
+    return lroApiErr('NON_EXECUTABLE_REQUIRED', 'nonExecutable must be true');
+  }
+  if ('readOnly' in obj && obj['readOnly'] !== true) {
+    return lroApiErr('READ_ONLY_REQUIRED', 'readOnly must be true');
+  }
+  if ('localOnly' in obj && obj['localOnly'] !== true) {
+    return lroApiErr('LOCAL_ONLY_REQUIRED', 'localOnly must be true');
+  }
+
+  // Check string fields for unsafe content
+  for (const [key, val] of Object.entries(obj)) {
+    if (typeof val === 'string') {
+      if (containsSecretPattern(val)) {
+        return lroApiErr('UNSAFE_CONTENT_DETECTED', `field '${key}' contains secret-like content`);
+      }
+      if (containsUrlPattern(val)) {
+        return lroApiErr('UNSAFE_CONTENT_DETECTED', `field '${key}' contains URL-like content`);
+      }
+      // Action text check only on label/decision/advice fields
+      if (['label', 'advice', 'decision', 'action', 'recommendation'].includes(key)) {
+        if (containsUnsafeActionText(val)) {
+          return lroApiErr(
+            'UNSAFE_ACTION_TEXT_DETECTED',
+            `field '${key}' contains unsafe action text`,
+          );
+        }
+      }
+    }
+  }
+
+  return lroApiOk(value);
 }

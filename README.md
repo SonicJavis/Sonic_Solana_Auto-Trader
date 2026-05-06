@@ -1,8 +1,22 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 20 — Local Read-Only API Shell v1**
+**Phase 21 — Local Read-Only API Query, Filter, and Pagination v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 20.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 21.
+
+## Features (Phase 21 — adds to Phase 20)
+
+- Phase 21 enhances `apps/read-only-api` with safe, deterministic, fixture-only query parsing, filtering, sorting, and pagination helpers
+- `parseReadOnlyApiQuery(input)` — safe query parser; accepts unknown input; deterministic defaults; rejects unsafe text, URLs, secrets, action terms, arbitrary fields, SQL patterns
+- `buildReadOnlyApiPagination(input)` — validates limit/offset/cursor; enforces max limit (100), default (25); rejects negatives, NaN, Infinity
+- `applyReadOnlyApiFilters(items, query)` — in-memory enum-safe filtering by severity, panel, sourceKind, classification, status; does not mutate input arrays
+- `applyReadOnlyApiSorting(items, query)` — in-memory sorting by explicit allowed fields only; does not mutate input arrays
+- `applyReadOnlyApiPagination(items, pagination)` — safe limit/offset/cursor slicing; does not mutate input arrays
+- `buildReadOnlyApiQueryResult(items, query)` — filter→sort→paginate pipeline with full safety metadata
+- `LocalReadOnlyApiCapabilities` extended: `canFilterFixtureData: true`, `canPaginateFixtureData: true`, `canSortFixtureData: true`
+- `GET /dashboard`, `GET /dashboard/evidence`, `GET /dashboard/safety` now accept optional query params
+- Response `queryMeta` with pagination info (totalCount, resultCount, hasMore, nextCursor), applied filters, and sort metadata
+- 255 new Phase 21 tests; **3305 total tests** (27 test files)
 
 ## Features (Phase 20 — adds to Phase 19)
 
@@ -15,7 +29,7 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 - 11 safe GET endpoints: `/health`, `/capabilities`, `/contracts`, `/contracts/openapi-shape`, `/dashboard`, `/dashboard/overview`, `/dashboard/replay`, `/dashboard/strategy`, `/dashboard/evaluation`, `/dashboard/evidence`, `/dashboard/safety`
 - All responses include safety metadata: `fixtureOnly: true`, `liveData: false`, `safeToDisplay: true`, `analysisOnly: true`, `nonExecutable: true`, `readOnly: true`, `localOnly: true`
 - `apps/read-only-api` depends on `@sonic/read-only-api-contracts` (Phase 19) and `@sonic/dashboard-read-models` (Phase 18)
-- 233 new Phase 20 tests; **3050 total tests** (26 test files)
+- 233 new Phase 20 tests; **3050 total tests as of Phase 20** (26 test files)
 
 - New `packages/read-only-api-contracts` — safe, fixture-only, read-only, analysis-only, non-executable, contract-only local API boundary contract models (no API server, no HTTP listener, no network port, no Fastify/Hono/tRPC/Express, no Solana SDK, no provider SDK, no network, no wallet, no private keys, no trading, no execution, no real trade intents, no execution plans, no evidence mutation, no UI rendering)
 - **IMPORTANT: `ReadOnlyApiContracts` are NOT an API server, HTTP listener, UI, or trading system** — they are fixture-only, contract-only TypeScript models describing future API boundary contracts
@@ -354,7 +368,7 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 ## Commands
 
 ```sh
-pnpm test        # run tests (1148 passing as of Phase 7E)
+pnpm test        # run tests (3305 passing as of Phase 21)
 pnpm lint        # lint all packages
 pnpm typecheck   # type check all packages
 pnpm build       # build all packages

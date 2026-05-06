@@ -336,3 +336,17 @@
 268. **Phase 20**: No endpoint returns raw `Error` objects or stack traces
 269. **Phase 20**: `validateLocalReadOnlyApiSafety()` rejects unsafe capability flags, external bind hosts, and invalid safety metadata
 270. **Phase 20**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/execution commands.
+
+## Phase 21 Additional Safety Rules
+
+271. **Phase 21**: Read-only API query/filter/pagination is **localhost-only, GET-only, fixture-only, analysis-only, non-executable, read-only** — query/filter/pagination operates only on in-memory fixture data; no external queries, no live data, no database reads
+272. **Phase 21**: Query/filter/pagination **cannot create trade intents, execution plans, paper trades, live data, action decisions, UI rendering, transactions, orders, fills, routes, swaps, positions, or PnL** — all such capability flags remain permanently `false`
+273. **Phase 21**: Query/filter/pagination **cannot bind external interfaces** — bind host remains `127.0.0.1` only; `0.0.0.0`, `::`, `localhost`, and external hostnames are rejected
+274. **Phase 21**: Query/filter/pagination **cannot use providers, RPC, wallets, external APIs, arbitrary query languages, SQL-like filters, or script-like query expressions** — only explicit bounded enum values are accepted
+275. **Phase 21**: `parseReadOnlyApiQuery` rejects arbitrary field paths, unsafe text (action terms, secrets, URLs), SQL-like strings, eval-like expressions, path traversal strings, and unknown sort fields
+276. **Phase 21**: `applyReadOnlyApiFilters`, `applyReadOnlyApiSorting`, `applyReadOnlyApiPagination` **never mutate input arrays** — all operations return new arrays only
+277. **Phase 21**: Cursor values are opaque base64url-encoded offsets — no external lookups, no arbitrary cursor expressions; invalid or unsafe cursors are rejected
+278. **Phase 21**: Sort fields are explicitly bounded — only `id`, `severity`, `sourceKind`, `classification`, `createdAt`, `label`, `status`, `panel` are allowed; arbitrary field paths, nested paths, and computed expressions are rejected
+279. **Phase 21**: Three new safe capability fields added: `canFilterFixtureData: true`, `canPaginateFixtureData: true`, `canSortFixtureData: true` — all remain fixture-only and read-only
+280. **Phase 21**: `validateReadOnlyApiQuerySafety` rejects unsafe safety flags, secret patterns, URL patterns, and unsafe action text in labelled fields
+281. **Phase 21**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/execution commands.
