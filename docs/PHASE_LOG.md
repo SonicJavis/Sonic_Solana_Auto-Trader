@@ -1,5 +1,46 @@
 # Phase Log
 
+## Phase 19 — Local Read-Only API Contracts v1
+
+- New `packages/read-only-api-contracts` package: safe, deterministic, fixture-only, read-only, analysis-only, non-executable, contract-only local API boundary contract models
+- `ReadOnlyApiCapabilities` — all 21 unsafe fields permanently `false`; `fixtureOnly: true`, `analysisOnly: true`, `nonExecutable: true`, `readOnly: true`, `contractOnly: true`; `canStartHttpServer: false`, `canOpenNetworkPort: false`, `canUseApiFramework: false` permanently
+- `ReadOnlyApiSeverity` — 5 analysis-only severity levels: `info`, `warning`, `risk`, `failure`, `inconclusive`
+- `ReadOnlyApiEndpointId` — 9 documentation-shaped endpoint identifiers
+- `ReadOnlyApiEndpointMethod` — `GET` only (contract metadata, no HTTP handler)
+- `ReadOnlyApiEndpointContract` — documentation-shaped endpoint contract descriptor; no router, no server, no handler
+- `ReadOnlyApiRequestModel` — safe request model; no HTTP transport, no runtime binding
+- `ReadOnlyApiResponseEnvelope<T>` — deterministic response envelope with status, data, warnings, errors, metadata, safety fields; no stack traces, no raw Error objects
+- `ReadOnlyApiHealthContract` — fixture-only health contract; no runtime health checks, no network checks
+- `ReadOnlyDashboardContract` — shapes Dashboard Read Models into safe API contract model; no UI rendering, no live data
+- `ReadOnlyEvidenceContract` — shapes Evidence Ledger outputs into safe API contract model; append-safe/read-only
+- `ReadOnlySafetyContract` — summarises locked capabilities; all unsafe flags false; `lockedCapabilityNames` includes HTTP server/port/framework locks
+- `ReadOnlyApiContractBundle` — combined safe bundle of all contract models
+- `ReadOnlyApiContractExport` — deterministic JSON-safe export wrapper
+- `ReadOnlyApiOpenApiShape` — OpenAPI-like documentation shape; for planning only; no live server config; no real URLs; Fastify/Hono/tRPC/Express integration marked future only
+- `ReadOnlyApiContractFixture` — named deterministic fixture for test/review use
+- `RoacResult<T>`, `roacOk`, `roacErr`, `ReadOnlyApiContractError`, `ReadOnlyApiContractErrorCode` — safe result/error pattern (never throws for normal validation failures)
+- `getReadOnlyApiCapabilities` — permanently-safe capabilities guard
+- `buildReadOnlyApiEndpointContracts` — deterministic 9-endpoint contract list (health, capabilities, dashboard_overview, dashboard_bundle, replay_panel, strategy_panel, evaluation_panel, evidence_panel, safety_panel)
+- `buildReadOnlyApiRequestModel` — safe request model builder
+- `buildReadOnlyApiResponseEnvelope` — deterministic response envelope builder
+- `buildReadOnlyApiHealthContract` — safe health contract builder (fixture-only, no runtime checks)
+- `buildReadOnlyDashboardContract` — shapes dashboard inputs into safe API contract model
+- `buildReadOnlyEvidenceContract` — shapes evidence inputs into safe API contract model
+- `buildReadOnlySafetyContract` — safe safety contract builder with all locked capabilities
+- `buildReadOnlyApiContractBundle` — combines all contracts into one safe bundle
+- `exportReadOnlyApiContractJson` — deterministic JSON export with sorted arrays
+- `exportReadOnlyApiContractOpenApiShape` — deterministic OpenAPI-like documentation shape with sorted paths
+- `validateReadOnlyApiCapabilities`, `validateReadOnlyApiHealthContract`, `validateReadOnlyDashboardContract`, `validateReadOnlyEvidenceContract`, `validateReadOnlySafetyContract`, `validateReadOnlyApiContractBundle` — full safety invariant validators
+- `containsUnsafeActionText`, `containsSecretPattern`, `containsUrlPattern`, `containsServerPattern`, `isDisplaySafe` — text safety helpers (adds HTTP server/listener/port pattern rejection)
+- 6 deterministic synthetic fixtures + `ALL_READ_ONLY_API_CONTRACT_FIXTURES`: CLEAN, DEGRADED, FAILED, INCONCLUSIVE, MIXED, REGRESSION
+- `docs/READ_ONLY_API_CONTRACTS.md` documentation
+- Phase 19 test suite: 226 new tests (2817 total, all passing)
+- No API server. No HTTP server. No HTTP listener. No open network port. No Fastify. No Hono. No tRPC. No Express. No API framework runtime. No live data. No Solana RPC. No provider APIs. No wallet/private key handling. No trade intents. No execution plans. No paper trading. No trade execution. No orders. No fills. No routes. No swaps. No positions. No PnL. No transaction construction/simulation/signing/sending. No evidence mutation. No UI rendering.
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram trade commands
+
+**Next phase guidance:** Phase 20 may build a real local API server using Fastify, Hono, or tRPC **only after** explicit sign-off, safety evidence review, and all Phase 13–19 gates are stable. The API contracts defined in Phase 19 provide the contract baseline for that future server. Do not start Phase 20 without explicit sign-off. Live data, wallet access, trading, execution, evidence mutation, and HTTP server startup remain permanently forbidden until each gate is explicitly cleared.
+
 ## Phase 18 — Evidence Review Dashboard Read Models v1
 
 - New `packages/dashboard-read-models` package: safe, deterministic, fixture-only, read-only, analysis-only, non-executable dashboard read model layer above Evidence Ledger
