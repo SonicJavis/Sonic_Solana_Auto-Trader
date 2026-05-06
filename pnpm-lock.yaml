@@ -245,6 +245,19 @@ importers:
         specifier: '*'
         version: 5.9.3
 
+  packages/strategy-intent:
+    dependencies:
+      '@sonic/replay-lab':
+        specifier: workspace:*
+        version: link:../replay-lab
+      '@sonic/replay-reporting':
+        specifier: workspace:*
+        version: link:../replay-reporting
+    devDependencies:
+      typescript:
+        specifier: '*'
+        version: 5.9.3
+
   packages/testing:
     dependencies:
       '@sonic/db':

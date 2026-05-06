@@ -458,3 +458,33 @@
 - No Solana RPC. No Pump SDK runtime integration. No transaction instruction building. No transaction construction. No simulation. No signing. No sending. No wallet/private key handling. No live trading. No Jito.
 - FULL_AUTO and LIMITED_LIVE remain locked
 - No new Telegram trade/quote commands
+
+## Phase 15 — Strategy Intent Model v1
+
+- New `packages/strategy-intent` package: fixture-only, analysis-only, non-executable strategy intent model layer above Replay Lab and Replay Reporting; no Solana SDK, no provider SDK, no network, no wallet, no trading, no execution, no real trade intents, no execution plans
+- `StrategyIntentCapabilities` — all 13 unsafe fields permanently `false`; `fixtureOnly: true`, `analysisOnly: true`, `nonExecutable: true`
+- `StrategyFamily` — 7 safe analysis-only family labels: `defensive_new_launch_filter`, `creator_leaderboard_review`, `wallet_cluster_review`, `manipulation_avoidance_review`, `replay_regression_review`, `insufficient_evidence_review`, `fixture_only_review`
+- `StrategyEvidenceQuality` — 6 evidence quality values: strong/moderate/weak/degraded/failed/inconclusive fixture evidence
+- `StrategyIntentClassification` — 5 non-actionable analysis labels: `reject`, `watch_only`, `analysis_only`, `insufficient_evidence`, `fixture_only`
+- `StrategySafetyGate` / `StrategySafetyGateStatus` — 9 analysis-only safety gates (none trigger actions): fixture_only_gate, live_data_forbidden_gate, execution_forbidden_gate, trade_intent_forbidden_gate, paper_trading_forbidden_gate, wallet_forbidden_gate, provider_forbidden_gate, reporting_safety_gate, evidence_quality_gate
+- `StrategyIntentRationale` — non-actionable rationale: summary, evidenceNotes, safetyNotes, limitationNotes, reviewNotes
+- `StrategyIntentFinding` — analysis-only findings with severity: info/warning/risk/failure/inconclusive
+- `StrategyIntent` — core analysis model; analysis-only, non-executable; carries all safety flags
+- `SiResult<T>`, `siOk`, `siErr`, `StrategyIntentError`, `StrategyIntentErrorCode` — safe result/error pattern
+- `getStrategyIntentCapabilities()` — permanently-safe capabilities guard
+- `classifyStrategyFamily(input)` — deterministic family classification from fixture-only input
+- `assessStrategyEvidence(input)` — evidence quality assessment with confidence scoring
+- `buildStrategySafetyGates(input, quality)` — 9 analysis-only safety gates
+- `buildStrategyIntentRationale(input, family, quality, classification)` — non-actionable rationale builder
+- `buildStrategyIntent(input)` — full intent builder; rejects liveData=true and fixtureOnly=false
+- `validateStrategyIntent(intent)` — validates all safety invariants; rejects unsafe action text, secrets, URLs
+- `validateStrategyIntentCapabilities(caps)` — validates capability flags
+- `containsUnsafeActionText`, `containsSecretPattern`, `containsUrlPattern`, `isDisplaySafe` — text safety helpers
+- 6 deterministic synthetic fixtures + `ALL_STRATEGY_INTENT_FIXTURES` array: CLEAN, DEGRADED_CREATOR, DEGRADED_WALLET, FAILED_MANIPULATION, INCONCLUSIVE, REGRESSION
+- `docs/STRATEGY_INTENT.md` documentation
+- Phase 15 test suite: 206 new tests (1956 total, all passing)
+- **No live data. No Solana RPC. No provider APIs. No wallet handling. No trade intents. No execution plans. No paper trading. No trade execution. No transaction construction. No transaction simulation. No signing. No sending.**
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram trade commands
+
+**Next phase guidance:** Phase 16 may build a paper trading replay harness or a live-gated readiness accumulator, but must first demonstrate stable, reproducible Phase 15 fixture evidence across multiple replay runs. Do not start Phase 16 without explicit sign-off. Live data, wallet access, trading, execution, and real trade intents remain forbidden until proven safe through gated evidence review.

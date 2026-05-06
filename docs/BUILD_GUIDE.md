@@ -518,3 +518,37 @@ pnpm test
 
 ## Phase 14: Test count
 1750 passing tests (150 new Phase 14 tests + 1600 regression tests). 20 test files.
+
+## Phase 15: Strategy Intent Model v1
+
+### New package: `@sonic/strategy-intent`
+
+```bash
+pnpm --filter @sonic/strategy-intent build
+```
+
+### Validation commands
+
+```bash
+pnpm install           # install/update workspace
+pnpm typecheck         # TypeScript type checking
+pnpm lint              # ESLint with max-warnings 0
+pnpm test              # run all 1956 tests
+```
+
+### Safe usage notes
+
+- `@sonic/strategy-intent` is **fixture-only, analysis-only, non-executable**
+- Import only via the package barrel: `import { ... } from '@sonic/strategy-intent'`
+- **StrategyIntent is NOT a real trade intent** — it is an internal analysis model for human review only
+- Always validate outputs with `validateStrategyIntent()` before use
+- Never interpret `StrategyFamily` or `StrategyIntentClassification` values as trade signals
+- All inputs must have `fixtureOnly: true` and `liveData: false`
+- Capabilities guard (`getStrategyIntentCapabilities()`) always returns all unsafe flags as `false`
+
+### PR workflow reminder
+
+- Work on feature branches only (e.g. `copilot/phase-15-*`)
+- Never commit directly to `main`
+- Never merge PRs locally — use the GitHub PR workflow only
+- Run `pnpm typecheck && pnpm lint && pnpm test` before pushing

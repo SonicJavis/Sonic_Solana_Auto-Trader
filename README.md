@@ -1,8 +1,25 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 14 — Replay Reporting and Edge Diagnostics v1**
+**Phase 15 — Strategy Intent Model v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 14.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 15.
+
+## Features (Phase 15 — adds to Phase 14)
+
+- New `packages/strategy-intent` — fixture-only, analysis-only, non-executable strategy intent model layer above Replay Lab and Replay Reporting (no Solana SDK, no provider SDK, no network, no wallet, no private keys, no trading, no execution, no real trade intents, no execution plans)
+- **IMPORTANT: `StrategyIntent` is NOT a real trade intent** — it is an internal analysis model only for human review
+- `StrategyIntentCapabilities` — all 13 unsafe flags permanently `false`; `fixtureOnly: true`, `analysisOnly: true`, `nonExecutable: true`
+- `StrategyFamily` — 7 analysis-only family classification labels (no buy/sell/execute wording)
+- `StrategyEvidenceQuality` — 6 fixture evidence quality levels: strong/moderate/weak/degraded/failed/inconclusive
+- `StrategyIntentClassification` — 5 non-actionable analysis labels: `reject`, `watch_only`, `analysis_only`, `insufficient_evidence`, `fixture_only`
+- `buildStrategySafetyGates()` — 9 analysis-only safety gates (none trigger actions)
+- `buildStrategyIntentRationale()` — non-actionable rationale with evidence, safety, limitation, and review notes
+- `buildStrategyIntent()` — full fixture-only intent builder; rejects liveData=true and fixtureOnly=false
+- `validateStrategyIntent()` — validates all safety invariants; rejects unsafe text, secrets, URLs
+- 6 deterministic synthetic fixtures: CLEAN, DEGRADED_CREATOR, DEGRADED_WALLET, FAILED_MANIPULATION, INCONCLUSIVE, REGRESSION
+- 206 new tests in `tests/phase15.test.ts` — **1956 passing** (21 test files)
+- **Analysis-only, non-executable** — StrategyIntent outputs never recommend or enable trading
+- See [docs/STRATEGY_INTENT.md](./docs/STRATEGY_INTENT.md) for full details
 
 ## Features (Phase 14 — adds to Phase 13)
 

@@ -17,6 +17,7 @@ Monorepo with pnpm workspaces.
 - `manipulation-detector`: Local bundle/manipulation detector models, deterministic component scoring (bundle risk, wash trade, coordination, funding pattern, creator link), risk flags, classification, 8 synthetic fixture groups, manipulation detector engine (Phase 11 — no network, no Solana RPC, no provider APIs, no live bundle detection, no live wash-trade detection, no enforcement actions, no trade intents, no execution)
 - `replay-lab`: Local deterministic replay lab model layer; replays synthetic fixture scenarios across the intelligence stack; 8 fixture scenarios, step/scenario/run/comparison models, deterministic verdict engine, regression comparison utilities (Phase 13 — no network, no Solana RPC, no provider APIs, no live data, no trade intents, no execution plans, no paper trading, no trade execution)
 - `replay-reporting`: Read-only, fixture-only, analysis-only reporting and diagnostics layer on top of Replay Lab; scenario indexing, run reports, comparison reports, diagnostics, JSON/Markdown export (Phase 14 — no network, no Solana RPC, no provider APIs, no live data, no trade intents, no execution plans, no paper trading, no trade execution, no database writes)
+- `strategy-intent`: Fixture-only, analysis-only, non-executable strategy intent model layer above Replay Lab and Replay Reporting; classifies fixture evidence into strategy families, evidence quality, safety gates, rationale, and StrategyIntent outputs (Phase 15 — no network, no Solana RPC, no provider APIs, no live data, no real trade intents, no execution plans, no paper trading, no trade execution, no transactions)
 - `state`: Safe read models for system, config, mode, audit, worker, health readiness, Phase 7E Event Engine/provider readiness + Phase 8 readiness gate, and Phase 8 Token Intelligence static status
 - `testing`: Shared test utilities
 
@@ -335,3 +336,37 @@ packages/pump-adapter/src/
 - All errors carry `safeToDisplay: true` — no raw secrets, no stack traces, no RPC URLs
 - FULL_AUTO and LIMITED_LIVE remain locked
 - No new Telegram trade/quote commands
+
+## Phase 15: Strategy Intent Model v1
+
+```
+packages/strategy-intent/src/
+  types.ts           — StrategyIntentCapabilities, StrategyFamily, StrategyEvidenceQuality,
+                       StrategyIntentClassification, StrategySafetyGate, StrategyIntentRationale,
+                       StrategyIntentFinding, StrategyIntent, StrategyIntentInput, StrategyIntentFixture
+  errors.ts          — SiResult<T>, siOk, siErr, StrategyIntentError, StrategyIntentErrorCode
+  capabilities.ts    — getStrategyIntentCapabilities() — all unsafe flags false
+  evidence.ts        — assessStrategyEvidence() — fixture-only evidence quality assessment
+  strategy-family.ts — classifyStrategyFamily() — fixture-only family classification
+  safety-gates.ts    — buildStrategySafetyGates() — 9 analysis-only safety gates
+  rationale.ts       — buildStrategyIntentRationale() — non-actionable rationale builder
+  intent-builder.ts  — buildStrategyIntent() — full fixture-only intent builder
+  validation.ts      — validateStrategyIntent(), validateStrategyIntentCapabilities(), text helpers
+  fixtures.ts        — 6 deterministic synthetic StrategyIntentFixture objects
+  index.ts           — public API barrel
+```
+
+Architecture layer:
+```
+Replay Lab (@sonic/replay-lab)
+  → Replay Reporting (@sonic/replay-reporting)
+    → Strategy Intent (@sonic/strategy-intent)   ← read-only, analysis-only
+      → [human review only — no execution path]
+```
+
+`@sonic/strategy-intent` is a read-only layer. It imports from `@sonic/replay-lab` and `@sonic/replay-reporting` only. It exports fixture-only, analysis-only, non-executable `StrategyIntent` models for human review.
+
+**StrategyIntent is NOT a real trade intent.** It does not enable or recommend trading.
+
+No Solana SDK. No provider SDK. No network. No wallet. No execution. No real trade intents.
+`FULL_AUTO` and `LIMITED_LIVE` remain locked.

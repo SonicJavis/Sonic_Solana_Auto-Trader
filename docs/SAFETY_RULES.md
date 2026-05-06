@@ -215,3 +215,20 @@
 167. **Phase 14**: JSON exports validate all string values before export — unsafe content causes a safe typed error, never a thrown exception
 168. **Phase 14**: `ReplayDiagnosticSeverity` values are analysis-only: `info`, `warning`, `risk`, `failure`, `inconclusive` — no action-oriented severity names
 169. **Phase 14**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/execution commands.
+
+## Phase 15 Additional Safety Rules
+
+170. **Phase 15**: `packages/strategy-intent` has no dependencies on Solana SDK, Pump SDK, Helius SDK, WebSocket clients, Yellowstone/Geyser packages, wallet libraries, RPC providers, or any app packages — only `@sonic/replay-lab` and `@sonic/replay-reporting`
+171. **Phase 15**: All `StrategyIntentCapabilities` unsafe fields are permanently `false`: `canUseLiveData`, `canUseSolanaRpc`, `canUseProviderApis`, `canAccessPrivateKeys`, `canCreateTradeIntents`, `canCreateExecutionPlans`, `canPaperTrade`, `canTrade`, `canExecute`, `canWriteToDatabase`, `canSendTelegramAlerts`, `canConstructTransactions`, `canSimulateTransactions`
+172. **Phase 15**: `StrategyIntent` is **analysis-only and non-executable** — it is NOT a real trade intent; it does not create real trade intents, execution plans, or paper trades
+173. **Phase 15**: `StrategyIntent` **cannot create real trade intents** — the name "StrategyIntent" refers to an internal analysis model only; no `tradeIntent` or `createTradeIntent` field is present
+174. **Phase 15**: `StrategyIntent` **cannot create execution plans** — no `executionPlan` or `createExecutionPlan` field in any output
+175. **Phase 15**: `StrategyIntent` **cannot use live data** — all outputs carry `liveData: false`; all inputs must have `liveData: false` and `fixtureOnly: true`
+176. **Phase 15**: `StrategyIntent` **cannot recommend action decisions** — outputs are fixture evidence review aids only; no buy, sell, execute, snipe, copy, or auto-trade wording is permitted
+177. **Phase 15**: `StrategyIntent` **cannot trigger paper or live trading** — no paper trading, no live trading, no execution path exists
+178. **Phase 15**: `StrategyIntent` **cannot construct, simulate, sign, or send transactions** — `canConstructTransactions: false` and `canSimulateTransactions: false` are permanently enforced
+179. **Phase 15**: All `StrategyIntent` outputs carry `fixtureOnly: true`, `liveData: false`, `safeToDisplay: true`, `analysisOnly: true`, `nonExecutable: true` — these are not configurable
+180. **Phase 15**: `validateStrategyIntent()` rejects any string containing unsafe action text (buy, sell, execute, snipe, copy trade, etc.), secret-like patterns, or URL/RPC-like patterns
+181. **Phase 15**: All `StrategySafetyGate` outputs are analysis-only summaries — no gate triggers any action or side effect
+182. **Phase 15**: `StrategyFamily` labels and `StrategyIntentClassification` values are analysis labels only — no value implies permission to trade
+183. **Phase 15**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/execution commands.
