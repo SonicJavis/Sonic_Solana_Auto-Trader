@@ -33,6 +33,7 @@ export default defineConfig({
       '@sonic/evidence-ledger': resolve(__dirname, 'packages/evidence-ledger/src/index.ts'),
       '@sonic/dashboard-read-models': resolve(__dirname, 'packages/dashboard-read-models/src/index.ts'),
       '@sonic/read-only-api-contracts': resolve(__dirname, 'packages/read-only-api-contracts/src/index.ts'),
+      '@sonic/read-only-api': resolve(__dirname, 'apps/read-only-api/src/index.ts'),
     },
   },
 });

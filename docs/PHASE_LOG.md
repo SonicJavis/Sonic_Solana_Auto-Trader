@@ -1,5 +1,32 @@
 # Phase Log
 
+## Phase 20 — Local Read-Only API Shell v1
+
+- New `apps/read-only-api` app: localhost-only, GET-only, fixture-only, read-only, analysis-only, non-executable Fastify API shell
+- `LocalReadOnlyApiCapabilities` — all 19 unsafe fields permanently `false`; `canStartLocalhostServer: true` (127.0.0.1 only), `canServeReadOnlyContracts: true`, `canServeFixtureReadModels: true`; `fixtureOnly: true`, `analysisOnly: true`, `nonExecutable: true`, `readOnly: true`, `localOnly: true`
+- `LocalReadOnlyApiConfig` — host must be `127.0.0.1`; default port `3140`; rejects `0.0.0.0`, `::`, `localhost`, empty, external hostnames, URL-looking strings, RPC endpoints, unsafe ports
+- `LroApiSafetyMeta` — safety metadata in every response: `fixtureOnly: true`, `liveData: false`, `safeToDisplay: true`, `analysisOnly: true`, `nonExecutable: true`, `readOnly: true`, `localOnly: true`
+- `LroApiResponseEnvelope<T>` — deterministic response envelope with status, data, warnings, errors, meta, generatedAt; no stack traces, no raw Error objects
+- `LroApiResult<T>`, `lroApiOk`, `lroApiErr`, `LocalReadOnlyApiError`, `LocalReadOnlyApiErrorCode` — safe result/error pattern (never throws for normal validation failures)
+- `getLocalReadOnlyApiCapabilities` — permanently-safe capabilities guard
+- `createReadOnlyApiConfig` — safe config builder; enforces 127.0.0.1 and valid port before any server creation
+- `createReadOnlyApiApp` — Fastify app factory; does NOT auto-listen; registers only safe GET-only routes; for use with inject() in tests
+- `registerReadOnlyApiRoutes` — registers 11 GET-only routes: `/health`, `/capabilities`, `/contracts`, `/contracts/openapi-shape`, `/dashboard`, `/dashboard/overview`, `/dashboard/replay`, `/dashboard/strategy`, `/dashboard/evaluation`, `/dashboard/evidence`, `/dashboard/safety`
+- `buildReadOnlyApiResponse` — deterministic response envelope builder with safety metadata
+- `validateLocalReadOnlyApiSafety`, `validateLocalReadOnlyApiCapabilities`, `validateLocalReadOnlyApiConfig`, `validateLroApiSafetyMeta` — full safety invariant validators
+- `containsUnsafeActionText`, `containsSecretPattern`, `containsUrlPattern`, `isDisplaySafe` — text safety helpers
+- `startReadOnlyApiServer` — explicit-only server start; validates config safety before listen; rejects unsafe hosts as final guard; binds only to 127.0.0.1; never auto-starts on import
+- All fixture exports: `LRO_API_CAPABILITIES`, `LRO_API_CONTRACTS_BUNDLE`, `LRO_API_CONTRACTS_JSON`, `LRO_API_CONTRACTS_OPENAPI_SHAPE`, `LRO_API_ALL_CONTRACT_FIXTURES`, `LRO_API_DASHBOARD_FIXTURES`, `LRO_API_PRIMARY_DASHBOARD_FIXTURE`
+- All handler functions: `handleHealth`, `handleCapabilities`, `handleContracts`, `handleContractsOpenApiShape`, `handleDashboard`, `handleDashboardOverview`, `handleDashboardReplay`, `handleDashboardStrategy`, `handleDashboardEvaluation`, `handleDashboardEvidence`, `handleDashboardSafety`
+- `docs/LOCAL_READ_ONLY_API.md` documentation
+- Phase 20 test suite: **233 new tests** (3050 total, all passing)
+- Localhost-only. GET-only. Fixture-only. Read-only. Analysis-only. Non-executable. Local-only.
+- No live data. No Solana RPC. No provider APIs. No wallet/private key handling. No trade intents. No execution plans. No paper trading. No trade execution. No orders. No fills. No routes. No swaps. No positions. No PnL. No transaction construction/simulation/signing/sending. No evidence mutation. No UI rendering. No external network use. No database writes. No Telegram alerts.
+- FULL_AUTO and LIMITED_LIVE remain locked.
+- No new Telegram trade commands.
+
+**Next phase guidance:** Phase 21 may add more sophisticated filtering, query parameters, or pagination to the read-only API, or may begin a read-only React dashboard that consumes the Phase 20 local API — only after explicit sign-off, safety evidence review, and all Phase 13–20 gates are stable. Live data, wallet access, trading, execution, evidence mutation, and external API exposure remain permanently forbidden until each gate is explicitly cleared.
+
 ## Phase 19 — Local Read-Only API Contracts v1
 
 - New `packages/read-only-api-contracts` package: safe, deterministic, fixture-only, read-only, analysis-only, non-executable, contract-only local API boundary contract models
