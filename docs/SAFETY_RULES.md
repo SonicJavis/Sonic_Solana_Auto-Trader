@@ -311,3 +311,28 @@
 246. **Phase 19**: OpenAPI-like shape export is for documentation/planning only — no live server config, no real URLs, all paths marked `contractOnly: true`; Fastify/Hono/tRPC/Express integration is marked **future only**
 247. **Phase 19**: `ReadOnlyApiSeverity` and endpoint contract metadata are analysis-only labels — no value implies permission to trade, execute, or take any action
 248. **Phase 19**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/execution commands.
+
+## Phase 20 Additional Safety Rules
+
+249. **Phase 20**: `apps/read-only-api` is **localhost-only, GET-only, fixture-only, read-only, analysis-only, non-executable** — it is NOT a trading system, live data source, provider connection, or UI
+250. **Phase 20**: `LocalReadOnlyApi` **cannot bind to external interfaces** — bind host must be exactly `127.0.0.1`; `0.0.0.0`, `::`, `localhost`, and all external hostnames/IPs are rejected at config validation and as a final guard before `listen()`
+251. **Phase 20**: All `LocalReadOnlyApiCapabilities` unsafe fields are permanently `false`: `canUseLiveData`, `canUseSolanaRpc`, `canUseProviderApis`, `canAccessPrivateKeys`, `canCreateTradeIntents`, `canCreateExecutionPlans`, `canPaperTrade`, `canTrade`, `canExecute`, `canWriteToDatabase`, `canSendTelegramAlerts`, `canConstructTransactions`, `canSimulateTransactions`, `canCreateOrders`, `canCreatePositions`, `canCalculateLivePnl`, `canMutatePriorEvidence`, `canRenderUi`, `canUseExternalNetwork`
+252. **Phase 20**: `LocalReadOnlyApi` **cannot create trade intents** — `canCreateTradeIntents: false` is permanently enforced; no trade intent, trade decision, auto candidate, or live candidate is produced by any endpoint
+253. **Phase 20**: `LocalReadOnlyApi` **cannot create execution plans** — `canCreateExecutionPlans: false` is permanently enforced; no execution plan, order routing, or transaction plan is produced by any endpoint
+254. **Phase 20**: `LocalReadOnlyApi` **cannot paper trade** — `canPaperTrade: false` is permanently enforced; no simulated trade, virtual trade, or paper position is tracked
+255. **Phase 20**: `LocalReadOnlyApi` **cannot use live data** — all responses include `liveData: false` in safety metadata; no live prices, live balances, or live token data is served
+256. **Phase 20**: `LocalReadOnlyApi` **cannot use Solana RPC** — `canUseSolanaRpc: false` is permanently enforced; no Solana web3.js, helius, yellowstone, geyser, or RPC connection is present
+257. **Phase 20**: `LocalReadOnlyApi` **cannot use provider APIs** — `canUseProviderApis: false` is permanently enforced; no Helius, Yellowstone, Jupiter, Raydium, Pump.fun, Jito, or other provider SDK is imported
+258. **Phase 20**: `LocalReadOnlyApi` **cannot access private keys or wallets** — `canAccessPrivateKeys: false` is permanently enforced; no wallet loading, no keypair, no seed phrase
+259. **Phase 20**: `LocalReadOnlyApi` **cannot construct, simulate, sign, or send transactions** — `canConstructTransactions: false` and `canSimulateTransactions: false` are permanently enforced
+260. **Phase 20**: `LocalReadOnlyApi` **cannot create orders, fills, routes, swaps, positions, or calculate live PnL** — all such capability flags are permanently `false`
+261. **Phase 20**: `LocalReadOnlyApi` **cannot render UI** — `canRenderUi: false` is permanently enforced; no React, web rendering, or browser code
+262. **Phase 20**: `LocalReadOnlyApi` **cannot mutate prior evidence** — `canMutatePriorEvidence: false` is permanently enforced; read-only access to fixture evidence only
+263. **Phase 20**: `LocalReadOnlyApi` **cannot write to database** — `canWriteToDatabase: false` is permanently enforced; no SQLite writes, no DB mutations
+264. **Phase 20**: `LocalReadOnlyApi` **cannot send Telegram alerts** — `canSendTelegramAlerts: false` is permanently enforced; no trade commands, no bot messaging
+265. **Phase 20**: `LocalReadOnlyApi` **cannot use external network** — `canUseExternalNetwork: false` is permanently enforced; no outbound HTTP calls, no WebSocket clients, no external API calls
+266. **Phase 20**: `LocalReadOnlyApi` **does not auto-start** — `createReadOnlyApiApp()` does NOT call `listen()`; `startReadOnlyApiServer()` must be called explicitly
+267. **Phase 20**: All responses carry full safety metadata: `fixtureOnly: true`, `liveData: false`, `safeToDisplay: true`, `analysisOnly: true`, `nonExecutable: true`, `readOnly: true`, `localOnly: true`
+268. **Phase 20**: No endpoint returns raw `Error` objects or stack traces
+269. **Phase 20**: `validateLocalReadOnlyApiSafety()` rejects unsafe capability flags, external bind hosts, and invalid safety metadata
+270. **Phase 20**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/execution commands.

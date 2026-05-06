@@ -1,10 +1,21 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 19 — Local Read-Only API Contracts v1**
+**Phase 20 — Local Read-Only API Shell v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 19.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 20.
 
-## Features (Phase 19 — adds to Phase 18)
+## Features (Phase 20 — adds to Phase 19)
+
+- New `apps/read-only-api` — localhost-only (`127.0.0.1`), GET-only, fixture-only, read-only, analysis-only, non-executable Fastify API shell (no external bind, no live data, no Solana RPC, no provider APIs, no wallet, no private keys, no trading, no execution, no real trade intents, no execution plans, no orders, no swaps, no positions, no PnL, no transactions, no UI rendering, no database writes, no Telegram alerts, no external network use)
+- **IMPORTANT: `LocalReadOnlyApi` is NOT a trading system, live data source, or UI** — it is a localhost-only Fastify API shell serving safe fixture/contract responses for local review only
+- `LocalReadOnlyApiCapabilities` — all 19 unsafe flags permanently `false`; `canStartLocalhostServer: true` (127.0.0.1 only), `canServeReadOnlyContracts: true`, `canServeFixtureReadModels: true`; `fixtureOnly: true`, `analysisOnly: true`, `nonExecutable: true`, `readOnly: true`, `localOnly: true`
+- `createReadOnlyApiConfig()` — enforces 127.0.0.1 host; rejects 0.0.0.0, ::, localhost, external hosts, URLs, RPC endpoints, unsafe ports
+- `createReadOnlyApiApp()` — Fastify app factory; does NOT auto-listen; use inject() for tests
+- `startReadOnlyApiServer()` — explicit-only server start; validates config safety before listen; 127.0.0.1-only
+- 11 safe GET endpoints: `/health`, `/capabilities`, `/contracts`, `/contracts/openapi-shape`, `/dashboard`, `/dashboard/overview`, `/dashboard/replay`, `/dashboard/strategy`, `/dashboard/evaluation`, `/dashboard/evidence`, `/dashboard/safety`
+- All responses include safety metadata: `fixtureOnly: true`, `liveData: false`, `safeToDisplay: true`, `analysisOnly: true`, `nonExecutable: true`, `readOnly: true`, `localOnly: true`
+- `apps/read-only-api` depends on `@sonic/read-only-api-contracts` (Phase 19) and `@sonic/dashboard-read-models` (Phase 18)
+- 233 new Phase 20 tests; **3050 total tests** (26 test files)
 
 - New `packages/read-only-api-contracts` — safe, fixture-only, read-only, analysis-only, non-executable, contract-only local API boundary contract models (no API server, no HTTP listener, no network port, no Fastify/Hono/tRPC/Express, no Solana SDK, no provider SDK, no network, no wallet, no private keys, no trading, no execution, no real trade intents, no execution plans, no evidence mutation, no UI rendering)
 - **IMPORTANT: `ReadOnlyApiContracts` are NOT an API server, HTTP listener, UI, or trading system** — they are fixture-only, contract-only TypeScript models describing future API boundary contracts

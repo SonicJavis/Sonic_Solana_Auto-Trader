@@ -376,3 +376,29 @@ No Solana SDK. No provider SDK. No network. No wallet. No execution. No real tra
 `FULL_AUTO` and `LIMITED_LIVE` remain locked.
 
 - `strategy-evaluation`: Fixture-only, analysis-only, non-executable strategy evaluation report layer above Strategy Intent; aggregates score bands, evidence distribution, safety gate summaries, and family comparisons from StrategyIntent batches; JSON/Markdown export with mandatory safety footer (Phase 16 — no network, no Solana RPC, no provider APIs, no live data, no real trade intents, no execution plans, no orders, no positions, no live PnL, no paper trading, no trade execution, no transactions)
+
+- `read-only-api-contracts` (packages): Fixture-only, read-only, analysis-only, non-executable, contract-only API boundary contract models for future local API planning; no HTTP server, no Fastify, no network ports; all unsafe capabilities false; `canStartHttpServer: false`, `canOpenNetworkPort: false`, `canUseApiFramework: false` permanently (Phase 19)
+
+- `read-only-api` (apps): Localhost-only, GET-only, fixture-only, read-only, analysis-only, non-executable Fastify API shell; binds only to `127.0.0.1`; serves Phase 19 contract fixtures and Phase 18 dashboard read model fixtures through 11 deterministic GET endpoints; `createReadOnlyApiApp()` does NOT auto-listen; all unsafe capabilities false; `canStartLocalhostServer: true` for 127.0.0.1 only (Phase 20)
+
+Architecture layer (Phase 20):
+```
+Replay Lab (@sonic/replay-lab)
+  → Replay Reporting (@sonic/replay-reporting)
+    → Strategy Intent (@sonic/strategy-intent)
+      → Strategy Evaluation (@sonic/strategy-evaluation)
+        → Evidence Ledger (@sonic/evidence-ledger)
+          → Dashboard Read Models (@sonic/dashboard-read-models)
+            → Read-Only API Contracts (@sonic/read-only-api-contracts)
+              → Local Read-Only API Shell (@sonic/read-only-api)  ← Phase 20
+                  127.0.0.1-only Fastify server
+                  GET-only, fixture-only, no live data
+                  [human review only — no execution path]
+```
+
+`@sonic/read-only-api` is the first runtime API shell. It imports from `@sonic/read-only-api-contracts` and `@sonic/dashboard-read-models` only. It exports fixture-only, analysis-only, non-executable responses through safe GET endpoints for local human review.
+
+**LocalReadOnlyApi is NOT a trading system.** It does not enable or recommend trading. It does not connect to any live data source. It does not expose an external network interface.
+
+No Solana SDK. No provider SDK. No network calls. No wallet. No execution. No real trade intents.
+`FULL_AUTO` and `LIMITED_LIVE` remain locked.

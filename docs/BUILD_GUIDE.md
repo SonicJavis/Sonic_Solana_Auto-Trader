@@ -667,3 +667,26 @@ pnpm test                          # run all 2817 tests
 
 ## Phase 19: Test count
 2817 passing tests (226 new Phase 19 tests + 2591 regression tests). 25 test files.
+
+## Phase 20: @sonic/read-only-api usage
+
+- `@sonic/read-only-api` is **localhost-only, GET-only, fixture-only, read-only, analysis-only, non-executable**
+- Import only via the package barrel: `import { ... } from '@sonic/read-only-api'`
+- **LocalReadOnlyApi is NOT a trading system, live data source, or UI** — it is a localhost-only Fastify API shell serving safe fixture/contract responses
+- `createReadOnlyApiApp()` **does NOT listen** — use with `inject()` for tests; call `startReadOnlyApiServer()` explicitly to open a port
+- Default host `127.0.0.1`, default port `3140`
+- All external bind hosts are rejected: `0.0.0.0`, `::`, `localhost`, external IPs/hostnames, URL-looking strings
+- Always validate config with `createReadOnlyApiConfig()` before use
+- Capabilities guard (`getLocalReadOnlyApiCapabilities()`) returns all unsafe flags as `false`; `canStartLocalhostServer: true` for 127.0.0.1 only
+- All responses include safety metadata: `fixtureOnly: true`, `liveData: false`, `safeToDisplay: true`, `analysisOnly: true`, `nonExecutable: true`, `readOnly: true`, `localOnly: true`
+- See [docs/LOCAL_READ_ONLY_API.md](./LOCAL_READ_ONLY_API.md) for full documentation
+
+### PR workflow reminder
+
+- Work on feature branches only (e.g. `copilot/phase-20-*`)
+- Never commit directly to `main`
+- Never merge PRs locally — use the GitHub PR workflow only
+- Run `pnpm typecheck && pnpm lint && pnpm test` before pushing
+
+## Phase 20: Test count
+3050 passing tests (233 new Phase 20 tests + 2817 regression tests). 26 test files.
