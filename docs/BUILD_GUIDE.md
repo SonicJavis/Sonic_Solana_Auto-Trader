@@ -597,3 +597,34 @@ pnpm --filter @sonic/evidence-ledger build
 - Never commit directly to `main`
 - Never merge PRs locally — use the GitHub PR workflow only
 - Run `pnpm typecheck && pnpm lint && pnpm test` before pushing
+
+## Phase 18: Dashboard Read Models
+
+### Validation commands
+
+```bash
+pnpm install
+pnpm typecheck
+pnpm lint
+pnpm test
+```
+
+### Safe usage notes for @sonic/dashboard-read-models
+
+- `@sonic/dashboard-read-models` is **fixture-only, analysis-only, non-executable, read-only**
+- Import only via the package barrel: `import { ... } from '@sonic/dashboard-read-models'`
+- **DashboardReadModels are NOT a trading system** — they are fixture-only, read-only data-shaping objects for future UI review
+- Always validate outputs with `validateDashboardReadModelBundle()` before use
+- Never interpret `DashboardReadModelSeverity` values as trade signals or actionable decisions
+- All inputs must have `fixtureOnly: true` and `liveData: false`
+- Capabilities guard (`getDashboardReadModelCapabilities()`) always returns all unsafe flags as `false`, including `canRenderUi: false`
+- No UI rendering capability — `canRenderUi: false` is permanently enforced
+- Markdown exports always include the mandatory safety footer
+- See [docs/DASHBOARD_READ_MODELS.md](./DASHBOARD_READ_MODELS.md) for full documentation
+
+### PR workflow reminder
+
+- Work on feature branches only (e.g. `copilot/phase-18-*`)
+- Never commit directly to `main`
+- Never merge PRs locally — use the GitHub PR workflow only
+- Run `pnpm typecheck && pnpm lint && pnpm test` before pushing
