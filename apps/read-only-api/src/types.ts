@@ -1,7 +1,7 @@
 /**
  * apps/read-only-api/src/types.ts
  *
- * Phase 21 — Local Read-Only API Shell types (extends Phase 20).
+ * Phase 22 — Local Read-Only API Shell types (extends Phase 21).
  *
  * All output models carry:
  *   fixtureOnly: true
@@ -15,6 +15,18 @@
  * Phase 21 additions:
  *   - canFilterFixtureData, canPaginateFixtureData, canSortFixtureData capabilities
  *   - LroApiQueryMeta — query/filter/pagination metadata in responses
+ *
+ * Phase 22 additions:
+ *   - ReadOnlyApiMethod — literal 'GET'
+ *   - ReadOnlyApiErrorCode — stable Phase 22 error code constants
+ *   - ReadOnlyApiErrorDetail — field-level error detail
+ *   - ReadOnlyApiError — structured error with code, message, details
+ *   - ReadOnlyApiContractMeta — Phase 22 deterministic response metadata
+ *   - ReadOnlyApiSuccessEnvelope<T> — Phase 22 success envelope
+ *   - ReadOnlyApiErrorEnvelope — Phase 22 error envelope
+ *   - ReadOnlyApiEnvelope<T> — union type
+ *   - ReadOnlyApiEndpointContract — per-endpoint contract descriptor
+ *   - Phase 22 capability flags on LocalReadOnlyApiCapabilities
  *
  * IMPORTANT: LocalReadOnlyApi is NOT a trading system, live data source, or UI.
  * It is a localhost-only, GET-only, fixture-only, read-only, analysis-only,
@@ -61,6 +73,12 @@ export interface LocalReadOnlyApiCapabilities {
   readonly canFilterFixtureData: true;
   readonly canPaginateFixtureData: true;
   readonly canSortFixtureData: true;
+  // Phase 22 — response contract capabilities
+  readonly canServeResponseEnvelopes: true;
+  readonly canReturnErrorEnvelopes: true;
+  readonly canValidateQueryErrors: true;
+  readonly canProvideDeterministicMetadata: true;
+  readonly canProvideEndpointContracts: true;
   // Safety labels
   readonly fixtureOnly: true;
   readonly analysisOnly: true;
@@ -185,4 +203,112 @@ export interface LroApiQueryMeta {
   readonly nonExecutable: true;
   readonly readOnly: true;
   readonly localOnly: true;
+}
+
+// ─── Phase 22 — Response contract types ──────────────────────────────────────
+
+/** The HTTP method supported by the read-only API (GET only). */
+export type ReadOnlyApiMethod = 'GET';
+
+/**
+ * Stable Phase 22 error codes for the read-only API contract layer.
+ * These codes appear in ReadOnlyApiError.code in error envelopes.
+ */
+export type ReadOnlyApiErrorCode =
+  | 'READ_ONLY_API_INVALID_QUERY'
+  | 'READ_ONLY_API_UNSUPPORTED_ENDPOINT'
+  | 'READ_ONLY_API_METHOD_NOT_ALLOWED'
+  | 'READ_ONLY_API_SAFETY_REJECTION'
+  | 'READ_ONLY_API_INTERNAL_CONTRACT_ERROR';
+
+/** Field-level error detail in a ReadOnlyApiError. Safe — no stack traces, no paths. */
+export interface ReadOnlyApiErrorDetail {
+  readonly field: string;
+  readonly reason: string;
+  readonly received: string;
+}
+
+/** Structured error object for Phase 22 error envelopes. */
+export interface ReadOnlyApiError {
+  readonly code: ReadOnlyApiErrorCode;
+  readonly message: string;
+  readonly details: readonly ReadOnlyApiErrorDetail[];
+}
+
+/**
+ * Phase 22 deterministic contract metadata.
+ * Extends the Phase 21 safety metadata fields for backward compatibility.
+ * Includes optional query/filter/sort/pagination for queryable endpoints.
+ */
+export interface ReadOnlyApiContractMeta {
+  readonly phase: 22;
+  readonly apiMode: 'local_read_only';
+  readonly deterministic: true;
+  readonly mutating: false;
+  readonly externalNetwork: false;
+  readonly generatedAt: string;
+  // Optional query/filter/sort/pagination for queryable endpoints
+  readonly query?: Record<string, unknown>;
+  readonly filters?: Record<string, unknown>;
+  readonly sort?: Record<string, unknown>;
+  readonly pagination?: Record<string, unknown>;
+  readonly capabilities?: Record<string, boolean>;
+  // Phase 21 safety meta fields — included for backward compatibility
+  readonly fixtureOnly: true;
+  readonly liveData: false;
+  readonly safeToDisplay: true;
+  readonly analysisOnly: true;
+  readonly nonExecutable: true;
+  readonly readOnly: true;
+  readonly localOnly: true;
+}
+
+/**
+ * Phase 22 success envelope.
+ * Includes Phase 21 backward-compat fields (status, envelopeId, warnings, errors, generatedAt).
+ */
+export interface ReadOnlyApiSuccessEnvelope<T = unknown> {
+  readonly ok: true;
+  readonly status: 'ok'; // backward compat with Phase 21 HTTP tests
+  readonly envelopeId: string; // backward compat
+  readonly endpoint: string;
+  readonly method: ReadOnlyApiMethod;
+  readonly data: T;
+  readonly warnings: readonly string[]; // backward compat
+  readonly errors: readonly LroApiErrorDetail[]; // backward compat (always [])
+  readonly meta: ReadOnlyApiContractMeta;
+  readonly generatedAt: string; // backward compat
+}
+
+/**
+ * Phase 22 error envelope.
+ * Includes Phase 21 backward-compat fields (status, envelopeId, data, warnings, errors, generatedAt).
+ */
+export interface ReadOnlyApiErrorEnvelope {
+  readonly ok: false;
+  readonly status: 'failed'; // backward compat with Phase 21 HTTP tests
+  readonly envelopeId: string; // backward compat
+  readonly endpoint: string;
+  readonly method: ReadOnlyApiMethod;
+  readonly data: null; // backward compat
+  readonly error: ReadOnlyApiError;
+  readonly errors: readonly LroApiErrorDetail[]; // backward compat
+  readonly warnings: readonly string[]; // backward compat
+  readonly meta: ReadOnlyApiContractMeta;
+  readonly generatedAt: string; // backward compat
+}
+
+/** Union of Phase 22 success and error envelopes. */
+export type ReadOnlyApiEnvelope<T = unknown> =
+  | ReadOnlyApiSuccessEnvelope<T>
+  | ReadOnlyApiErrorEnvelope;
+
+/** Per-endpoint contract descriptor for Phase 22. */
+export interface ReadOnlyApiEndpointContract {
+  readonly endpoint: string;
+  readonly method: ReadOnlyApiMethod;
+  readonly description: string;
+  readonly phase: number;
+  readonly supportsQuery: boolean;
+  readonly queryParams: readonly string[];
 }

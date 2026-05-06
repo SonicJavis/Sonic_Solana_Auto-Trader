@@ -69,6 +69,16 @@ export type {
   LroApiErrorDetail,
   LocalReadOnlyApiErrorCode,
   LroApiQueryMeta,
+  // Phase 22 types
+  ReadOnlyApiMethod,
+  ReadOnlyApiErrorCode,
+  ReadOnlyApiErrorDetail,
+  ReadOnlyApiError,
+  ReadOnlyApiContractMeta,
+  ReadOnlyApiSuccessEnvelope,
+  ReadOnlyApiErrorEnvelope,
+  ReadOnlyApiEnvelope,
+  ReadOnlyApiEndpointContract,
 } from './types.js';
 
 export type { LocalReadOnlyApiError, LroApiResult } from './errors.js';
@@ -169,3 +179,26 @@ export type { FilterableItem, AppliedFiltersMeta } from './filtering.js';
 
 export { applyReadOnlyApiSorting, buildAppliedSortMeta } from './sorting.js';
 export type { AppliedSortMeta } from './sorting.js';
+
+// ─── Phase 22 — Response contract exports ────────────────────────────────────
+
+export {
+  READ_ONLY_API_ERROR_CODES,
+  buildReadOnlyApiSuccessEnvelope,
+  buildReadOnlyApiErrorEnvelope,
+  buildQueryErrorFromLroError,
+  mapLroErrorCodeToPhase22,
+  extractQueryFieldFromMessage,
+  sanitizeReceivedValue,
+} from './response-envelope.js';
+
+export {
+  PHASE_22,
+  API_MODE,
+  PHASE_22_GENERATED_AT,
+  QUERY_PARAM_NAMES,
+  PHASE_22_CONTRACT_CAPABILITIES,
+  PHASE_22_ENDPOINT_CONTRACTS,
+  buildReadOnlyApiContractMeta,
+  buildReadOnlyApiQueryContractMeta,
+} from './contract.js';
