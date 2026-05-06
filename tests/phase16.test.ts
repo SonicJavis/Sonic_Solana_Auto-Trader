@@ -518,8 +518,8 @@ describe('G. buildStrategyEvaluation', () => {
     const result = buildStrategyEvaluation(validInput);
     expect(result.ok).toBe(true);
     if (result.ok) {
-      const hasSafety = result.value.findings.some(f => f.code === 'ANALYSIS_ONLY');
-      expect(hasSafety).toBe(true);
+      const hasAnalysisOnlyFinding = result.value.findings.some(f => f.code === 'ANALYSIS_ONLY');
+      expect(hasAnalysisOnlyFinding).toBe(true);
     }
   });
 
