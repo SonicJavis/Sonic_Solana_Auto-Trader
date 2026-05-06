@@ -690,3 +690,64 @@ pnpm test                          # run all 2817 tests
 
 ## Phase 20: Test count
 3050 passing tests (233 new Phase 20 tests + 2817 regression tests). 26 test files.
+
+## Phase 21: @sonic/read-only-api query/filter/pagination usage
+
+Phase 21 extends `@sonic/read-only-api` with safe, deterministic, fixture-only query parsing, filtering, sorting, and pagination helpers.
+
+### Safe query usage
+
+```typescript
+import {
+  parseReadOnlyApiQuery,
+  buildReadOnlyApiQueryResult,
+  applyReadOnlyApiFilters,
+  applyReadOnlyApiSorting,
+  applyReadOnlyApiPagination,
+  buildReadOnlyApiPagination,
+  encodeCursor,
+  decodeCursor,
+  validateReadOnlyApiQuerySafety,
+} from '@sonic/read-only-api';
+
+// Parse query params from a request (unknown input)
+const queryResult = parseReadOnlyApiQuery(req.query);
+if (!queryResult.ok) {
+  // Handle parse error — never throws
+}
+const q = queryResult.value;
+// q.limit, q.offset, q.cursor, q.severity, q.panel, q.sortBy, etc.
+```
+
+### Endpoint query parameters (Phase 21)
+
+The following GET endpoints now accept optional query params:
+
+```
+GET /dashboard?limit=10&sortBy=severity&sortDirection=desc
+GET /dashboard/evidence?severity=high&panel=evidence&limit=5&offset=0
+GET /dashboard/safety?limit=10&cursor=<nextCursor>
+```
+
+### Safety invariants (Phase 21)
+
+- All query parsing is **fixture-only and in-memory** — no live lookups
+- Only bounded enum values are accepted for filter fields
+- Only explicit allow-listed sort fields are accepted (id, severity, sourceKind, classification, createdAt, label, status, panel)
+- Max limit: 100, Default limit: 25
+- Negative offset/limit values are rejected
+- Unsafe text (secrets, URLs, action terms) in query params is rejected
+- SQL-like patterns, eval-like expressions, path traversal, and script patterns are rejected
+- `applyReadOnlyApiFilters`, `applyReadOnlyApiSorting`, `applyReadOnlyApiPagination` **never mutate input arrays**
+- Cursors are opaque base64url-encoded offsets — no external lookups
+- See [docs/LOCAL_READ_ONLY_API_QUERY.md](./LOCAL_READ_ONLY_API_QUERY.md) for full documentation
+
+### PR workflow reminder
+
+- Work on feature branches only (e.g. `copilot/phase-21-*`)
+- Never commit directly to `main`
+- Never merge PRs locally — use the GitHub PR workflow only
+- Run `pnpm typecheck && pnpm lint && pnpm test` before pushing
+
+## Phase 21: Test count
+3305 passing tests (255 new Phase 21 tests + 3050 regression tests). 27 test files.

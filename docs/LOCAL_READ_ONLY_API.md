@@ -268,3 +268,76 @@ Phase 20 adds `tests/phase20.test.ts` with **233 tests** covering:
 - Phase 19 regression guard
 
 Total tests after Phase 20: **3050** (up from 2817).
+
+---
+
+## Phase 21 — Query, Filter, and Pagination
+
+Phase 21 extends the Local Read-Only API Shell with safe, deterministic, fixture-only query parsing, filtering, sorting, and pagination helpers.
+
+### New capabilities (Phase 21)
+
+- `canFilterFixtureData: true` — in-memory enum-safe filtering on fixture data
+- `canPaginateFixtureData: true` — in-memory limit/offset/cursor pagination on fixture data
+- `canSortFixtureData: true` — in-memory sort on explicit allow-listed fields only
+
+All three remain fixture-only, read-only, analysis-only, and non-executable.
+
+### Endpoints updated
+
+| Endpoint | Phase 21 change |
+|---|---|
+| `GET /dashboard` | Accepts optional query params |
+| `GET /dashboard/evidence` | Accepts optional query params |
+| `GET /dashboard/safety` | Accepts optional query params |
+
+All other endpoints are unchanged.
+
+### New response metadata
+
+Query-aware endpoints now include `queryMeta` in the `data` field:
+
+```json
+{
+  "status": "ok",
+  "meta": { "fixtureOnly": true, "liveData": false, ... },
+  "data": {
+    "queryMeta": {
+      "query": { "limit": 25, "offset": 0, "sortBy": "id", ... },
+      "appliedFilters": { "filtersActive": false, "fixtureOnly": true, ... },
+      "sort": { "sortBy": "id", "sortDirection": "asc", "fixtureOnly": true },
+      "pagination": {
+        "totalCount": 4,
+        "resultCount": 4,
+        "hasMore": false,
+        "nextCursor": null,
+        "fixtureOnly": true
+      },
+      "fixtureOnly": true,
+      "analysisOnly": true,
+      "nonExecutable": true,
+      "readOnly": true,
+      "localOnly": true
+    }
+  }
+}
+```
+
+### Validation commands (Phase 21)
+
+```sh
+pnpm typecheck  # must pass
+pnpm lint       # must pass
+pnpm test       # must pass (3305 tests, 27 test files)
+```
+
+For full query/filter/pagination documentation, see [docs/LOCAL_READ_ONLY_API_QUERY.md](./LOCAL_READ_ONLY_API_QUERY.md).
+
+### Safety invariants (Phase 21 additions)
+
+- Query/filter/pagination is **fixture-only and in-memory** — no external queries, no live data
+- Only bounded enum filter values are accepted — unknown values are rejected
+- Only explicit sort fields are accepted — arbitrary field paths are rejected
+- All array operations are non-mutating
+- Cursors are opaque base64url-encoded offsets — no external lookups
+- SQL patterns, eval expressions, path traversal, and script patterns are rejected
