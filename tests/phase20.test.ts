@@ -21,6 +21,12 @@
  */
 
 import { describe, it, expect } from 'vitest';
+import { fileURLToPath } from 'node:url';
+import { dirname, resolve } from 'node:path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const readOnlyApiPackageJsonPath = resolve(__dirname, '../apps/read-only-api/package.json');
 import {
   getLocalReadOnlyApiCapabilities,
   createReadOnlyApiConfig,
@@ -1121,49 +1127,31 @@ describe('Phase 20 — Fixture integrity', () => {
 describe('Phase 20 — No forbidden dependencies in package.json', () => {
   it('package.json does not include @solana/web3.js', async () => {
     const { readFileSync } = await import('fs');
-    const pkg = readFileSync(
-      new URL(
-        '../apps/read-only-api/package.json',
-        import.meta.url,
-      ).pathname,
-      'utf-8',
-    );
+    const pkg = readFileSync(readOnlyApiPackageJsonPath, 'utf-8');
     expect(pkg).not.toContain('@solana/web3.js');
   });
 
   it('package.json does not include helius', async () => {
     const { readFileSync } = await import('fs');
-    const pkg = readFileSync(
-      new URL('../apps/read-only-api/package.json', import.meta.url).pathname,
-      'utf-8',
-    );
+    const pkg = readFileSync(readOnlyApiPackageJsonPath, 'utf-8');
     expect(pkg.toLowerCase()).not.toContain('helius');
   });
 
   it('package.json does not include jito', async () => {
     const { readFileSync } = await import('fs');
-    const pkg = readFileSync(
-      new URL('../apps/read-only-api/package.json', import.meta.url).pathname,
-      'utf-8',
-    );
+    const pkg = readFileSync(readOnlyApiPackageJsonPath, 'utf-8');
     expect(pkg.toLowerCase()).not.toContain('jito');
   });
 
   it('package.json does not include @jupiter-ag', async () => {
     const { readFileSync } = await import('fs');
-    const pkg = readFileSync(
-      new URL('../apps/read-only-api/package.json', import.meta.url).pathname,
-      'utf-8',
-    );
+    const pkg = readFileSync(readOnlyApiPackageJsonPath, 'utf-8');
     expect(pkg).not.toContain('@jupiter-ag');
   });
 
   it('package.json does not include react', async () => {
     const { readFileSync } = await import('fs');
-    const pkg = readFileSync(
-      new URL('../apps/read-only-api/package.json', import.meta.url).pathname,
-      'utf-8',
-    );
+    const pkg = readFileSync(readOnlyApiPackageJsonPath, 'utf-8');
     expect(pkg.toLowerCase()).not.toContain('"react"');
   });
 });
