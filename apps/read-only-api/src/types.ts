@@ -1,7 +1,7 @@
 /**
  * apps/read-only-api/src/types.ts
  *
- * Phase 20 — Local Read-Only API Shell types.
+ * Phase 21 — Local Read-Only API Shell types (extends Phase 20).
  *
  * All output models carry:
  *   fixtureOnly: true
@@ -11,6 +11,10 @@
  *   nonExecutable: true
  *   readOnly: true
  *   localOnly: true
+ *
+ * Phase 21 additions:
+ *   - canFilterFixtureData, canPaginateFixtureData, canSortFixtureData capabilities
+ *   - LroApiQueryMeta — query/filter/pagination metadata in responses
  *
  * IMPORTANT: LocalReadOnlyApi is NOT a trading system, live data source, or UI.
  * It is a localhost-only, GET-only, fixture-only, read-only, analysis-only,
@@ -53,6 +57,10 @@ export interface LocalReadOnlyApiCapabilities {
   readonly canStartLocalhostServer: true;
   readonly canServeReadOnlyContracts: true;
   readonly canServeFixtureReadModels: true;
+  // Phase 21 — allowed query/filter/pagination capabilities
+  readonly canFilterFixtureData: true;
+  readonly canPaginateFixtureData: true;
+  readonly canSortFixtureData: true;
   // Safety labels
   readonly fixtureOnly: true;
   readonly analysisOnly: true;
@@ -124,4 +132,57 @@ export type LocalReadOnlyApiErrorCode =
   | 'URL_PATTERN_DETECTED'
   | 'UNSAFE_CAPABILITY_DETECTED'
   | 'EXTERNAL_BIND_FORBIDDEN'
-  | 'LRO_API_FIXTURE_ONLY';
+  | 'LRO_API_FIXTURE_ONLY'
+  // Phase 21 — query/filter/pagination error codes
+  | 'UNSAFE_QUERY_FIELD'
+  | 'UNSAFE_SORT_FIELD'
+  | 'UNSAFE_FILTER_VALUE'
+  | 'PAGINATION_LIMIT_EXCEEDED'
+  | 'PAGINATION_NEGATIVE_VALUE'
+  | 'UNSAFE_CURSOR';
+
+// ─── Phase 21 — Query metadata types ─────────────────────────────────────────
+
+/** Metadata about the applied query in a paginated response. */
+export interface LroApiQueryMeta {
+  readonly query: {
+    readonly limit: number;
+    readonly offset: number;
+    readonly cursor: string | undefined;
+    readonly sortBy: string;
+    readonly sortDirection: string;
+    readonly severity: string | undefined;
+    readonly panel: string | undefined;
+    readonly sourceKind: string | undefined;
+    readonly classification: string | undefined;
+    readonly status: string | undefined;
+  };
+  readonly appliedFilters: {
+    readonly severity: string | undefined;
+    readonly panel: string | undefined;
+    readonly sourceKind: string | undefined;
+    readonly classification: string | undefined;
+    readonly status: string | undefined;
+    readonly filtersActive: boolean;
+    readonly fixtureOnly: true;
+  };
+  readonly sort: {
+    readonly sortBy: string;
+    readonly sortDirection: string;
+    readonly fixtureOnly: true;
+  };
+  readonly pagination: {
+    readonly limit: number;
+    readonly offset: number;
+    readonly totalCount: number;
+    readonly resultCount: number;
+    readonly hasMore: boolean;
+    readonly nextCursor: string | undefined;
+    readonly fixtureOnly: true;
+  };
+  readonly fixtureOnly: true;
+  readonly analysisOnly: true;
+  readonly nonExecutable: true;
+  readonly readOnly: true;
+  readonly localOnly: true;
+}

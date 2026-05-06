@@ -1,5 +1,34 @@
 # Phase Log
 
+## Phase 21 — Local Read-Only API Query, Filter, and Pagination v1
+
+- Enhances `apps/read-only-api` with safe, deterministic, fixture-only query parsing, filtering, sorting, and pagination helpers
+- `parseReadOnlyApiQuery(input)` — safe query parser accepting unknown input; returns typed `ReadOnlyApiQuery` with deterministic defaults; rejects unsafe text, URLs, secrets, action terms, arbitrary fields
+- `buildReadOnlyApiPagination(input)` — validates limit/offset/cursor; enforces max limit (100), default (25); rejects negative values, NaN, Infinity, huge values, unsafe cursors
+- `applyReadOnlyApiFilters(items, query)` — in-memory enum-safe filter by severity, panel, sourceKind, classification, status; deterministic; does not mutate input arrays
+- `applyReadOnlyApiSorting(items, query)` — in-memory sort by explicit bounded sort fields (id, severity, sourceKind, classification, createdAt, label, status, panel); deterministic; does not mutate input arrays
+- `applyReadOnlyApiPagination(items, pagination)` — safe limit/offset/cursor slicing; deterministic; does not mutate input arrays
+- `buildReadOnlyApiQueryResult(items, query)` — combines filter→sort→pagination into shaped result with data, queryMeta, pagination metadata, and safety metadata
+- `buildAppliedFiltersMeta(query)` — metadata describing active filters
+- `buildAppliedSortMeta(query)` — metadata describing applied sort
+- `encodeCursor(offset)` / `decodeCursor(cursor)` — safe opaque cursor helpers (base64url-encoded offsets; no external lookups)
+- `validateReadOnlyApiQuerySafety(value)` — validates query/filter/pagination/result safety invariants
+- `LocalReadOnlyApiCapabilities` extended with three new safe fields: `canFilterFixtureData: true`, `canPaginateFixtureData: true`, `canSortFixtureData: true`
+- `LroApiQueryMeta` type — query/filter/pagination metadata in responses
+- Phase 21 error codes added: `UNSAFE_QUERY_FIELD`, `UNSAFE_SORT_FIELD`, `UNSAFE_FILTER_VALUE`, `PAGINATION_LIMIT_EXCEEDED`, `PAGINATION_NEGATIVE_VALUE`, `UNSAFE_CURSOR`
+- New files: `apps/read-only-api/src/query.ts`, `apps/read-only-api/src/pagination.ts`, `apps/read-only-api/src/filtering.ts`, `apps/read-only-api/src/sorting.ts`
+- Enhanced handlers: `handleDashboard`, `handleDashboardEvidence`, `handleDashboardSafety` now accept optional query params for filter/sort/pagination
+- `GET /dashboard`, `GET /dashboard/evidence`, `GET /dashboard/safety` now accept: `limit`, `offset`, `cursor`, `severity`, `panel`, `sourceKind`, `classification`, `status`, `sortBy`, `sortDirection`
+- All existing Phase 20 endpoints continue to work unchanged
+- `docs/LOCAL_READ_ONLY_API_QUERY.md` — new documentation for query/filter/pagination
+- Phase 21 test suite: **255 new tests** (3305 total, all passing)
+- Localhost-only. GET-only. Fixture-only. Read-only. Analysis-only. Non-executable. Local-only.
+- No live data. No Solana RPC. No provider APIs. No wallet/private key handling. No trade intents. No execution plans. No paper trading. No trade execution. No orders. No fills. No routes. No swaps. No positions. No PnL. No transaction construction/simulation/signing/sending. No evidence mutation. No UI rendering. No external network use. No database writes. No Telegram alerts. No arbitrary query languages. No SQL. No eval. No regex injection.
+- FULL_AUTO and LIMITED_LIVE remain locked.
+- No new Telegram trade commands.
+
+**Next phase guidance:** Phase 22 may add a read-only React dashboard that consumes the Phase 21 local API — only after explicit sign-off, safety evidence review, and all Phase 13–21 gates are stable. Alternatively, Phase 22 may add additional API contract types or evidence models. Live data, wallet access, trading, execution, evidence mutation, and external API exposure remain permanently forbidden until each gate is explicitly cleared.
+
 ## Phase 20 — Local Read-Only API Shell v1
 
 - New `apps/read-only-api` app: localhost-only, GET-only, fixture-only, read-only, analysis-only, non-executable Fastify API shell
