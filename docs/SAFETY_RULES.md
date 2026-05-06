@@ -249,3 +249,23 @@
 195. **Phase 16**: `validateStrategyEvaluation()` rejects any string containing unsafe action text (buy, sell, execute, snipe, copy trade, etc.), secret-like patterns, or URL/RPC-like patterns
 196. **Phase 16**: `StrategyScoreBand`, `StrategyEvaluationClassification`, `StrategyFamilyComparison` values are analysis labels only — no value implies permission to trade
 197. **Phase 16**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/execution commands.
+
+
+## Phase 17 Additional Safety Rules
+
+198. **Phase 17**: `packages/evidence-ledger` has no dependencies on Solana SDK, Pump SDK, Helius SDK, WebSocket clients, Yellowstone/Geyser packages, wallet libraries, RPC providers, or any app packages — only `@sonic/strategy-evaluation`
+199. **Phase 17**: All `EvidenceLedgerCapabilities` unsafe fields are permanently `false`: `canUseLiveData`, `canUseSolanaRpc`, `canUseProviderApis`, `canAccessPrivateKeys`, `canCreateTradeIntents`, `canCreateExecutionPlans`, `canPaperTrade`, `canTrade`, `canExecute`, `canWriteToDatabase`, `canSendTelegramAlerts`, `canConstructTransactions`, `canSimulateTransactions`, `canCreateOrders`, `canCreatePositions`, `canCalculateLivePnl`, `canMutatePriorEvidence`
+200. **Phase 17**: `EvidenceLedger` is **analysis-only, non-executable, and append-only** — it is NOT a trading ledger; it does not create real trade intents, execution plans, orders, positions, paper trades, or any actionable output
+201. **Phase 17**: `EvidenceLedger` **cannot mutate prior evidence** — `canMutatePriorEvidence: false` is permanently enforced; `appendOnly: true` is required on all outputs; existing evidence records cannot be modified
+202. **Phase 17**: `EvidenceLedger` **cannot create real trade intents** — no `tradeIntent` or `createTradeIntent` field is present in any output
+203. **Phase 17**: `EvidenceLedger` **cannot create execution plans** — no `executionPlan` or `createExecutionPlan` field in any output
+204. **Phase 17**: `EvidenceLedger` **cannot create orders or positions** — `canCreateOrders: false` and `canCreatePositions: false` are permanently enforced
+205. **Phase 17**: `EvidenceLedger` **cannot calculate live PnL** — `canCalculateLivePnl: false` is permanently enforced
+206. **Phase 17**: `EvidenceLedger` **cannot use live data** — all outputs carry `liveData: false`; all inputs must have `liveData: false` and `fixtureOnly: true`
+207. **Phase 17**: `EvidenceLedger` **cannot recommend action decisions** — outputs are fixture-only audit-style reasoning records only; no buy, sell, execute, snipe, copy, or auto-trade wording is permitted in any label, summary, or decision classification
+208. **Phase 17**: All `EvidenceLedger`, `DecisionTrace`, and `EvidenceEntry` outputs carry `fixtureOnly: true`, `liveData: false`, `safeToDisplay: true`, `analysisOnly: true`, `nonExecutable: true`, `appendOnly: true` — these are not configurable
+209. **Phase 17**: Markdown exports include a mandatory safety footer stating the report is fixture-only, analysis-only, non-executable, append-only, does not create real trade intents, and prior evidence cannot be mutated
+210. **Phase 17**: `validateEvidenceLedger()` and `validateEvidenceEntry()` reject any string containing unsafe action text (buy, sell, execute, snipe, copy trade, etc.), secret-like patterns, or URL/RPC-like patterns
+211. **Phase 17**: `checkEvidenceIntegrity()` detects duplicate IDs, unsafe text, liveData violations, secret patterns, URL patterns, and mutation capability markers
+212. **Phase 17**: `DecisionTraceClassification` and `EvidenceEntryKind` values are analysis-only labels — no value implies permission to trade, execute, or take any action
+213. **Phase 17**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/execution commands.

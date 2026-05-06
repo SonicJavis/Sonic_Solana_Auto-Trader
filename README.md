@@ -1,8 +1,25 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 15 — Strategy Intent Model v1**
+**Phase 17 — Evidence Ledger and Decision Trace v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 15.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 17.
+
+## Features (Phase 17 — adds to Phase 16)
+
+- New `packages/evidence-ledger` — safe, fixture-only, append-only, analysis-only, non-executable Evidence Ledger and Decision Trace layer above Strategy Evaluation (no Solana SDK, no provider SDK, no network, no wallet, no private keys, no trading, no execution, no real trade intents, no execution plans, no evidence mutation)
+- **IMPORTANT: `EvidenceLedger` is NOT a trading ledger** — it is a fixture-only, append-only, audit-style reasoning record for human review
+- `EvidenceLedgerCapabilities` — all 17 unsafe flags permanently `false`; `fixtureOnly: true`, `analysisOnly: true`, `nonExecutable: true`, `appendOnly: true`; `canMutatePriorEvidence: false` permanently
+- `EvidenceSourceReference` — safe deterministic reference to prior-phase outputs; no raw URLs, no private data
+- `EvidenceEntry` — single audit-style evidence record with kind, severity, title, summary, reasons
+- `DecisionTrace` — safe trace of reasoning steps derived from evidence entries; auto-derives classification
+- `DecisionTraceSummary` — aggregate statistics across a trace
+- `checkEvidenceIntegrity()` — detects duplicate IDs, unsafe text, liveData violations, secret/URL patterns, mutation capability markers
+- `buildEvidenceLedger()` — builds safe ledger from traces and entries with integrated integrity check
+- `validateEvidenceLedger()` — validates all safety invariants; rejects unsafe text, secrets, URLs, appendOnly violations
+- 6 deterministic synthetic fixtures: CLEAN, DEGRADED, FAILED, INCONCLUSIVE, MIXED, REGRESSION
+- 195 new tests in `tests/phase17.test.ts` — **2321 passing** (23 test files)
+- **Fixture-only, analysis-only, non-executable, append-only** — prior evidence cannot be mutated
+- See [docs/EVIDENCE_LEDGER.md](./docs/EVIDENCE_LEDGER.md) for full details
 
 ## Features (Phase 15 — adds to Phase 14)
 
@@ -283,6 +300,7 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 - `packages/risk-engine` — risk checks
 - `packages/testing` — shared test utilities
 - `packages/strategy-evaluation` — fixture-only, analysis-only, non-executable strategy evaluation reports (Phase 16, inert)
+- `packages/evidence-ledger` — safe, fixture-only, append-only, analysis-only, non-executable Evidence Ledger and Decision Trace layer (Phase 17, inert)
 - `apps/telegram-bot` — Telegram control interface
 - `apps/worker` — safe heartbeat loop
 

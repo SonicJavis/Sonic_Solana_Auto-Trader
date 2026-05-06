@@ -19,6 +19,7 @@
     { "path": "./packages/replay-reporting" },
     { "path": "./packages/strategy-intent" },
     { "path": "./packages/strategy-evaluation" },
+    { "path": "./packages/evidence-ledger" },
     { "path": "./apps/telegram-bot" },
     { "path": "./apps/worker" }
   ]

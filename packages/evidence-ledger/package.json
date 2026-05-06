@@ -1,0 +1,23 @@
+{
+  "name": "@sonic/evidence-ledger",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@sonic/strategy-evaluation": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "*"
+  }
+}
