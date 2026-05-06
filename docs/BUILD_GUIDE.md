@@ -569,3 +569,31 @@ pnpm --filter @sonic/strategy-evaluation build
 - All inputs must have `fixtureOnly: true` and `liveData: false`
 - Capabilities guard (`getStrategyEvaluationCapabilities()`) always returns all unsafe flags as `false`
 - Markdown exports always include the mandatory safety footer
+
+
+## Building @sonic/evidence-ledger
+
+```bash
+pnpm --filter @sonic/evidence-ledger build
+```
+
+### Safe usage notes for @sonic/evidence-ledger
+
+- `@sonic/evidence-ledger` is **fixture-only, analysis-only, non-executable, append-only**
+- Import only via the package barrel: `import { ... } from '@sonic/evidence-ledger'`
+- **EvidenceLedger is NOT a trading ledger** — it is a fixture-only, append-only, audit-style reasoning record for human review
+- Always validate outputs with `validateEvidenceLedger()` before use
+- Never interpret `DecisionTraceClassification` values as trade signals or actionable decisions
+- All inputs must have `fixtureOnly: true` and `liveData: false`
+- Capabilities guard (`getEvidenceLedgerCapabilities()`) always returns all unsafe flags as `false`, including `canMutatePriorEvidence: false`
+- Prior evidence cannot be mutated — `appendOnly: true` is enforced on all outputs
+- Markdown exports always include the mandatory safety footer stating prior evidence cannot be mutated
+- Integrity checks (`checkEvidenceIntegrity()`) must pass before using ledger outputs
+- See [docs/EVIDENCE_LEDGER.md](./EVIDENCE_LEDGER.md) for full documentation
+
+### PR workflow reminder
+
+- Work on feature branches only (e.g. `copilot/phase-17-*`)
+- Never commit directly to `main`
+- Never merge PRs locally — use the GitHub PR workflow only
+- Run `pnpm typecheck && pnpm lint && pnpm test` before pushing

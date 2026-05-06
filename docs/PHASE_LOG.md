@@ -1,6 +1,46 @@
 # Phase Log
 
-## Phase 14 — Replay Reporting and Edge Diagnostics v1
+## Phase 17 — Evidence Ledger and Decision Trace v1
+
+- New `packages/evidence-ledger` package: safe, deterministic, fixture-only, append-only, analysis-only, non-executable Evidence Ledger and Decision Trace layer above Strategy Evaluation
+- `EvidenceLedgerCapabilities` — all 17 unsafe fields permanently `false`; `fixtureOnly: true`, `analysisOnly: true`, `nonExecutable: true`, `appendOnly: true`; `canMutatePriorEvidence: false` permanently
+- `EvidenceSourceKind` — 5 source kinds: `replay_run`, `replay_report`, `strategy_intent`, `strategy_evaluation`, `fixture_only_source`
+- `EvidenceEntryKind` — 8 entry kinds: `source_snapshot`, `classification_reason`, `safety_gate_reason`, `evidence_quality_reason`, `rejection_reason`, `warning_reason`, `inconclusive_reason`, `fixture_only_reason`
+- `EvidenceEntrySeverity` — 5 analysis-only severity levels: `info`, `warning`, `risk`, `failure`, `inconclusive`
+- `DecisionTraceClassification` — 5 non-actionable labels: `rejected_by_evidence`, `watch_only_by_evidence`, `analysis_only_by_evidence`, `insufficient_evidence`, `fixture_only_trace`
+- `EvidenceSourceReference` — safe deterministic reference to prior-phase outputs; no raw URLs, no private data, no live data
+- `EvidenceEntry` — single audit-style evidence record; append-only, analysis-only, non-executable
+- `DecisionTrace` — safe trace of reasoning steps from evidence entries; append-only, auto-derives classification
+- `DecisionTraceStep` — per-step description linking entryId to severity; `safeToDisplay: true`
+- `DecisionTraceSummary` — aggregate statistics: total entries, total steps, severity counts, source kind counts, blocked/warning/inconclusive reason counts
+- `EvidenceIntegrityCheck` — detects duplicate IDs, unsafe text, liveData violations, secret patterns, URL patterns, mutation capability markers
+- `EvidenceLedger` — top-level safe ledger combining traces and entries with integrity check and summary; append-only
+- `EvidenceLedgerExport` — deterministic JSON-safe export wrapper
+- `EvidenceLedgerFixture` — named deterministic test/review fixture
+- `ElResult<T>`, `elOk`, `elErr`, `EvidenceLedgerError`, `EvidenceLedgerErrorCode` — safe result/error pattern (never throws for normal validation failures)
+- `getEvidenceLedgerCapabilities` — permanently-safe capabilities guard
+- `buildEvidenceSourceReference` — validates all text fields; rejects unsafe action text, secret patterns, URL patterns
+- `buildEvidenceEntry` — validates all text fields; uses deterministic fixture timestamp when not provided
+- `buildDecisionTrace` — derives classification automatically from entry severities; builds steps from entries
+- `buildDecisionTraceSummary` — aggregate statistics builder
+- `checkEvidenceIntegrity` — detects all integrity violations including duplicate IDs and mutation capability markers
+- `buildEvidenceLedger` — builds ledger from traces and entries; runs integrity check automatically
+- `exportEvidenceLedgerJson` — deterministic JSON export with sorted sourceIds and stable structure
+- `exportEvidenceLedgerMarkdown` — deterministic Markdown export with mandatory safety footer stating prior evidence cannot be mutated
+- `validateEvidenceEntry`, `validateEvidenceLedger`, `validateEvidenceLedgerCapabilities` — full safety invariant validators
+- `containsUnsafeActionText`, `containsSecretPattern`, `containsUrlPattern`, `isDisplaySafe` — text safety helpers
+- 6 deterministic synthetic fixtures + `ALL_EVIDENCE_LEDGER_FIXTURES`: CLEAN, DEGRADED, FAILED, INCONCLUSIVE, MIXED, REGRESSION
+- `docs/EVIDENCE_LEDGER.md` documentation
+- Phase 17 test suite: 195 new tests (2321 total, all passing)
+- No live data. No Solana RPC. No provider APIs. No wallet/private key handling. No trade intents. No execution plans. No paper trading. No trade execution. No orders. No fills. No routes. No swaps. No positions. No PnL. No transaction construction/simulation/signing/sending. No evidence mutation.
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram trade commands
+- Prior evidence cannot be mutated. Append-only invariant enforced in types, builders, validators, and tests.
+
+**Next phase guidance:** Phase 18 may build a richer cross-phase ledger correlation layer or a safe reporting dashboard (fixture-only), but must first ensure all Phase 13–17 evidence gates produce stable, reproducible results. Do not start Phase 18 without explicit sign-off. Live data, wallet access, trading, execution, and evidence mutation remain permanently forbidden.
+
+## Phase 16 — Strategy Evaluation Reports v1
+
 
 - New `packages/replay-reporting` package: read-only, fixture-only, analysis-only reporting layer on top of Phase 13 Replay Lab; no Solana SDK, no provider SDK, no network, no wallet, no trading, no execution
 - `ReplayReportingCapabilities` — all 11 unsafe fields permanently `false`; `fixtureOnly: true`

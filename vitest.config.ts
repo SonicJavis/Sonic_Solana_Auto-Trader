@@ -30,6 +30,7 @@ export default defineConfig({
       '@sonic/replay-reporting': resolve(__dirname, 'packages/replay-reporting/src/index.ts'),
       '@sonic/strategy-intent': resolve(__dirname, 'packages/strategy-intent/src/index.ts'),
       '@sonic/strategy-evaluation': resolve(__dirname, 'packages/strategy-evaluation/src/index.ts'),
+      '@sonic/evidence-ledger': resolve(__dirname, 'packages/evidence-ledger/src/index.ts'),
     },
   },
 });
