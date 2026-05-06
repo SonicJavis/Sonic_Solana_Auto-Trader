@@ -1,8 +1,26 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 17 — Evidence Ledger and Decision Trace v1**
+**Phase 18 — Evidence Review Dashboard Read Models v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 17.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 18.
+
+## Features (Phase 18 — adds to Phase 17)
+
+- New `packages/dashboard-read-models` — safe, fixture-only, read-only, analysis-only, non-executable dashboard read model layer above Evidence Ledger (no Solana SDK, no provider SDK, no network, no wallet, no private keys, no trading, no execution, no real trade intents, no execution plans, no evidence mutation, no UI rendering)
+- **IMPORTANT: `DashboardReadModels` are NOT a trading system** — they are fixture-only, read-only data-shaping objects for future UI review only
+- `DashboardReadModelCapabilities` — all 18 unsafe flags permanently `false`; `fixtureOnly: true`, `analysisOnly: true`, `nonExecutable: true`, `readOnly: true`; `canRenderUi: false` permanently
+- `DashboardOverviewModel` — safe summary with totalFindings, severityCounts, panelsAvailable, safetyStatus
+- `DashboardReplayPanelModel` — shapes Replay Lab / Replay Reporting fixture evidence into read-only panel
+- `DashboardStrategyPanelModel` — shapes Strategy Intent fixture evidence into read-only panel
+- `DashboardEvaluationPanelModel` — shapes Strategy Evaluation fixture evidence into read-only panel
+- `DashboardEvidencePanelModel` — shapes Evidence Ledger / Decision Trace fixture evidence into read-only panel
+- `DashboardSafetyPanelModel` — summarises all 18 locked capabilities; `safetyInvariantsSatisfied: true` permanently
+- `buildDashboardReadModelBundle()` — combines all 5 panels + overview into one safe bundle
+- `validateDashboardReadModelBundle()` — validates all safety invariants; rejects unsafe text, secrets, URLs, unsafe capability flags
+- 6 deterministic synthetic fixtures: CLEAN, DEGRADED, FAILED, INCONCLUSIVE, MIXED, REGRESSION
+- 270 new tests in `tests/phase18.test.ts` — **2591 passing** (24 test files)
+- **Fixture-only, analysis-only, non-executable, read-only** — cannot render UI, cannot trade, cannot execute
+- See [docs/DASHBOARD_READ_MODELS.md](./docs/DASHBOARD_READ_MODELS.md) for full details
 
 ## Features (Phase 17 — adds to Phase 16)
 

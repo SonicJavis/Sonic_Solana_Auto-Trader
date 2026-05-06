@@ -31,6 +31,7 @@ export default defineConfig({
       '@sonic/strategy-intent': resolve(__dirname, 'packages/strategy-intent/src/index.ts'),
       '@sonic/strategy-evaluation': resolve(__dirname, 'packages/strategy-evaluation/src/index.ts'),
       '@sonic/evidence-ledger': resolve(__dirname, 'packages/evidence-ledger/src/index.ts'),
+      '@sonic/dashboard-read-models': resolve(__dirname, 'packages/dashboard-read-models/src/index.ts'),
     },
   },
 });

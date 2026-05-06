@@ -269,3 +269,23 @@
 211. **Phase 17**: `checkEvidenceIntegrity()` detects duplicate IDs, unsafe text, liveData violations, secret patterns, URL patterns, and mutation capability markers
 212. **Phase 17**: `DecisionTraceClassification` and `EvidenceEntryKind` values are analysis-only labels — no value implies permission to trade, execute, or take any action
 213. **Phase 17**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/execution commands.
+
+
+## Phase 18 Additional Safety Rules
+
+214. **Phase 18**: `packages/dashboard-read-models` has no dependencies on Solana SDK, Pump SDK, Helius SDK, WebSocket clients, Yellowstone/Geyser packages, wallet libraries, RPC providers, or any app packages — only `@sonic/evidence-ledger`
+215. **Phase 18**: All `DashboardReadModelCapabilities` unsafe fields are permanently `false`: `canUseLiveData`, `canUseSolanaRpc`, `canUseProviderApis`, `canAccessPrivateKeys`, `canCreateTradeIntents`, `canCreateExecutionPlans`, `canPaperTrade`, `canTrade`, `canExecute`, `canWriteToDatabase`, `canSendTelegramAlerts`, `canConstructTransactions`, `canSimulateTransactions`, `canCreateOrders`, `canCreatePositions`, `canCalculateLivePnl`, `canMutatePriorEvidence`, `canRenderUi`
+216. **Phase 18**: `DashboardReadModels` are **fixture-only, read-only, analysis-only, and non-executable** — they are NOT a trading system; they do not create real trade intents, execution plans, orders, positions, paper trades, or any actionable output
+217. **Phase 18**: `DashboardReadModels` **cannot render UI** — `canRenderUi: false` is permanently enforced; no React components, no web rendering, no HTTP endpoints
+218. **Phase 18**: `DashboardReadModels` **cannot mutate prior evidence** — `canMutatePriorEvidence: false` is permanently enforced; read-only access to evidence outputs only
+219. **Phase 18**: `DashboardReadModels` **cannot create real trade intents** — no `tradeIntent` or `createTradeIntent` field is present in any output
+220. **Phase 18**: `DashboardReadModels` **cannot create execution plans** — no `executionPlan` or `createExecutionPlan` field in any output
+221. **Phase 18**: `DashboardReadModels` **cannot create orders or positions** — `canCreateOrders: false` and `canCreatePositions: false` are permanently enforced
+222. **Phase 18**: `DashboardReadModels` **cannot calculate live PnL** — `canCalculateLivePnl: false` is permanently enforced
+223. **Phase 18**: `DashboardReadModels` **cannot use live data** — all outputs carry `liveData: false`; all inputs must have `liveData: false` and `fixtureOnly: true`
+224. **Phase 18**: `DashboardReadModels` **cannot recommend action decisions** — outputs are fixture-only data-shaping objects for future UI review only; no buy, sell, execute, snipe, copy, or auto-trade wording is permitted in any panel label, summary, or finding
+225. **Phase 18**: All `DashboardReadModelBundle` outputs carry `fixtureOnly: true`, `liveData: false`, `safeToDisplay: true`, `analysisOnly: true`, `nonExecutable: true`, `readOnly: true` — these are not configurable
+226. **Phase 18**: Markdown exports include a mandatory safety footer stating the report is fixture-only, analysis-only, non-executable, read-only, does not recommend or enable trading, cannot access live data or wallets, and cannot render UI
+227. **Phase 18**: `validateDashboardReadModelBundle()` and `validateDashboardReadModelFinding()` reject any string containing unsafe action text (buy, sell, execute, snipe, copy trade, etc.), secret-like patterns, or URL/RPC-like patterns
+228. **Phase 18**: `DashboardReadModelSeverity` and `panelKind` values are analysis-only labels — no value implies permission to trade, execute, or take any action
+229. **Phase 18**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/execution commands.

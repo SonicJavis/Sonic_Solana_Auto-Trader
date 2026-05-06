@@ -1,6 +1,43 @@
 # Phase Log
 
-## Phase 17 — Evidence Ledger and Decision Trace v1
+## Phase 18 — Evidence Review Dashboard Read Models v1
+
+- New `packages/dashboard-read-models` package: safe, deterministic, fixture-only, read-only, analysis-only, non-executable dashboard read model layer above Evidence Ledger
+- `DashboardReadModelCapabilities` — all 18 unsafe fields permanently `false`; `fixtureOnly: true`, `analysisOnly: true`, `nonExecutable: true`, `readOnly: true`; `canRenderUi: false` permanently
+- `DashboardReadModelSeverity` — 5 analysis-only severity levels: `info`, `warning`, `risk`, `failure`, `inconclusive`
+- `DashboardReadModelFinding` — single analysis-only finding; all safety fields required
+- `DashboardReadModelInput` — input for building panels; `fixtureOnly: true`, `liveData: false` required
+- `DashboardOverviewModel` — safe summary counts, panel availability, severity counts, safety status; no live status claims
+- `DashboardReplayPanelModel` — shapes Replay Lab / Replay Reporting fixture evidence into read-only panel
+- `DashboardStrategyPanelModel` — shapes Strategy Intent fixture evidence into read-only panel
+- `DashboardEvaluationPanelModel` — shapes Strategy Evaluation fixture evidence into read-only panel
+- `DashboardEvidencePanelModel` — shapes Evidence Ledger / Decision Trace fixture evidence into read-only panel
+- `DashboardSafetyPanelModel` — summarises all 18 locked capabilities; `safetyInvariantsSatisfied: true` permanently
+- `DashboardReadModelBundle` — combined safe bundle of all 5 panel models + overview
+- `DashboardReadModelExport` — deterministic JSON-safe export wrapper
+- `DashboardReadModelFixture` — named deterministic test/review fixture
+- `DrmResult<T>`, `drmOk`, `drmErr`, `DashboardReadModelError`, `DashboardReadModelErrorCode` — safe result/error pattern (never throws for normal validation failures)
+- `getDashboardReadModelCapabilities` — permanently-safe capabilities guard
+- `buildDashboardOverviewModel` — safe overview model builder
+- `buildReplayPanelModel` — safe replay panel model builder
+- `buildStrategyPanelModel` — safe strategy panel model builder
+- `buildEvaluationPanelModel` — safe evaluation panel model builder
+- `buildEvidencePanelModel` — safe evidence panel model builder
+- `buildSafetyPanelModel` — safe safety panel model builder with locked capabilities
+- `buildDashboardReadModelBundle` — combines all 5 panels + overview into one safe bundle
+- `exportDashboardReadModelJson` — deterministic JSON export with sorted panelsAvailable and lockedCapabilityNames
+- `exportDashboardReadModelMarkdown` — deterministic Markdown export with mandatory safety footer stating fixture-only, analysis-only, non-executable, read-only, does not recommend or enable trading
+- `validateDashboardReadModelFinding`, `validateDashboardReadModelInput`, `validateDashboardReadModelBundle`, `validateDashboardReadModelCapabilities` — full safety invariant validators
+- `containsUnsafeActionText`, `containsSecretPattern`, `containsUrlPattern`, `isDisplaySafe` — text safety helpers
+- 6 deterministic synthetic fixtures + `ALL_DASHBOARD_READ_MODEL_FIXTURES`: CLEAN, DEGRADED, FAILED, INCONCLUSIVE, MIXED, REGRESSION
+- `docs/DASHBOARD_READ_MODELS.md` documentation
+- Phase 18 test suite: 270 new tests (2591 total, all passing)
+- No live data. No Solana RPC. No provider APIs. No wallet/private key handling. No trade intents. No execution plans. No paper trading. No trade execution. No orders. No fills. No routes. No swaps. No positions. No PnL. No transaction construction/simulation/signing/sending. No evidence mutation. No UI rendering.
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram trade commands
+
+**Next phase guidance:** Phase 19 may build richer cross-phase ledger correlation or additional read-model panels, but must first ensure all Phase 13–18 evidence gates produce stable, reproducible results. Do not start Phase 19 without explicit sign-off. Live data, wallet access, trading, execution, and evidence mutation remain permanently forbidden.
+
 
 - New `packages/evidence-ledger` package: safe, deterministic, fixture-only, append-only, analysis-only, non-executable Evidence Ledger and Decision Trace layer above Strategy Evaluation
 - `EvidenceLedgerCapabilities` — all 17 unsafe fields permanently `false`; `fixtureOnly: true`, `analysisOnly: true`, `nonExecutable: true`, `appendOnly: true`; `canMutatePriorEvidence: false` permanently
