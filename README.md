@@ -282,6 +282,7 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 - `packages/observability` — logger
 - `packages/risk-engine` — risk checks
 - `packages/testing` — shared test utilities
+- `packages/strategy-evaluation` — fixture-only, analysis-only, non-executable strategy evaluation reports (Phase 16, inert)
 - `apps/telegram-bot` — Telegram control interface
 - `apps/worker` — safe heartbeat loop
 

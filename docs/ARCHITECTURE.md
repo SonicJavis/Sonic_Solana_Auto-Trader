@@ -370,3 +370,5 @@ Replay Lab (@sonic/replay-lab)
 
 No Solana SDK. No provider SDK. No network. No wallet. No execution. No real trade intents.
 `FULL_AUTO` and `LIMITED_LIVE` remain locked.
+
+- `strategy-evaluation`: Fixture-only, analysis-only, non-executable strategy evaluation report layer above Strategy Intent; aggregates score bands, evidence distribution, safety gate summaries, and family comparisons from StrategyIntent batches; JSON/Markdown export with mandatory safety footer (Phase 16 — no network, no Solana RPC, no provider APIs, no live data, no real trade intents, no execution plans, no orders, no positions, no live PnL, no paper trading, no trade execution, no transactions)

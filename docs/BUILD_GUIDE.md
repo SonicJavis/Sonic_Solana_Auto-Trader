@@ -552,3 +552,20 @@ pnpm test              # run all 1956 tests
 - Never commit directly to `main`
 - Never merge PRs locally — use the GitHub PR workflow only
 - Run `pnpm typecheck && pnpm lint && pnpm test` before pushing
+
+## Building @sonic/strategy-evaluation
+
+```bash
+pnpm --filter @sonic/strategy-evaluation build
+```
+
+### Safe usage notes for @sonic/strategy-evaluation
+
+- `@sonic/strategy-evaluation` is **fixture-only, analysis-only, non-executable**
+- Import only via the package barrel: `import { ... } from '@sonic/strategy-evaluation'`
+- **StrategyEvaluation is NOT a real evaluation** — it is an internal analysis model for human review only
+- Always validate outputs with `validateStrategyEvaluation()` before use
+- Never interpret `StrategyEvaluationClassification` or score band values as trade signals
+- All inputs must have `fixtureOnly: true` and `liveData: false`
+- Capabilities guard (`getStrategyEvaluationCapabilities()`) always returns all unsafe flags as `false`
+- Markdown exports always include the mandatory safety footer

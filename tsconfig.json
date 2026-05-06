@@ -18,6 +18,7 @@
     { "path": "./packages/replay-lab" },
     { "path": "./packages/replay-reporting" },
     { "path": "./packages/strategy-intent" },
+    { "path": "./packages/strategy-evaluation" },
     { "path": "./apps/telegram-bot" },
     { "path": "./apps/worker" }
   ]
