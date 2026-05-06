@@ -488,3 +488,33 @@
 - No new Telegram trade commands
 
 **Next phase guidance:** Phase 16 may build a paper trading replay harness or a live-gated readiness accumulator, but must first demonstrate stable, reproducible Phase 15 fixture evidence across multiple replay runs. Do not start Phase 16 without explicit sign-off. Live data, wallet access, trading, execution, and real trade intents remain forbidden until proven safe through gated evidence review.
+
+## Phase 16 — Strategy Evaluation Reports v1
+
+- New `packages/strategy-evaluation` package: fixture-only, analysis-only, non-executable strategy evaluation report layer on top of Phase 15 Strategy Intent; no Solana SDK, no provider SDK, no network, no wallet, no trading, no execution, no real trade intents, no execution plans, no orders, no positions, no live PnL
+- `StrategyEvaluationCapabilities` — all 16 unsafe fields permanently `false`; `fixtureOnly: true`, `analysisOnly: true`, `nonExecutable: true`; adds `canCreateOrders`, `canCreatePositions`, `canCalculateLivePnl` beyond Phase 15
+- `StrategyScoreBand` — 7 fixture review bands: `excellent_fixture_review`, `strong_fixture_review`, `moderate_fixture_review`, `weak_fixture_review`, `degraded_fixture_review`, `failed_fixture_review`, `inconclusive_fixture_review`
+- `StrategyScoreBandSummary` — per-band counts with summaryText; analysis-only
+- `StrategyEvidenceDistribution` — total, quality counts, classification counts, family counts; analysis-only
+- `StrategySafetyGateSummary` — aggregated gate status counts (passed/warning/blocked/inconclusive), most common blocked gate IDs; analysis-only
+- `StrategyFamilyComparison` — per-family: intentCount, averageConfidence, evidenceQualityCounts, gateStatusCounts; sorted deterministically; analysis-only
+- `StrategyEvaluationClassification` — 5 non-actionable evaluation labels: `reject_heavy`, `watch_only_heavy`, `analysis_only_heavy`, `insufficient_evidence`, `fixture_only`
+- `StrategyEvaluation` — core evaluation model; analysis-only, non-executable; carries all safety flags
+- `SeResult<T>`, `seOk`, `seErr`, `StrategyEvaluationError`, `StrategyEvaluationErrorCode` — safe result/error pattern
+- `getStrategyEvaluationCapabilities()` — permanently-safe capabilities guard
+- `buildStrategyScoreBandSummary(intents)` — fixture-only score band summary
+- `buildStrategyEvidenceDistribution(intents)` — fixture-only evidence distribution
+- `buildStrategySafetyGateSummary(intents)` — analysis-only gate summary
+- `compareStrategyFamilies(intents)` — deterministic family comparison, sorted by family name
+- `buildStrategyEvaluation(input)` — full evaluation builder; rejects liveData=true and fixtureOnly=false; rejects empty intents
+- `exportStrategyEvaluationJson(evaluation)` — deterministic JSON-safe export
+- `exportStrategyEvaluationMarkdown(evaluation)` — deterministic Markdown export with mandatory safety footer
+- `validateStrategyEvaluation(evaluation)` — validates all safety invariants; rejects unsafe action text, secrets, URLs
+- `validateStrategyEvaluationCapabilities(caps)` — validates capability flags
+- `containsUnsafeActionText`, `containsSecretPattern`, `containsUrlPattern`, `isDisplaySafe` — text safety helpers
+- 6 deterministic synthetic fixtures + `ALL_STRATEGY_EVALUATION_FIXTURES` array: CLEAN, DEGRADED, FAILED, INCONCLUSIVE, MIXED, REGRESSION
+- `docs/STRATEGY_EVALUATION.md` documentation
+- Phase 16 test suite: 140+ new tests (all passing)
+- **No live data. No Solana RPC. No provider APIs. No wallet handling. No trade intents. No execution plans. No orders. No positions. No live PnL. No paper trading. No trade execution. No transaction construction. No transaction simulation. No signing. No sending.**
+- FULL_AUTO and LIMITED_LIVE remain locked
+- No new Telegram trade commands

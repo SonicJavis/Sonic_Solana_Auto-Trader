@@ -232,3 +232,20 @@
 181. **Phase 15**: All `StrategySafetyGate` outputs are analysis-only summaries — no gate triggers any action or side effect
 182. **Phase 15**: `StrategyFamily` labels and `StrategyIntentClassification` values are analysis labels only — no value implies permission to trade
 183. **Phase 15**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/execution commands.
+
+## Phase 16 Additional Safety Rules
+
+184. **Phase 16**: `packages/strategy-evaluation` has no dependencies on Solana SDK, Pump SDK, Helius SDK, WebSocket clients, Yellowstone/Geyser packages, wallet libraries, RPC providers, or any app packages — only `@sonic/strategy-intent`
+185. **Phase 16**: All `StrategyEvaluationCapabilities` unsafe fields are permanently `false`: `canUseLiveData`, `canUseSolanaRpc`, `canUseProviderApis`, `canAccessPrivateKeys`, `canCreateTradeIntents`, `canCreateExecutionPlans`, `canPaperTrade`, `canTrade`, `canExecute`, `canWriteToDatabase`, `canSendTelegramAlerts`, `canConstructTransactions`, `canSimulateTransactions`, `canCreateOrders`, `canCreatePositions`, `canCalculateLivePnl`
+186. **Phase 16**: `StrategyEvaluation` is **analysis-only and non-executable** — it is NOT a real evaluation with actionable results; it does not create real trade intents, execution plans, orders, positions, or paper trades
+187. **Phase 16**: `StrategyEvaluation` **cannot create real trade intents** — no `tradeIntent` or `createTradeIntent` field is present
+188. **Phase 16**: `StrategyEvaluation` **cannot create execution plans** — no `executionPlan` or `createExecutionPlan` field in any output
+189. **Phase 16**: `StrategyEvaluation` **cannot create orders or positions** — `canCreateOrders: false` and `canCreatePositions: false` are permanently enforced
+190. **Phase 16**: `StrategyEvaluation` **cannot calculate live PnL** — `canCalculateLivePnl: false` is permanently enforced
+191. **Phase 16**: `StrategyEvaluation` **cannot use live data** — all outputs carry `liveData: false`; all inputs must have `liveData: false` and `fixtureOnly: true`
+192. **Phase 16**: `StrategyEvaluation` **cannot recommend action decisions** — outputs are fixture evidence review aids only; no buy, sell, execute, snipe, copy, or auto-trade wording is permitted
+193. **Phase 16**: All `StrategyEvaluation` outputs carry `fixtureOnly: true`, `liveData: false`, `safeToDisplay: true`, `analysisOnly: true`, `nonExecutable: true` — these are not configurable
+194. **Phase 16**: Markdown exports include a mandatory safety footer: `> ⚠️ SAFETY NOTICE: This report is fixture-only, analysis-only, and non-executable.`
+195. **Phase 16**: `validateStrategyEvaluation()` rejects any string containing unsafe action text (buy, sell, execute, snipe, copy trade, etc.), secret-like patterns, or URL/RPC-like patterns
+196. **Phase 16**: `StrategyScoreBand`, `StrategyEvaluationClassification`, `StrategyFamilyComparison` values are analysis labels only — no value implies permission to trade
+197. **Phase 16**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/execution commands.

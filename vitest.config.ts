@@ -29,6 +29,7 @@ export default defineConfig({
       '@sonic/replay-lab': resolve(__dirname, 'packages/replay-lab/src/index.ts'),
       '@sonic/replay-reporting': resolve(__dirname, 'packages/replay-reporting/src/index.ts'),
       '@sonic/strategy-intent': resolve(__dirname, 'packages/strategy-intent/src/index.ts'),
+      '@sonic/strategy-evaluation': resolve(__dirname, 'packages/strategy-evaluation/src/index.ts'),
     },
   },
 });
