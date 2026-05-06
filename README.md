@@ -1,8 +1,26 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 18 — Evidence Review Dashboard Read Models v1**
+**Phase 19 — Local Read-Only API Contracts v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 18.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 19.
+
+## Features (Phase 19 — adds to Phase 18)
+
+- New `packages/read-only-api-contracts` — safe, fixture-only, read-only, analysis-only, non-executable, contract-only local API boundary contract models (no API server, no HTTP listener, no network port, no Fastify/Hono/tRPC/Express, no Solana SDK, no provider SDK, no network, no wallet, no private keys, no trading, no execution, no real trade intents, no execution plans, no evidence mutation, no UI rendering)
+- **IMPORTANT: `ReadOnlyApiContracts` are NOT an API server, HTTP listener, UI, or trading system** — they are fixture-only, contract-only TypeScript models describing future API boundary contracts
+- `ReadOnlyApiCapabilities` — all 21 unsafe flags permanently `false`; `fixtureOnly: true`, `analysisOnly: true`, `nonExecutable: true`, `readOnly: true`, `contractOnly: true`; `canStartHttpServer: false`, `canOpenNetworkPort: false`, `canUseApiFramework: false` permanently
+- `buildReadOnlyApiEndpointContracts()` — 9 documentation-shaped endpoint contracts (health, capabilities, dashboard panels, evidence, safety); no router, no handler, no server
+- `buildReadOnlyApiHealthContract()` — fixture-only health contract; no runtime checks
+- `buildReadOnlyDashboardContract()` — shapes dashboard inputs into safe API contract model
+- `buildReadOnlyEvidenceContract()` — shapes evidence inputs into safe API contract model
+- `buildReadOnlySafetyContract()` — locked capabilities summary; includes HTTP server/port/framework locks
+- `buildReadOnlyApiContractBundle()` — combines all contracts into one safe bundle
+- `exportReadOnlyApiContractOpenApiShape()` — deterministic OpenAPI-like documentation shape; future only, no live server
+- `validateReadOnlyApiContractBundle()` — validates all safety invariants; rejects unsafe text, secrets, URLs, server patterns, unsafe capability flags
+- 6 deterministic synthetic fixtures: CLEAN, DEGRADED, FAILED, INCONCLUSIVE, MIXED, REGRESSION
+- 226 new tests in `tests/phase19.test.ts` — **2817 passing** (25 test files)
+- **Fixture-only, analysis-only, non-executable, read-only, contract-only** — cannot start HTTP server, cannot open port, cannot use API framework, cannot trade, cannot execute
+- See [docs/READ_ONLY_API_CONTRACTS.md](./docs/READ_ONLY_API_CONTRACTS.md) for full details
 
 ## Features (Phase 18 — adds to Phase 17)
 

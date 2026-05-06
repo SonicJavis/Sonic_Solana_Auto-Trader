@@ -205,6 +205,16 @@ importers:
         specifier: '*'
         version: 5.9.3
 
+  packages/read-only-api-contracts:
+    dependencies:
+      '@sonic/dashboard-read-models':
+        specifier: workspace:*
+        version: link:../dashboard-read-models
+    devDependencies:
+      typescript:
+        specifier: '*'
+        version: 5.9.3
+
   packages/replay-lab:
     devDependencies:
       typescript:

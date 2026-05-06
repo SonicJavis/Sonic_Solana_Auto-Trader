@@ -32,6 +32,7 @@ export default defineConfig({
       '@sonic/strategy-evaluation': resolve(__dirname, 'packages/strategy-evaluation/src/index.ts'),
       '@sonic/evidence-ledger': resolve(__dirname, 'packages/evidence-ledger/src/index.ts'),
       '@sonic/dashboard-read-models': resolve(__dirname, 'packages/dashboard-read-models/src/index.ts'),
+      '@sonic/read-only-api-contracts': resolve(__dirname, 'packages/read-only-api-contracts/src/index.ts'),
     },
   },
 });

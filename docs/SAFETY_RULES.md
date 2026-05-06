@@ -289,3 +289,25 @@
 227. **Phase 18**: `validateDashboardReadModelBundle()` and `validateDashboardReadModelFinding()` reject any string containing unsafe action text (buy, sell, execute, snipe, copy trade, etc.), secret-like patterns, or URL/RPC-like patterns
 228. **Phase 18**: `DashboardReadModelSeverity` and `panelKind` values are analysis-only labels — no value implies permission to trade, execute, or take any action
 229. **Phase 18**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/execution commands.
+
+## Phase 19 Additional Safety Rules
+
+230. **Phase 19**: `packages/read-only-api-contracts` has no dependencies on Solana SDK, Pump SDK, Helius SDK, WebSocket clients, Yellowstone/Geyser packages, wallet libraries, RPC providers, Fastify, Hono, tRPC, Express, or any API/HTTP framework — only `@sonic/dashboard-read-models`
+231. **Phase 19**: All `ReadOnlyApiCapabilities` unsafe fields are permanently `false`: `canUseLiveData`, `canUseSolanaRpc`, `canUseProviderApis`, `canAccessPrivateKeys`, `canCreateTradeIntents`, `canCreateExecutionPlans`, `canPaperTrade`, `canTrade`, `canExecute`, `canWriteToDatabase`, `canSendTelegramAlerts`, `canConstructTransactions`, `canSimulateTransactions`, `canCreateOrders`, `canCreatePositions`, `canCalculateLivePnl`, `canMutatePriorEvidence`, `canRenderUi`, `canStartHttpServer`, `canOpenNetworkPort`, `canUseApiFramework`
+232. **Phase 19**: `ReadOnlyApiContracts` are **fixture-only, read-only, analysis-only, non-executable, and contract-only** — they are NOT an API server, HTTP listener, UI, or trading system; they do not create real trade intents, execution plans, orders, positions, paper trades, or any actionable output
+233. **Phase 19**: `ReadOnlyApiContracts` **cannot start an HTTP server** — `canStartHttpServer: false` is permanently enforced; no Fastify, Hono, tRPC, Express, or any other API framework is used or depended upon
+234. **Phase 19**: `ReadOnlyApiContracts` **cannot open a network port** — `canOpenNetworkPort: false` is permanently enforced; no network sockets, TCP listeners, or WebSocket servers are created
+235. **Phase 19**: `ReadOnlyApiContracts` **cannot use an API framework** — `canUseApiFramework: false` is permanently enforced; endpoint contracts are documentation-shaped metadata only
+236. **Phase 19**: `ReadOnlyApiContracts` **cannot render UI** — `canRenderUi: false` is permanently enforced; no React components, no web rendering, no browser code
+237. **Phase 19**: `ReadOnlyApiContracts` **cannot mutate prior evidence** — `canMutatePriorEvidence: false` is permanently enforced; read-only access to evidence outputs only
+238. **Phase 19**: `ReadOnlyApiContracts` **cannot create real trade intents** — no `tradeIntent` or `createTradeIntent` field is present in any output
+239. **Phase 19**: `ReadOnlyApiContracts` **cannot create execution plans** — no `executionPlan` or `createExecutionPlan` field in any output
+240. **Phase 19**: `ReadOnlyApiContracts` **cannot create orders or positions** — `canCreateOrders: false` and `canCreatePositions: false` are permanently enforced
+241. **Phase 19**: `ReadOnlyApiContracts` **cannot calculate live PnL** — `canCalculateLivePnl: false` is permanently enforced
+242. **Phase 19**: `ReadOnlyApiContracts` **cannot use live data** — all outputs carry `liveData: false` and `contractOnly: true`; all inputs must have `liveData: false` and `fixtureOnly: true`
+243. **Phase 19**: `ReadOnlyApiContracts` **cannot recommend action decisions** — outputs are fixture-only contract-only models; no buy, sell, execute, snipe, copy, or auto-trade wording is permitted in any contract, label, summary, or finding
+244. **Phase 19**: All `ReadOnlyApiContractBundle` outputs carry `fixtureOnly: true`, `liveData: false`, `safeToDisplay: true`, `analysisOnly: true`, `nonExecutable: true`, `readOnly: true`, `contractOnly: true` — these are not configurable
+245. **Phase 19**: `validateReadOnlyApiContractBundle()` rejects any string containing unsafe action text, secret-like patterns, URL/RPC-like patterns, or HTTP server/listener/port patterns
+246. **Phase 19**: OpenAPI-like shape export is for documentation/planning only — no live server config, no real URLs, all paths marked `contractOnly: true`; Fastify/Hono/tRPC/Express integration is marked **future only**
+247. **Phase 19**: `ReadOnlyApiSeverity` and endpoint contract metadata are analysis-only labels — no value implies permission to trade, execute, or take any action
+248. **Phase 19**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/execution commands.

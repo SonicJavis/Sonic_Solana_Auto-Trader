@@ -628,3 +628,42 @@ pnpm test
 - Never commit directly to `main`
 - Never merge PRs locally — use the GitHub PR workflow only
 - Run `pnpm typecheck && pnpm lint && pnpm test` before pushing
+
+## Phase 19: Local Read-Only API Contracts v1
+
+### New package: `@sonic/read-only-api-contracts`
+
+```bash
+pnpm --filter @sonic/read-only-api-contracts build
+```
+
+### Validation commands
+
+```bash
+pnpm install --no-frozen-lockfile  # if adding new package
+pnpm typecheck                     # TypeScript type checking
+pnpm lint                          # ESLint with max-warnings 0
+pnpm test                          # run all 2817 tests
+```
+
+### Safe usage notes for @sonic/read-only-api-contracts
+
+- `@sonic/read-only-api-contracts` is **fixture-only, analysis-only, non-executable, read-only, contract-only**
+- Import only via the package barrel: `import { ... } from '@sonic/read-only-api-contracts'`
+- **ReadOnlyApiContracts are NOT an API server, HTTP listener, UI, or trading system** — they are fixture-only, contract-only TypeScript models describing future API boundary contracts
+- Always validate outputs with `validateReadOnlyApiContractBundle()` before use
+- Never interpret endpoint contract metadata as live routing or handler registration
+- All inputs must have `fixtureOnly: true` and `liveData: false`
+- Capabilities guard (`getReadOnlyApiCapabilities()`) always returns all unsafe flags as `false`, including `canStartHttpServer: false`, `canOpenNetworkPort: false`, `canUseApiFramework: false`
+- OpenAPI-like shape export is for documentation/planning only — no live server config, no real URLs
+- See [docs/READ_ONLY_API_CONTRACTS.md](./READ_ONLY_API_CONTRACTS.md) for full documentation
+
+### PR workflow reminder
+
+- Work on feature branches only (e.g. `copilot/phase-19-*`)
+- Never commit directly to `main`
+- Never merge PRs locally — use the GitHub PR workflow only
+- Run `pnpm typecheck && pnpm lint && pnpm test` before pushing
+
+## Phase 19: Test count
+2817 passing tests (226 new Phase 19 tests + 2591 regression tests). 25 test files.

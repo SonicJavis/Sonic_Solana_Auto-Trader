@@ -21,6 +21,7 @@
     { "path": "./packages/strategy-evaluation" },
     { "path": "./packages/evidence-ledger" },
     { "path": "./packages/dashboard-read-models" },
+    { "path": "./packages/read-only-api-contracts" },
     { "path": "./apps/telegram-bot" },
     { "path": "./apps/worker" }
   ]
