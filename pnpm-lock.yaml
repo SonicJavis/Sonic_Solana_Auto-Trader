@@ -141,6 +141,16 @@ importers:
         specifier: '*'
         version: 5.9.3
 
+  packages/evidence-ledger:
+    dependencies:
+      '@sonic/strategy-evaluation':
+        specifier: workspace:*
+        version: link:../strategy-evaluation
+    devDependencies:
+      typescript:
+        specifier: '*'
+        version: 5.9.3
+
   packages/manipulation-detector:
     devDependencies:
       typescript:
