@@ -198,6 +198,7 @@ export function buildCreatorIntelligenceFixture(input: CreatorIntelligenceBuildI
   });
 
   const {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     summary: _placeholderSummary,
     ...fixtureWithoutSummary
   } = normalizedWithoutSummary;

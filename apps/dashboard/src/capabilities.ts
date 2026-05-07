@@ -102,5 +102,20 @@ export function getDashboardUiShellCapabilities(): DashboardUiShellCapabilities 
     creatorTradingSignals: false,
     creatorExternalNetwork: false,
     creatorPersistence: false,
+    // Phase 31 wallet cluster fixture capabilities
+    walletClusterIntelligenceFixtures: true,
+    syntheticWalletClusters: true,
+    walletClusterSignalFixtures: true,
+    walletClusterRiskIndicators: true,
+    walletClusterQualityIndicators: true,
+    walletClusterFixtureSafetyValidation: true,
+    walletClusterLiveData: false,
+    walletClusterChainAccess: false,
+    walletClusterRpcAccess: false,
+    walletClusterIdentityResolution: false,
+    walletClusterInvestmentAdvice: false,
+    walletClusterTradingSignals: false,
+    walletClusterExternalNetwork: false,
+    walletClusterPersistence: false,
   };
 }
