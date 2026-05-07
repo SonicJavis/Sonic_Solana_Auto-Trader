@@ -379,9 +379,10 @@ No Solana SDK. No provider SDK. No network. No wallet. No execution. No real tra
 
 - `read-only-api-contracts` (packages): Fixture-only, read-only, analysis-only, non-executable, contract-only API boundary contract models for future local API planning; no HTTP server, no Fastify, no network ports; all unsafe capabilities false; `canStartHttpServer: false`, `canOpenNetworkPort: false`, `canUseApiFramework: false` permanently (Phase 19)
 
-- `read-only-api` (apps): Localhost-only, GET-only, fixture-only, read-only, analysis-only, non-executable Fastify API shell; binds only to `127.0.0.1`; serves Phase 19 contract fixtures and Phase 18 dashboard read model fixtures through 11 deterministic GET endpoints; `createReadOnlyApiApp()` does NOT auto-listen; all unsafe capabilities false; `canStartLocalhostServer: true` for 127.0.0.1 only (Phase 20). Phase 21 adds safe in-memory query parsing, filtering, sorting, and pagination helpers; `canFilterFixtureData: true`, `canPaginateFixtureData: true`, `canSortFixtureData: true`. Phase 22 adds standard Phase 22 JSON response envelopes and error envelopes for all endpoints; `buildReadOnlyApiSuccessEnvelope`, `buildReadOnlyApiErrorEnvelope`, deterministic contract metadata, 5 stable error codes, 11 endpoint contracts, query validation error envelopes, `canServeResponseEnvelopes: true`, `canReturnErrorEnvelopes: true`, `canValidateQueryErrors: true`, `canProvideDeterministicMetadata: true`, `canProvideEndpointContracts: true`.
+- `read-only-api` (apps): Localhost-only, GET-only, fixture-only, read-only, analysis-only, non-executable Fastify API shell; binds only to `127.0.0.1`; serves Phase 19 contract fixtures and Phase 18 dashboard read model fixtures through 11 deterministic GET endpoints; `createReadOnlyApiApp()` does NOT auto-listen; all unsafe capabilities false; `canStartLocalhostServer: true` for 127.0.0.1 only (Phase 20). Phase 21 adds safe in-memory query parsing, filtering, sorting, and pagination helpers; `canFilterFixtureData: true`, `canPaginateFixtureData: true`, `canSortFixtureData: true`. Phase 22 adds standard Phase 22 JSON response envelopes and error envelopes for all endpoints; `buildReadOnlyApiSuccessEnvelope`, `buildReadOnlyApiErrorEnvelope`, deterministic contract metadata, 5 stable error codes, 11 endpoint contracts, query validation error envelopes, `canServeResponseEnvelopes: true`, `canReturnErrorEnvelopes: true`, `canValidateQueryErrors: true`, `canProvideDeterministicMetadata: true`, `canProvideEndpointContracts: true`. Phase 23 adds `consumerSdk: true`, `contractFixtures: true`, `typedRequestBuilders: true`, `responseParsers: true`, `fixtureValidation: true`, `inProcessOnlyClient: true`, `externalNetworkClient: false`.
+- `read-only-api-client` (packages): Phase 23 local/in-process consumer SDK for Phase 22 read-only API contracts; typed endpoint definitions, request builders, query builders, response parsers, type guards, assertion helpers, and 10 deterministic contract fixtures; no real network client, no port binding, no external I/O; depends on `@sonic/read-only-api` (Phase 23).
 
-Architecture layer (Phase 21):
+Architecture layer (Phase 23):
 ```
 Replay Lab (@sonic/replay-lab)
   → Replay Reporting (@sonic/replay-reporting)
@@ -391,14 +392,16 @@ Replay Lab (@sonic/replay-lab)
           → Dashboard Read Models (@sonic/dashboard-read-models)
             → Read-Only API Contracts (@sonic/read-only-api-contracts)
               → Local Read-Only API Shell (@sonic/read-only-api)
-                  → Local Read-Only API Query, Filter, and Pagination  ← Phase 21
-                      127.0.0.1-only Fastify server
-                      GET-only, fixture-only, no live data
-                      query/filter/sort/paginate in-memory fixture data only
-                      [human review only — no execution path]
+                  → Phase 23 Consumer SDK (@sonic/read-only-api-client)  ← Phase 23
+                      In-process only. No network. No port binding.
+                      Typed endpoint definitions + request builders
+                      Query param builders + validators
+                      Response parsers + type guards
+                      10 deterministic contract fixtures
+                      [local/in-process use only]
 ```
 
-`@sonic/read-only-api` is the first runtime API shell. It imports from `@sonic/read-only-api-contracts` and `@sonic/dashboard-read-models` only. It exports fixture-only, analysis-only, non-executable responses through safe GET endpoints for local human review. Phase 21 adds deterministic query/filter/pagination support. Phase 22 adds standard Phase 22 JSON response envelopes with deterministic contract metadata, error code constants, endpoint contracts, and query validation error envelopes.
+`@sonic/read-only-api` is the first runtime API shell. It imports from `@sonic/read-only-api-contracts` and `@sonic/dashboard-read-models` only. It exports fixture-only, analysis-only, non-executable responses through safe GET endpoints for local human review. Phase 21 adds deterministic query/filter/pagination support. Phase 22 adds standard Phase 22 JSON response envelopes with deterministic contract metadata, error code constants, endpoint contracts, and query validation error envelopes. Phase 23 adds a typed local in-process consumer SDK with request builders, query builders, response parsers, type guards, and 10 deterministic contract fixtures.
 
 **LocalReadOnlyApi is NOT a trading system.** It does not enable or recommend trading. It does not connect to any live data source. It does not expose an external network interface. Query/filter/pagination is fixture-only and in-memory only.
 
