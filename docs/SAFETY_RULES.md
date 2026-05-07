@@ -1,5 +1,9 @@
 # Safety Rules
 
+## Phase 32 Safety Extension
+
+Phase 32 manipulation-evidence fixture models must remain local-only, read-only, synthetic-only, deterministic, serializable, in-memory, non-persistent, external-network-free, file-write-free, non-advisory, and non-accusatory. Phase 32 does not permit live transaction inspection, live bundle detection, Jito/MEV/mempool integrations, Solana RPC/provider APIs, wallets, execution/trading logic, investment advice, trading signals, identity resolution, accusations against real entities, persistence, or browser storage.
+
 ## Phase 30 Safety Extension
 
 Phase 30 creator-intelligence fixture models must remain local-only, read-only, synthetic-only, deterministic, in-memory, non-persistent, external-network-free, file-write-free, and non-advisory. Phase 30 does not permit live social data, scraping, social-media APIs, identity resolution, wallets, execution/trading logic, investment advice, trading signals, persistence, or browser storage.

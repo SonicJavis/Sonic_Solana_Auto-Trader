@@ -14,6 +14,10 @@
     "build": "tsc --build",
     "typecheck": "tsc --noEmit"
   },
+  "dependencies": {
+    "@sonic/creator-intelligence": "workspace:*",
+    "@sonic/wallet-intelligence": "workspace:*"
+  },
   "devDependencies": {
     "typescript": "*"
   }

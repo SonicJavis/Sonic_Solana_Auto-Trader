@@ -211,6 +211,13 @@ importers:
         version: 5.9.3
 
   packages/manipulation-detector:
+    dependencies:
+      '@sonic/creator-intelligence':
+        specifier: workspace:*
+        version: link:../creator-intelligence
+      '@sonic/wallet-intelligence':
+        specifier: workspace:*
+        version: link:../wallet-intelligence
     devDependencies:
       typescript:
         specifier: '*'
