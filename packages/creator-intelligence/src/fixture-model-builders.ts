@@ -30,9 +30,11 @@ function topCodes<T extends { readonly code: string }>(values: readonly T[], lim
 
 function getDisclosureAssessment(signals: readonly CreatorDisclosureSignalFixture[]): CreatorIntelligenceSummary['disclosureAssessment'] {
   if (signals.length === 0) return 'unknown';
+  if (signals.every(signal => signal.clarity === 'unknown')) return 'unknown';
   if (signals.some(signal => signal.clarity === 'poor' || signal.clarity === 'absent')) {
     return signals.some(signal => signal.clarity === 'clear') ? 'mixed' : 'poor';
   }
+  if (signals.some(signal => signal.clarity === 'partial')) return 'mixed';
   return signals.some(signal => signal.clarity === 'clear') ? 'clear' : 'mixed';
 }
 
@@ -51,7 +53,13 @@ function getEngagementAssessment(
   if (socialPatterns.includes('bursty')) {
     return 'mixed';
   }
-  return engagementPatterns.length === 0 && socialSignals.length === 0 ? 'unknown' : 'organic';
+  if (
+    (engagementPatterns.length === 0 && socialSignals.length === 0) ||
+    (patterns.every(p => p === 'unknown') && socialPatterns.every(p => p === 'unknown'))
+  ) {
+    return 'unknown';
+  }
+  return 'organic';
 }
 
 function getNarrativeAssessment(messageStyle: CreatorIntelligenceFixture['narrative']['messageStyle']): CreatorIntelligenceSummary['narrativeAssessment'] {

@@ -1,5 +1,9 @@
 # Build Guide
 
+## Phase 32 Note
+
+Phase 32 introduces deterministic manipulation-evidence fixture models only. No additional build/runtime services are required, and no live transaction inspection, network access, wallet logic, execution, persistence, or mutation behavior is introduced.
+
 ## Phase 29 Note
 
 Phase 29 introduces deterministic local dashboard report serialization previews only. No additional build/runtime services are required, and no file export, persistence, or network behavior is introduced.
@@ -18,6 +22,7 @@ pnpm --filter @sonic/db build
 pnpm --filter @sonic/observability build
 pnpm --filter @sonic/mode-manager build
 pnpm --filter @sonic/risk-engine build
+pnpm --filter @sonic/manipulation-detector build
 
 ## Test
 pnpm test

@@ -1,8 +1,39 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 30 — Creator Intelligence Fixture Models v1**
+**Phase 32 — Bundle / Manipulation Evidence Fixture Models v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 30.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 32.
+
+## Features (Phase 32 — adds to Phase 31)
+
+- Extends `packages/manipulation-detector` with deterministic manipulation-evidence fixture models:
+  - strict bundle-pattern, launch-structure, liquidity-pattern, coordination, concentration, and funding fixture types
+  - pure fixture, summary, and synthetic cross-reference builders
+  - normalization, serializability, validation, and safety-validation helpers
+  - 16 deterministic synthetic manipulation-evidence fixtures
+- Adds Phase 32 manipulation-evidence capability flags:
+  - `manipulationEvidenceFixtures: true`
+  - `syntheticBundleEvidence: true`
+  - `syntheticLaunchStructureEvidence: true`
+  - `syntheticLiquidityPatternEvidence: true`
+  - `syntheticCoordinationEvidence: true`
+  - `manipulationRiskIndicators: true`
+  - `manipulationQualityIndicators: true`
+  - `manipulationEvidenceSafetyValidation: true`
+  - `manipulationLiveData: false`
+  - `manipulationSolanaRpc: false`
+  - `manipulationProviderApis: false`
+  - `manipulationJitoIntegration: false`
+  - `manipulationMempoolAccess: false`
+  - `manipulationTradingSignals: false`
+  - `manipulationInvestmentAdvice: false`
+  - `manipulationExternalNetwork: false`
+  - `manipulationPersistence: false`
+  - `manipulationExecution: false`
+- Extends dashboard/read-only-api compatibility capability surfaces with the same Phase 32 flags
+- Adds `docs/BUNDLE_MANIPULATION_EVIDENCE_FIXTURES.md`
+- Adds Phase 32 manipulation-evidence regression and safety tests
+- No live transactions, no live bundle detection, no Jito/MEV/mempool, no Solana RPC/provider APIs, no wallets, no execution/trading, no investment advice, no accusations against real entities, no persistence, no external network
 
 ## Features (Phase 30 — adds to Phase 29)
 

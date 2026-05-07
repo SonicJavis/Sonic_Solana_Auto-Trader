@@ -166,6 +166,25 @@ export interface LocalReadOnlyApiCapabilities {
   readonly walletClusterTradingSignals: false;
   readonly walletClusterExternalNetwork: false;
   readonly walletClusterPersistence: false;
+  // Phase 32 manipulation evidence fixture capabilities
+  readonly manipulationEvidenceFixtures: true;
+  readonly syntheticBundleEvidence: true;
+  readonly syntheticLaunchStructureEvidence: true;
+  readonly syntheticLiquidityPatternEvidence: true;
+  readonly syntheticCoordinationEvidence: true;
+  readonly manipulationRiskIndicators: true;
+  readonly manipulationQualityIndicators: true;
+  readonly manipulationEvidenceSafetyValidation: true;
+  readonly manipulationLiveData: false;
+  readonly manipulationSolanaRpc: false;
+  readonly manipulationProviderApis: false;
+  readonly manipulationJitoIntegration: false;
+  readonly manipulationMempoolAccess: false;
+  readonly manipulationTradingSignals: false;
+  readonly manipulationInvestmentAdvice: false;
+  readonly manipulationExternalNetwork: false;
+  readonly manipulationPersistence: false;
+  readonly manipulationExecution: false;
   // Safety labels
   readonly fixtureOnly: true;
   readonly analysisOnly: true;

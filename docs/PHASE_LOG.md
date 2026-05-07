@@ -1,5 +1,22 @@
 # Phase Log
 
+## Phase 32 — Bundle / Manipulation Evidence Fixture Models v1
+
+- Extends `packages/manipulation-detector/src/` with deterministic manipulation-evidence fixture helpers:
+  - `evidence-fixture-model-types.ts` — bundle/launch/liquidity/coordination/concentration/funding fixture types plus summary/result types
+  - `evidence-fixture-model-capabilities.ts` — Phase 32 manipulation-evidence capability flags
+  - `evidence-fixture-model-builders.ts` — pure fixture, summary, and synthetic cross-reference builders
+  - `evidence-fixture-model-normalization.ts` — deterministic ordering, serializability, and equality helpers
+  - `evidence-fixture-model-validation.ts` — deterministic fixture validation and safety checks
+  - `evidence-fixture-model-fixtures.ts` — 16 deterministic manipulation-evidence fixtures plus lookup helpers
+- Exports Phase 32 manipulation-evidence helpers from `packages/manipulation-detector/src/index.ts`
+- Extends dashboard and read-only-api capability surfaces with the same Phase 32 flags for compatibility reporting
+- Adds `docs/BUNDLE_MANIPULATION_EVIDENCE_FIXTURES.md`
+- Adds `tests/phase32.test.ts` for fixture, validation, safety, capability, compatibility, and source-safety regressions
+- **No live transaction inspection. No live bundle detection. No Jito/MEV/mempool. No Solana RPC/provider APIs. No wallets. No execution/trading. No investment advice. No accusations against real entities. No external network. No persistence/browser storage.**
+
+**Next phase guidance:** Phase 33 may add offline intelligence composite evidence models. Do not add live data or execution controls.
+
 ## Phase 30 — Creator Intelligence Fixture Models v1
 
 - Extends `packages/creator-intelligence/src/` with deterministic creator-intelligence fixture helpers:
