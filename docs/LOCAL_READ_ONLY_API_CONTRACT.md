@@ -4,6 +4,8 @@
 
 ---
 
+> Phase 24 note: these Phase 22 envelopes are consumed by `@sonic/dashboard-view-models` to build deterministic, typed dashboard view models for future UI work. No UI is implemented in Phase 24.
+
 ### 1. Phase 22 Purpose
 
 Phase 22 adds a **deterministic response contract layer** to the local read-only API shell.

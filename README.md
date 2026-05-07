@@ -1,8 +1,35 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 22 — Local Read-Only API Response Contracts, Error Envelope, and Endpoint Documentation v1**
+**Phase 24 — Local Read-Only Dashboard Data Adapter and View Models v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 22.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 24.
+
+## Features (Phase 24 — adds to Phase 23)
+
+- Adds `packages/dashboard-view-models` (`@sonic/dashboard-view-models`) as a local read-only dashboard data adapter and typed view-model layer
+- Pure deterministic adapter helpers for Phase 22/23 envelopes:
+  - `buildHealthViewModel`
+  - `buildCapabilitiesViewModel`
+  - `buildDashboardOverviewViewModel`
+  - `buildEvidenceViewModel`
+  - `buildSafetyViewModel`
+  - `buildDashboardViewModel`
+  - `adaptReadOnlyApiEnvelopeToViewModel`
+  - `validateDashboardViewModel`
+- Typed safe status models: `ready`, `empty`, `loading`, `error`, `unavailable`
+- Deterministic empty/loading/error view-model builders for future UI consumers
+- Preserves key contract metadata (`phase`, `method`, `endpoint`, `fixtureOnly`, `mutating`, `externalNetwork`, `generatedAt`, query/filter/sort/pagination where present)
+- Extends `LocalReadOnlyApiCapabilities` with Phase 24 flags:
+  - `dashboardDataAdapter: true`
+  - `dashboardViewModels: true`
+  - `fixtureBackedViewModels: true`
+  - `uiReadyDataShapes: true`
+  - `pureViewModelTransforms: true`
+  - `dashboardUi: false`
+  - `externalDashboardData: false`
+- Adds `docs/LOCAL_READ_ONLY_DASHBOARD_VIEW_MODELS.md`
+- Adds Phase 24 tests with deterministic adapter/safety coverage
+- No UI, no React, no browser rendering, no live data, no Solana RPC, no provider APIs, no wallets, no execution, no trading, no external network access
 
 ## Features (Phase 22 — adds to Phase 21)
 
@@ -397,4 +424,3 @@ AUDIT_RETENTION_DAYS=30                              # 1–365, default 30
 AUDIT_MAX_EVENTS=10000                               # 100–1000000, default 10000
 AUDIT_ROTATION_ENABLED=true                          # default true
 ```
-

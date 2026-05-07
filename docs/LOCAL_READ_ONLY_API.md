@@ -6,6 +6,8 @@
 
 It is **Phase 20** of the Sonic Solana Auto-Trader defensive intelligence build.
 
+Phase 24 adds `@sonic/dashboard-view-models` as a local adapter/view-model consumer layer on top of this API's Phase 22/23 envelopes and fixtures. That Phase 24 layer is still read-only, fixture-only, deterministic, and non-networked.
+
 ---
 
 ## Phase Scope

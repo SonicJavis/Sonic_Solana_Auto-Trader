@@ -87,6 +87,14 @@ export interface LocalReadOnlyApiCapabilities {
   readonly fixtureValidation: true;
   readonly inProcessOnlyClient: true;
   readonly externalNetworkClient: false;
+  // Phase 24 — dashboard view-model adapter capabilities
+  readonly dashboardDataAdapter: true;
+  readonly dashboardViewModels: true;
+  readonly fixtureBackedViewModels: true;
+  readonly uiReadyDataShapes: true;
+  readonly pureViewModelTransforms: true;
+  readonly dashboardUi: false;
+  readonly externalDashboardData: false;
   // Safety labels
   readonly fixtureOnly: true;
   readonly analysisOnly: true;

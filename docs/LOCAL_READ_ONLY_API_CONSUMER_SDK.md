@@ -4,6 +4,8 @@
 
 ---
 
+> Phase 24 companion layer: `@sonic/dashboard-view-models` consumes this SDK's fixtures/envelopes to produce deterministic typed view models for future dashboard UI consumers.
+
 ## 1. Phase 23 Purpose
 
 Phase 23 adds a thin, typed, local/in-process consumer SDK and stable contract fixture layer around the Phase 22 read-only API contracts.

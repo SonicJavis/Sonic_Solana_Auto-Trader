@@ -24,6 +24,23 @@ pnpm typecheck
 ## Lint
 pnpm lint
 
+## Phase 24: Dashboard View Models
+
+The `packages/dashboard-view-models` package provides deterministic local adapters and typed view models for dashboard data consumption:
+
+- No UI rendering
+- No network calls
+- No live data
+- No Solana RPC/provider APIs
+- No wallets/private keys
+- No execution/trading logic
+
+Build only this package:
+
+```
+pnpm --filter @sonic/dashboard-view-models build
+```
+
 ## Phase 4: Database
 
 The `packages/db` package provides:

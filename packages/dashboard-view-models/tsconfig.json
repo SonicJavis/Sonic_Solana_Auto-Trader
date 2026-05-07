@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "composite": true,
+    "paths": {
+      "@sonic/read-only-api": ["../../apps/read-only-api/src/index.ts"],
+      "@sonic/read-only-api-client": ["../../packages/read-only-api-client/src/index.ts"]
+    }
+  },
+  "references": [
+    { "path": "../../apps/read-only-api" },
+    { "path": "../../packages/read-only-api-client" }
+  ],
+  "include": ["src/**/*"]
+}
