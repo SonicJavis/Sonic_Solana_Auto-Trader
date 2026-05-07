@@ -1,24 +1,27 @@
 /**
  * apps/dashboard/src/capabilities.ts
  *
- * Phase 27 — Local Dashboard Render Snapshots and Regression Fixtures v1 — Capabilities
+ * Phase 28 — Local Dashboard Report Export Models v1 — Capabilities
  *
- * Phase 25/26/27 dashboard capability flags.
+ * Phase 25/26/27/28 dashboard capability flags.
  * All unsafe flags are permanently false.
  * Phase 25 adds the local read-only dashboard UI shell.
  * Phase 26 adds local dashboard interaction state and filters.
  * Phase 27 adds deterministic render snapshots and regression fixtures.
+ * Phase 28 adds deterministic local dashboard report export models.
  */
 
 import type { DashboardUiShellCapabilities } from './types.js';
 
 /**
- * Returns the Phase 25/26/27 dashboard capabilities.
+ * Returns the Phase 25/26/27/28 dashboard capabilities.
  *
  * All unsafe capabilities (live data, trading controls, wallet controls,
  * mutation controls, execution controls, external network, real-time updates,
  * wallet connection, persistence, snapshot persistence, snapshot live data,
- * snapshot external network, snapshot mutation controls) are permanently false.
+ * snapshot external network, snapshot mutation controls, report file export,
+ * report persistence, report live data, report external network, and
+ * report mutation controls) are permanently false.
  *
  * The UI shell is:
  * - Local only
@@ -62,5 +65,16 @@ export function getDashboardUiShellCapabilities(): DashboardUiShellCapabilities 
     dashboardSnapshotExternalNetwork: false,
     dashboardSnapshotLiveData: false,
     dashboardSnapshotMutationControls: false,
+    // Phase 28 report capabilities
+    dashboardReportModels: true,
+    dashboardReportFixtures: true,
+    deterministicReportModels: true,
+    reportSafetyValidation: true,
+    fixtureBackedReports: true,
+    dashboardReportFileExport: false,
+    dashboardReportPersistence: false,
+    dashboardReportExternalNetwork: false,
+    dashboardReportLiveData: false,
+    dashboardReportMutationControls: false,
   };
 }

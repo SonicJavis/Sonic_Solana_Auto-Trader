@@ -1,8 +1,31 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 26 — Local Dashboard Interaction State and Filters v1**
+**Phase 28 — Local Dashboard Report Export Models v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 26.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 28.
+
+## Features (Phase 28 — adds to Phase 27)
+
+- Adds `apps/dashboard/src/reports/` local deterministic report export-model layer:
+  - strict report model types
+  - pure report builders from Phase 27 snapshots
+  - normalization/serializability helpers
+  - validation/safety validators
+  - 20 deterministic report fixtures
+- Adds report capability flags:
+  - `dashboardReportModels: true`
+  - `dashboardReportFixtures: true`
+  - `deterministicReportModels: true`
+  - `reportSafetyValidation: true`
+  - `fixtureBackedReports: true`
+  - `dashboardReportFileExport: false`
+  - `dashboardReportPersistence: false`
+  - `dashboardReportExternalNetwork: false`
+  - `dashboardReportLiveData: false`
+  - `dashboardReportMutationControls: false`
+- Adds `docs/LOCAL_DASHBOARD_REPORT_EXPORT_MODELS.md`
+- Adds Phase 28 report-model regression and safety tests
+- No file export implementation, no file writes, no browser downloads, no persistence, no live data, no wallets, no execution/trading, no external network
 
 ## Features (Phase 26 — adds to Phase 25)
 

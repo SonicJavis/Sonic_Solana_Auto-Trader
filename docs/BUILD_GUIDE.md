@@ -1,5 +1,9 @@
 # Build Guide
 
+## Phase 28 Note
+
+Phase 28 introduces deterministic local dashboard report export models only. No additional build/runtime services are required, and no file export, persistence, or network behavior is introduced.
+
 ## Prerequisites
 - Node.js >= 18
 - pnpm >= 8

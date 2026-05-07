@@ -1,5 +1,34 @@
 # Phase Log
 
+## Phase 28 — Local Dashboard Report Export Models v1
+
+- Adds `apps/dashboard/src/reports/` with deterministic report model helpers:
+  - `types.ts` — report model type definitions
+  - `builders.ts` — pure report builders from Phase 27 snapshots
+  - `normalization.ts` — stable ordering and serializability helpers
+  - `validation.ts` — deterministic report validation and safety checks
+  - `fixtures.ts` — 20 deterministic report fixtures
+  - `capabilities.ts` — Phase 28 report capability flags
+  - `index.ts` — public barrel
+- Exports Phase 28 report helpers from `apps/dashboard/src/index.ts`
+- Extends dashboard capabilities with Phase 28 report flags:
+  - `dashboardReportModels: true`
+  - `dashboardReportFixtures: true`
+  - `deterministicReportModels: true`
+  - `reportSafetyValidation: true`
+  - `fixtureBackedReports: true`
+  - `dashboardReportFileExport: false`
+  - `dashboardReportPersistence: false`
+  - `dashboardReportExternalNetwork: false`
+  - `dashboardReportLiveData: false`
+  - `dashboardReportMutationControls: false`
+- Extends `LocalReadOnlyApiCapabilities` with the same Phase 28 report flags
+- Adds `docs/LOCAL_DASHBOARD_REPORT_EXPORT_MODELS.md`
+- Adds `tests/phase28.test.ts` for report model regressions and safety boundaries
+- **No file writes. No export/download implementation. No live data. No Solana RPC. No provider APIs. No wallets. No execution/trading. No mutation controls. No external network. No persistence/browser storage.**
+
+**Next phase guidance:** Phase 29 may add local report serialization preview. Do not add runtime export actions.
+
 ## Phase 27 — Local Dashboard Render Snapshots and Regression Fixtures v1
 
 - Adds `apps/dashboard/src/snapshots/` with Phase 27 deterministic render snapshot helpers:

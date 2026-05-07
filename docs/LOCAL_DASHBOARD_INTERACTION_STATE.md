@@ -1,5 +1,7 @@
 # Local Dashboard Interaction State — Phase 26
 
+> Phase 28 reuses this interaction/filter state to produce deterministic report section and filtered-state report models. No persistence or export behavior is added.
+
 ## 1. Phase 26 Purpose
 
 Phase 26 adds a local-only, in-memory interaction-state layer for the Phase 25 read-only dashboard shell.
@@ -137,6 +139,6 @@ Phase 26 adds local state/filter/selectors only.
 
 It does **not** add live UI event wiring, browser persistence, external state sync, live data, Solana RPC, provider APIs, wallets, execution, trading, external network access, or mutation controls.
 
-## 11. Phase 27 Preview (Not Implemented)
+## 11. Phase 28 Follow-on
 
-Likely next phase: **Phase 27 — Local Dashboard Render Snapshots and Regression Fixtures v1**.
+Phase 27 snapshots and Phase 28 report export models are implemented.\nPhase 28 consumes this state layer for deterministic interaction/filter report sections.

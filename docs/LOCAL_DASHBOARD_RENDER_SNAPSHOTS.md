@@ -2,6 +2,8 @@
 
 **Phase 27 — Local Dashboard Render Snapshots and Regression Fixtures v1**
 
+> Phase 28 consumes these deterministic snapshots to build local report export models in `apps/dashboard/src/reports/` without adding file export actions.
+
 ## Purpose
 
 Phase 27 adds a deterministic render snapshot and regression fixture layer on top of the Phase 26 local dashboard interaction state system. This layer locks down known-good render outputs for the local read-only dashboard shell, providing a stable foundation for future dashboard development.
@@ -360,13 +362,17 @@ Regression fixtures (stable expected outputs for comparison)
 
 ---
 
-## Future Phase 28 Preview
+## Phase 28 Follow-on
 
-Phase 28 is expected to add:
+Phase 28 is now implemented and consumes these snapshot fixtures to build deterministic local report export models in `apps/dashboard/src/reports/`.
 
-> Phase 28 — Local Dashboard Report Export Models v1
+No runtime report export actions are implemented in Phase 28.
 
-Phase 28 is not implemented in this phase.
+## Future Phase 29 Preview
+
+Likely next phase:
+
+> Phase 29 — Local Dashboard Report Serialization Preview v1
 
 ---
 

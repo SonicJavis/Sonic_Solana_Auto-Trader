@@ -1,11 +1,11 @@
 /**
  * apps/dashboard/src/index.ts
  *
- * Phase 26 — Local Dashboard Interaction State and Filters v1 — Public API Barrel
+ * Phase 28 — Local Dashboard Report Export Models v1 — Public API Barrel
  *
  * Exports the local read-only dashboard UI shell components,
- * view model source, Phase 25/26 capability metadata, and
- * Phase 26 local in-memory interaction state helpers.
+ * view model source, Phase 25/26/27/28 capability metadata, Phase 26 local
+ * in-memory interaction state helpers, Phase 27 snapshots, and Phase 28 reports.
  *
  * What this module provides:
  *   - DashboardShell — top-level dashboard shell component
@@ -24,6 +24,7 @@
  *   - buildFixtureDashboardViewModel — fixture-backed view model builder
  *   - getDashboardUiShellCapabilities — Phase 25 capability flags
  *   - Phase 26 local interaction state types/helpers/selectors
+ *   - Phase 28 local report model types/helpers/fixtures/validation
  *   - PHASE_25_SAFETY_BOUNDARY — shared safety boundary constant
  *   - All dashboard UI shell types
  *
@@ -39,6 +40,7 @@
  *   - No mutation controls
  *   - No external network access
  *   - No browser-specific APIs for unsafe side effects
+ *   - No filesystem or browser report export behavior
  *
  * IMPORTANT: This UI shell is local-only, read-only, fixture-only,
  * deterministic, offline, non-mutating, and external-network-free.
@@ -248,3 +250,66 @@ export {
   getDashboardRenderSnapshotFixture,
   getDashboardSnapshotCapabilities,
 } from './snapshots/index.js';
+
+// ─── Phase 28 report export models ──────────────────────────────────────────────
+
+export type {
+  DashboardReportModel,
+  DashboardReportName,
+  DashboardReportKind,
+  DashboardReportSection,
+  DashboardReportSectionKind,
+  DashboardReportMeta,
+  DashboardReportSummary,
+  DashboardReportSafetyBoundary,
+  DashboardReportValidationResult,
+  DashboardReportValidationIssue,
+  DashboardReportBuildInput,
+  DashboardReportBuildResult,
+  DashboardReportSafetyResult,
+  DashboardReportFixture,
+  DashboardReportFixtureName,
+  DashboardReportCapabilities,
+} from './reports/index.js';
+
+export {
+  DASHBOARD_REPORT_NAMES,
+  DASHBOARD_REPORT_KINDS,
+  DASHBOARD_REPORT_SECTION_KINDS,
+  buildDashboardReportModel,
+  buildDefaultDashboardReportModel,
+  buildSnapshotInventoryReportModel,
+  buildDashboardReportSection,
+  buildDashboardSafetyBoundaryReport,
+  buildSnapshotBackedReportFromFixture,
+  normalizeDashboardReportModel,
+  serializeDashboardReportModel,
+  isDashboardReportSerializable,
+  areDashboardReportsEqual,
+  validateDashboardReportModel,
+  validateDashboardReportSafety,
+  FULL_DASHBOARD_REPORT_FIXTURE,
+  HEALTH_REPORT_SECTION_FIXTURE,
+  CAPABILITIES_REPORT_SECTION_FIXTURE,
+  OVERVIEW_REPORT_SECTION_FIXTURE,
+  EVIDENCE_REPORT_SECTION_FIXTURE,
+  SAFETY_REPORT_SECTION_FIXTURE,
+  METADATA_REPORT_SECTION_FIXTURE,
+  INTERACTION_STATE_REPORT_SECTION_FIXTURE,
+  FILTERED_EVIDENCE_REPORT_SECTION_FIXTURE,
+  FILTERED_SAFETY_REPORT_SECTION_FIXTURE,
+  SNAPSHOT_INVENTORY_REPORT_FIXTURE,
+  SAFETY_BOUNDARY_REPORT_FIXTURE,
+  ERROR_STATE_REPORT_FIXTURE,
+  EMPTY_STATE_REPORT_FIXTURE,
+  LOADING_STATE_REPORT_FIXTURE,
+  UNAVAILABLE_STATE_REPORT_FIXTURE,
+  NO_RESULTS_REPORT_FIXTURE,
+  MALFORMED_INPUT_SAFE_REPORT_FIXTURE,
+  REPORT_VALIDATION_FAILURE_EXAMPLE_FIXTURE,
+  EXPORT_DISABLED_SAFETY_REPORT_FIXTURE,
+  PHASE_28_REPORT_FIXTURES,
+  listDashboardReportFixtures,
+  getDashboardReportFixture,
+  getDashboardReportCapabilities,
+} from './reports/index.js';
