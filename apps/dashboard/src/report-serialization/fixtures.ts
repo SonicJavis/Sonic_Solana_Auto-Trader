@@ -14,6 +14,7 @@ import {
   SNAPSHOT_INVENTORY_REPORT_FIXTURE,
   getDashboardReportFixture,
 } from '../reports/index.js';
+import type { DashboardReportName } from '../reports/types.js';
 import { buildJsonReportPreview, buildMarkdownReportPreview, buildTextReportPreview, buildMetadataReportPreview } from './builders.js';
 import { normalizeDashboardReportSerializationPreview } from './normalization.js';
 import type { DashboardReportSerializationPreviewFixture, DashboardReportSerializationPreviewFixtureName } from './types.js';
@@ -25,6 +26,8 @@ function requireFixture(name: Parameters<typeof getDashboardReportFixture>[0]) {
   }
   return FULL_DASHBOARD_REPORT_FIXTURE;
 }
+
+const INVALID_SOURCE_REPORT_NAME = 'invalid-source-report' as DashboardReportName;
 
 export const FULL_DASHBOARD_JSON_PREVIEW_FIXTURE: DashboardReportSerializationPreviewFixture = {
   name: 'full-dashboard-json-preview',
@@ -205,7 +208,7 @@ export const VALIDATION_FAILURE_PREVIEW_FIXTURE: DashboardReportSerializationPre
       report: REPORT_VALIDATION_FAILURE_EXAMPLE_FIXTURE.report,
       safeNotes: ['Validation-failure preview fixture.'],
     }),
-    sourceReportName: 'invalid-source-report' as unknown as DashboardReportSerializationPreviewFixture['preview']['sourceReportName'],
+    sourceReportName: INVALID_SOURCE_REPORT_NAME,
   }),
 };
 
