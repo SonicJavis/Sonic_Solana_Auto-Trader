@@ -122,9 +122,9 @@ export interface DashboardShellResult {
   readonly safetyBoundary: DashboardSafetyBoundary;
 }
 
-// ─── Phase 25/26 capabilities ────────────────────────────────────────────────
+// ─── Phase 25/26/27 capabilities ─────────────────────────────────────────────
 
-/** Phase 25/26 dashboard UI shell capabilities (all unsafe false). */
+/** Phase 25/26/27 dashboard UI shell capabilities (all unsafe false). */
 export interface DashboardUiShellCapabilities {
   readonly dashboardUiShell: true;
   readonly localReadOnlyDashboard: true;
@@ -136,6 +136,12 @@ export interface DashboardUiShellCapabilities {
   readonly deterministicDashboardState: true;
   readonly dashboardPanelVisibility: true;
   readonly dashboardFilterSelectors: true;
+  // Phase 27 snapshot capabilities
+  readonly dashboardRenderSnapshots: true;
+  readonly dashboardRegressionFixtures: true;
+  readonly deterministicRenderSnapshots: true;
+  readonly snapshotSafetyValidation: true;
+  readonly fixtureBackedRenderSnapshots: true;
   readonly dashboardPersistentState: false;
   readonly dashboardExternalStateSync: false;
   readonly dashboardLiveFilters: false;
@@ -147,4 +153,9 @@ export interface DashboardUiShellCapabilities {
   readonly dashboardExecutionControls: false;
   readonly dashboardWalletConnection: false;
   readonly dashboardRealTimeUpdates: false;
+  // Phase 27 snapshot unsafe flags (all false)
+  readonly dashboardSnapshotPersistence: false;
+  readonly dashboardSnapshotExternalNetwork: false;
+  readonly dashboardSnapshotLiveData: false;
+  readonly dashboardSnapshotMutationControls: false;
 }
