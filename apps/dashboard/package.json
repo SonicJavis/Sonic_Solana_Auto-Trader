@@ -2,8 +2,19 @@
   "name": "@sonic/dashboard",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
   "scripts": {
-    "dev": "echo 'Dashboard placeholder - not implemented in Phase 1'",
-    "build": "echo 'Dashboard placeholder - not implemented in Phase 1'"
+    "typecheck": "tsc --noEmit",
+    "build": "echo 'Dashboard UI shell is a local read-only shell. No browser bundle in Phase 25.'"
+  },
+  "dependencies": {
+    "@sonic/dashboard-view-models": "workspace:*",
+    "@sonic/read-only-api-client": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.0",
+    "typescript": "*"
   }
 }

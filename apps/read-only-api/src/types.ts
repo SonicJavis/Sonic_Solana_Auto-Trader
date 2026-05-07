@@ -95,6 +95,19 @@ export interface LocalReadOnlyApiCapabilities {
   readonly pureViewModelTransforms: true;
   readonly dashboardUi: false;
   readonly externalDashboardData: false;
+  // Phase 25 — local read-only dashboard UI shell capabilities
+  readonly dashboardUiShell: true;
+  readonly localReadOnlyDashboard: true;
+  readonly fixtureBackedDashboardUi: true;
+  readonly dashboardUsesViewModels: true;
+  readonly dashboardExternalNetwork: false;
+  readonly dashboardLiveData: false;
+  readonly dashboardTradingControls: false;
+  readonly dashboardWalletControls: false;
+  readonly dashboardMutationControls: false;
+  readonly dashboardExecutionControls: false;
+  readonly dashboardWalletConnection: false;
+  readonly dashboardRealTimeUpdates: false;
   // Safety labels
   readonly fixtureOnly: true;
   readonly analysisOnly: true;

@@ -153,11 +153,19 @@ Phase 24 does not implement:
 
 ---
 
-## 10. Phase 25 Preview (Not Implemented Here)
+## 10. Phase 25 — Implemented
 
-Likely next phase: **Phase 25 — Local Read-Only Dashboard UI Shell v1**.
+**Phase 25 — Local Read-Only Dashboard UI Shell v1** is now implemented in `apps/dashboard/src/`.
 
-Phase 24 only prepares typed adapter/view-model outputs for that future work.
+Phase 24 view models are consumed by Phase 25 dashboard UI shell components. See `docs/LOCAL_READ_ONLY_DASHBOARD_UI.md` for full Phase 25 documentation.
+
+The data flow is:
+
+```
+Phase 23 Fixtures → buildFixtureDashboardViewModel() → DashboardViewModel → DashboardShell
+```
+
+Phase 26 Preview: Phase 26 may add local dashboard interaction state and filters. No live data, wallets, trading, or external network.
 
 ---
 

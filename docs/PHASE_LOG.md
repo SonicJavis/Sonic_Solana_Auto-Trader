@@ -1,5 +1,25 @@
 # Phase Log
 
+## Phase 25 — Local Read-Only Dashboard UI Shell v1
+
+- Adds Phase 25 local read-only dashboard UI shell in `apps/dashboard/src/`
+- Pure TypeScript components — no React, no DOM, no browser APIs for unsafe side effects
+- All components return typed `DashboardRenderResult` / `DashboardShellResult` objects, fully testable in Node
+- Components: `DashboardShell`, `SafetyBanner`, `MetadataPanel`, `HealthPanel`, `CapabilitiesPanel`, `OverviewPanel`, `EvidencePanel`, `SafetyPanel`, `EmptyState`, `LoadingState`, `ErrorState`, `UnavailableState`, `StatusBadge`
+- `buildFixtureDashboardViewModel()` — builds deterministic view model from Phase 23 fixtures
+- `getDashboardUiShellCapabilities()` — returns Phase 25 capability flags
+- `PHASE_25_SAFETY_BOUNDARY` — shared safety boundary constant (all unsafe flags permanently false)
+- All components include role, ariaLabel, sections, items, and safety boundary for accessibility
+- UI clearly marks: local-only, read-only, fixture-backed, no live data, no execution, no wallet, no external network
+- Safe empty/loading/error/unavailable state rendering with sanitized messages
+- Extends `LocalReadOnlyApiCapabilities` with Phase 25 flags: `dashboardUiShell: true`, `localReadOnlyDashboard: true`, `fixtureBackedDashboardUi: true`, `dashboardUsesViewModels: true`, `dashboardExternalNetwork: false`, `dashboardLiveData: false`, `dashboardTradingControls: false`, `dashboardWalletControls: false`, `dashboardMutationControls: false`, `dashboardExecutionControls: false`, `dashboardWalletConnection: false`, `dashboardRealTimeUpdates: false`
+- Adds `docs/LOCAL_READ_ONLY_DASHBOARD_UI.md` documentation
+- Adds Phase 25 test suite (`tests/phase25.test.ts`) with 496 new tests (4903 total, all passing)
+- **No live data. No Solana RPC. No provider APIs. No wallets. No private keys. No execution. No trading. No mutation. No external network. No real-time data. No wallet connection UI.**
+- All existing Phase 20/21/22/23/24 safety locks, tests, docs, and capability flags preserved
+
+**Next phase guidance:** Phase 26 may add local dashboard interaction state and filters (local-only, fixture-backed, in-memory only). No live data, wallets, trading, execution, or external network access. Do not start Phase 26 without explicit sign-off.
+
 ## Phase 24 — Local Read-Only Dashboard Data Adapter and View Models v1
 
 - Adds `packages/dashboard-view-models` (`@sonic/dashboard-view-models`) as a local read-only adapter layer for future dashboard consumers
