@@ -1,5 +1,37 @@
 # Phase Log
 
+## Phase 22 — Local Read-Only API Response Contracts, Error Envelope, and Endpoint Documentation v1
+
+- Adds standard Phase 22 JSON response envelopes to all existing read-only GET endpoints
+- `ReadOnlyApiSuccessEnvelope<T>` — standard success envelope: ok, status, endpoint, method, data, warnings, errors, meta, generatedAt
+- `ReadOnlyApiErrorEnvelope` — standard error envelope: ok, status, endpoint, method, data, error, errors, warnings, meta, generatedAt
+- `ReadOnlyApiContractMeta` — deterministic metadata: phase, apiMode, deterministic, mutating, externalNetwork, generatedAt + all Phase 21 safety fields
+- `ReadOnlyApiError` — structured error with code, message, and field-level details array
+- `ReadOnlyApiErrorDetail` — field-level error: field, reason, sanitized received value
+- `ReadOnlyApiErrorCode` — 5 stable error codes: `READ_ONLY_API_INVALID_QUERY`, `READ_ONLY_API_UNSUPPORTED_ENDPOINT`, `READ_ONLY_API_METHOD_NOT_ALLOWED`, `READ_ONLY_API_SAFETY_REJECTION`, `READ_ONLY_API_INTERNAL_CONTRACT_ERROR`
+- `ReadOnlyApiEndpointContract` — per-endpoint contract descriptor with method, description, queryParams, supportsQuery
+- `buildReadOnlyApiSuccessEnvelope()` — pure, deterministic success envelope builder
+- `buildReadOnlyApiErrorEnvelope()` — pure, deterministic error envelope builder
+- `buildReadOnlyApiContractMeta()` — pure, deterministic Phase 22 meta builder
+- `buildReadOnlyApiQueryContractMeta(queryMeta)` — meta builder for queryable endpoints; includes query/filters/sort/pagination from Phase 21 LroApiQueryMeta
+- `buildQueryErrorFromLroError()` — maps Phase 21 LRO error codes to Phase 22 error envelopes with field-level details
+- `mapLroErrorCodeToPhase22()` — maps LocalReadOnlyApiErrorCode to ReadOnlyApiErrorCode
+- `extractQueryFieldFromMessage()` — extracts field name from error messages; sortBy/sortDirection checked before severity/panel to avoid false matches
+- `sanitizeReceivedValue()` — sanitizes received query values; redacts secrets, URLs; truncates long values
+- `READ_ONLY_API_ERROR_CODES` — stable error code constants object
+- `PHASE_22_ENDPOINT_CONTRACTS` — 11 endpoint contract descriptors
+- `PHASE_22_CONTRACT_CAPABILITIES` — Phase 22 capability flags for meta
+- `PHASE_22_GENERATED_AT` — static deterministic timestamp `"2026-01-01T00:00:00.000Z"` (never wall-clock)
+- `LocalReadOnlyApiCapabilities` extended with 5 new Phase 22 flags: `canServeResponseEnvelopes`, `canReturnErrorEnvelopes`, `canValidateQueryErrors`, `canProvideDeterministicMetadata`, `canProvideEndpointContracts`
+- All handlers updated: all 11 GET endpoints return Phase 22 `ReadOnlyApiSuccessEnvelope` / `ReadOnlyApiErrorEnvelope` with Phase 21 safety fields preserved for backward compat
+- `GET /health`, `GET /capabilities`, `GET /contracts`, `GET /contracts/openapi-shape` — non-queryable success envelopes
+- `GET /dashboard`, `GET /dashboard/evidence`, `GET /dashboard/safety` — queryable endpoints; invalid queries return error envelopes; valid queries include query/filters/sort/pagination in meta
+- `GET /dashboard/overview`, `GET /dashboard/replay`, `GET /dashboard/strategy`, `GET /dashboard/evaluation` — non-queryable success envelopes
+- New files: `apps/read-only-api/src/contract.ts`, `apps/read-only-api/src/response-envelope.ts`
+- `docs/LOCAL_READ_ONLY_API_CONTRACT.md` — new documentation for Phase 22 response contracts
+- Phase 22 test suite: **446 new tests** (3751 total, all passing)
+- Localhost-only. GET-only. Fixture-only. Read-only. Analysis-only. Non-executable. Local-only. Deterministic. No wall-clock timestamps.
+
 ## Phase 21 — Local Read-Only API Query, Filter, and Pagination v1
 
 - Enhances `apps/read-only-api` with safe, deterministic, fixture-only query parsing, filtering, sorting, and pagination helpers

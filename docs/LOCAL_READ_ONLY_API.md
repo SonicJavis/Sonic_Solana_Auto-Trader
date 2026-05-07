@@ -341,3 +341,44 @@ For full query/filter/pagination documentation, see [docs/LOCAL_READ_ONLY_API_QU
 - All array operations are non-mutating
 - Cursors are opaque base64url-encoded offsets — no external lookups
 - SQL patterns, eval expressions, path traversal, and script patterns are rejected
+
+---
+
+## Phase 22 — Response Contracts, Error Envelope, and Endpoint Documentation v1
+
+Phase 22 adds a **standard JSON response contract layer** to all existing GET endpoints.
+
+### New Envelope Structure
+
+Every endpoint now returns either:
+- `ReadOnlyApiSuccessEnvelope<T>` — `ok: true`, `data`, `meta`, `generatedAt`
+- `ReadOnlyApiErrorEnvelope` — `ok: false`, `error`, `meta`, `generatedAt`
+
+### New Phase 22 Capabilities
+
+| Capability | Value |
+|---|---|
+| `canServeResponseEnvelopes` | `true` |
+| `canReturnErrorEnvelopes` | `true` |
+| `canValidateQueryErrors` | `true` |
+| `canProvideDeterministicMetadata` | `true` |
+| `canProvideEndpointContracts` | `true` |
+
+### Key Safety Rules (Phase 22)
+
+- `meta.generatedAt` is always `"2026-01-01T00:00:00.000Z"` — never a wall-clock timestamp
+- `meta.mutating` is permanently `false`
+- `meta.externalNetwork` is permanently `false`
+- `meta.fixtureOnly` is permanently `true`
+- Error envelopes never expose stack traces, local filesystem paths, or secrets
+- Received values in error details are sanitized (secrets and URLs are redacted)
+
+### Validation commands (Phase 22)
+
+```sh
+pnpm typecheck  # must pass
+pnpm lint       # must pass
+pnpm test       # must pass (3751 tests, 28 test files)
+```
+
+For full response contract documentation, see [docs/LOCAL_READ_ONLY_API_CONTRACT.md](./LOCAL_READ_ONLY_API_CONTRACT.md).

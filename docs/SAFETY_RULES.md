@@ -350,3 +350,18 @@
 279. **Phase 21**: Three new safe capability fields added: `canFilterFixtureData: true`, `canPaginateFixtureData: true`, `canSortFixtureData: true` — all remain fixture-only and read-only
 280. **Phase 21**: `validateReadOnlyApiQuerySafety` rejects unsafe safety flags, secret patterns, URL patterns, and unsafe action text in labelled fields
 281. **Phase 21**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/execution commands.
+
+## Phase 22 Additional Safety Rules
+
+282. **Phase 22**: Response contract layer adds **no live data, no Solana RPC, no provider APIs, no wallets, no private keys, no execution, no trading, no UI, no external network** — the API remains localhost-only, GET-only, fixture-only, offline, non-mutating, and deterministic
+283. **Phase 22**: All error envelopes are sanitized — no stack traces, no local filesystem paths, no secrets, no raw `Error` objects are ever exposed in `error.details` or `error.message`
+284. **Phase 22**: `sanitizeReceivedValue()` redacts values containing secret patterns (`private_key`, `seed_phrase`, `mnemonic`, `apikey`, `password`, `secret`) and URL patterns (`http://`, `https://`, `wss://`, `ws://`); values over 80 chars are truncated to `[value too long]`
+285. **Phase 22**: `generatedAt` is always the static deterministic value `"2026-01-01T00:00:00.000Z"` — wall-clock timestamps are never used
+286. **Phase 22**: `meta.mutating` is permanently `false` in all envelopes — never `true`
+287. **Phase 22**: `meta.externalNetwork` is permanently `false` in all envelopes — never `true`
+288. **Phase 22**: `meta.fixtureOnly` is permanently `true` in all envelopes — never `false`
+289. **Phase 22**: `meta.liveData` is permanently `false` in all envelopes — never `true`
+290. **Phase 22**: Five new safe capability flags added: `canServeResponseEnvelopes: true`, `canReturnErrorEnvelopes: true`, `canValidateQueryErrors: true`, `canProvideDeterministicMetadata: true`, `canProvideEndpointContracts: true` — all unsafe capability flags remain permanently `false`
+291. **Phase 22**: `buildReadOnlyApiErrorEnvelope()` and `buildReadOnlyApiSuccessEnvelope()` are pure, deterministic functions with no side effects, no I/O, no network, no mutation
+292. **Phase 22**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/execution commands.
+

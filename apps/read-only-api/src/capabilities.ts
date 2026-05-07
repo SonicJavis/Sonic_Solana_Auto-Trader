@@ -1,11 +1,13 @@
 /**
  * apps/read-only-api/src/capabilities.ts
  *
- * Phase 21 — LocalReadOnlyApiCapabilities guard (extends Phase 20).
+ * Phase 22 — LocalReadOnlyApiCapabilities guard (extends Phase 21).
  *
  * All unsafe capability flags are permanently false.
  * canStartLocalhostServer is true only for explicit 127.0.0.1 binding.
  * Phase 21 adds canFilterFixtureData, canPaginateFixtureData, canSortFixtureData.
+ * Phase 22 adds canServeResponseEnvelopes, canReturnErrorEnvelopes,
+ *   canValidateQueryErrors, canProvideDeterministicMetadata, canProvideEndpointContracts.
  * No external bind, no live data, no execution of any kind.
  */
 
@@ -17,6 +19,7 @@ import type { LocalReadOnlyApiCapabilities } from './types.js';
  * Unsafe flags: all permanently false.
  * canStartLocalhostServer: true — valid only for 127.0.0.1 binding.
  * Phase 21 query/filter/pagination fields: true.
+ * Phase 22 response contract fields: true.
  * All safe labels (fixtureOnly, analysisOnly, etc.): permanently true.
  */
 export function getLocalReadOnlyApiCapabilities(): LocalReadOnlyApiCapabilities {
@@ -49,6 +52,12 @@ export function getLocalReadOnlyApiCapabilities(): LocalReadOnlyApiCapabilities 
     canFilterFixtureData: true,
     canPaginateFixtureData: true,
     canSortFixtureData: true,
+    // Phase 22 — response contract capabilities
+    canServeResponseEnvelopes: true,
+    canReturnErrorEnvelopes: true,
+    canValidateQueryErrors: true,
+    canProvideDeterministicMetadata: true,
+    canProvideEndpointContracts: true,
     // Safety labels
     fixtureOnly: true,
     analysisOnly: true,
