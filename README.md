@@ -1,8 +1,35 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 29 — Local Dashboard Report Serialization Preview v1**
+**Phase 30 — Creator Intelligence Fixture Models v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 29.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 30.
+
+## Features (Phase 30 — adds to Phase 29)
+
+- Extends `packages/creator-intelligence` with deterministic creator-intelligence fixture models:
+  - strict creator/profile/project/narrative/social/disclosure/engagement fixture types
+  - pure fixture builders and summary builders
+  - normalization, serializability, validation, and safety-validation helpers
+  - 15 deterministic synthetic creator-intelligence fixtures
+- Adds Phase 30 creator capability flags:
+  - `creatorIntelligenceFixtures: true`
+  - `syntheticCreatorProfiles: true`
+  - `creatorNarrativeFixtures: true`
+  - `creatorRiskIndicators: true`
+  - `creatorCredibilityIndicators: true`
+  - `creatorFixtureSafetyValidation: true`
+  - `creatorLiveData: false`
+  - `creatorSocialApiAccess: false`
+  - `creatorScraping: false`
+  - `creatorIdentityResolution: false`
+  - `creatorInvestmentAdvice: false`
+  - `creatorTradingSignals: false`
+  - `creatorExternalNetwork: false`
+  - `creatorPersistence: false`
+- Extends dashboard/read-only-api compatibility capability surfaces with the same Phase 30 flags
+- Adds `docs/CREATOR_INTELLIGENCE_FIXTURES.md`
+- Adds Phase 30 creator-fixture regression and safety tests
+- No live social data, no scraping, no APIs, no identity resolution, no wallets, no execution/trading, no persistence, no external network
 
 ## Features (Phase 29 — adds to Phase 28)
 

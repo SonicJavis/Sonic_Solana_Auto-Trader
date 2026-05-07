@@ -30,6 +30,7 @@ import {
   validateCreatorHistory,
 } from './validation.js';
 import { ciErr, ciOk, type CiResult } from './errors.js';
+import { getCreatorFixtureModelCapabilities } from './fixture-model-capabilities.js';
 
 // ── Capabilities ──────────────────────────────────────────────────────────────
 
@@ -46,6 +47,7 @@ export function getCreatorIntelligenceCapabilities(): CreatorIntelligenceCapabil
     canCreateTradeIntents: false,
     canTrade: false,
     canExecute: false,
+    ...getCreatorFixtureModelCapabilities(),
     fixtureOnly: true,
     safeToDisplay: true,
   };

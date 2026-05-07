@@ -125,13 +125,13 @@ It provides a stable contract for future export implementation without enabling 
 - no API/network upload behavior
 - no email/scheduling automation
 
-## 10. Future Phase 30 Preview Only
+## 10. Future Phase 31 Preview Only
 
 Likely next phase:
 
-> Phase 30 — Creator Intelligence Fixture Models v1
+> Phase 31 — Wallet Cluster Intelligence Fixture Models v1
 
-Phase 30 is not implemented in this phase.
+Phase 30 creator intelligence fixture models are implemented separately and do not add dashboard live-data behavior.
 
 ## 11. Explicit Safety Confirmation
 

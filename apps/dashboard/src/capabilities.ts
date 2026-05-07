@@ -14,14 +14,17 @@
 import type { DashboardUiShellCapabilities } from './types.js';
 
 /**
- * Returns the Phase 25/26/27/28/29 dashboard capabilities.
+ * Returns the Phase 25/26/27/28/29/30 dashboard capabilities.
  *
  * All unsafe capabilities (live data, trading controls, wallet controls,
  * mutation controls, execution controls, external network, real-time updates,
  * wallet connection, persistence, snapshot persistence, snapshot live data,
  * snapshot external network, snapshot mutation controls, report file export,
  * report persistence, report live data, report external network, and
- * report mutation controls) are permanently false.
+ * report mutation controls, creator live data, creator social API access,
+ * creator scraping, creator identity resolution, creator investment advice,
+ * creator trading signals, creator external network, and creator persistence)
+ * are permanently false.
  *
  * The UI shell is:
  * - Local only
@@ -84,5 +87,20 @@ export function getDashboardUiShellCapabilities(): DashboardUiShellCapabilities 
     dashboardReportMetadataPreview: true,
     dashboardReportActualFileExport: false,
     dashboardReportDownloadSupport: false,
+    // Phase 30 creator intelligence fixture capabilities
+    creatorIntelligenceFixtures: true,
+    syntheticCreatorProfiles: true,
+    creatorNarrativeFixtures: true,
+    creatorRiskIndicators: true,
+    creatorCredibilityIndicators: true,
+    creatorFixtureSafetyValidation: true,
+    creatorLiveData: false,
+    creatorSocialApiAccess: false,
+    creatorScraping: false,
+    creatorIdentityResolution: false,
+    creatorInvestmentAdvice: false,
+    creatorTradingSignals: false,
+    creatorExternalNetwork: false,
+    creatorPersistence: false,
   };
 }

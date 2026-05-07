@@ -1,8 +1,20 @@
 # Safety Rules
 
+## Phase 30 Safety Extension
+
+Phase 30 creator-intelligence fixture models must remain local-only, read-only, synthetic-only, deterministic, in-memory, non-persistent, external-network-free, file-write-free, and non-advisory. Phase 30 does not permit live social data, scraping, social-media APIs, identity resolution, wallets, execution/trading logic, investment advice, trading signals, persistence, or browser storage.
+
 ## Phase 29 Safety Extension
 
 Phase 29 report serialization previews must remain local-only, read-only, fixture-only, deterministic, in-memory, and non-persistent. Serialization previewing does not permit file writes, browser downloads, live data, Solana RPC, provider APIs, wallets, execution/trading, external network usage, or mutation controls.
+
+## Phase 30 Additional Safety Rules
+
+189. **Phase 30**: `packages/creator-intelligence` fixture-model helpers are synthetic-fixture-only and deterministic — no `Date.now()`, `new Date()`, `Math.random()`, timers, or external I/O in the Phase 30 runtime files
+190. **Phase 30**: Creator fixture models must not contain real names, phone numbers, emails, street addresses, stack traces, local filesystem paths, secrets, or external URLs
+191. **Phase 30**: Creator fixture models must not claim live data, scraped data, social API access, wallet ownership, or real-person identity resolution
+192. **Phase 30**: Creator fixture summaries are non-advisory and analysis-only — no investment recommendations, trading signals, execution wording, or wallet/trade controls
+193. **Phase 30**: Dashboard/read-only-api Phase 30 capability flags report compatibility only — no creator UI rendering, no live ingestion, and no mutation controls are added
 
 ## Phase 4 Safety Foundation
 

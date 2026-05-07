@@ -1,8 +1,8 @@
 # Architecture
 
-## Phase 29 Update
+## Phase 30 Update
 
-Phase 29 adds a local dashboard report serialization-preview layer (`apps/dashboard/src/report-serialization/`) after Phase 28 report models. This layer is deterministic, fixture-backed, read-only, in-memory, and export-action-free (no file writes/downloads/persistence/network).
+Phase 30 extends `packages/creator-intelligence/` with a deterministic creator-intelligence fixture-model layer for synthetic creator/profile/project/narrative/social/disclosure/engagement intelligence fixtures. This layer is local-only, read-only, fixture-backed, deterministic, in-memory, and external-network-free.
 
 Monorepo with pnpm workspaces.
 
@@ -16,7 +16,7 @@ Monorepo with pnpm workspaces.
 - `pump-adapter`: Pump adapter interfaces, quote models, instruction intent models, and disabled SDK wrapper boundary (Phases 6A/6B/6C, inert — no RPC, no execution, no real Pump SDK, no Solana SDK)
 - `event-engine`: Local in-memory event bus, event envelope types, source status models, dedupe/TTL helpers, validation, disabled provider boundaries, mock provider, fixture events and replay, disabled provider config/readiness (Phases 7A/7B/7C/7D — no network, no execution)
 - `token-intelligence`: Local token profile models, deterministic component scoring, risk flags, classification, fixture profiles, token intelligence engine (Phase 8 — no network, no Solana RPC, no provider APIs, no execution)
-- `creator-intelligence`: Local creator profile models, deterministic component scoring, risk flags, classification, fixture profiles, creator intelligence engine (Phase 9 — no network, no Solana RPC, no provider APIs, no wallet data, no execution)
+- `creator-intelligence`: Local creator profile models, deterministic component scoring, risk flags, classification, fixture profiles, creator intelligence engine, and Phase 30 creator/profile/project/narrative/social/disclosure/engagement fixture models with validation and safety validation (no network, no Solana RPC, no provider APIs, no wallet data, no execution, no social APIs, no scraping, no identity resolution)
 - `wallet-intelligence`: Local wallet profile models, wallet cluster models, deterministic component scoring (wallet quality, cluster quality, leader-follower, fresh-wallet risk, funding source), risk flags, classification, fixture clusters, wallet cluster intelligence engine (Phase 10 — no network, no Solana RPC, no provider APIs, no wallet data, no private keys, no copy trading, no execution)
 - `manipulation-detector`: Local bundle/manipulation detector models, deterministic component scoring (bundle risk, wash trade, coordination, funding pattern, creator link), risk flags, classification, 8 synthetic fixture groups, manipulation detector engine (Phase 11 — no network, no Solana RPC, no provider APIs, no live bundle detection, no live wash-trade detection, no enforcement actions, no trade intents, no execution)
 - `replay-lab`: Local deterministic replay lab model layer; replays synthetic fixture scenarios across the intelligence stack; 8 fixture scenarios, step/scenario/run/comparison models, deterministic verdict engine, regression comparison utilities (Phase 13 — no network, no Solana RPC, no provider APIs, no live data, no trade intents, no execution plans, no paper trading, no trade execution)
