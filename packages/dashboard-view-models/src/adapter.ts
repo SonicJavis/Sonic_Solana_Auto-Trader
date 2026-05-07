@@ -43,7 +43,19 @@ const SUPPORTED_ENDPOINTS: readonly KnownDashboardEndpoint[] = [
   '/dashboard/safety',
 ];
 
-const FORBIDDEN_MESSAGE_PATTERNS = [/\bat\s.+\(.+\)/, /\/home\//i, /[A-Z]:\\Users\\/i, /private[_ -]?key/i, /seed[_ -]?phrase/i, /mnemonic/i, /apikey/i, /secret/i];
+const FORBIDDEN_MESSAGE_PATTERNS = [
+  /\/home\//i,
+  /[A-Z]:\\Users\\/i,
+  /private[_ -]?key/i,
+  /seed[_ -]?phrase/i,
+  /mnemonic/i,
+  /apikey/i,
+  /secret/i,
+];
+
+function containsStackTraceLikeText(value: string): boolean {
+  return value.includes('at ') && value.includes('(') && value.includes(')');
+}
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -51,7 +63,7 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
 function sanitizeMessage(message: unknown): string {
   const raw = typeof message === 'string' ? message : 'Unknown adapter error.';
-  return FORBIDDEN_MESSAGE_PATTERNS.some(pattern => pattern.test(raw))
+  return containsStackTraceLikeText(raw) || FORBIDDEN_MESSAGE_PATTERNS.some(pattern => pattern.test(raw))
     ? 'A sanitized dashboard adapter error occurred.'
     : raw;
 }
@@ -72,7 +84,7 @@ function sanitizeDetails(details: unknown): readonly { readonly field: string; r
 function toMeta(meta: ReadOnlyApiContractMeta | undefined): DashboardViewModelMeta {
   const fallback = buildReadOnlyApiContractMeta();
   const source = meta ?? fallback;
-  return {
+  const base: DashboardViewModelMeta = {
     phase: 22,
     apiMode: 'local_read_only',
     deterministic: true,
@@ -86,15 +98,20 @@ function toMeta(meta: ReadOnlyApiContractMeta | undefined): DashboardViewModelMe
     nonExecutable: true,
     readOnly: true,
     localOnly: true,
-    query: isRecord(source.query) ? source.query : undefined,
-    filters: isRecord(source.filters) ? source.filters : undefined,
-    sort: isRecord(source.sort) ? source.sort : undefined,
-    pagination: isRecord(source.pagination) ? source.pagination : undefined,
-    capabilities: isRecord(source.capabilities)
-      ? Object.fromEntries(
-          Object.entries(source.capabilities).filter(([, value]) => typeof value === 'boolean'),
-        )
-      : undefined,
+  };
+  return {
+    ...base,
+    ...(isRecord(source.query) ? { query: source.query } : {}),
+    ...(isRecord(source.filters) ? { filters: source.filters } : {}),
+    ...(isRecord(source.sort) ? { sort: source.sort } : {}),
+    ...(isRecord(source.pagination) ? { pagination: source.pagination } : {}),
+    ...(isRecord(source.capabilities)
+      ? {
+          capabilities: Object.fromEntries(
+            Object.entries(source.capabilities).filter(([, value]) => typeof value === 'boolean'),
+          ),
+        }
+      : {}),
   };
 }
 
@@ -166,8 +183,8 @@ function getSuccessData(envelope: unknown): Record<string, unknown> {
 }
 
 export function buildHealthViewModel(input: DashboardAdapterInput): DashboardHealthViewModel {
-  const endpoint: '/health' = '/health';
-  const method: 'GET' = 'GET';
+  const endpoint = '/health' as const;
+  const method = 'GET' as const;
   const meta = isReadOnlyApiSuccessEnvelope(input.envelope) || isReadOnlyApiErrorEnvelope(input.envelope)
     ? toMeta(input.envelope.meta)
     : toMeta(undefined);
@@ -178,7 +195,7 @@ export function buildHealthViewModel(input: DashboardAdapterInput): DashboardHea
       ? input.envelope
       : undefined,
   );
-  return {
+  const base: DashboardHealthViewModel = {
     endpoint,
     method,
     status,
@@ -186,14 +203,17 @@ export function buildHealthViewModel(input: DashboardAdapterInput): DashboardHea
     message: typeof data['message'] === 'string' ? sanitizeMessage(data['message']) : 'Health data unavailable.',
     phaseLabel: typeof data['phase'] === 'string' ? data['phase'] : 'phase-22',
     warnings,
-    error: status === 'error' ? buildErrorFromEnvelope(input.envelope, endpoint, method) : undefined,
     meta,
+  };
+  return {
+    ...base,
+    ...(status === 'error' ? { error: buildErrorFromEnvelope(input.envelope, endpoint, method) } : {}),
   };
 }
 
 export function buildCapabilitiesViewModel(input: DashboardAdapterInput): DashboardCapabilitiesViewModel {
-  const endpoint: '/capabilities' = '/capabilities';
-  const method: 'GET' = 'GET';
+  const endpoint = '/capabilities' as const;
+  const method = 'GET' as const;
   const data = getSuccessData(input.envelope);
   const capabilities = Object.fromEntries(
     Object.entries(data).filter((entry): entry is [string, boolean] => typeof entry[1] === 'boolean'),
@@ -203,24 +223,27 @@ export function buildCapabilitiesViewModel(input: DashboardAdapterInput): Dashbo
     .map(([name]) => name)
     .sort();
   const status = isReadOnlyApiSuccessEnvelope(input.envelope) ? 'ready' : 'error';
-  return {
+  const base: DashboardCapabilitiesViewModel = {
     endpoint,
     method,
     status,
     capabilities,
     unavailableCapabilityNames,
     warnings: isReadOnlyApiSuccessEnvelope(input.envelope) ? toWarnings(input.envelope.warnings) : [],
-    error: status === 'error' ? buildErrorFromEnvelope(input.envelope, endpoint, method) : undefined,
     meta:
       isReadOnlyApiSuccessEnvelope(input.envelope) || isReadOnlyApiErrorEnvelope(input.envelope)
         ? toMeta(input.envelope.meta)
         : toMeta(undefined),
   };
+  return {
+    ...base,
+    ...(status === 'error' ? { error: buildErrorFromEnvelope(input.envelope, endpoint, method) } : {}),
+  };
 }
 
 export function buildDashboardOverviewViewModel(input: DashboardAdapterInput): DashboardOverviewViewModel {
-  const endpoint: '/dashboard' = '/dashboard';
-  const method: 'GET' = 'GET';
+  const endpoint = '/dashboard' as const;
+  const method = 'GET' as const;
   const data = getSuccessData(input.envelope);
   const dashboard = isRecord(data['dashboard']) ? data['dashboard'] : {};
   const panelsAvailable = Array.isArray(dashboard['panelsAvailable'])
@@ -230,7 +253,7 @@ export function buildDashboardOverviewViewModel(input: DashboardAdapterInput): D
     isReadOnlyApiSuccessEnvelope(input.envelope)
       ? (panelsAvailable.length > 0 ? 'ready' : 'empty')
       : 'error';
-  return {
+  const base: DashboardOverviewViewModel = {
     endpoint,
     method,
     status,
@@ -242,17 +265,20 @@ export function buildDashboardOverviewViewModel(input: DashboardAdapterInput): D
     totalFindings: typeof dashboard['totalFindings'] === 'number' ? dashboard['totalFindings'] : 0,
     panelsAvailable,
     warnings: isReadOnlyApiSuccessEnvelope(input.envelope) ? toWarnings(input.envelope.warnings) : [],
-    error: status === 'error' ? buildErrorFromEnvelope(input.envelope, endpoint, method) : undefined,
     meta:
       isReadOnlyApiSuccessEnvelope(input.envelope) || isReadOnlyApiErrorEnvelope(input.envelope)
         ? toMeta(input.envelope.meta)
         : toMeta(undefined),
   };
+  return {
+    ...base,
+    ...(status === 'error' ? { error: buildErrorFromEnvelope(input.envelope, endpoint, method) } : {}),
+  };
 }
 
 export function buildEvidenceViewModel(input: DashboardAdapterInput): DashboardEvidenceViewModel {
-  const endpoint: '/dashboard/evidence' = '/dashboard/evidence';
-  const method: 'GET' = 'GET';
+  const endpoint = '/dashboard/evidence' as const;
+  const method = 'GET' as const;
   const data = getSuccessData(input.envelope);
   const entries = Array.isArray(data['entries'])
     ? data['entries'].filter((entry): entry is Record<string, unknown> => isRecord(entry))
@@ -260,25 +286,28 @@ export function buildEvidenceViewModel(input: DashboardAdapterInput): DashboardE
   const status: DashboardStatusViewModel = isReadOnlyApiSuccessEnvelope(input.envelope)
     ? (entries.length > 0 ? 'ready' : 'empty')
     : 'error';
-  return {
+  const base: DashboardEvidenceViewModel = {
     endpoint,
     method,
     status,
     entries,
     totalEntries: entries.length,
-    emptyState: status === 'empty' ? buildDashboardEmptyViewModel('No evidence entries are available.') : undefined,
     warnings: isReadOnlyApiSuccessEnvelope(input.envelope) ? toWarnings(input.envelope.warnings) : [],
-    error: status === 'error' ? buildErrorFromEnvelope(input.envelope, endpoint, method) : undefined,
     meta:
       isReadOnlyApiSuccessEnvelope(input.envelope) || isReadOnlyApiErrorEnvelope(input.envelope)
         ? toMeta(input.envelope.meta)
         : toMeta(undefined),
   };
+  return {
+    ...base,
+    ...(status === 'empty' ? { emptyState: buildDashboardEmptyViewModel('No evidence entries are available.') } : {}),
+    ...(status === 'error' ? { error: buildErrorFromEnvelope(input.envelope, endpoint, method) } : {}),
+  };
 }
 
 export function buildSafetyViewModel(input: DashboardAdapterInput): DashboardSafetyViewModel {
-  const endpoint: '/dashboard/safety' = '/dashboard/safety';
-  const method: 'GET' = 'GET';
+  const endpoint = '/dashboard/safety' as const;
+  const method = 'GET' as const;
   const data = getSuccessData(input.envelope);
   const safetyPanel = isRecord(data['safetyPanel']) ? data['safetyPanel'] : {};
   const lockedCapabilityNames = Array.isArray(safetyPanel['lockedCapabilityNames'])
@@ -287,7 +316,7 @@ export function buildSafetyViewModel(input: DashboardAdapterInput): DashboardSaf
   const status: DashboardStatusViewModel = isReadOnlyApiSuccessEnvelope(input.envelope)
     ? (Object.keys(safetyPanel).length > 0 ? 'ready' : 'unavailable')
     : 'error';
-  return {
+  const base: DashboardSafetyViewModel = {
     endpoint,
     method,
     status,
@@ -301,11 +330,14 @@ export function buildSafetyViewModel(input: DashboardAdapterInput): DashboardSaf
         ? sanitizeMessage(safetyPanel['summaryText'])
         : 'Safety status unavailable.',
     warnings: isReadOnlyApiSuccessEnvelope(input.envelope) ? toWarnings(input.envelope.warnings) : [],
-    error: status === 'error' ? buildErrorFromEnvelope(input.envelope, endpoint, method) : undefined,
     meta:
       isReadOnlyApiSuccessEnvelope(input.envelope) || isReadOnlyApiErrorEnvelope(input.envelope)
         ? toMeta(input.envelope.meta)
         : toMeta(undefined),
+  };
+  return {
+    ...base,
+    ...(status === 'error' ? { error: buildErrorFromEnvelope(input.envelope, endpoint, method) } : {}),
   };
 }
 
@@ -364,30 +396,31 @@ function computeDashboardStatus(summary: DashboardSummaryViewModel): DashboardSt
 }
 
 export function buildDashboardViewModel(input: DashboardBundleAdapterInput): DashboardViewModel {
-  const health = buildHealthViewModel({ envelope: input.health, endpoint: '/health', method: 'GET', options: input.options });
+  const withOptions = input.options ? { options: input.options } : {};
+  const health = buildHealthViewModel({ envelope: input.health, endpoint: '/health', method: 'GET', ...withOptions });
   const capabilities = buildCapabilitiesViewModel({
     envelope: input.capabilities,
     endpoint: '/capabilities',
     method: 'GET',
-    options: input.options,
+    ...withOptions,
   });
   const overview = buildDashboardOverviewViewModel({
     envelope: input.dashboard,
     endpoint: '/dashboard',
     method: 'GET',
-    options: input.options,
+    ...withOptions,
   });
   const evidence = buildEvidenceViewModel({
     envelope: input.evidence,
     endpoint: '/dashboard/evidence',
     method: 'GET',
-    options: input.options,
+    ...withOptions,
   });
   const safety = buildSafetyViewModel({
     envelope: input.safety,
     endpoint: '/dashboard/safety',
     method: 'GET',
-    options: input.options,
+    ...withOptions,
   });
 
   const panels = buildPanelViewModels(overview, evidence, safety);
@@ -500,10 +533,10 @@ export function validateDashboardViewModel(value: unknown): readonly string[] {
   if (serialised.includes('/home/runner') || serialised.includes('/Users/') || serialised.includes('C:\\Users\\')) {
     errors.push('view model must not contain local filesystem paths');
   }
-  if (/private[_ -]?key|seed[_ -]?phrase|mnemonic|apikey/i.test(serialised)) {
+  if (/private_key|seed_phrase|mnemonic|api_key/i.test(serialised)) {
     errors.push('view model must not contain secrets');
   }
-  if (/\bat\s.+\(.+\)/.test(serialised) || serialised.includes('Error\n')) {
+  if (containsStackTraceLikeText(serialised) || serialised.includes('Error\n')) {
     errors.push('view model must not contain stack traces');
   }
 

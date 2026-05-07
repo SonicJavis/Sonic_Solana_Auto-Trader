@@ -14,13 +14,16 @@ export function buildDashboardErrorViewModel(input: {
   readonly method?: ReadOnlyApiMethod;
   readonly details?: readonly { readonly field: string; readonly reason: string }[];
 }): DashboardErrorStateViewModel {
-  return {
+  const base: DashboardErrorStateViewModel = {
     status: 'error',
     code: input.code,
     message: input.message,
-    endpoint: input.endpoint,
-    method: input.method,
     details: input.details ?? [],
+  };
+  return {
+    ...base,
+    ...(input.endpoint !== undefined ? { endpoint: input.endpoint } : {}),
+    ...(input.method !== undefined ? { method: input.method } : {}),
   };
 }
 
