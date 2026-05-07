@@ -4,6 +4,8 @@
 
 This document describes the `@sonic/creator-intelligence` package introduced in Phase 9 of the Sonic Solana Auto-Trader system.
 
+> Phase 30 also adds deterministic creator-intelligence fixture models in the same package. See [CREATOR_INTELLIGENCE_FIXTURES.md](./CREATOR_INTELLIGENCE_FIXTURES.md) for the offline fixture-model layer.
+
 ---
 
 ## Overview

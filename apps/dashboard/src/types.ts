@@ -124,7 +124,7 @@ export interface DashboardShellResult {
 
 // ─── Phase 25/26/27 capabilities ─────────────────────────────────────────────
 
-/** Phase 25/26/27/28/29 dashboard UI shell capabilities (all unsafe false). */
+/** Phase 25/26/27/28/29/30 dashboard UI shell capabilities (all unsafe false). */
 export interface DashboardUiShellCapabilities {
   readonly dashboardUiShell: true;
   readonly localReadOnlyDashboard: true;
@@ -177,4 +177,19 @@ export interface DashboardUiShellCapabilities {
   readonly dashboardReportMetadataPreview: true;
   readonly dashboardReportActualFileExport: false;
   readonly dashboardReportDownloadSupport: false;
+  // Phase 30 creator intelligence fixture capabilities
+  readonly creatorIntelligenceFixtures: true;
+  readonly syntheticCreatorProfiles: true;
+  readonly creatorNarrativeFixtures: true;
+  readonly creatorRiskIndicators: true;
+  readonly creatorCredibilityIndicators: true;
+  readonly creatorFixtureSafetyValidation: true;
+  readonly creatorLiveData: false;
+  readonly creatorSocialApiAccess: false;
+  readonly creatorScraping: false;
+  readonly creatorIdentityResolution: false;
+  readonly creatorInvestmentAdvice: false;
+  readonly creatorTradingSignals: false;
+  readonly creatorExternalNetwork: false;
+  readonly creatorPersistence: false;
 }

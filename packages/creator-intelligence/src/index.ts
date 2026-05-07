@@ -21,6 +21,9 @@
  *   - Errors: CreatorIntelligenceError, CreatorIntelligenceErrorCode,
  *     ciOk, ciErr
  *   - Fixtures: 6 deterministic synthetic fixture creator profiles + histories
+ *   - Phase 30 fixture models: creator/project/narrative/social/disclosure/
+ *     engagement fixture types, builders, normalization, validation, and
+ *     15 deterministic offline fixture models
  *
  * What this package does NOT provide:
  *   - No Solana RPC
@@ -51,4 +54,10 @@ export * from './consistency-score.js';
 export * from './suspicious-pattern-score.js';
 export * from './validation.js';
 export * from './fixtures.js';
+export * from './fixture-model-types.js';
+export * from './fixture-model-capabilities.js';
+export * from './fixture-model-normalization.js';
+export * from './fixture-model-validation.js';
+export * from './fixture-model-builders.js';
+export * from './fixture-model-fixtures.js';
 export * from './creator-intelligence-engine.js';

@@ -1,8 +1,10 @@
 # Dashboard — @sonic/dashboard
 
-## Phase 29 — Local Dashboard Report Serialization Preview v1
+## Phase 30 — Dashboard compatibility with creator intelligence fixtures
 
 This package provides the Phase 25/26/27/28/29 local read-only dashboard UI shell, render snapshots, report export-model layer, and report serialization previews for the Sonic Solana Auto-Trader project.
+
+Phase 30 does not add creator-intelligence UI rendering here, but it extends dashboard compatibility capabilities so future local dashboard/report layers can consume deterministic creator-intelligence fixture summaries without adding live data or network behavior.
 
 ## Safety
 
@@ -30,6 +32,7 @@ Phase 26 adds local in-memory interaction state and deterministic filters/select
 Phase 27 adds deterministic render snapshots and regression fixtures.  
 Phase 28 adds deterministic local dashboard report export models (type-safe, fixture-backed, and validation-ready).
 Phase 29 adds deterministic local dashboard report serialization previews (JSON/Markdown/text/metadata) in-memory only.
+Phase 30 adds creator-intelligence fixture compatibility flags only. No new dashboard UI, no live creator feeds, and no social/API integration are added here.
 
 Components:
 

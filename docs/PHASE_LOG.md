@@ -1,5 +1,37 @@
 # Phase Log
 
+## Phase 30 — Creator Intelligence Fixture Models v1
+
+- Extends `packages/creator-intelligence/src/` with deterministic creator-intelligence fixture helpers:
+  - `fixture-model-types.ts` — creator/profile/project/narrative/social/disclosure/engagement fixture types plus summary/result types
+  - `fixture-model-capabilities.ts` — Phase 30 creator fixture capability flags
+  - `fixture-model-builders.ts` — pure creator-intelligence fixture and summary builders
+  - `fixture-model-normalization.ts` — deterministic ordering, serializability, and equality helpers
+  - `fixture-model-validation.ts` — deterministic fixture validation and safety checks
+  - `fixture-model-fixtures.ts` — 15 deterministic creator-intelligence fixtures plus lookup helpers
+- Exports Phase 30 creator fixture helpers from `packages/creator-intelligence/src/index.ts`
+- Extends `CreatorIntelligenceCapabilities` with Phase 30 fixture flags:
+  - `creatorIntelligenceFixtures: true`
+  - `syntheticCreatorProfiles: true`
+  - `creatorNarrativeFixtures: true`
+  - `creatorRiskIndicators: true`
+  - `creatorCredibilityIndicators: true`
+  - `creatorFixtureSafetyValidation: true`
+  - `creatorLiveData: false`
+  - `creatorSocialApiAccess: false`
+  - `creatorScraping: false`
+  - `creatorIdentityResolution: false`
+  - `creatorInvestmentAdvice: false`
+  - `creatorTradingSignals: false`
+  - `creatorExternalNetwork: false`
+  - `creatorPersistence: false`
+- Extends dashboard and read-only-api capability surfaces with the same Phase 30 flags for compatibility reporting
+- Adds `docs/CREATOR_INTELLIGENCE_FIXTURES.md`
+- Adds `tests/phase30.test.ts` for fixture, validation, safety, capability, and source-safety regressions
+- **No live social data. No scraping. No social APIs. No identity resolution. No wallets. No execution/trading. No investment advice. No trading signals. No external network. No persistence/browser storage.**
+
+**Next phase guidance:** Phase 31 may add wallet cluster intelligence fixture models. Do not add live data or execution controls.
+
 ## Phase 29 — Local Dashboard Report Serialization Preview v1
 
 - Adds `apps/dashboard/src/report-serialization/` with deterministic serialization preview helpers:

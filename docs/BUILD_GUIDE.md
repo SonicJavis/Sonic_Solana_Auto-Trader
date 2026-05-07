@@ -428,6 +428,34 @@ pnpm --filter @sonic/wallet-intelligence build
 ## Phase 10: Test count
 1366 passing tests (62 new Phase 10 tests + 1304 regression tests). 16 test files.
 
+## Phase 30: Creator Intelligence Fixture Models v1
+
+`packages/creator-intelligence` now also provides a deterministic fixture-model layer for future offline creator intelligence work.
+
+### Phase 30: What is provided
+
+- `CreatorIntelligenceFixture`, `CreatorProfileFixture`, `CreatorProjectFixture`, `CreatorNarrativeFixture`
+- `CreatorSocialSignalFixture`, `CreatorDisclosureSignalFixture`, `CreatorEngagementPatternFixture`
+- `CreatorRiskIndicator`, `CreatorCredibilityIndicator`, `CreatorIntelligenceSummary`
+- `buildCreatorIntelligenceFixture()`, `buildCreatorIntelligenceSummary()`
+- `normalizeCreatorIntelligenceFixture()`, `serializeCreatorIntelligenceFixture()`
+- `validateCreatorIntelligenceFixture()`, `validateCreatorIntelligenceSafety()`
+- 15 deterministic synthetic creator-intelligence fixtures
+
+### Build creator-intelligence package
+
+```
+pnpm --filter @sonic/creator-intelligence build
+```
+
+### Phase 30: Limitations
+
+- Fixture-only, synthetic-only, local-only creator intelligence models only
+- No live X/Twitter, Telegram, Discord, website, or scraping data
+- No social APIs, no Solana RPC, no provider APIs, no wallets, no execution
+- No identity resolution, no deanonymization, no investment advice, no trading signals
+- No persistence, browser storage, file writes, or external network access
+
 ## Phase 11: Bundle / Manipulation Detector v1
 
 The `packages/manipulation-detector` package provides:
