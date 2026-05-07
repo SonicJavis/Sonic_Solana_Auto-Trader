@@ -14,6 +14,7 @@
     { "path": "./packages/creator-intelligence" },
     { "path": "./packages/wallet-intelligence" },
     { "path": "./packages/manipulation-detector" },
+    { "path": "./packages/offline-intelligence" },
     { "path": "./packages/testing" },
     { "path": "./packages/replay-lab" },
     { "path": "./packages/replay-reporting" },

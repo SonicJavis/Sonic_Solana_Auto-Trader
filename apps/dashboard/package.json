@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@sonic/dashboard-view-models": "workspace:*",
+    "@sonic/offline-intelligence": "workspace:*",
     "@sonic/read-only-api-client": "workspace:*"
   },
   "devDependencies": {

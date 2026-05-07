@@ -25,6 +25,7 @@ export default defineConfig({
       '@sonic/creator-intelligence': resolve(__dirname, 'packages/creator-intelligence/src/index.ts'),
       '@sonic/wallet-intelligence': resolve(__dirname, 'packages/wallet-intelligence/src/index.ts'),
       '@sonic/manipulation-detector': resolve(__dirname, 'packages/manipulation-detector/src/index.ts'),
+      '@sonic/offline-intelligence': resolve(__dirname, 'packages/offline-intelligence/src/index.ts'),
       '@sonic/testing': resolve(__dirname, 'packages/testing/src/index.ts'),
       '@sonic/replay-lab': resolve(__dirname, 'packages/replay-lab/src/index.ts'),
       '@sonic/replay-reporting': resolve(__dirname, 'packages/replay-reporting/src/index.ts'),

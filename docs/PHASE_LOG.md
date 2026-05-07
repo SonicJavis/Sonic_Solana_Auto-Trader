@@ -1,5 +1,24 @@
 # Phase Log
 
+## Phase 33 — Offline Intelligence Composite Evidence Models v1
+
+- Adds new package `packages/offline-intelligence/` with deterministic composite offline-intelligence fixture-model layer:
+  - `types.ts` — Phase 33 constants, `OFFLINE_COMPOSITE_EVIDENCE_FIXTURE_NAMES` (16 names), `OFFLINE_COMPOSITE_EVIDENCE_FIXTURE_KINDS` (16 kinds), all composite fixture/indicator/weighting/summary/meta/validation/build interfaces
+  - `capabilities.ts` — `getOfflineCompositeEvidenceCapabilities()` returning `OfflineCompositeEvidenceFixtureCapabilities`
+  - `normalization.ts` — deterministic ordering, serializability, and equality helpers
+  - `validation.ts` — `validateOfflineCompositeEvidenceFixture`, `validateOfflineCompositeEvidenceSafety` with 15 safety pattern guards
+  - `builders.ts` — `buildOfflineCompositeEvidenceFixture`, `buildOfflineCompositeEvidenceSummary`
+  - `fixtures.ts` — 16 deterministic composite evidence fixtures plus `listOfflineCompositeEvidenceFixtures` / `getOfflineCompositeEvidenceFixture` helpers
+  - `index.ts` — barrel export
+- Exports all Phase 33 helpers from package entry point
+- Registers `@sonic/offline-intelligence` workspace package with deps on Phase 30/31/32 packages
+- Extends dashboard and read-only-api capability surfaces with Phase 33 flags (`compositeEvidenceFixtures`, `compositeCreatorEvidenceRefs`, `compositeWalletClusterEvidenceRefs`, `compositeManipulationEvidenceRefs`, etc.)
+- Adds `docs/OFFLINE_INTELLIGENCE_COMPOSITE_EVIDENCE.md`
+- Adds `tests/phase33.test.ts` for fixture, validation, safety, capability, compatibility, normalization, and source-safety regressions (426 tests)
+- **No live data. No Solana RPC. No provider APIs. No wallets. No Jito/MEV/mempool. No execution/trading. No investment advice. No accusations against real entities. No external network. No persistence/browser storage.**
+
+**Next phase guidance:** Phase 34 may add offline decision-trace composite models. Do not add live data or execution controls.
+
 ## Phase 32 — Bundle / Manipulation Evidence Fixture Models v1
 
 - Extends `packages/manipulation-detector/src/` with deterministic manipulation-evidence fixture helpers:

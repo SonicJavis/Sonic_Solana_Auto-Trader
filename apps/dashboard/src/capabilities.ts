@@ -136,5 +136,22 @@ export function getDashboardUiShellCapabilities(): DashboardUiShellCapabilities 
     manipulationExternalNetwork: false,
     manipulationPersistence: false,
     manipulationExecution: false,
+    // Phase 33 composite evidence fixture capabilities
+    compositeEvidenceFixtures: true,
+    syntheticCompositeEvidence: true,
+    compositeCreatorEvidenceRefs: true,
+    compositeWalletClusterEvidenceRefs: true,
+    compositeManipulationEvidenceRefs: true,
+    compositeRiskIndicators: true,
+    compositeQualityIndicators: true,
+    compositeConfidenceIndicators: true,
+    compositeEvidenceWeighting: true,
+    compositeEvidenceSafetyValidation: true,
+    compositeLiveData: false,
+    compositeExternalNetwork: false,
+    compositeTradingSignals: false,
+    compositeInvestmentAdvice: false,
+    compositeExecution: false,
+    compositePersistence: false,
   };
 }
