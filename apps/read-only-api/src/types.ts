@@ -151,6 +151,21 @@ export interface LocalReadOnlyApiCapabilities {
   readonly creatorTradingSignals: false;
   readonly creatorExternalNetwork: false;
   readonly creatorPersistence: false;
+  // Phase 31 wallet cluster fixture capabilities
+  readonly walletClusterIntelligenceFixtures: true;
+  readonly syntheticWalletClusters: true;
+  readonly walletClusterSignalFixtures: true;
+  readonly walletClusterRiskIndicators: true;
+  readonly walletClusterQualityIndicators: true;
+  readonly walletClusterFixtureSafetyValidation: true;
+  readonly walletClusterLiveData: false;
+  readonly walletClusterChainAccess: false;
+  readonly walletClusterRpcAccess: false;
+  readonly walletClusterIdentityResolution: false;
+  readonly walletClusterInvestmentAdvice: false;
+  readonly walletClusterTradingSignals: false;
+  readonly walletClusterExternalNetwork: false;
+  readonly walletClusterPersistence: false;
   // Safety labels
   readonly fixtureOnly: true;
   readonly analysisOnly: true;
