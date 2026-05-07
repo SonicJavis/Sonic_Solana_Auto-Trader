@@ -1,5 +1,41 @@
 # Phase Log
 
+## Phase 24 — Local Read-Only Dashboard Data Adapter and View Models v1
+
+- Adds `packages/dashboard-view-models` (`@sonic/dashboard-view-models`) as a local read-only adapter layer for future dashboard consumers
+- Introduces typed Phase 24 view models for health, capabilities, overview, evidence, safety, summary, panels, warnings, and safe status states
+- Adds deterministic adapter helpers:
+  - `buildDashboardViewModel`
+  - `buildHealthViewModel`
+  - `buildCapabilitiesViewModel`
+  - `buildDashboardOverviewViewModel`
+  - `buildEvidenceViewModel`
+  - `buildSafetyViewModel`
+  - `adaptReadOnlyApiEnvelopeToViewModel`
+  - `validateDashboardViewModel`
+- Adds deterministic safe state helpers:
+  - `buildDashboardErrorViewModel`
+  - `buildDashboardEmptyViewModel`
+  - `buildDashboardLoadingViewModel`
+- Reuses Phase 23 success/error fixtures and parser compatibility for:
+  - `GET /health`
+  - `GET /capabilities`
+  - `GET /dashboard`
+  - `GET /dashboard/evidence`
+  - `GET /dashboard/safety`
+- Preserves key response metadata fields (`phase`, `method`, `endpoint`, `fixtureOnly`, `mutating`, `externalNetwork`, `generatedAt`) and query/filter/sort/pagination metadata where available
+- Extends `LocalReadOnlyApiCapabilities` with Phase 24 flags:
+  - `dashboardDataAdapter: true`
+  - `dashboardViewModels: true`
+  - `fixtureBackedViewModels: true`
+  - `uiReadyDataShapes: true`
+  - `pureViewModelTransforms: true`
+  - `dashboardUi: false`
+  - `externalDashboardData: false`
+- Adds `docs/LOCAL_READ_ONLY_DASHBOARD_VIEW_MODELS.md`
+- Adds Phase 24 test suite (`tests/phase24.test.ts`) with deterministic adapter, sanitization, safety-boundary, and regression coverage
+- Local-only. Read-only. Fixture-only. Deterministic. No UI. No live data. No Solana RPC. No provider APIs. No wallets. No execution. No trading. No external network.
+
 ## Phase 23 — Local Read-Only API Consumer SDK and Contract Fixtures v1
 
 - Adds `packages/read-only-api-client` — a typed local/in-process consumer SDK for Phase 22 read-only API contracts

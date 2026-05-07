@@ -24,6 +24,14 @@
 20. **Phase 4**: Retention never deletes the DB file; it only removes old/excess rows
 21. **Phase 4**: No Solana RPC, Jito, Pump.fun, signing, sending, wallet loading — not in scope
 
+## Phase 24 Additional Safety Rules
+
+174. **Phase 24**: `@sonic/dashboard-view-models` is adapter/view-model only — no UI rendering, no React/browser runtime, no charting, no frontend shell
+175. **Phase 24**: Adapter functions are pure and deterministic — no `Date.now()`, `new Date()`, random IDs, timers, or async loading behavior
+176. **Phase 24**: Adapter input/output remains local-only and fixture-only — no fetch/axios/websocket/network clients and no external dashboard data source access
+177. **Phase 24**: View models must sanitize error content and must not expose stack traces, local filesystem paths, secrets, or raw unknown objects
+178. **Phase 24**: View models preserve safety metadata (`fixtureOnly: true`, `mutating: false`, `externalNetwork: false`, deterministic `generatedAt`) for downstream UI-safe consumption
+
 ## Phase 6B Additional Safety Rules
 
 38. **Phase 6B**: `PumpInstructionIntent` is a local planning model only — no real Solana instruction, no AccountMeta, no binary instruction data

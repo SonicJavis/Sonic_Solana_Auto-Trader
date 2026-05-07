@@ -23,6 +23,7 @@
     { "path": "./packages/dashboard-read-models" },
     { "path": "./packages/read-only-api-contracts" },
     { "path": "./packages/read-only-api-client" },
+    { "path": "./packages/dashboard-view-models" },
     { "path": "./apps/telegram-bot" },
     { "path": "./apps/worker" },
     { "path": "./apps/read-only-api" }

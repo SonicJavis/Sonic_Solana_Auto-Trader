@@ -66,6 +66,14 @@ export function getLocalReadOnlyApiCapabilities(): LocalReadOnlyApiCapabilities 
     fixtureValidation: true,
     inProcessOnlyClient: true,
     externalNetworkClient: false,
+    // Phase 24 — local dashboard data adapter / view-model layer
+    dashboardDataAdapter: true,
+    dashboardViewModels: true,
+    fixtureBackedViewModels: true,
+    uiReadyDataShapes: true,
+    pureViewModelTransforms: true,
+    dashboardUi: false,
+    externalDashboardData: false,
     // Safety labels
     fixtureOnly: true,
     analysisOnly: true,
