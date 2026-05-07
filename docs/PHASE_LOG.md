@@ -1,5 +1,33 @@
 # Phase Log
 
+## Phase 27 — Local Dashboard Render Snapshots and Regression Fixtures v1
+
+- Adds `apps/dashboard/src/snapshots/` with Phase 27 deterministic render snapshot helpers:
+  - `types.ts` — snapshot type definitions (DashboardRenderSnapshot, DashboardRenderSnapshotFixture, DashboardRenderSnapshotSuite, DashboardRenderSnapshotMeta, DashboardRenderSnapshotValidationResult, DashboardRenderSnapshotSafetyResult, DashboardSnapshotCapabilities, etc.)
+  - `builders.ts` — pure snapshot builder helpers (buildDefaultDashboardRenderSnapshot, buildPanelRenderSnapshot, buildSafetyBannerSnapshot, buildStateRenderSnapshot, buildFilteredDashboardRenderSnapshot, buildEmptyStateSnapshot, buildLoadingStateSnapshot, buildErrorStateSnapshot, buildUnavailableStateSnapshot, buildSafetyBoundarySnapshot, buildMalformedInputSafeSnapshot, buildDashboardRenderSnapshot)
+  - `normalization.ts` — normalization/comparison helpers (normalizeDashboardRenderSnapshot, serializeDashboardRenderSnapshot, areDashboardRenderSnapshotsEqual, getDashboardRenderSnapshotSummary)
+  - `validation.ts` — validation and safety check helpers (validateDashboardRenderSnapshot, validateDashboardRenderSnapshotSafety)
+  - `fixtures.ts` — 20 deterministic regression fixtures (PHASE_27_REGRESSION_FIXTURES, PHASE_27_FIXTURE_SUITE, listDashboardRenderSnapshotFixtures, getDashboardRenderSnapshotFixture)
+  - `capabilities.ts` — Phase 27 capability flags (getDashboardSnapshotCapabilities)
+  - `index.ts` — public barrel
+- Exports Phase 27 helpers from `apps/dashboard/src/index.ts`
+- Extends `DashboardUiShellCapabilities` with Phase 27 flags:
+  - `dashboardRenderSnapshots: true`
+  - `dashboardRegressionFixtures: true`
+  - `deterministicRenderSnapshots: true`
+  - `snapshotSafetyValidation: true`
+  - `fixtureBackedRenderSnapshots: true`
+  - `dashboardSnapshotPersistence: false`
+  - `dashboardSnapshotExternalNetwork: false`
+  - `dashboardSnapshotLiveData: false`
+  - `dashboardSnapshotMutationControls: false`
+- Adds 20 regression fixtures covering: default shell, safety banner, all 6 panels, empty/loading/error/unavailable states, active/hidden panel states, filtered evidence/safety, reset state, no-results filtered, malformed-input-safe, safety-boundary
+- Adds `docs/LOCAL_DASHBOARD_RENDER_SNAPSHOTS.md`
+- Adds Phase 27 test suite (`tests/phase27.test.ts`) with 305 new tests (5518 total, all passing)
+- **No live data. No Solana RPC. No provider APIs. No wallets. No private keys. No execution. No trading. No mutation controls. No external network. No persistence/browser storage. No timers. No randomness.**
+
+**Next phase guidance:** Phase 28 may add local dashboard report export models. Do not add live data or execution controls.
+
 ## Phase 26 — Local Dashboard Interaction State and Filters v1
 
 - Adds `apps/dashboard/src/state/` with Phase 26 local-only interaction state helpers:

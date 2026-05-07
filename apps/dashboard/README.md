@@ -1,8 +1,8 @@
 # Dashboard — @sonic/dashboard
 
-## Phase 26 — Local Dashboard Interaction State and Filters v1
+## Phase 27 — Local Dashboard Render Snapshots and Regression Fixtures v1
 
-This is the Phase 25 local read-only dashboard UI shell for the Sonic Solana Auto-Trader project.
+This package provides the Phase 25/26/27 local read-only dashboard UI shell for the Sonic Solana Auto-Trader project.
 
 ## Safety
 
@@ -20,11 +20,14 @@ This is the Phase 25 local read-only dashboard UI shell for the Sonic Solana Aut
 | Wallet integration | ❌ No |
 | Trading controls | ❌ No |
 | Execution controls | ❌ No |
+| Snapshot persistence | ❌ No |
+| Snapshot external network | ❌ No |
 
 ## What This Package Provides
 
 Phase 25 adds the local read-only dashboard UI shell.  
-Phase 26 adds local in-memory interaction state and deterministic filters/selectors on top of that shell.
+Phase 26 adds local in-memory interaction state and deterministic filters/selectors on top of that shell.  
+Phase 27 adds deterministic render snapshots and regression fixtures.
 
 Components:
 
@@ -39,8 +42,37 @@ Components:
 - `EmptyState`, `LoadingState`, `ErrorState`, `UnavailableState` — safe state components
 - `StatusBadge` — typed status badge component
 - `buildFixtureDashboardViewModel()` — fixture-backed view model builder
-- `getDashboardUiShellCapabilities()` — Phase 25 capability flags
+- `getDashboardUiShellCapabilities()` — Phase 25/26/27 capability flags
 - Phase 26 state helpers under `src/state/` for active panel, visibility, filters, sort, reset, reducer-style updates, and selectors
+- Phase 27 snapshot helpers under `src/snapshots/` for regression fixtures, snapshot builders, normalization, validation, and safety checks
+
+## Phase 27 Snapshot API
+
+```typescript
+import {
+  buildDefaultDashboardRenderSnapshot,
+  buildPanelRenderSnapshot,
+  buildSafetyBannerSnapshot,
+  listDashboardRenderSnapshotFixtures,
+  getDashboardRenderSnapshotFixture,
+  validateDashboardRenderSnapshot,
+  validateDashboardRenderSnapshotSafety,
+  PHASE_27_FIXTURE_SUITE,
+  getDashboardSnapshotCapabilities,
+} from '@sonic/dashboard';
+
+// Build a default shell snapshot
+const snap = buildDefaultDashboardRenderSnapshot(viewModel);
+
+// Validate a snapshot
+const result = validateDashboardRenderSnapshot(snap);
+
+// Get all fixture names
+const names = listDashboardRenderSnapshotFixtures();
+
+// Get capabilities
+const caps = getDashboardSnapshotCapabilities();
+```
 
 ## Usage
 
