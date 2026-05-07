@@ -1,9 +1,9 @@
 /**
  * apps/dashboard/src/capabilities.ts
  *
- * Phase 28 — Local Dashboard Report Export Models v1 — Capabilities
+ * Phase 29 — Local Dashboard Report Serialization Preview v1 — Capabilities
  *
- * Phase 25/26/27/28 dashboard capability flags.
+ * Phase 25/26/27/28/29 dashboard capability flags.
  * All unsafe flags are permanently false.
  * Phase 25 adds the local read-only dashboard UI shell.
  * Phase 26 adds local dashboard interaction state and filters.
@@ -14,7 +14,7 @@
 import type { DashboardUiShellCapabilities } from './types.js';
 
 /**
- * Returns the Phase 25/26/27/28 dashboard capabilities.
+ * Returns the Phase 25/26/27/28/29 dashboard capabilities.
  *
  * All unsafe capabilities (live data, trading controls, wallet controls,
  * mutation controls, execution controls, external network, real-time updates,
@@ -76,5 +76,13 @@ export function getDashboardUiShellCapabilities(): DashboardUiShellCapabilities 
     dashboardReportExternalNetwork: false,
     dashboardReportLiveData: false,
     dashboardReportMutationControls: false,
+    // Phase 29 serialization preview capabilities
+    dashboardReportSerializationPreview: true,
+    dashboardReportJsonPreview: true,
+    dashboardReportMarkdownPreview: true,
+    dashboardReportTextPreview: true,
+    dashboardReportMetadataPreview: true,
+    dashboardReportActualFileExport: false,
+    dashboardReportDownloadSupport: false,
   };
 }

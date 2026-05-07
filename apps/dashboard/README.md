@@ -1,8 +1,8 @@
 # Dashboard — @sonic/dashboard
 
-## Phase 28 — Local Dashboard Report Export Models v1
+## Phase 29 — Local Dashboard Report Serialization Preview v1
 
-This package provides the Phase 25/26/27/28 local read-only dashboard UI shell, render snapshots, and report export-model layer for the Sonic Solana Auto-Trader project.
+This package provides the Phase 25/26/27/28/29 local read-only dashboard UI shell, render snapshots, report export-model layer, and report serialization previews for the Sonic Solana Auto-Trader project.
 
 ## Safety
 
@@ -29,6 +29,7 @@ Phase 25 adds the local read-only dashboard UI shell.
 Phase 26 adds local in-memory interaction state and deterministic filters/selectors on top of that shell.  
 Phase 27 adds deterministic render snapshots and regression fixtures.  
 Phase 28 adds deterministic local dashboard report export models (type-safe, fixture-backed, and validation-ready).
+Phase 29 adds deterministic local dashboard report serialization previews (JSON/Markdown/text/metadata) in-memory only.
 
 Components:
 
@@ -47,6 +48,7 @@ Components:
 - Phase 26 state helpers under `src/state/` for active panel, visibility, filters, sort, reset, reducer-style updates, and selectors
 - Phase 27 snapshot helpers under `src/snapshots/` for regression fixtures, snapshot builders, normalization, validation, and safety checks
 - Phase 28 report helpers under `src/reports/` for report models, report fixtures, normalization, validation, and safety checks
+- Phase 29 serialization preview helpers under `src/report-serialization/` for preview models, fixtures, normalization, validation, and safety checks
 
 ## Phase 28 Report API
 

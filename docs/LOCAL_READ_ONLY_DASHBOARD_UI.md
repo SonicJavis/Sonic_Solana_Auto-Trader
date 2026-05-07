@@ -1,6 +1,6 @@
 # Local Read-Only Dashboard UI — Phase 25
 
-> Phase 28 builds deterministic report export models from this UI shell output and Phase 27 snapshots. It does not add any UI export/download behavior.
+> Phase 28 builds deterministic report export models from this UI shell output and Phase 27 snapshots. Phase 29 adds deterministic in-memory serialization previews only, with no UI export/download behavior.
 
 ## Purpose
 

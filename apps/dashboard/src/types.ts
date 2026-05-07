@@ -124,7 +124,7 @@ export interface DashboardShellResult {
 
 // ─── Phase 25/26/27 capabilities ─────────────────────────────────────────────
 
-/** Phase 25/26/27/28 dashboard UI shell capabilities (all unsafe false). */
+/** Phase 25/26/27/28/29 dashboard UI shell capabilities (all unsafe false). */
 export interface DashboardUiShellCapabilities {
   readonly dashboardUiShell: true;
   readonly localReadOnlyDashboard: true;
@@ -169,4 +169,12 @@ export interface DashboardUiShellCapabilities {
   readonly dashboardReportExternalNetwork: false;
   readonly dashboardReportLiveData: false;
   readonly dashboardReportMutationControls: false;
+  // Phase 29 serialization preview capabilities
+  readonly dashboardReportSerializationPreview: true;
+  readonly dashboardReportJsonPreview: true;
+  readonly dashboardReportMarkdownPreview: true;
+  readonly dashboardReportTextPreview: true;
+  readonly dashboardReportMetadataPreview: true;
+  readonly dashboardReportActualFileExport: false;
+  readonly dashboardReportDownloadSupport: false;
 }

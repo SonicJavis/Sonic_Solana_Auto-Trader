@@ -1,8 +1,8 @@
 # Architecture
 
-## Phase 28 Update
+## Phase 29 Update
 
-Phase 28 adds a local dashboard report export-model layer (`apps/dashboard/src/reports/`) after Phase 27 snapshots. This layer is deterministic, fixture-backed, read-only, in-memory, and export-action-free (no file writes/downloads/persistence/network).
+Phase 29 adds a local dashboard report serialization-preview layer (`apps/dashboard/src/report-serialization/`) after Phase 28 report models. This layer is deterministic, fixture-backed, read-only, in-memory, and export-action-free (no file writes/downloads/persistence/network).
 
 Monorepo with pnpm workspaces.
 

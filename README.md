@@ -1,8 +1,28 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 28 — Local Dashboard Report Export Models v1**
+**Phase 29 — Local Dashboard Report Serialization Preview v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 28.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 29.
+
+## Features (Phase 29 — adds to Phase 28)
+
+- Adds `apps/dashboard/src/report-serialization/` local deterministic serialization preview layer:
+  - strict preview model types
+  - pure preview builders for JSON/Markdown/text/metadata formats
+  - normalization/serializability/checksum helpers
+  - validation/safety validators
+  - 15 deterministic serialization preview fixtures
+- Adds serialization preview capability flags:
+  - `dashboardReportSerializationPreview: true`
+  - `dashboardReportJsonPreview: true`
+  - `dashboardReportMarkdownPreview: true`
+  - `dashboardReportTextPreview: true`
+  - `dashboardReportMetadataPreview: true`
+  - `dashboardReportActualFileExport: false`
+  - `dashboardReportDownloadSupport: false`
+- Adds `docs/LOCAL_DASHBOARD_REPORT_SERIALIZATION_PREVIEW.md`
+- Adds Phase 29 serialization preview regression and safety tests
+- No file export implementation, no file writes, no browser downloads, no persistence, no live data, no wallets, no execution/trading, no external network
 
 ## Features (Phase 28 — adds to Phase 27)
 

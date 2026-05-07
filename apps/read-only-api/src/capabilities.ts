@@ -107,6 +107,14 @@ export function getLocalReadOnlyApiCapabilities(): LocalReadOnlyApiCapabilities 
     dashboardReportExternalNetwork: false,
     dashboardReportLiveData: false,
     dashboardReportMutationControls: false,
+    // Phase 29 — dashboard report serialization previews
+    dashboardReportSerializationPreview: true,
+    dashboardReportJsonPreview: true,
+    dashboardReportMarkdownPreview: true,
+    dashboardReportTextPreview: true,
+    dashboardReportMetadataPreview: true,
+    dashboardReportActualFileExport: false,
+    dashboardReportDownloadSupport: false,
     // Safety labels
     fixtureOnly: true,
     analysisOnly: true,

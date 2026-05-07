@@ -1,6 +1,6 @@
 # Local Read-Only Dashboard View Models
 
-> Phase 28 preserves this layer as the report-model metadata source (via Phase 25/27 integration) and adds no live/network/export behavior.
+> Phase 29 preserves this layer as the report-model and serialization-preview metadata source (via Phase 25/27/28 integration) and adds no live/network/export behavior.
 
 **Phase 24 — Local Read-Only Dashboard Data Adapter and View Models v1**
 
