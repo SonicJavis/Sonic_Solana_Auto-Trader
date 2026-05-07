@@ -1,9 +1,9 @@
 /**
  * apps/dashboard/src/capabilities.ts
  *
- * Phase 25 — Local Read-Only Dashboard UI Shell v1 — Capabilities
+ * Phase 26 — Local Dashboard Interaction State and Filters v1 — Capabilities
  *
- * Phase 25 dashboard UI shell capability flags.
+ * Phase 25/26 dashboard capability flags.
  * All unsafe flags are permanently false.
  * Phase 25 adds the local read-only dashboard UI shell.
  */
@@ -11,7 +11,7 @@
 import type { DashboardUiShellCapabilities } from './types.js';
 
 /**
- * Returns the Phase 25 dashboard UI shell capabilities.
+ * Returns the Phase 25/26 dashboard capabilities.
  *
  * All unsafe capabilities (live data, trading controls, wallet controls,
  * mutation controls, execution controls, external network, real-time updates,
@@ -31,6 +31,15 @@ export function getDashboardUiShellCapabilities(): DashboardUiShellCapabilities 
     localReadOnlyDashboard: true,
     fixtureBackedDashboardUi: true,
     dashboardUsesViewModels: true,
+    dashboardInteractionState: true,
+    localDashboardFilters: true,
+    inMemoryDashboardState: true,
+    deterministicDashboardState: true,
+    dashboardPanelVisibility: true,
+    dashboardFilterSelectors: true,
+    dashboardPersistentState: false,
+    dashboardExternalStateSync: false,
+    dashboardLiveFilters: false,
     dashboardExternalNetwork: false,
     dashboardLiveData: false,
     dashboardTradingControls: false,

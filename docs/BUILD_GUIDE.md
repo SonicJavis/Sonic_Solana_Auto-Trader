@@ -24,13 +24,15 @@ pnpm typecheck
 ## Lint
 pnpm lint
 
-## Phase 25: Local Read-Only Dashboard UI Shell
+## Phase 26: Local Dashboard Interaction State and Filters
 
 The `apps/dashboard` package provides a local read-only dashboard UI shell:
 
 - Pure TypeScript components — no React, no DOM, no browser APIs for unsafe side effects
 - Fixture-backed data from Phase 23 fixtures
 - Renders Phase 24 view models as structured, typed output
+- Adds deterministic in-memory interaction state/filter/selectors in `apps/dashboard/src/state/`
+- No persistence/browser storage
 - No network calls
 - No live data
 - No Solana RPC/provider APIs

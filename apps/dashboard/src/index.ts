@@ -1,10 +1,11 @@
 /**
  * apps/dashboard/src/index.ts
  *
- * Phase 25 — Local Read-Only Dashboard UI Shell v1 — Public API Barrel
+ * Phase 26 — Local Dashboard Interaction State and Filters v1 — Public API Barrel
  *
- * Exports the Phase 25 local read-only dashboard UI shell components,
- * view model source, and capability metadata.
+ * Exports the local read-only dashboard UI shell components,
+ * view model source, Phase 25/26 capability metadata, and
+ * Phase 26 local in-memory interaction state helpers.
  *
  * What this module provides:
  *   - DashboardShell — top-level dashboard shell component
@@ -22,6 +23,7 @@
  *   - StatusBadge — status badge component
  *   - buildFixtureDashboardViewModel — fixture-backed view model builder
  *   - getDashboardUiShellCapabilities — Phase 25 capability flags
+ *   - Phase 26 local interaction state types/helpers/selectors
  *   - PHASE_25_SAFETY_BOUNDARY — shared safety boundary constant
  *   - All dashboard UI shell types
  *
@@ -107,3 +109,71 @@ export {
 // ─── Capabilities ─────────────────────────────────────────────────────────────
 
 export { getDashboardUiShellCapabilities } from './capabilities.js';
+
+// ─── Phase 26 interaction state ────────────────────────────────────────────────
+
+export type {
+  DashboardInteractionState,
+  DashboardPanelId,
+  DashboardPanelVisibilityState,
+  DashboardFilterState,
+  DashboardEvidenceFilterState,
+  DashboardSafetyFilterState,
+  DashboardSortState,
+  DashboardStateAction,
+  DashboardStateActionType,
+  DashboardStateUpdateResult,
+  DashboardStateValidationResult,
+  DashboardStateSelectorResult,
+  DashboardStateResetMode,
+  DashboardEvidenceItem,
+  DashboardSafetyItem,
+} from './state/index.js';
+
+export {
+  DASHBOARD_PANEL_IDS,
+  DASHBOARD_EVIDENCE_SEVERITIES,
+  DASHBOARD_ITEM_STATUS_FILTERS,
+  DASHBOARD_LOCAL_ITEM_STATES,
+  DASHBOARD_EVIDENCE_SORT_FIELDS,
+  DASHBOARD_SAFETY_SORT_FIELDS,
+  DASHBOARD_SORT_DIRECTIONS,
+  createDefaultDashboardInteractionState,
+  createDefaultDashboardPanelVisibilityState,
+  createDefaultDashboardEvidenceFilterState,
+  createDefaultDashboardSafetyFilterState,
+  createDefaultDashboardFilterState,
+  createDefaultDashboardSortState,
+  sanitizeDashboardFilterInput,
+  sanitizeDashboardPanelId,
+  sanitizeDashboardEvidenceFilters,
+  sanitizeDashboardSafetyFilters,
+  sanitizeDashboardEvidenceSortField,
+  sanitizeDashboardSafetySortField,
+  sanitizeDashboardSortDirection,
+  sanitizeDashboardStatusFilter,
+  sanitizeDashboardLocalStatusFilter,
+  validateDashboardInteractionState,
+  buildDashboardEvidenceItems,
+  buildDashboardSafetyItems,
+  applyDashboardEvidenceFilters,
+  applyDashboardSafetyFilters,
+  applyDashboardEvidenceSort,
+  applyDashboardSafetySort,
+  setDashboardActivePanel,
+  toggleDashboardPanelVisibility,
+  setDashboardPanelVisibility,
+  updateDashboardEvidenceFilters,
+  updateDashboardSafetyFilters,
+  updateDashboardSortState,
+  resetDashboardInteractionState,
+  updateDashboardInteractionState,
+  validateAndNormalizeDashboardInteractionState,
+  selectDashboardPanels,
+  selectVisibleDashboardPanels,
+  selectActiveDashboardPanel,
+  selectFilteredEvidenceItems,
+  selectFilteredSafetyItems,
+  selectDashboardRenderModel,
+  applyDashboardInteractionState,
+} from './state/index.js';

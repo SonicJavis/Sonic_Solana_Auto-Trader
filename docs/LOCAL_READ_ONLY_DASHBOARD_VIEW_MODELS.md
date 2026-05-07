@@ -153,7 +153,7 @@ Phase 24 does not implement:
 
 ---
 
-## 10. Phase 25 — Implemented
+## 10. Phase 25/26 Consumption
 
 **Phase 25 — Local Read-Only Dashboard UI Shell v1** is now implemented in `apps/dashboard/src/`.
 
@@ -165,7 +165,8 @@ The data flow is:
 Phase 23 Fixtures → buildFixtureDashboardViewModel() → DashboardViewModel → DashboardShell
 ```
 
-Phase 26 Preview: Phase 26 may add local dashboard interaction state and filters. No live data, wallets, trading, or external network.
+Phase 26 is implemented with local dashboard interaction state and filters in `apps/dashboard/src/state/`.  
+It remains local-only, read-only, deterministic, in-memory-only, and external-network-free.
 
 ---
 
