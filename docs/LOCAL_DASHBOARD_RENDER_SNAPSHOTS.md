@@ -368,11 +368,11 @@ Phase 28 is now implemented and consumes these snapshot fixtures to build determ
 
 No runtime report export actions are implemented in Phase 28.
 
-## Future Phase 29 Preview
+## Phase 29 Follow-on
 
 Likely next phase:
 
-> Phase 29 — Local Dashboard Report Serialization Preview v1
+> Phase 29 — Local Dashboard Report Serialization Preview v1 (implemented as a separate layer on top of Phase 28 reports)
 
 ---
 

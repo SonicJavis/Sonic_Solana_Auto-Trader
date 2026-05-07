@@ -1,5 +1,30 @@
 # Phase Log
 
+## Phase 29 — Local Dashboard Report Serialization Preview v1
+
+- Adds `apps/dashboard/src/report-serialization/` with deterministic serialization preview helpers:
+  - `types.ts` — serialization preview type definitions
+  - `builders.ts` — pure JSON/Markdown/text/metadata preview builders
+  - `normalization.ts` — stable ordering, pretty JSON, checksum, serializability helpers
+  - `validation.ts` — deterministic preview validation and safety checks
+  - `fixtures.ts` — 15 deterministic serialization preview fixtures
+  - `index.ts` — public barrel
+- Exports Phase 29 serialization helpers from `apps/dashboard/src/index.ts`
+- Extends dashboard capabilities with Phase 29 serialization preview flags:
+  - `dashboardReportSerializationPreview: true`
+  - `dashboardReportJsonPreview: true`
+  - `dashboardReportMarkdownPreview: true`
+  - `dashboardReportTextPreview: true`
+  - `dashboardReportMetadataPreview: true`
+  - `dashboardReportActualFileExport: false`
+  - `dashboardReportDownloadSupport: false`
+- Extends `LocalReadOnlyApiCapabilities` with the same Phase 29 flags
+- Adds `docs/LOCAL_DASHBOARD_REPORT_SERIALIZATION_PREVIEW.md`
+- Adds `tests/phase29.test.ts` for serialization-preview regressions and safety boundaries
+- **No file writes. No export/download implementation. No live data. No Solana RPC. No provider APIs. No wallets. No execution/trading. No mutation controls. No external network. No persistence/browser storage.**
+
+**Next phase guidance:** Phase 30 may add creator intelligence fixture models. Do not add runtime export actions.
+
 ## Phase 28 — Local Dashboard Report Export Models v1
 
 - Adds `apps/dashboard/src/reports/` with deterministic report model helpers:

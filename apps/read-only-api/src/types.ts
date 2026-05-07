@@ -128,6 +128,14 @@ export interface LocalReadOnlyApiCapabilities {
   readonly dashboardReportExternalNetwork: false;
   readonly dashboardReportLiveData: false;
   readonly dashboardReportMutationControls: false;
+  // Phase 29 — dashboard report serialization preview capabilities
+  readonly dashboardReportSerializationPreview: true;
+  readonly dashboardReportJsonPreview: true;
+  readonly dashboardReportMarkdownPreview: true;
+  readonly dashboardReportTextPreview: true;
+  readonly dashboardReportMetadataPreview: true;
+  readonly dashboardReportActualFileExport: false;
+  readonly dashboardReportDownloadSupport: false;
   // Safety labels
   readonly fixtureOnly: true;
   readonly analysisOnly: true;

@@ -171,13 +171,13 @@ It does **not** perform export actions, but it provides stable model contracts f
 - no runtime scheduling
 - no wallet/trade/execute controls
 
-## 10. Phase 29 Preview (Not Implemented)
+## 10. Phase 29 Follow-on (Implemented Separately)
 
 Next likely phase:
 
 > Phase 29 — Local Dashboard Report Serialization Preview v1
 
-Phase 29 is not implemented here.
+Phase 29 is implemented in `apps/dashboard/src/report-serialization/` and documented in `docs/LOCAL_DASHBOARD_REPORT_SERIALIZATION_PREVIEW.md`.
 
 ## 11. Explicit Safety Confirmation
 

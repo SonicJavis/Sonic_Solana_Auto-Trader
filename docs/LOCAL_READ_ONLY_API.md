@@ -2,7 +2,7 @@
 
 ## Phase 20 Overview
 
-> Phase 28 note: local dashboard report export models are generated from deterministic dashboard layers and do not introduce API export routes, write endpoints, persistence, or external network behavior.
+> Phase 29 note: local dashboard report serialization previews are generated from deterministic dashboard layers and do not introduce API export routes, write endpoints, persistence, browser downloads, or external network behavior.
 
 `apps/read-only-api` is a **localhost-only, GET-only, fixture-only, read-only, analysis-only, non-executable** Fastify API shell.
 
