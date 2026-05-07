@@ -1,5 +1,9 @@
 # Local Read-Only API Consumer SDK
 
+## Phase 28 Note
+
+Phase 28 dashboard report models remain fixture-backed and indirectly sourced from this deterministic SDK path (fixtures -> view models -> shell/state/snapshots -> report models). No export runtime behavior is introduced.
+
 **Phase 23 — Local Read-Only API Consumer SDK and Contract Fixtures v1**
 
 ---

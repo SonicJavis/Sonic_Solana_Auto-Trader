@@ -1,7 +1,7 @@
 /**
  * apps/dashboard/src/types.ts
  *
- * Phase 25 — Local Read-Only Dashboard UI Shell v1 — Render Types
+ * Phase 28 — Local Dashboard Report Export Models v1 — Render + Capability Types
  *
  * Defines the typed output shapes produced by all dashboard UI shell components.
  * These are pure TypeScript types for a Node-compatible, deterministic,
@@ -124,7 +124,7 @@ export interface DashboardShellResult {
 
 // ─── Phase 25/26/27 capabilities ─────────────────────────────────────────────
 
-/** Phase 25/26/27 dashboard UI shell capabilities (all unsafe false). */
+/** Phase 25/26/27/28 dashboard UI shell capabilities (all unsafe false). */
 export interface DashboardUiShellCapabilities {
   readonly dashboardUiShell: true;
   readonly localReadOnlyDashboard: true;
@@ -158,4 +158,15 @@ export interface DashboardUiShellCapabilities {
   readonly dashboardSnapshotExternalNetwork: false;
   readonly dashboardSnapshotLiveData: false;
   readonly dashboardSnapshotMutationControls: false;
+  // Phase 28 report model capabilities
+  readonly dashboardReportModels: true;
+  readonly dashboardReportFixtures: true;
+  readonly deterministicReportModels: true;
+  readonly reportSafetyValidation: true;
+  readonly fixtureBackedReports: true;
+  readonly dashboardReportFileExport: false;
+  readonly dashboardReportPersistence: false;
+  readonly dashboardReportExternalNetwork: false;
+  readonly dashboardReportLiveData: false;
+  readonly dashboardReportMutationControls: false;
 }

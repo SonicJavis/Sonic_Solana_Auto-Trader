@@ -1,5 +1,9 @@
 # Safety Rules
 
+## Phase 28 Safety Extension
+
+Phase 28 report models must remain local-only, read-only, fixture-only, deterministic, in-memory, and non-persistent. Report modeling does not permit file writes, browser downloads, live data, Solana RPC, provider APIs, wallets, execution/trading, external network usage, or mutation controls.
+
 ## Phase 4 Safety Foundation
 
 1. Default mode is `READ_ONLY`

@@ -1,5 +1,7 @@
 # Local Read-Only Dashboard UI — Phase 25
 
+> Phase 28 builds deterministic report export models from this UI shell output and Phase 27 snapshots. It does not add any UI export/download behavior.
+
 ## Purpose
 
 Phase 25 adds a local read-only dashboard UI shell on top of the Phase 24 dashboard view model layer.

@@ -117,6 +117,17 @@ export interface LocalReadOnlyApiCapabilities {
   readonly dashboardExecutionControls: false;
   readonly dashboardWalletConnection: false;
   readonly dashboardRealTimeUpdates: false;
+  // Phase 28 — dashboard report export model capabilities
+  readonly dashboardReportModels: true;
+  readonly dashboardReportFixtures: true;
+  readonly deterministicReportModels: true;
+  readonly reportSafetyValidation: true;
+  readonly fixtureBackedReports: true;
+  readonly dashboardReportFileExport: false;
+  readonly dashboardReportPersistence: false;
+  readonly dashboardReportExternalNetwork: false;
+  readonly dashboardReportLiveData: false;
+  readonly dashboardReportMutationControls: false;
   // Safety labels
   readonly fixtureOnly: true;
   readonly analysisOnly: true;

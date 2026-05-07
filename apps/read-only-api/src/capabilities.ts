@@ -96,6 +96,17 @@ export function getLocalReadOnlyApiCapabilities(): LocalReadOnlyApiCapabilities 
     dashboardExecutionControls: false,
     dashboardWalletConnection: false,
     dashboardRealTimeUpdates: false,
+    // Phase 28 — local dashboard report export models
+    dashboardReportModels: true,
+    dashboardReportFixtures: true,
+    deterministicReportModels: true,
+    reportSafetyValidation: true,
+    fixtureBackedReports: true,
+    dashboardReportFileExport: false,
+    dashboardReportPersistence: false,
+    dashboardReportExternalNetwork: false,
+    dashboardReportLiveData: false,
+    dashboardReportMutationControls: false,
     // Safety labels
     fixtureOnly: true,
     analysisOnly: true,

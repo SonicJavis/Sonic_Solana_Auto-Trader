@@ -2,6 +2,8 @@
 
 ## Phase 22 — Local Read-Only API Response Contracts, Error Envelope, and Endpoint Documentation v1
 
+> Phase 28 note: dashboard report export models consume deterministic metadata through the existing fixture-backed pipeline only. No new API contract writes, export actions, or network behaviors are introduced.
+
 ---
 
 > Phase 24 note: these Phase 22 envelopes are consumed by `@sonic/dashboard-view-models` to build deterministic, typed dashboard view models for future UI work. No UI is implemented in Phase 24.
