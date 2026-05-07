@@ -77,6 +77,7 @@ const unsupportedEndpointError: ReadOnlyApiError = {
   ],
 };
 
+// 'fixture_unsupported_endpoint' is the envelopeId — a stable, deterministic ID for this fixture envelope
 export const UNSUPPORTED_ENDPOINT_ERROR_FIXTURE: ReadOnlyApiErrorEnvelope =
   buildReadOnlyApiErrorEnvelope('/not-found', 'fixture_unsupported_endpoint', unsupportedEndpointError, STATIC_META);
 
