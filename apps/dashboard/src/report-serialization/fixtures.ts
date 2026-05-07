@@ -198,14 +198,15 @@ export const MALFORMED_INPUT_SAFE_PREVIEW_FIXTURE: DashboardReportSerializationP
 export const VALIDATION_FAILURE_PREVIEW_FIXTURE: DashboardReportSerializationPreviewFixture = {
   name: 'validation-failure-preview',
   description: 'Validation-failure preview fixture for deterministic negative validation cases.',
-  preview: normalizeDashboardReportSerializationPreview(
-    buildJsonReportPreview({
+  preview: normalizeDashboardReportSerializationPreview({
+    ...buildJsonReportPreview({
       name: 'validation-failure-preview',
       format: 'json',
       report: REPORT_VALIDATION_FAILURE_EXAMPLE_FIXTURE.report,
       safeNotes: ['Validation-failure preview fixture.'],
     }),
-  ),
+    sourceReportName: 'invalid-source-report' as unknown as DashboardReportSerializationPreviewFixture['preview']['sourceReportName'],
+  }),
 };
 
 export const NO_RESULTS_PREVIEW_FIXTURE: DashboardReportSerializationPreviewFixture = {

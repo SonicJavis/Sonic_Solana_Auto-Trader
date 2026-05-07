@@ -101,7 +101,7 @@ function buildMarkdownReportContent(report: DashboardReportModel): string {
   lines.push('');
   lines.push('## Safety Boundary');
   lines.push('- Local-only fixture-backed serialization preview.');
-  lines.push('- No file export, persistence, download, network, wallet, or execution behavior.');
+  lines.push('- No file export, persistence, artifact output, network, wallet, or execution behavior.');
 
   return `${lines.join('\n')}\n`;
 }
@@ -166,7 +166,7 @@ function buildPreviewFromParts(
   const safeNotes = [
     ...(input.safeNotes ?? []),
     'Local deterministic preview only.',
-    'No file export, download, write, persistence, or network behavior is implemented.',
+    'No file export, artifact output, write behavior, persistence, or network behavior is implemented.',
   ].sort();
 
   const checksumSource = content ?? stablePrettyJsonStringify(metadataPayload);
