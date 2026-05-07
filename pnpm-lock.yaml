@@ -142,6 +142,22 @@ importers:
         specifier: '*'
         version: 5.9.3
 
+  packages/dashboard-view-models:
+    dependencies:
+      '@sonic/read-only-api':
+        specifier: workspace:*
+        version: link:../../apps/read-only-api
+      '@sonic/read-only-api-client':
+        specifier: workspace:*
+        version: link:../read-only-api-client
+    devDependencies:
+      '@types/node':
+        specifier: ^20.12.0
+        version: 20.19.39
+      typescript:
+        specifier: '*'
+        version: 5.9.3
+
   packages/db:
     dependencies:
       '@sonic/config':
