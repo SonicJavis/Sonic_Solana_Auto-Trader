@@ -751,3 +751,37 @@ GET /dashboard/safety?limit=10&cursor=<nextCursor>
 
 ## Phase 21: Test count
 3305 passing tests (255 new Phase 21 tests + 3050 regression tests). 27 test files.
+
+## Phase 23: @sonic/read-only-api-client consumer SDK usage
+
+Phase 23 adds `packages/read-only-api-client` — a typed local in-process consumer SDK.
+
+```typescript
+import {
+  createReadOnlyApiClient,
+  buildReadOnlyApiRequest,
+  buildReadOnlyApiQuery,
+  parseReadOnlyApiEnvelope,
+  isReadOnlyApiSuccessEnvelope,
+  HEALTH_SUCCESS_FIXTURE,
+  listReadOnlyApiContractFixtures,
+} from '@sonic/read-only-api-client';
+
+// Create an in-process client (no network, no port binding)
+const client = createReadOnlyApiClient();
+const req = client.buildRequest('/health');
+const req2 = client.buildRequest('/dashboard', { limit: 10, severity: 'high' });
+
+// Build validated queries
+const queryResult = buildReadOnlyApiQuery({ limit: 10, sortBy: 'id' });
+
+// Parse envelopes
+const result = parseReadOnlyApiEnvelope(someEnvelope);
+if (result.ok) { /* result.data, result.meta */ }
+
+// Use fixtures
+const all = listReadOnlyApiContractFixtures(); // 10 fixtures
+```
+
+## Phase 23: Test count
+4087 passing tests (336 new Phase 23 tests + 3751 regression tests). 29 test files.

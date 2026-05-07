@@ -79,6 +79,14 @@ export interface LocalReadOnlyApiCapabilities {
   readonly canValidateQueryErrors: true;
   readonly canProvideDeterministicMetadata: true;
   readonly canProvideEndpointContracts: true;
+  // Phase 23 — local consumer SDK capabilities
+  readonly consumerSdk: true;
+  readonly contractFixtures: true;
+  readonly typedRequestBuilders: true;
+  readonly responseParsers: true;
+  readonly fixtureValidation: true;
+  readonly inProcessOnlyClient: true;
+  readonly externalNetworkClient: false;
   // Safety labels
   readonly fixtureOnly: true;
   readonly analysisOnly: true;

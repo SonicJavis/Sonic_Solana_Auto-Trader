@@ -58,6 +58,14 @@ export function getLocalReadOnlyApiCapabilities(): LocalReadOnlyApiCapabilities 
     canValidateQueryErrors: true,
     canProvideDeterministicMetadata: true,
     canProvideEndpointContracts: true,
+    // Phase 23 — local consumer SDK capabilities
+    consumerSdk: true,
+    contractFixtures: true,
+    typedRequestBuilders: true,
+    responseParsers: true,
+    fixtureValidation: true,
+    inProcessOnlyClient: true,
+    externalNetworkClient: false,
     // Safety labels
     fixtureOnly: true,
     analysisOnly: true,

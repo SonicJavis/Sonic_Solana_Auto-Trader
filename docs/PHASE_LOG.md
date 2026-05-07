@@ -1,5 +1,32 @@
 # Phase Log
 
+## Phase 23 — Local Read-Only API Consumer SDK and Contract Fixtures v1
+
+- Adds `packages/read-only-api-client` — a typed local/in-process consumer SDK for Phase 22 read-only API contracts
+- **Local/in-process only**: no real network client, no port binding, no external I/O
+- `createReadOnlyApiClient()` — local client factory; `isNetworkClient: false`, `bindsPort: false`
+- `buildReadOnlyApiRequest(endpoint, query?)` — typed request descriptor builder
+- `READ_ONLY_API_CLIENT_ENDPOINTS` — typed endpoint definitions for all 11 Phase 22 GET endpoints
+- `getClientEndpoint(path)`, `isKnownEndpointPath(path)`, `listEndpointPaths()` — endpoint lookup helpers
+- `buildReadOnlyApiQuery(input)` — validated composite query builder; collects all errors; never throws
+- `buildQueryString(params)` — deterministic query-to-string serializer
+- Individual query param builders: `buildLimitParam`, `buildOffsetParam`, `buildCursorParam`, `buildSeverityParam`, `buildPanelParam`, `buildSourceKindParam`, `buildClassificationParam`, `buildStatusParam`, `buildSortByParam`, `buildSortDirectionParam`
+- `isReadOnlyApiSuccessEnvelope<T>()` — type guard for Phase 22 success envelopes
+- `isReadOnlyApiErrorEnvelope()` — type guard for Phase 22 error envelopes
+- `assertReadOnlyApiSuccessEnvelope()` / `assertReadOnlyApiErrorEnvelope()` — assertion helpers; throw `ReadOnlyApiAssertionError` on failure
+- `parseReadOnlyApiEnvelope(value)` — parses unknown input to typed `ReadOnlyApiClientResult`; malformed input returns deterministic safe fallback
+- `extractSuccessData()` / `extractErrorInfo()` — data/error extractors
+- `validateEnvelopeMeta(meta)` — validates all Phase 22 meta safety fields
+- `isDeterministicGeneratedAt(value)` — checks Phase 22 static timestamp
+- 10 deterministic contract fixtures: 5 success (`health_success`, `capabilities_success`, `dashboard_success`, `dashboard_evidence_success`, `dashboard_safety_success`) and 5 error (`invalid_query_error`, `unsupported_endpoint_error`, `method_not_allowed_error`, `safety_rejection_error`, `internal_contract_error`)
+- `listReadOnlyApiContractFixtures()`, `getReadOnlyApiContractFixture(name)`, `listReadOnlyApiContractFixturesByKind()`, `listReadOnlyApiContractFixturesByEndpoint()` — fixture lookup/list helpers
+- All fixtures: deterministic, sanitized, no secrets, no stack traces, no local paths, no wall-clock timestamps
+- `LocalReadOnlyApiCapabilities` extended with 7 new Phase 23 flags: `consumerSdk: true`, `contractFixtures: true`, `typedRequestBuilders: true`, `responseParsers: true`, `fixtureValidation: true`, `inProcessOnlyClient: true`, `externalNetworkClient: false`
+- New package: `packages/read-only-api-client/` with `src/types.ts`, `src/endpoints.ts`, `src/query-builder.ts`, `src/response-parser.ts`, `src/client.ts`, `src/fixtures/`
+- `docs/LOCAL_READ_ONLY_API_CONSUMER_SDK.md` — new documentation
+- Phase 23 test suite: **336 new tests** (4087 total, all passing)
+- Localhost-only. In-process only. GET-only. Fixture-only. Read-only. Analysis-only. Non-executable. Local-only. Deterministic. No wall-clock timestamps. No network. No mutation.
+
 ## Phase 22 — Local Read-Only API Response Contracts, Error Envelope, and Endpoint Documentation v1
 
 - Adds standard Phase 22 JSON response envelopes to all existing read-only GET endpoints

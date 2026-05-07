@@ -365,3 +365,8 @@
 291. **Phase 22**: `buildReadOnlyApiErrorEnvelope()` and `buildReadOnlyApiSuccessEnvelope()` are pure, deterministic functions with no side effects, no I/O, no network, no mutation
 292. **Phase 22**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/execution commands.
 
+293. **Phase 23**: `@sonic/read-only-api-client` is local/in-process only — `isNetworkClient: false`, `bindsPort: false` — never makes real network requests
+294. **Phase 23**: All contract fixtures are deterministic, static, sanitized — no secrets, no stack traces, no local filesystem paths, no wall-clock timestamps
+295. **Phase 23**: Seven new Phase 23 capability flags added: `consumerSdk: true`, `contractFixtures: true`, `typedRequestBuilders: true`, `responseParsers: true`, `fixtureValidation: true`, `inProcessOnlyClient: true`, `externalNetworkClient: false` — all other unsafe capability flags remain permanently `false`
+296. **Phase 23**: `buildReadOnlyApiRequest()` and all query builder helpers are pure, deterministic functions with no side effects, no I/O, no network, no mutation
+297. **Phase 23**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/execution commands.
