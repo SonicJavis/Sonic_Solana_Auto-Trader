@@ -6,9 +6,9 @@
     "composite": true
   },
   "references": [
-    { "path": "../../packages/read-only-api-contracts" },
-    { "path": "../../packages/dashboard-read-models" },
-    { "path": "../../packages/offline-intelligence" }
+    { "path": "../../packages/creator-intelligence" },
+    { "path": "../../packages/wallet-intelligence" },
+    { "path": "../../packages/manipulation-detector" }
   ],
   "include": ["src/**/*"]
 }

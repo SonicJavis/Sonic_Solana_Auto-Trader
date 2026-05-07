@@ -6,12 +6,14 @@
     "composite": true,
     "paths": {
       "@sonic/dashboard-view-models": ["../../packages/dashboard-view-models/src/index.ts"],
+      "@sonic/offline-intelligence": ["../../packages/offline-intelligence/src/index.ts"],
       "@sonic/read-only-api-client": ["../../packages/read-only-api-client/src/index.ts"],
       "@sonic/read-only-api": ["../../apps/read-only-api/src/index.ts"]
     }
   },
   "references": [
     { "path": "../../packages/dashboard-view-models" },
+    { "path": "../../packages/offline-intelligence" },
     { "path": "../../packages/read-only-api-client" },
     { "path": "../../apps/read-only-api" }
   ],

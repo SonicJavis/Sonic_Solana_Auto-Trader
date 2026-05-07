@@ -10,6 +10,7 @@
   "dependencies": {
     "@sonic/read-only-api-contracts": "workspace:*",
     "@sonic/dashboard-read-models": "workspace:*",
+    "@sonic/offline-intelligence": "workspace:*",
     "fastify": "^5.8.5"
   },
   "devDependencies": {

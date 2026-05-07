@@ -185,6 +185,23 @@ export interface LocalReadOnlyApiCapabilities {
   readonly manipulationExternalNetwork: false;
   readonly manipulationPersistence: false;
   readonly manipulationExecution: false;
+  // Phase 33 composite evidence fixture capabilities
+  readonly compositeEvidenceFixtures: true;
+  readonly syntheticCompositeEvidence: true;
+  readonly compositeCreatorEvidenceRefs: true;
+  readonly compositeWalletClusterEvidenceRefs: true;
+  readonly compositeManipulationEvidenceRefs: true;
+  readonly compositeRiskIndicators: true;
+  readonly compositeQualityIndicators: true;
+  readonly compositeConfidenceIndicators: true;
+  readonly compositeEvidenceWeighting: true;
+  readonly compositeEvidenceSafetyValidation: true;
+  readonly compositeLiveData: false;
+  readonly compositeExternalNetwork: false;
+  readonly compositeTradingSignals: false;
+  readonly compositeInvestmentAdvice: false;
+  readonly compositeExecution: false;
+  readonly compositePersistence: false;
   // Safety labels
   readonly fixtureOnly: true;
   readonly analysisOnly: true;
