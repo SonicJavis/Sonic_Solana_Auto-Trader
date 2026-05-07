@@ -4,5 +4,3 @@ export * from './normalization.js';
 export * from './validation.js';
 export * from './builders.js';
 export * from './fixtures.js';
-
-export * from './report-integration/index.js';

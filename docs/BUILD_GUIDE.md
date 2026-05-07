@@ -1,5 +1,9 @@
 # Build Guide
 
+## Phase 34 Note
+
+Phase 34 introduces deterministic offline-intelligence report-integration models only. No additional build/runtime services are required, and no live data, network access, wallet logic, execution, persistence, or file export/download behavior is introduced.
+
 ## Phase 32 Note
 
 Phase 32 introduces deterministic manipulation-evidence fixture models only. No additional build/runtime services are required, and no live transaction inspection, network access, wallet logic, execution, persistence, or mutation behavior is introduced.
@@ -23,6 +27,7 @@ pnpm --filter @sonic/observability build
 pnpm --filter @sonic/mode-manager build
 pnpm --filter @sonic/risk-engine build
 pnpm --filter @sonic/manipulation-detector build
+pnpm --filter @sonic/offline-intelligence build
 
 ## Test
 pnpm test
