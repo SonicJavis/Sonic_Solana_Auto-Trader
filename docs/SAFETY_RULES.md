@@ -24,6 +24,17 @@
 20. **Phase 4**: Retention never deletes the DB file; it only removes old/excess rows
 21. **Phase 4**: No Solana RPC, Jito, Pump.fun, signing, sending, wallet loading — not in scope
 
+## Phase 25 Additional Safety Rules
+
+179. **Phase 25**: `apps/dashboard` UI shell is local-only, read-only, fixture-backed, deterministic — no React/browser runtime for unsafe side effects, no charting, no live data
+180. **Phase 25**: All dashboard components are pure TypeScript functions — no `Date.now()`, `new Date()`, `Math.random()`, timers, or non-deterministic ordering
+181. **Phase 25**: Dashboard UI shell has no HTTP clients, web socket clients, or external network access — all data from Phase 23 fixtures only
+182. **Phase 25**: Error state components must sanitize messages — never expose stack traces, local filesystem paths, secrets, or raw unknown objects
+183. **Phase 25**: All dashboard render results carry `safetyBoundary` with all unsafe flags permanently false (`hasLiveData: false`, `hasTradingControls: false`, `hasWalletControls: false`, `hasMutationControls: false`, `hasExternalNetwork: false`, `hasExecutionControls: false`)
+184. **Phase 25**: Dashboard shell must not render trade buttons, swap buttons, wallet connection UI, or any execution controls
+185. **Phase 25**: All dashboard components must include accessible `role`, `ariaLabel`, `sectionId`, and `label` fields for every section and item
+186. **Phase 25**: Phase 24 `dashboardUi: false` capability flag remains unchanged — Phase 25 adds new `dashboardUiShell: true` flag instead
+
 ## Phase 24 Additional Safety Rules
 
 174. **Phase 24**: `@sonic/dashboard-view-models` is adapter/view-model only — no UI rendering, no React/browser runtime, no charting, no frontend shell

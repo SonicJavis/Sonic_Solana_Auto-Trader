@@ -36,6 +36,7 @@ export default defineConfig({
       '@sonic/read-only-api': resolve(__dirname, 'apps/read-only-api/src/index.ts'),
       '@sonic/read-only-api-client': resolve(__dirname, 'packages/read-only-api-client/src/index.ts'),
       '@sonic/dashboard-view-models': resolve(__dirname, 'packages/dashboard-view-models/src/index.ts'),
+      '@sonic/dashboard': resolve(__dirname, 'apps/dashboard/src/index.ts'),
     },
   },
 });

@@ -24,6 +24,26 @@ pnpm typecheck
 ## Lint
 pnpm lint
 
+## Phase 25: Local Read-Only Dashboard UI Shell
+
+The `apps/dashboard` package provides a local read-only dashboard UI shell:
+
+- Pure TypeScript components — no React, no DOM, no browser APIs for unsafe side effects
+- Fixture-backed data from Phase 23 fixtures
+- Renders Phase 24 view models as structured, typed output
+- No network calls
+- No live data
+- No Solana RPC/provider APIs
+- No wallets/private keys
+- No execution/trading controls
+- No mutation controls
+
+The dashboard build command for Phase 25 (no browser bundle produced):
+
+```
+pnpm --filter @sonic/dashboard build
+```
+
 ## Phase 24: Dashboard View Models
 
 The `packages/dashboard-view-models` package provides deterministic local adapters and typed view models for dashboard data consumption:

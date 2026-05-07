@@ -26,6 +26,7 @@
     { "path": "./packages/dashboard-view-models" },
     { "path": "./apps/telegram-bot" },
     { "path": "./apps/worker" },
-    { "path": "./apps/read-only-api" }
+    { "path": "./apps/read-only-api" },
+    { "path": "./apps/dashboard" }
   ]
 }
