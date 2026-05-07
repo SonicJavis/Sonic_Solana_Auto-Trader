@@ -19,7 +19,6 @@ import {
 } from './types.js';
 import {
   isOfflineIntelligenceReportModelSerializable,
-  normalizeOfflineIntelligenceReportModel,
 } from './normalization.js';
 
 const EMAIL_PATTERN = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i;
@@ -285,12 +284,10 @@ export function validateOfflineIntelligenceReportModel(
   }
 
   if (issues.length === 0) {
-    const normalized = normalizeOfflineIntelligenceReportModel(
-      report as unknown as OfflineIntelligenceReportModel,
-    );
-    issues.push(...validateMeta(normalized));
-    issues.push(...validateSummary(normalized));
-    issues.push(...validateSections(normalized));
+    const typedReport = report as unknown as OfflineIntelligenceReportModel;
+    issues.push(...validateMeta(typedReport));
+    issues.push(...validateSummary(typedReport));
+    issues.push(...validateSections(typedReport));
   }
 
   if (!isOfflineIntelligenceReportModelSerializable(report)) {

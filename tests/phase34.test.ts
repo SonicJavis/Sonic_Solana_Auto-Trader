@@ -516,7 +516,7 @@ describe('Phase 34 — validation failures', () => {
 describe('Phase 34 — safety validator rejects unsafe patterns', () => {
   const unsafeSamples: readonly [string, string][] = [
     ['wallet marker', '3A7bQmVfVf7Q8q9Wc9yYfXg3Xf4j2H7m1s9pQ5wL2N1k'],
-    ['tx hash marker', '7Y3q8L9p4m2r6t8w1z5x9v3n7k2j6h4g8f1d3s5a7q9w2e4r6t8y0u1i3o5p7a9'],
+    ['tx hash marker', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'],
     ['bundle id marker', 'bundle-id: a1b2c3d4e5f6a7b8'],
     ['email marker', 'person@example.com'],
     ['phone marker', '+1 (555) 123-4567'],

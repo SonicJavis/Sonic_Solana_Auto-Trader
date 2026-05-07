@@ -17,21 +17,17 @@ function normalizeSection(
   section: OfflineIntelligenceTypedReportSection,
 ): OfflineIntelligenceTypedReportSection {
   const normalizedNotes = sortStrings(section.notes);
-  switch (section.kind) {
-    case 'risk':
-    case 'quality':
-    case 'confidence':
-      return {
-        ...section,
-        indicators: sortStrings(section.indicators),
-        notes: normalizedNotes,
-      };
-    default:
-      return {
-        ...section,
-        notes: normalizedNotes,
-      };
+  if ('indicators' in section) {
+    return {
+      ...section,
+      indicators: sortStrings(section.indicators),
+      notes: normalizedNotes,
+    };
   }
+  return {
+    ...section,
+    notes: normalizedNotes,
+  };
 }
 
 export function normalizeOfflineIntelligenceReportModel(
