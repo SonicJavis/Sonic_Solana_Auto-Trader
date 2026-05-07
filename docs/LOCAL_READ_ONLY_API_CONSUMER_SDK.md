@@ -5,6 +5,8 @@
 ---
 
 > Phase 24 companion layer: `@sonic/dashboard-view-models` consumes this SDK's fixtures/envelopes to produce deterministic typed view models for future dashboard UI consumers.
+>
+> Phase 26 note: dashboard interaction state and filters are local/in-memory in `apps/dashboard/src/state` and consume existing Phase 24/25 data only; this SDK remains unchanged in safety posture (no network, no persistence, no live data).
 
 ## 1. Phase 23 Purpose
 

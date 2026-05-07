@@ -1,6 +1,6 @@
 # Dashboard — @sonic/dashboard
 
-## Phase 25 — Local Read-Only Dashboard UI Shell v1
+## Phase 26 — Local Dashboard Interaction State and Filters v1
 
 This is the Phase 25 local read-only dashboard UI shell for the Sonic Solana Auto-Trader project.
 
@@ -23,7 +23,8 @@ This is the Phase 25 local read-only dashboard UI shell for the Sonic Solana Aut
 
 ## What This Package Provides
 
-Phase 25 adds a local read-only dashboard UI shell that renders Phase 24 view models from fixture-backed data.
+Phase 25 adds the local read-only dashboard UI shell.  
+Phase 26 adds local in-memory interaction state and deterministic filters/selectors on top of that shell.
 
 Components:
 
@@ -39,6 +40,7 @@ Components:
 - `StatusBadge` — typed status badge component
 - `buildFixtureDashboardViewModel()` — fixture-backed view model builder
 - `getDashboardUiShellCapabilities()` — Phase 25 capability flags
+- Phase 26 state helpers under `src/state/` for active panel, visibility, filters, sort, reset, reducer-style updates, and selectors
 
 ## Usage
 
@@ -58,11 +60,11 @@ All data is sourced from Phase 23 read-only API client fixtures only. No HTTP re
 
 ## Documentation
 
-See `docs/LOCAL_READ_ONLY_DASHBOARD_UI.md` for full documentation.
+See `docs/LOCAL_READ_ONLY_DASHBOARD_UI.md` and `docs/LOCAL_DASHBOARD_INTERACTION_STATE.md` for full documentation.
 
 ## Previous Phases
 
 - Phase 1: Placeholder only
 - Phase 24: `@sonic/dashboard-view-models` added as a typed data adapter layer
 - Phase 25: Local read-only dashboard UI shell added (this package)
-
+- Phase 26: Local deterministic interaction state and filter selectors added (in-memory only)

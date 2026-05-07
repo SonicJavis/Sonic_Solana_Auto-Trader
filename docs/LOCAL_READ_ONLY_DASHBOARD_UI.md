@@ -4,6 +4,8 @@
 
 Phase 25 adds a local read-only dashboard UI shell on top of the Phase 24 dashboard view model layer.
 
+Phase 26 adds local in-memory interaction state and deterministic filters/selectors on top of this shell. See `docs/LOCAL_DASHBOARD_INTERACTION_STATE.md`.
+
 The dashboard UI shell is a purely local, read-only, fixture-backed TypeScript rendering system that displays Phase 24 view model data in a safe, deterministic, accessible format for local inspection.
 
 **This is not a production dashboard. It is not a live monitoring system. It has no trading controls, no wallet integration, no execution controls, and no external network access.**
@@ -175,6 +177,15 @@ dashboardUiShell: true          // Local read-only dashboard UI shell is availab
 localReadOnlyDashboard: true    // Dashboard is local-only
 fixtureBackedDashboardUi: true  // All UI data comes from fixtures
 dashboardUsesViewModels: true   // UI is driven by Phase 24 view models
+dashboardInteractionState: true // Local in-memory interaction state helpers available
+localDashboardFilters: true     // Local deterministic filter helpers available
+inMemoryDashboardState: true    // State is in-memory only
+deterministicDashboardState: true // No timers/randomness
+dashboardPanelVisibility: true  // Panel visibility state helpers available
+dashboardFilterSelectors: true  // Filter selectors available
+dashboardPersistentState: false // No persistence support
+dashboardExternalStateSync: false // No external state sync
+dashboardLiveFilters: false     // No live filter/data source
 dashboardExternalNetwork: false // Dashboard has no external network access
 dashboardLiveData: false        // Dashboard has no live data
 dashboardTradingControls: false // Dashboard has no trading controls
@@ -202,11 +213,9 @@ All components include:
 
 ---
 
-## Phase 26 Preview (Future)
+## Phase 26 Status
 
-Phase 26 — Local Dashboard Interaction State and Filters v1 — may add local-only filter state, panel toggle state, or simple in-memory navigation. This is for local inspection only and must remain fixture-backed, read-only, and external-network-free.
-
-**Phase 26 is not implemented in Phase 25.**
+Phase 26 is now implemented as a local-only interaction-state layer in `apps/dashboard/src/state/`.
 
 ---
 

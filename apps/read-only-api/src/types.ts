@@ -100,6 +100,15 @@ export interface LocalReadOnlyApiCapabilities {
   readonly localReadOnlyDashboard: true;
   readonly fixtureBackedDashboardUi: true;
   readonly dashboardUsesViewModels: true;
+  readonly dashboardInteractionState: true;
+  readonly localDashboardFilters: true;
+  readonly inMemoryDashboardState: true;
+  readonly deterministicDashboardState: true;
+  readonly dashboardPanelVisibility: true;
+  readonly dashboardFilterSelectors: true;
+  readonly dashboardPersistentState: false;
+  readonly dashboardExternalStateSync: false;
+  readonly dashboardLiveFilters: false;
   readonly dashboardExternalNetwork: false;
   readonly dashboardLiveData: false;
   readonly dashboardTradingControls: false;

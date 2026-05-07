@@ -5,6 +5,8 @@
 ---
 
 > Phase 24 note: these Phase 22 envelopes are consumed by `@sonic/dashboard-view-models` to build deterministic, typed dashboard view models for future UI work. No UI is implemented in Phase 24.
+>
+> Phase 26 note: local dashboard interaction state/filters are added in `apps/dashboard/src/state` as an in-memory client-side layer only; no new API contract behavior is added.
 
 ### 1. Phase 22 Purpose
 

@@ -29,7 +29,7 @@ Monorepo with pnpm workspaces.
 ## Apps
 - `telegram-bot`: Telegram command interface (uses `SqliteAuditRepository`)
 - `worker`: Safe heartbeat loop (DB init + retention on startup)
-- `dashboard`: Phase 25 local read-only dashboard UI shell. Pure TypeScript, fixture-backed, no React/DOM, no network, no wallet, no trading/execution controls. Components: DashboardShell, SafetyBanner, MetadataPanel, HealthPanel, CapabilitiesPanel, OverviewPanel, EvidencePanel, SafetyPanel, EmptyState, LoadingState, ErrorState, UnavailableState, StatusBadge. Renders Phase 24 view models from Phase 23 fixtures only.
+- `dashboard`: Phase 25 local read-only dashboard UI shell + Phase 26 local interaction state layer. Pure TypeScript, fixture-backed, no React/DOM, no network, no wallet, no trading/execution controls. Components: DashboardShell, SafetyBanner, MetadataPanel, HealthPanel, CapabilitiesPanel, OverviewPanel, EvidencePanel, SafetyPanel, EmptyState, LoadingState, ErrorState, UnavailableState, StatusBadge. State: deterministic in-memory active panel/visibility/filter/sort/reset/selectors in `apps/dashboard/src/state/`. Renders Phase 24 view models from Phase 23 fixtures only.
 
 ## Phase 7B: Disabled Provider Boundaries
 

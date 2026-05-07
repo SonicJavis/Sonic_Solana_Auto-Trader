@@ -35,6 +35,14 @@
 185. **Phase 25**: All dashboard components must include accessible `role`, `ariaLabel`, `sectionId`, and `label` fields for every section and item
 186. **Phase 25**: Phase 24 `dashboardUi: false` capability flag remains unchanged — Phase 25 adds new `dashboardUiShell: true` flag instead
 
+## Phase 26 Additional Safety Rules
+
+187. **Phase 26**: `apps/dashboard/src/state` interaction state is local-only, in-memory-only, deterministic, and caller-owned — no persistence or browser storage
+188. **Phase 26**: State/filter/reducer/selector helpers are pure TypeScript utilities only — no React/DOM event wiring, no side effects, no timers/randomness
+189. **Phase 26**: Filter inputs must be sanitized/validated; unsupported values are safely rejected or coerced to defaults
+190. **Phase 26**: Selectors may only use existing Phase 24 view-model data and Phase 25 shell render compatibility paths — no new runtime data sources
+191. **Phase 26**: No localStorage/sessionStorage/IndexedDB/cookies, no external state sync, no network calls, no live data, no wallet/trading/execution controls
+
 ## Phase 24 Additional Safety Rules
 
 174. **Phase 24**: `@sonic/dashboard-view-models` is adapter/view-model only — no UI rendering, no React/browser runtime, no charting, no frontend shell

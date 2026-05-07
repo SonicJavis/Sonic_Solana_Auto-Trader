@@ -1,8 +1,31 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 24 — Local Read-Only Dashboard Data Adapter and View Models v1**
+**Phase 26 — Local Dashboard Interaction State and Filters v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 24.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 26.
+
+## Features (Phase 26 — adds to Phase 25)
+
+- Adds `apps/dashboard/src/state/` local interaction-state layer:
+  - deterministic default state builders
+  - pure reducer-style update helpers
+  - safe reset helpers
+  - filter input sanitization/validation
+  - evidence/safety filter and sort helpers
+  - pure selectors combining Phase 24 view models with Phase 25 shell rendering
+- Adds in-memory-only dashboard interaction capabilities:
+  - `dashboardInteractionState: true`
+  - `localDashboardFilters: true`
+  - `inMemoryDashboardState: true`
+  - `deterministicDashboardState: true`
+  - `dashboardPanelVisibility: true`
+  - `dashboardFilterSelectors: true`
+  - `dashboardPersistentState: false`
+  - `dashboardExternalStateSync: false`
+  - `dashboardLiveFilters: false`
+- Adds `docs/LOCAL_DASHBOARD_INTERACTION_STATE.md`
+- Adds Phase 26 tests with state, filters, selector, capability, and safety regression coverage
+- No React/DOM. No browser storage/persistence. No live data. No Solana RPC. No provider APIs. No wallets. No execution/trading. No external network.
 
 ## Features (Phase 24 — adds to Phase 23)
 
