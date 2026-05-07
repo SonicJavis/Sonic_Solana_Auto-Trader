@@ -216,6 +216,11 @@ const BROKEN_VALIDATION_REPORT = {
   ...FULL_DASHBOARD_REPORT_FIXTURE.report,
   name: 'report-validation-failure-example' as const,
   kind: 'validation' as const,
+  summary: {
+    ...FULL_DASHBOARD_REPORT_FIXTURE.report.summary,
+    reportName: 'report-validation-failure-example',
+    reportKind: 'validation',
+  },
   sections: [
     {
       ...FULL_DASHBOARD_REPORT_FIXTURE.report.sections[0],
@@ -241,6 +246,11 @@ export const EXPORT_DISABLED_SAFETY_REPORT_FIXTURE: DashboardReportFixture = {
     ...SAFETY_BOUNDARY_REPORT_FIXTURE.report,
     name: 'export-disabled-safety-report',
     kind: 'safety',
+    summary: {
+      ...SAFETY_BOUNDARY_REPORT_FIXTURE.report.summary,
+      reportName: 'export-disabled-safety-report',
+      reportKind: 'safety',
+    },
     title: 'Export Disabled Safety Report',
     safeNotes: [
       'Export is intentionally disabled in Phase 28.',

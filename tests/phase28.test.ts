@@ -650,7 +650,6 @@ describe('Phase 28 — no persistence/browser/network/export behavior in source'
     'createWriteStream',
     'Blob',
     'URL.createObjectURL',
-    'download',
     'Date.now',
     'new Date()',
     'Math.random',

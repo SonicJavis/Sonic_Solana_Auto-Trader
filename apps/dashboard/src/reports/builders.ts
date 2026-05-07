@@ -16,6 +16,7 @@ import type {
 } from './types.js';
 import { DASHBOARD_REPORT_KINDS, DASHBOARD_REPORT_NAMES } from './types.js';
 import type { DashboardRenderSnapshot, DashboardRenderSnapshotFixture } from '../snapshots/types.js';
+import type { DashboardSection } from '../types.js';
 import {
   buildDefaultDashboardRenderSnapshot,
   DEFAULT_DASHBOARD_SHELL_FIXTURE,
@@ -85,7 +86,8 @@ function countItems(snapshot: SnapshotLike): number {
   if ('sections' in renderResult && Array.isArray(renderResult.sections)) {
     return renderResult.sections.reduce((total, section) => {
       const base = total + section.items.length;
-      const nested = section.subSections?.reduce((subTotal, sub) => subTotal + sub.items.length, 0) ?? 0;
+      const nested =
+        section.subSections?.reduce((subTotal: number, sub: DashboardSection) => subTotal + sub.items.length, 0) ?? 0;
       return base + nested;
     }, 0);
   }
