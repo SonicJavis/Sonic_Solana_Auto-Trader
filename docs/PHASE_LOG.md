@@ -1,5 +1,23 @@
 # Phase Log
 
+## Phase 40 — Strategy Review Dashboard Fixtures v1
+
+- Adds `apps/dashboard/src/strategy-review-fixtures/` with deterministic strategy review dashboard fixture layer:
+  - `types.ts` — Phase 40 constants, 16 fixture names/kinds, matrix-reference/panel/card/table/summary/safety/meta/validation/build/capability interfaces
+  - `capabilities.ts` — `getStrategyReviewDashboardFixtureCapabilities()` with Phase 40 flags
+  - `normalization.ts` — deterministic ordering, serializability, equality, name/kind/source helpers
+  - `validation.ts` — `validateStrategyReviewDashboardFixture`, `validateStrategyReviewDashboardSafety`
+  - `builders.ts` — `buildStrategyReviewDashboardFixture`, `buildStrategyReviewSummary`
+  - `fixtures.ts` — 16 deterministic strategy review dashboard fixtures plus `listStrategyReviewDashboardFixtures` / `getStrategyReviewDashboardFixture`
+  - `index.ts` — barrel export
+- Exports all Phase 40 strategy-review helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard and read-only-api capability surfaces with Phase 40 strategy-review flags
+- Adds `docs/STRATEGY_REVIEW_DASHBOARD_FIXTURES.md`
+- Adds `tests/phase40.test.ts` with 300+ new tests
+- **No live data. No real UI rendering. No real scoring/ranking. No recommendations/signals. No replay/backtesting/paper/live trading. No Solana RPC/provider/Jito/MEV/mempool. No wallet or execution logic. No external network. No persistence/browser storage. No file export/download support.**
+
+**Next phase guidance:** Phase 41 may add strategy review report fixtures. Do not add live data or execution controls.
+
 ## Phase 39 — Strategy Comparison Matrix Fixtures v1
 
 - Adds `packages/offline-intelligence/src/strategy-comparison/` with deterministic strategy comparison matrix fixture layer:

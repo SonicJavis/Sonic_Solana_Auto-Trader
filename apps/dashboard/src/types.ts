@@ -336,4 +336,23 @@ export interface DashboardUiShellCapabilities {
   readonly strategyComparisonInvestmentAdvice: false;
   readonly strategyComparisonTradingSignals: false;
   readonly strategyComparisonRecommendations: false;
+  // Phase 40 strategy review dashboard fixture capabilities
+  readonly strategyReviewDashboardFixtures: true;
+  readonly syntheticStrategyReviewDashboards: true;
+  readonly strategyReviewDashboardBuilders: true;
+  readonly strategyReviewDashboardSafetyValidation: true;
+  readonly strategyReviewMatrixReferences: true;
+  readonly strategyReviewRealUiRendering: false;
+  readonly strategyReviewRealScoring: false;
+  readonly strategyReviewRealRanking: false;
+  readonly strategyReviewRecommendations: false;
+  readonly strategyReviewTradingSignals: false;
+  readonly strategyReviewPaperTrading: false;
+  readonly strategyReviewLiveTrading: false;
+  readonly strategyReviewExecution: false;
+  readonly strategyReviewSolanaRpc: false;
+  readonly strategyReviewExternalNetwork: false;
+  readonly strategyReviewPersistence: false;
+  readonly strategyReviewFileExport: false;
+  readonly strategyReviewInvestmentAdvice: false;
 }
