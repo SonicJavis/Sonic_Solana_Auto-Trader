@@ -1,5 +1,23 @@
 # Phase Log
 
+## Phase 37 — Score Band Outcome Analysis Models v1
+
+- Adds `packages/offline-intelligence/src/score-band-outcomes/` with deterministic score-band outcome analysis fixture layer:
+  - `types.ts` — Phase 37 constants, 16 score-band fixture names/kinds, `ScoreBandRange`, `ScoreBandCategory`, `ScoreBandOutcomeReference`, `ScoreBandRiskIndicator`, `ScoreBandQualityIndicator`, `ScoreBandConfidenceIndicator`, `ScoreBandOutcomeDistribution`, `ScoreBandOutcomeSummary`, `ScoreBandOutcomeFixtureMeta`, `ScoreBandOutcomeAnalysisFixture`, validation/build/capability interfaces
+  - `capabilities.ts` — `getScoreBandOutcomeFixtureCapabilities()` with 16 Phase 37 flags
+  - `normalization.ts` — deterministic ordering, serializability, and equality helpers
+  - `validation.ts` — `validateScoreBandOutcomeAnalysisFixture`, `validateScoreBandOutcomeSafety`
+  - `builders.ts` — `buildScoreBandOutcomeAnalysisFixture`, `buildScoreBandOutcomeSummary`
+  - `fixtures.ts` — 16 deterministic score-band outcome analysis fixtures plus `listScoreBandOutcomeAnalysisFixtures` / `getScoreBandOutcomeAnalysisFixture`
+  - `index.ts` — barrel export
+- Exports all Phase 37 score-band helpers through `packages/offline-intelligence/src/index.ts`
+- Adds `docs/SCORE_BAND_OUTCOME_ANALYSIS_MODELS.md`
+- Adds `tests/phase37.test.ts` with 300+ new tests
+- All Phase 37 fixtures reference Phase 36 replay outcome fixtures by name (synthetic chain only)
+- **No live data. No real scoring. No real replay/backtesting/paper/live trading. No Solana RPC. No provider APIs. No Jito/MEV/mempool. No wallets. No execution/trading logic. No investment advice. No trading signals. No external network. No persistence/browser storage. No file export/download support.**
+
+**Next phase guidance:** Phase 38 may add strategy candidate evaluation fixtures. Do not add live data or execution controls.
+
 ## Phase 36 — Replay Outcome Fixture Models v1
 
 - Adds `packages/offline-intelligence/src/replay-outcomes/` with deterministic replay outcome fixture layer:
