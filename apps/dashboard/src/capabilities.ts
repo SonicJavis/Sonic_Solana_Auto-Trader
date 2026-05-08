@@ -1,14 +1,21 @@
 /**
  * apps/dashboard/src/capabilities.ts
  *
- * Phase 29 — Local Dashboard Report Serialization Preview v1 — Capabilities
+ * Phase 35 — Composite Evidence Dashboard/Report Fixtures v1 — Capabilities
  *
- * Phase 25/26/27/28/29 dashboard capability flags.
+ * Phase 25/26/27/28/29/30/31/32/33/34/35 dashboard capability flags.
  * All unsafe flags are permanently false.
  * Phase 25 adds the local read-only dashboard UI shell.
  * Phase 26 adds local dashboard interaction state and filters.
  * Phase 27 adds deterministic render snapshots and regression fixtures.
  * Phase 28 adds deterministic local dashboard report export models.
+ * Phase 29 adds dashboard report serialization previews.
+ * Phase 30 adds creator intelligence fixture capabilities.
+ * Phase 31 adds wallet cluster intelligence fixture capabilities.
+ * Phase 32 adds manipulation evidence fixture capabilities.
+ * Phase 33 adds composite evidence fixture capabilities.
+ * Phase 34 adds offline intelligence report integration capabilities.
+ * Phase 35 adds composite evidence dashboard/report fixture capabilities.
  */
 
 import type { DashboardUiShellCapabilities } from './types.js';
@@ -174,5 +181,20 @@ export function getDashboardUiShellCapabilities(): DashboardUiShellCapabilities 
     offlineIntelligenceReportExecution: false,
     offlineIntelligenceReportFileExport: false,
     offlineIntelligenceReportDownloadSupport: false,
+    // Phase 35 composite evidence dashboard/report fixture capabilities
+    compositeEvidenceDashboardFixtures: true,
+    compositeEvidenceReportFixtures: true,
+    compositeEvidenceDashboardReportFixtures: true,
+    compositeEvidenceFixtureBuilders: true,
+    compositeEvidenceFixtureSafetyValidation: true,
+    compositeEvidenceFixtureLiveData: false,
+    compositeEvidenceFixtureSolanaRpc: false,
+    compositeEvidenceFixtureExternalNetwork: false,
+    compositeEvidenceFixtureTradingSignals: false,
+    compositeEvidenceFixtureInvestmentAdvice: false,
+    compositeEvidenceFixtureExecution: false,
+    compositeEvidenceFixturePersistence: false,
+    compositeEvidenceFixtureFileExport: false,
+    compositeEvidenceFixtureDownloadSupport: false,
   };
 }

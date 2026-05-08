@@ -1,5 +1,9 @@
 # Build Guide
 
+## Phase 35 Note
+
+Phase 35 introduces composite evidence dashboard/report fixture models in `apps/dashboard/src/composite-evidence-fixtures/`. No additional build/runtime services are required. Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. No live data, network access, wallet logic, execution, persistence, or file export/download behavior is introduced.
+
 ## Phase 34 Note
 
 Phase 34 introduces deterministic offline-intelligence report-integration models only. No additional build/runtime services are required, and no live data, network access, wallet logic, execution, persistence, or file export/download behavior is introduced.

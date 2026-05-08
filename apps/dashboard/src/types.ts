@@ -264,4 +264,19 @@ export interface DashboardUiShellCapabilities {
   readonly offlineIntelligenceReportExecution: false;
   readonly offlineIntelligenceReportFileExport: false;
   readonly offlineIntelligenceReportDownloadSupport: false;
+  // Phase 35 composite evidence dashboard/report fixture capabilities
+  readonly compositeEvidenceDashboardFixtures: true;
+  readonly compositeEvidenceReportFixtures: true;
+  readonly compositeEvidenceDashboardReportFixtures: true;
+  readonly compositeEvidenceFixtureBuilders: true;
+  readonly compositeEvidenceFixtureSafetyValidation: true;
+  readonly compositeEvidenceFixtureLiveData: false;
+  readonly compositeEvidenceFixtureSolanaRpc: false;
+  readonly compositeEvidenceFixtureExternalNetwork: false;
+  readonly compositeEvidenceFixtureTradingSignals: false;
+  readonly compositeEvidenceFixtureInvestmentAdvice: false;
+  readonly compositeEvidenceFixtureExecution: false;
+  readonly compositeEvidenceFixturePersistence: false;
+  readonly compositeEvidenceFixtureFileExport: false;
+  readonly compositeEvidenceFixtureDownloadSupport: false;
 }
