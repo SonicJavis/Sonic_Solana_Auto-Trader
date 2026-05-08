@@ -83,12 +83,12 @@ Phase 38 prepares a deterministic typed candidate-evaluation layer for future fi
 - real PnL/balances/orders/fills/positions
 - external intelligence ingestion
 
-## 9) Phase 39 Preview Only
+## 9) Follow-up
+
+Phase 39 (strategy comparison matrix fixtures) and Phase 40 (strategy review dashboard fixtures) are implemented and consume Phase 38 candidate fixtures as synthetic references.
 
 Next phase preview:
-**Phase 39 — Strategy Comparison Matrix Fixtures v1**
-
-Phase 39 is not implemented in Phase 38.
+**Phase 41 — Strategy Review Report Fixtures v1**
 
 ## 10) Explicit Confirmation
 

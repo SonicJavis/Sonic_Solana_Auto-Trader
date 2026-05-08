@@ -261,8 +261,11 @@ Phase 39 adds the following capability flags:
 
 ---
 
-## 14. Phase 40 Preview
+## 14. Phase 40 Follow-up
 
-**Phase 40 — Strategy Review Dashboard Fixtures v1** (not yet implemented)
+**Phase 40 — Strategy Review Dashboard Fixtures v1** is implemented in:
 
-Phase 40 will add deterministic synthetic fixtures for strategy review dashboard display models, leveraging Phase 39 comparison matrix fixtures as the underlying data source.
+- `apps/dashboard/src/strategy-review-fixtures/`
+- `docs/STRATEGY_REVIEW_DASHBOARD_FIXTURES.md`
+
+Phase 40 consumes these Phase 39 matrix fixtures as synthetic source references for local deterministic strategy-review dashboard fixture workflows.

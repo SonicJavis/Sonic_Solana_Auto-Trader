@@ -1,8 +1,38 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 38 — Strategy Candidate Evaluation Fixtures v1**
+**Phase 40 — Strategy Review Dashboard Fixtures v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 38.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 40.
+
+## Features (Phase 40 — adds to Phase 39)
+
+- Adds `apps/dashboard/src/strategy-review-fixtures/` deterministic strategy review dashboard fixture layer:
+  - strict review fixture/matrix-reference/panel/card/table/summary/safety/meta/validation/build/capability types
+  - pure deterministic builders, normalization, serialization, equality, validation, and safety-validation helpers
+  - 16 deterministic synthetic strategy review dashboard fixtures referencing Phase 39 matrix fixtures
+- Adds Phase 40 strategy-review capability flags:
+  - `strategyReviewDashboardFixtures: true`
+  - `syntheticStrategyReviewDashboards: true`
+  - `strategyReviewDashboardBuilders: true`
+  - `strategyReviewDashboardSafetyValidation: true`
+  - `strategyReviewMatrixReferences: true`
+  - `strategyReviewRealUiRendering: false`
+  - `strategyReviewRealScoring: false`
+  - `strategyReviewRealRanking: false`
+  - `strategyReviewRecommendations: false`
+  - `strategyReviewTradingSignals: false`
+  - `strategyReviewPaperTrading: false`
+  - `strategyReviewLiveTrading: false`
+  - `strategyReviewExecution: false`
+  - `strategyReviewSolanaRpc: false`
+  - `strategyReviewExternalNetwork: false`
+  - `strategyReviewPersistence: false`
+  - `strategyReviewFileExport: false`
+  - `strategyReviewInvestmentAdvice: false`
+- Extends dashboard/read-only-api capability surfaces with the same Phase 40 flags
+- Adds `docs/STRATEGY_REVIEW_DASHBOARD_FIXTURES.md`
+- Adds Phase 40 regression and safety tests
+- No live data, no real UI rendering, no real scoring/ranking, no recommendations/signals, no replay/backtesting/paper/live trading, no execution, no network, no persistence, no file export/download support
 
 ## Features (Phase 38 — adds to Phase 37)
 

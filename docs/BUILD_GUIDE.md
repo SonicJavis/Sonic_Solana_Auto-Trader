@@ -1,8 +1,8 @@
 # Build Guide
 
-## Phase 39 Note
+## Phase 40 Note
 
-Phase 39 introduces strategy comparison matrix fixture models in `packages/offline-intelligence/src/strategy-comparison/`. Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. No live data, real scoring/ranking, recommendation/signal outputs, real replay/backtesting/paper/live trading, network access, wallet logic, execution logic, persistence, or file export/download behavior is introduced.
+Phase 40 introduces strategy review dashboard fixture models in `apps/dashboard/src/strategy-review-fixtures/`, sourced from Phase 39 matrix fixtures. Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. No live data, real UI rendering, real scoring/ranking, recommendation/signal outputs, replay/backtesting/paper/live trading, network access, wallet logic, execution logic, persistence, or file export/download behavior is introduced.
 
 ## Phase 38 Note
 
