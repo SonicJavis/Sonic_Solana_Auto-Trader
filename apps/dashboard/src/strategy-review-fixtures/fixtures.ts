@@ -82,7 +82,7 @@ export const PHASE_40_STRATEGY_REVIEW_DASHBOARD_FIXTURES: ReadonlyMap<
 ]);
 
 export function listStrategyReviewDashboardFixtures(): readonly StrategyReviewDashboardFixtureName[] {
-  return [...STRATEGY_REVIEW_DASHBOARD_FIXTURE_NAMES];
+  return [...STRATEGY_REVIEW_DASHBOARD_FIXTURE_NAMES].sort((a, b) => a.localeCompare(b));
 }
 
 export function getStrategyReviewDashboardFixture(

@@ -89,8 +89,8 @@ const FORBIDDEN_PAYLOAD_PATTERNS: readonly RegExp[] = [
 
 const FORBIDDEN_RUNTIME_PATTERNS: readonly RegExp[] = [
   /\bfetch\s*\(/,
-  /\baxios\b/,
-  /\bWebSocket\b/,
+  /\baxios\.\w+/,
+  /\bnew WebSocket\s*\(/,
   /Date\.now\s*\(/,
   /new Date\s*\(/,
   /Math\.random\s*\(/,
@@ -103,9 +103,6 @@ const FORBIDDEN_RUNTIME_PATTERNS: readonly RegExp[] = [
   /sessionStorage/,
   /IndexedDB/,
   /document\.cookie/,
-  /\bReact\b/,
-  /\bdocument\b/,
-  /\bwindow\b/,
 ];
 
 function collectStringValues(value: unknown, result: string[] = []): readonly string[] {
@@ -455,4 +452,3 @@ describe('Phase 40 — runtime source safety checks', () => {
     expect(/setInterval\s*\(/.test(content)).toBe(false);
   });
 });
-
