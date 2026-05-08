@@ -6,6 +6,8 @@
 **Phase:** 37
 **Location:** `packages/offline-intelligence/src/score-band-outcomes/`
 
+Phase 38 consumes these score-band fixtures as synthetic references for strategy-candidate evaluation fixtures (`docs/STRATEGY_CANDIDATE_EVALUATION_FIXTURES.md`).
+
 ---
 
 ## Purpose
