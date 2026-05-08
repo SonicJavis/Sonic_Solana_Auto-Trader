@@ -159,10 +159,9 @@ This is model compatibility metadata only; no export/download behavior is implem
 - no persistence
 - no external network behavior
 
-## 11. Phase 35 Preview Only
+## 11. Phase 35 and Phase 36 Follow-on
 
-Likely next phase:
+Implemented follow-on phases:
 
-> Phase 35 — Composite Evidence Dashboard/Report Fixtures v1
-
-Phase 35 is not implemented in Phase 34.
+- Phase 35 — Composite Evidence Dashboard/Report Fixtures v1
+- Phase 36 — Replay Outcome Fixture Models v1

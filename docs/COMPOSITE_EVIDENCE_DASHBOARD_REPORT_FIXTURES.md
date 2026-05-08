@@ -2,7 +2,7 @@
 
 **Phase 35 — Composite Evidence Dashboard/Report Fixtures v1**
 
-This document describes the composite evidence dashboard/report fixture layer introduced in Phase 35. It bridges the Phase 33 composite evidence models and Phase 34 report integration models into the existing local dashboard/report fixture ecosystem.
+This document describes the composite evidence dashboard/report fixture layer introduced in Phase 35. It bridges the Phase 33 composite evidence models and Phase 34 report integration models into the existing local dashboard/report fixture ecosystem. In Phase 36, these synthetic outputs are additionally referenced by replay outcome fixtures (`docs/REPLAY_OUTCOME_FIXTURE_MODELS.md`).
 
 ---
 

@@ -223,6 +223,25 @@ export interface LocalReadOnlyApiCapabilities {
   readonly offlineIntelligenceReportExecution: false;
   readonly offlineIntelligenceReportFileExport: false;
   readonly offlineIntelligenceReportDownloadSupport: false;
+  // Phase 36 replay outcome fixture capabilities
+  readonly replayOutcomeFixtures: true;
+  readonly syntheticReplayOutcomes: true;
+  readonly replayOutcomeBuilders: true;
+  readonly replayOutcomeSafetyValidation: true;
+  readonly replayOutcomeCompositeEvidenceReferences: true;
+  readonly replayOutcomeReportReferences: true;
+  readonly replayOutcomeDashboardReferences: true;
+  readonly replayOutcomeLiveData: false;
+  readonly replayOutcomeRealBacktesting: false;
+  readonly replayOutcomePaperTrading: false;
+  readonly replayOutcomeLiveTrading: false;
+  readonly replayOutcomeExecution: false;
+  readonly replayOutcomeSolanaRpc: false;
+  readonly replayOutcomeExternalNetwork: false;
+  readonly replayOutcomePersistence: false;
+  readonly replayOutcomeFileExport: false;
+  readonly replayOutcomeInvestmentAdvice: false;
+  readonly replayOutcomeTradingSignals: false;
   // Safety labels
   readonly fixtureOnly: true;
   readonly analysisOnly: true;

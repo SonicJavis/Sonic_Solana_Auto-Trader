@@ -2,7 +2,8 @@
 
 **Phase 33 — Offline Intelligence Composite Evidence Models v1**
 
-> Phase 34 follow-on implemented separately: `docs/OFFLINE_INTELLIGENCE_REPORT_INTEGRATION_MODELS.md`
+> Phase 34 follow-on implemented separately: `docs/OFFLINE_INTELLIGENCE_REPORT_INTEGRATION_MODELS.md`  
+> Phase 36 replay outcome follow-on: `docs/REPLAY_OUTCOME_FIXTURE_MODELS.md`
 
 ## 1. Phase 33 Purpose
 

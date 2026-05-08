@@ -1,5 +1,9 @@
 # Safety Rules
 
+## Phase 36 Safety Extension
+
+Phase 36 replay-outcome fixture models must remain local-only, read-only, fixture-only, synthetic-only, deterministic, serializable, in-memory, non-persistent, external-network-free, file-export-free, non-advisory, and non-accusatory. Phase 36 does not permit live data, real replay, real backtesting, paper trading, live trading, execution logic, Solana RPC/provider APIs, wallet access/private keys, real PnL claims, persistence, browser storage, or file export/download behavior.
+
 ## Phase 34 Safety Extension
 
 Phase 34 offline-intelligence report-integration models must remain local-only, read-only, synthetic-only, deterministic, serializable, in-memory, non-persistent, external-network-free, file-write-free, non-advisory, and non-accusatory. Phase 34 does not permit live data, Solana RPC/provider APIs, Jito/MEV/mempool integration, wallets, execution/trading logic, investment advice, recommendations/trading signals, accusations against real entities, persistence, browser storage, or file export/download behavior.

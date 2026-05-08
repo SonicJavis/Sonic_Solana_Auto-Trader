@@ -1,5 +1,23 @@
 # Phase Log
 
+## Phase 36 — Replay Outcome Fixture Models v1
+
+- Adds `packages/offline-intelligence/src/replay-outcomes/` with deterministic replay outcome fixture layer:
+  - `types.ts` — Phase 36 constants, 16 replay outcome fixture names/kinds, scenario/observation/summary/meta/validation/build/capability interfaces
+  - `capabilities.ts` — `getReplayOutcomeFixtureCapabilities()` with Phase 36 flags
+  - `normalization.ts` — deterministic ordering, serializability, and equality helpers
+  - `validation.ts` — `validateReplayOutcomeFixture`, `validateReplayOutcomeSafety`
+  - `builders.ts` — `buildReplayOutcomeFixture`, `buildReplayOutcomeSummary`
+  - `fixtures.ts` — 16 deterministic replay outcome fixtures plus `listReplayOutcomeFixtures` / `getReplayOutcomeFixture`
+  - `index.ts` — barrel export
+- Exports all Phase 36 replay outcome helpers through `packages/offline-intelligence/src/index.ts`
+- Extends dashboard and read-only-api capability surfaces with Phase 36 replay outcome flags
+- Adds `docs/REPLAY_OUTCOME_FIXTURE_MODELS.md`
+- Adds `tests/phase36.test.ts` with 300+ new tests
+- **No live data. No real replay/backtesting/paper/live trading. No Solana RPC. No provider APIs. No Jito/MEV/mempool. No wallets. No execution/trading logic. No external network. No persistence/browser storage. No file export/download support.**
+
+**Next phase guidance:** Phase 37 may add score-band outcome analysis models. Do not add live data or execution controls.
+
 ## Phase 35 — Composite Evidence Dashboard/Report Fixtures v1
 
 - Adds `apps/dashboard/src/composite-evidence-fixtures/` with deterministic composite evidence dashboard/report fixture layer:
