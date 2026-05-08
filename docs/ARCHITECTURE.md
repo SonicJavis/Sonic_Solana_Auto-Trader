@@ -1,5 +1,9 @@
 # Architecture
 
+## Phase 35 Update
+
+Phase 35 adds `apps/dashboard/src/composite-evidence-fixtures/` with a deterministic composite evidence dashboard/report fixture layer. It bridges Phase 33 composite evidence models and Phase 34 report integration models into the existing local dashboard/report fixture ecosystem, providing 16 typed, serializable, synthetic-only fixtures (9 dashboard, 4 report, 3 combined) for future dashboard, report, and replay workflows. This layer is local-only, read-only, fixture-backed, deterministic, in-memory, external-network-free, non-advisory, and non-accusatory.
+
 ## Phase 34 Update
 
 Phase 34 extends `packages/offline-intelligence/` with a deterministic report-integration layer in `src/report-integration/`. It transforms synthetic Phase 33 composite evidence fixtures into report-ready local models and sections (summary, risk, quality, confidence, source references, weighting, safety boundary) for future dashboard/report/replay/serialization workflows. This layer is local-only, read-only, fixture-backed, deterministic, in-memory, external-network-free, non-advisory, and non-accusatory.

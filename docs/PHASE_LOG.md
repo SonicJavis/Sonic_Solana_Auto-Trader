@@ -1,5 +1,25 @@
 # Phase Log
 
+## Phase 35 — Composite Evidence Dashboard/Report Fixtures v1
+
+- Adds `apps/dashboard/src/composite-evidence-fixtures/` with deterministic composite evidence dashboard/report fixture layer:
+  - `types.ts` — Phase 35 constants, 16 fixture names/kinds, all fixture/panel/section/meta/summary/validation/build/capability interfaces
+  - `capabilities.ts` — `getCompositeEvidenceDashboardReportFixtureCapabilities()` with 14 Phase 35 flags
+  - `normalization.ts` — deterministic sorting, serialization, equality, and name/kind helpers
+  - `validation.ts` — `validateCompositeEvidenceDashboardReportFixture`, `validateCompositeEvidenceDashboardReportSafety`
+  - `builders.ts` — `buildCompositeEvidenceDashboardFixture`, `buildCompositeEvidenceReportFixture`, `buildCompositeEvidenceDashboardReportFixture`, `buildCompositeEvidenceFixture`
+  - `fixtures.ts` — 16 deterministic fixtures: 9 dashboard, 4 report, 3 combined; `listCompositeEvidenceDashboardReportFixtures`, `getCompositeEvidenceDashboardReportFixture`
+  - `index.ts` — barrel export
+- Exports all Phase 35 helpers through `apps/dashboard/src/index.ts`
+- Extends `DashboardUiShellCapabilities` with Phase 35 flags in `apps/dashboard/src/types.ts`
+- Updates `getDashboardUiShellCapabilities()` in `apps/dashboard/src/capabilities.ts`
+- Adds `docs/COMPOSITE_EVIDENCE_DASHBOARD_REPORT_FIXTURES.md`
+- Adds `tests/phase35.test.ts` with 317 new tests
+- All Phase 33/34 source fixture names referenced in meta for full traceability
+- **No live data. No Solana RPC. No provider APIs. No Jito/MEV/mempool. No wallets. No execution/trading. No investment advice. No accusations against real entities. No external network. No persistence/browser storage. No file export/download support.**
+
+**Next phase guidance:** Phase 36 may add replay outcome fixture models. Do not add live data or execution controls.
+
 ## Phase 34 — Offline Intelligence Report Integration Models v1
 
 - Extends `packages/offline-intelligence/src/report-integration/` with deterministic report-integration helpers:
