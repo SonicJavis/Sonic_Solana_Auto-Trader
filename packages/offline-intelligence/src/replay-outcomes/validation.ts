@@ -308,19 +308,19 @@ export function validateReplayOutcomeFixture(
   if (!isRecord(fixture['meta'])) {
     issues.push(makeIssue('MISSING_REQUIRED_FIELD', 'meta is required.', 'meta'));
   } else {
-    issues.push(...validateMeta(fixture as ReplayOutcomeFixture));
+    issues.push(...validateMeta(fixture as unknown as ReplayOutcomeFixture));
   }
 
   if (!isRecord(fixture['summary'])) {
     issues.push(makeIssue('MISSING_REQUIRED_FIELD', 'summary is required.', 'summary'));
   } else {
-    issues.push(...validateSummary(fixture as ReplayOutcomeFixture));
+    issues.push(...validateSummary(fixture as unknown as ReplayOutcomeFixture));
   }
 
   if (!isRecord(fixture['scenarioReference'])) {
     issues.push(makeIssue('MISSING_REQUIRED_FIELD', 'scenarioReference is required.', 'scenarioReference'));
   } else {
-    issues.push(...validateScenarioReference(fixture as ReplayOutcomeFixture));
+    issues.push(...validateScenarioReference(fixture as unknown as ReplayOutcomeFixture));
   }
 
   if (!isRecord(fixture['observation'])) {
@@ -355,7 +355,7 @@ export function validateReplayOutcomeFixture(
   }
 
   if (issues.length === 0) {
-    const normalized = normalizeReplayOutcomeFixture(fixture as ReplayOutcomeFixture);
+    const normalized = normalizeReplayOutcomeFixture(fixture as unknown as ReplayOutcomeFixture);
     if (normalized.summary.name !== normalized.name) {
       issues.push(makeIssue('NAME_MISMATCH', 'summary.name must match normalized fixture name.', 'summary.name'));
     }

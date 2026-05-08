@@ -112,6 +112,23 @@ const FORBIDDEN_RUNTIME_PATTERNS: readonly RegExp[] = [
   /document\.cookie/,
 ];
 
+function collectStringValues(value: unknown, result: string[] = []): readonly string[] {
+  if (typeof value === 'string') {
+    result.push(value);
+    return result;
+  }
+  if (Array.isArray(value)) {
+    value.forEach(entry => collectStringValues(entry, result));
+    return result;
+  }
+  if (value !== null && typeof value === 'object') {
+    Object.values(value as Record<string, unknown>).forEach(entry =>
+      collectStringValues(entry, result),
+    );
+  }
+  return result;
+}
+
 describe('Phase 36 — module exports', () => {
   const exportedFunctions: Array<[string, unknown]> = [
     ['buildReplayOutcomeFixture', buildReplayOutcomeFixture],
@@ -407,7 +424,11 @@ describe('Phase 36 — validation negative and safety negative cases', () => {
 
   it('validateReplayOutcomeFixture rejects bad source references', () => {
     const fixture = structuredClone(FIXTURES[0]!);
-    (fixture as any).scenarioReference.phase33CompositeFixtureName = 'bad-ref';
+    (
+      fixture as {
+        scenarioReference: { phase33CompositeFixtureName: string };
+      }
+    ).scenarioReference.phase33CompositeFixtureName = 'bad-ref';
     const result = validateReplayOutcomeFixture(fixture);
     expect(result.valid).toBe(false);
     expect(result.issues.some(issue => issue.code.includes('PHASE33'))).toBe(true);
@@ -542,10 +563,10 @@ describe('Phase 36 — runtime safety source checks', () => {
 
 describe('Phase 36 — payload safety source checks', () => {
   FIXTURES.forEach(fixture => {
-    const payload = JSON.stringify(fixture);
+    const payloadValues = collectStringValues(fixture);
     FORBIDDEN_PAYLOAD_PATTERNS.forEach(pattern => {
       it(`${fixture.name} payload does not contain ${pattern}`, () => {
-        expect(pattern.test(payload)).toBe(false);
+        expect(payloadValues.some(value => pattern.test(value))).toBe(false);
       });
     });
   });

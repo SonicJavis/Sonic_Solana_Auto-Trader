@@ -7,7 +7,7 @@ import type {
   OfflineCompositeEvidenceFixtureName,
 } from '../types.js';
 import type {
-  OfflineIntelligenceReportFixtureKind,
+  OfflineIntelligenceReportKind,
   OfflineIntelligenceReportFixtureName,
 } from '../report-integration/types.js';
 
@@ -83,7 +83,7 @@ export interface ReplayOutcomeScenarioReference {
   readonly phase33CompositeFixtureName: OfflineCompositeEvidenceFixtureName;
   readonly phase33CompositeFixtureKind: OfflineCompositeEvidenceFixtureKind;
   readonly phase34ReportFixtureName: OfflineIntelligenceReportFixtureName;
-  readonly phase34ReportFixtureKind: OfflineIntelligenceReportFixtureKind;
+  readonly phase34ReportFixtureKind: OfflineIntelligenceReportKind;
   readonly phase35DashboardReportFixtureName: ReplayOutcomePhase35ReferenceName;
   readonly sourceCount: 3;
   readonly notes: readonly string[];
