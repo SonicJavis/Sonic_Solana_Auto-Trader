@@ -2,6 +2,8 @@
 
 **Phase 28 — Local Dashboard Report Export Models v1**
 
+> Phase 34 compatibility note: Offline intelligence report-integration models now expose synthetic metadata flags (`dashboardReportCompatible: true`) for future local report-surface alignment. No export behavior changes are introduced.
+
 ## 1. Phase 28 Purpose
 
 Phase 28 adds a deterministic, local-only, fixture-backed report export-model layer on top of Phase 27 render snapshots.

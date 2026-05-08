@@ -1,5 +1,23 @@
 # Phase Log
 
+## Phase 34 — Offline Intelligence Report Integration Models v1
+
+- Extends `packages/offline-intelligence/src/report-integration/` with deterministic report-integration helpers:
+  - `types.ts` — Phase 34 constants, 16 report fixture names/kinds, section kinds, report model interfaces
+  - `capabilities.ts` — `getOfflineIntelligenceReportCapabilities()` returning Phase 34 report-integration capability flags
+  - `normalization.ts` — deterministic ordering, serializability, and equality helpers
+  - `validation.ts` — `validateOfflineIntelligenceReportModel`, `validateOfflineIntelligenceReportSafety`
+  - `builders.ts` — `buildOfflineIntelligenceReportModel`, `buildOfflineIntelligenceReportSummary`, `buildOfflineIntelligenceReportSection`
+  - `fixtures.ts` — 16 deterministic report integration fixtures plus `listOfflineIntelligenceReportFixtures` / `getOfflineIntelligenceReportFixture`
+  - `index.ts` — barrel export
+- Exports all Phase 34 helpers through `packages/offline-intelligence/src/index.ts`
+- Extends dashboard and read-only-api capability surfaces with Phase 34 flags (`offlineIntelligenceReportModels`, `offlineIntelligenceReportFixtures`, `offlineIntelligenceCompositeReportIntegration`, etc.)
+- Adds `docs/OFFLINE_INTELLIGENCE_REPORT_INTEGRATION_MODELS.md`
+- Adds `tests/phase34.test.ts` for fixture, validation, safety, normalization, capability, and compatibility regressions
+- **No live data. No Solana RPC. No provider APIs. No Jito/MEV/mempool. No wallets. No execution/trading. No investment advice. No accusations against real entities. No external network. No persistence/browser storage. No file export/download support.**
+
+**Next phase guidance:** Phase 35 may add composite evidence dashboard/report fixtures. Do not add live data or execution controls.
+
 ## Phase 33 — Offline Intelligence Composite Evidence Models v1
 
 - Adds new package `packages/offline-intelligence/` with deterministic composite offline-intelligence fixture-model layer:

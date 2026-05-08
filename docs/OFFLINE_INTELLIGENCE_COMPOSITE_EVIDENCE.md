@@ -2,6 +2,8 @@
 
 **Phase 33 — Offline Intelligence Composite Evidence Models v1**
 
+> Phase 34 follow-on implemented separately: `docs/OFFLINE_INTELLIGENCE_REPORT_INTEGRATION_MODELS.md`
+
 ## 1. Phase 33 Purpose
 
 Phase 33 introduces a new top-level package `packages/offline-intelligence/` containing a deterministic, local-only composite evidence fixture-model layer.

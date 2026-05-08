@@ -202,6 +202,27 @@ export interface LocalReadOnlyApiCapabilities {
   readonly compositeInvestmentAdvice: false;
   readonly compositeExecution: false;
   readonly compositePersistence: false;
+  // Phase 34 offline intelligence report integration capabilities
+  readonly offlineIntelligenceReportModels: true;
+  readonly offlineIntelligenceReportFixtures: true;
+  readonly offlineIntelligenceCompositeReportIntegration: true;
+  readonly offlineIntelligenceReportRiskSections: true;
+  readonly offlineIntelligenceReportQualitySections: true;
+  readonly offlineIntelligenceReportConfidenceSections: true;
+  readonly offlineIntelligenceReportSourceReferences: true;
+  readonly offlineIntelligenceReportSafetyValidation: true;
+  readonly offlineIntelligenceReportLiveData: false;
+  readonly offlineIntelligenceReportSolanaRpc: false;
+  readonly offlineIntelligenceReportProviderApis: false;
+  readonly offlineIntelligenceReportJitoIntegration: false;
+  readonly offlineIntelligenceReportMempoolAccess: false;
+  readonly offlineIntelligenceReportTradingSignals: false;
+  readonly offlineIntelligenceReportInvestmentAdvice: false;
+  readonly offlineIntelligenceReportExternalNetwork: false;
+  readonly offlineIntelligenceReportPersistence: false;
+  readonly offlineIntelligenceReportExecution: false;
+  readonly offlineIntelligenceReportFileExport: false;
+  readonly offlineIntelligenceReportDownloadSupport: false;
   // Safety labels
   readonly fixtureOnly: true;
   readonly analysisOnly: true;

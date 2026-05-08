@@ -1,8 +1,41 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 32 — Bundle / Manipulation Evidence Fixture Models v1**
+**Phase 34 — Offline Intelligence Report Integration Models v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 32.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 34.
+
+## Features (Phase 34 — adds to Phase 33)
+
+- Extends `packages/offline-intelligence` with deterministic report-integration models:
+  - strict offline intelligence report model/section/meta/summary fixture types
+  - pure builders for report models, summaries, and sections from Phase 33 composite fixtures
+  - normalization, serializability, validation, and safety-validation helpers
+  - 16 deterministic synthetic report integration fixtures
+- Adds Phase 34 report-integration capability flags:
+  - `offlineIntelligenceReportModels: true`
+  - `offlineIntelligenceReportFixtures: true`
+  - `offlineIntelligenceCompositeReportIntegration: true`
+  - `offlineIntelligenceReportRiskSections: true`
+  - `offlineIntelligenceReportQualitySections: true`
+  - `offlineIntelligenceReportConfidenceSections: true`
+  - `offlineIntelligenceReportSourceReferences: true`
+  - `offlineIntelligenceReportSafetyValidation: true`
+  - `offlineIntelligenceReportLiveData: false`
+  - `offlineIntelligenceReportSolanaRpc: false`
+  - `offlineIntelligenceReportProviderApis: false`
+  - `offlineIntelligenceReportJitoIntegration: false`
+  - `offlineIntelligenceReportMempoolAccess: false`
+  - `offlineIntelligenceReportTradingSignals: false`
+  - `offlineIntelligenceReportInvestmentAdvice: false`
+  - `offlineIntelligenceReportExternalNetwork: false`
+  - `offlineIntelligenceReportPersistence: false`
+  - `offlineIntelligenceReportExecution: false`
+  - `offlineIntelligenceReportFileExport: false`
+  - `offlineIntelligenceReportDownloadSupport: false`
+- Extends dashboard/read-only-api compatibility capability surfaces with the same Phase 34 flags
+- Adds `docs/OFFLINE_INTELLIGENCE_REPORT_INTEGRATION_MODELS.md`
+- Adds Phase 34 report-integration regression and safety tests
+- No live data, no Solana RPC/provider APIs, no Jito/MEV/mempool, no wallets, no execution/trading, no investment advice, no real accusations, no external network, no persistence, no file export/download support
 
 ## Features (Phase 32 — adds to Phase 31)
 

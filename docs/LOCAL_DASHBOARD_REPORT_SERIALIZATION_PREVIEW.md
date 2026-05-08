@@ -2,6 +2,8 @@
 
 **Phase 29 — Local Dashboard Report Serialization Preview v1**
 
+> Phase 34 compatibility note: Offline intelligence report-integration models now expose synthetic metadata flags (`serializationPreviewCompatible: true`) for future local serialization-preview alignment. No file export/download behavior is introduced.
+
 ## 1. Phase 29 Purpose
 
 Phase 29 adds a deterministic local serialization-preview layer on top of Phase 28 report models.

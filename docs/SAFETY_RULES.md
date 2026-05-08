@@ -1,5 +1,9 @@
 # Safety Rules
 
+## Phase 34 Safety Extension
+
+Phase 34 offline-intelligence report-integration models must remain local-only, read-only, synthetic-only, deterministic, serializable, in-memory, non-persistent, external-network-free, file-write-free, non-advisory, and non-accusatory. Phase 34 does not permit live data, Solana RPC/provider APIs, Jito/MEV/mempool integration, wallets, execution/trading logic, investment advice, recommendations/trading signals, accusations against real entities, persistence, browser storage, or file export/download behavior.
+
 ## Phase 32 Safety Extension
 
 Phase 32 manipulation-evidence fixture models must remain local-only, read-only, synthetic-only, deterministic, serializable, in-memory, non-persistent, external-network-free, file-write-free, non-advisory, and non-accusatory. Phase 32 does not permit live transaction inspection, live bundle detection, Jito/MEV/mempool integrations, Solana RPC/provider APIs, wallets, execution/trading logic, investment advice, trading signals, identity resolution, accusations against real entities, persistence, or browser storage.
