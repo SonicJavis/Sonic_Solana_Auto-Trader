@@ -317,4 +317,23 @@ export interface DashboardUiShellCapabilities {
   readonly strategyCandidateInvestmentAdvice: false;
   readonly strategyCandidateTradingSignals: false;
   readonly strategyCandidateRecommendations: false;
+  // Phase 39 strategy comparison matrix fixture capabilities
+  readonly strategyComparisonMatrixFixtures: true;
+  readonly syntheticStrategyComparisonMatrices: true;
+  readonly strategyComparisonMatrixBuilders: true;
+  readonly strategyComparisonMatrixSafetyValidation: true;
+  readonly strategyComparisonCandidateReferences: true;
+  readonly strategyComparisonRealScoring: false;
+  readonly strategyComparisonRealRanking: false;
+  readonly strategyComparisonRealBacktesting: false;
+  readonly strategyComparisonPaperTrading: false;
+  readonly strategyComparisonLiveTrading: false;
+  readonly strategyComparisonExecution: false;
+  readonly strategyComparisonSolanaRpc: false;
+  readonly strategyComparisonExternalNetwork: false;
+  readonly strategyComparisonPersistence: false;
+  readonly strategyComparisonFileExport: false;
+  readonly strategyComparisonInvestmentAdvice: false;
+  readonly strategyComparisonTradingSignals: false;
+  readonly strategyComparisonRecommendations: false;
 }
