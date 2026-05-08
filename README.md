@@ -1,8 +1,39 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 34 — Offline Intelligence Report Integration Models v1**
+**Phase 36 — Replay Outcome Fixture Models v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 34.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 36.
+
+## Features (Phase 36 — adds to Phase 35)
+
+- Extends `packages/offline-intelligence` with deterministic replay outcome fixture models:
+  - strict replay outcome fixture/observation/summary/reference/meta types
+  - pure replay outcome builder and summary helper
+  - normalization, serializability, validation, and safety-validation helpers
+  - 16 deterministic synthetic replay outcome fixtures linked to Phase 33/34/35 fixture references
+- Adds Phase 36 replay outcome capability flags:
+  - `replayOutcomeFixtures: true`
+  - `syntheticReplayOutcomes: true`
+  - `replayOutcomeBuilders: true`
+  - `replayOutcomeSafetyValidation: true`
+  - `replayOutcomeCompositeEvidenceReferences: true`
+  - `replayOutcomeReportReferences: true`
+  - `replayOutcomeDashboardReferences: true`
+  - `replayOutcomeLiveData: false`
+  - `replayOutcomeRealBacktesting: false`
+  - `replayOutcomePaperTrading: false`
+  - `replayOutcomeLiveTrading: false`
+  - `replayOutcomeExecution: false`
+  - `replayOutcomeSolanaRpc: false`
+  - `replayOutcomeExternalNetwork: false`
+  - `replayOutcomePersistence: false`
+  - `replayOutcomeFileExport: false`
+  - `replayOutcomeInvestmentAdvice: false`
+  - `replayOutcomeTradingSignals: false`
+- Extends dashboard/read-only-api compatibility capability surfaces with the same Phase 36 flags
+- Adds `docs/REPLAY_OUTCOME_FIXTURE_MODELS.md`
+- Adds Phase 36 replay outcome regression and safety tests
+- No live data, no real replay/backtesting/paper/live trading, no Solana RPC/provider APIs, no wallets, no execution logic, no external network, no persistence, no file export/download support
 
 ## Features (Phase 34 — adds to Phase 33)
 
