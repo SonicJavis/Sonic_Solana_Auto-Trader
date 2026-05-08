@@ -298,4 +298,23 @@ export interface DashboardUiShellCapabilities {
   readonly replayOutcomeFileExport: false;
   readonly replayOutcomeInvestmentAdvice: false;
   readonly replayOutcomeTradingSignals: false;
+  // Phase 38 strategy candidate evaluation fixture capabilities
+  readonly strategyCandidateEvaluationFixtures: true;
+  readonly syntheticStrategyCandidates: true;
+  readonly strategyCandidateBuilders: true;
+  readonly strategyCandidateSafetyValidation: true;
+  readonly strategyCandidateScoreBandReferences: true;
+  readonly strategyCandidateRealScoring: false;
+  readonly strategyCandidateRealRanking: false;
+  readonly strategyCandidateRealBacktesting: false;
+  readonly strategyCandidatePaperTrading: false;
+  readonly strategyCandidateLiveTrading: false;
+  readonly strategyCandidateExecution: false;
+  readonly strategyCandidateSolanaRpc: false;
+  readonly strategyCandidateExternalNetwork: false;
+  readonly strategyCandidatePersistence: false;
+  readonly strategyCandidateFileExport: false;
+  readonly strategyCandidateInvestmentAdvice: false;
+  readonly strategyCandidateTradingSignals: false;
+  readonly strategyCandidateRecommendations: false;
 }

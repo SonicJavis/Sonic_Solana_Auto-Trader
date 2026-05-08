@@ -1,5 +1,23 @@
 # Phase Log
 
+## Phase 38 — Strategy Candidate Evaluation Fixtures v1
+
+- Adds `packages/offline-intelligence/src/strategy-candidates/` with deterministic strategy-candidate evaluation fixture layer:
+  - `types.ts` — Phase 38 constants, 16 strategy-candidate fixture names/kinds, profile/criterion/reference/indicator/summary/meta/validation/build/capability interfaces
+  - `capabilities.ts` — `getStrategyCandidateFixtureCapabilities()` with Phase 38 flags
+  - `normalization.ts` — deterministic ordering, serializability, and equality helpers
+  - `validation.ts` — `validateStrategyCandidateEvaluationFixture`, `validateStrategyCandidateSafety`
+  - `builders.ts` — `buildStrategyCandidateEvaluationFixture`, `buildStrategyCandidateEvaluationSummary`
+  - `fixtures.ts` — 16 deterministic strategy-candidate evaluation fixtures plus `listStrategyCandidateEvaluationFixtures` / `getStrategyCandidateEvaluationFixture`
+  - `index.ts` — barrel export
+- Exports all Phase 38 strategy-candidate helpers through `packages/offline-intelligence/src/index.ts`
+- Extends dashboard and read-only-api capability surfaces with Phase 38 strategy-candidate flags
+- Adds `docs/STRATEGY_CANDIDATE_EVALUATION_FIXTURES.md`
+- Adds `tests/phase38.test.ts` with 300+ new tests
+- **No live data. No real scoring. No real ranking. No recommendations/signals. No real replay/backtesting/paper/live trading. No Solana RPC. No provider APIs. No Jito/MEV/mempool. No wallets. No execution/trading logic. No external network. No persistence/browser storage. No file export/download support.**
+
+**Next phase guidance:** Phase 39 may add strategy comparison matrix fixtures. Do not add live data or execution controls.
+
 ## Phase 37 — Score Band Outcome Analysis Models v1
 
 - Adds `packages/offline-intelligence/src/score-band-outcomes/` with deterministic score-band outcome analysis fixture layer:

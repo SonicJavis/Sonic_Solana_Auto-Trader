@@ -1,8 +1,39 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 36 — Replay Outcome Fixture Models v1**
+**Phase 38 — Strategy Candidate Evaluation Fixtures v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 36.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 38.
+
+## Features (Phase 38 — adds to Phase 37)
+
+- Extends `packages/offline-intelligence` with deterministic strategy candidate evaluation fixture models:
+  - strict strategy candidate profile/evaluation criterion/score-band-reference/summary/meta types
+  - pure strategy candidate fixture and summary builders
+  - normalization, serializability, validation, and safety-validation helpers
+  - 16 deterministic synthetic strategy candidate evaluation fixtures linked to Phase 37 score-band references
+- Adds Phase 38 strategy-candidate capability flags:
+  - `strategyCandidateEvaluationFixtures: true`
+  - `syntheticStrategyCandidates: true`
+  - `strategyCandidateBuilders: true`
+  - `strategyCandidateSafetyValidation: true`
+  - `strategyCandidateScoreBandReferences: true`
+  - `strategyCandidateRealScoring: false`
+  - `strategyCandidateRealRanking: false`
+  - `strategyCandidateRealBacktesting: false`
+  - `strategyCandidatePaperTrading: false`
+  - `strategyCandidateLiveTrading: false`
+  - `strategyCandidateExecution: false`
+  - `strategyCandidateSolanaRpc: false`
+  - `strategyCandidateExternalNetwork: false`
+  - `strategyCandidatePersistence: false`
+  - `strategyCandidateFileExport: false`
+  - `strategyCandidateInvestmentAdvice: false`
+  - `strategyCandidateTradingSignals: false`
+  - `strategyCandidateRecommendations: false`
+- Extends dashboard/read-only-api compatibility capability surfaces with the same Phase 38 flags
+- Adds `docs/STRATEGY_CANDIDATE_EVALUATION_FIXTURES.md`
+- Adds Phase 38 strategy-candidate regression and safety tests
+- No live data, no real scoring/ranking, no recommendations/signals, no replay/backtesting/paper/live trading, no Solana RPC/provider APIs, no wallets, no execution logic, no external network, no persistence, no file export/download support
 
 ## Features (Phase 36 — adds to Phase 35)
 

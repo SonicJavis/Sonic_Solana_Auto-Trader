@@ -6,7 +6,7 @@
 
 Phase 36 adds deterministic synthetic replay outcome fixtures in `packages/offline-intelligence/src/replay-outcomes/`.
 
-This layer models safe, local-only replay outcomes that can be associated with synthetic Phase 33 composite evidence, Phase 34 report integration fixtures, and Phase 35 dashboard/report fixtures. It prepares future score-band and replay analysis phases without introducing any real replay/backtesting or execution logic.
+This layer models safe, local-only replay outcomes that can be associated with synthetic Phase 33 composite evidence, Phase 34 report integration fixtures, and Phase 35 dashboard/report fixtures. It prepares future score-band and replay analysis phases (including downstream Phase 38 strategy-candidate fixture references) without introducing any real replay/backtesting or execution logic.
 
 ## 2. Safety Boundaries
 

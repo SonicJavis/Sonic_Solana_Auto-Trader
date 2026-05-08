@@ -1,5 +1,9 @@
 # Safety Rules
 
+## Phase 38 Safety Extension
+
+Phase 38 strategy-candidate evaluation fixture models must remain local-only, read-only, fixture-only, synthetic-only, deterministic, serializable, in-memory, non-persistent, external-network-free, file-export-free, non-advisory, and non-accusatory. Phase 38 does not permit live data, real scoring, real ranking, recommendations, trading signals, real replay/backtesting, paper trading, live trading, execution logic, Solana RPC/provider APIs, wallet access/private keys, real PnL claims, persistence, browser storage, or file export/download behavior.
+
 ## Phase 36 Safety Extension
 
 Phase 36 replay-outcome fixture models must remain local-only, read-only, fixture-only, synthetic-only, deterministic, serializable, in-memory, non-persistent, external-network-free, file-export-free, non-advisory, and non-accusatory. Phase 36 does not permit live data, real replay, real backtesting, paper trading, live trading, execution logic, Solana RPC/provider APIs, wallet access/private keys, real PnL claims, persistence, browser storage, or file export/download behavior.
