@@ -292,5 +292,22 @@ export function getDashboardUiShellCapabilities(): DashboardUiShellCapabilities 
     strategyReviewReportExternalNetwork: false,
     strategyReviewReportPersistence: false,
     strategyReviewReportInvestmentAdvice: false,
+    // Phase 42 strategy review serialization preview fixture capabilities
+    strategyReviewSerializationPreviewFixtures: true,
+    syntheticStrategyReviewSerializationPreviews: true,
+    strategyReviewSerializationPreviewBuilders: true,
+    strategyReviewSerializationSafetyValidation: true,
+    strategyReviewReportReferences: true,
+    strategyReviewJsonPreview: true,
+    strategyReviewMarkdownPreview: true,
+    strategyReviewTextPreview: true,
+    strategyReviewMetadataPreview: true,
+    strategyReviewActualFileExport: false,
+    strategyReviewDownloadSupport: false,
+    strategyReviewSerializationExternalNetwork: false,
+    strategyReviewSerializationPersistence: false,
+    strategyReviewSerializationExecution: false,
+    strategyReviewSerializationTradingSignals: false,
+    strategyReviewSerializationInvestmentAdvice: false,
   };
 }

@@ -1,8 +1,37 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 41 — Strategy Review Report Fixtures v1**
+**Phase 42 — Strategy Review Serialization Preview Fixtures v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 41.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 42.
+
+## Features (Phase 42 — adds to Phase 41)
+
+- Adds `apps/dashboard/src/strategy-review-serialization/` deterministic serialization preview fixture layer:
+  - strict preview fixture/report-reference/meta/summary/safety-boundary/validation/build/capability types
+  - pure deterministic builders, normalization, serialization, equality, validation, and safety-validation helpers
+  - 16 deterministic synthetic serialization preview fixtures referencing Phase 41 report fixtures
+  - JSON, Markdown, text, and metadata preview formats
+- Adds Phase 42 strategy-review-serialization capability flags:
+  - `strategyReviewSerializationPreviewFixtures: true`
+  - `syntheticStrategyReviewSerializationPreviews: true`
+  - `strategyReviewSerializationPreviewBuilders: true`
+  - `strategyReviewSerializationSafetyValidation: true`
+  - `strategyReviewReportReferences: true`
+  - `strategyReviewJsonPreview: true`
+  - `strategyReviewMarkdownPreview: true`
+  - `strategyReviewTextPreview: true`
+  - `strategyReviewMetadataPreview: true`
+  - `strategyReviewActualFileExport: false`
+  - `strategyReviewDownloadSupport: false`
+  - `strategyReviewSerializationExternalNetwork: false`
+  - `strategyReviewSerializationPersistence: false`
+  - `strategyReviewSerializationExecution: false`
+  - `strategyReviewSerializationTradingSignals: false`
+  - `strategyReviewSerializationInvestmentAdvice: false`
+- Extends dashboard/read-only-api capability surfaces with Phase 42 flags
+- Adds `docs/STRATEGY_REVIEW_SERIALIZATION_PREVIEW_FIXTURES.md`
+- Adds Phase 42 tests (1070+ new tests)
+- No live data, no actual file export/download behavior, no real UI rendering, no real scoring/ranking, no recommendations/signals, no replay/backtesting/paper/live trading, no execution, no network, no persistence
 
 ## Features (Phase 41 — adds to Phase 40)
 

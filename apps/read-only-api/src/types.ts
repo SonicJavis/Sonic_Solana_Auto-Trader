@@ -319,6 +319,23 @@ export interface LocalReadOnlyApiCapabilities {
   readonly strategyReviewReportExternalNetwork: false;
   readonly strategyReviewReportPersistence: false;
   readonly strategyReviewReportInvestmentAdvice: false;
+  // Phase 42 strategy review serialization preview fixture capabilities
+  readonly strategyReviewSerializationPreviewFixtures: true;
+  readonly syntheticStrategyReviewSerializationPreviews: true;
+  readonly strategyReviewSerializationPreviewBuilders: true;
+  readonly strategyReviewSerializationSafetyValidation: true;
+  readonly strategyReviewReportReferences: true;
+  readonly strategyReviewJsonPreview: true;
+  readonly strategyReviewMarkdownPreview: true;
+  readonly strategyReviewTextPreview: true;
+  readonly strategyReviewMetadataPreview: true;
+  readonly strategyReviewActualFileExport: false;
+  readonly strategyReviewDownloadSupport: false;
+  readonly strategyReviewSerializationExternalNetwork: false;
+  readonly strategyReviewSerializationPersistence: false;
+  readonly strategyReviewSerializationExecution: false;
+  readonly strategyReviewSerializationTradingSignals: false;
+  readonly strategyReviewSerializationInvestmentAdvice: false;
   // Safety labels
   readonly fixtureOnly: true;
   readonly analysisOnly: true;

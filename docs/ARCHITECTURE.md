@@ -1,5 +1,9 @@
 # Architecture
 
+## Phase 42 Update
+
+Phase 42 extends `apps/dashboard/` with `src/strategy-review-serialization/`, a deterministic strategy review serialization preview fixture layer that references Phase 41 strategy review report fixtures to produce 16 typed synthetic serialization preview fixtures (JSON, Markdown, text, metadata formats). This layer is preview-only, local-only, read-only, fixture-backed, deterministic, in-memory, external-network-free, non-advisory, non-accusatory, file-export-free, and execution-free.
+
 ## Phase 40 Update
 
 Phase 40 extends `apps/dashboard/` with `src/strategy-review-fixtures/`, a deterministic strategy review dashboard fixture layer that references Phase 39 strategy comparison matrix fixtures to produce 16 typed synthetic review dashboard fixtures for future local review/report workflows. This layer is local-only, read-only, fixture-backed, deterministic, in-memory, external-network-free, non-advisory, and non-accusatory.
