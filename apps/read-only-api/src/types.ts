@@ -299,6 +299,26 @@ export interface LocalReadOnlyApiCapabilities {
   readonly strategyReviewPersistence: false;
   readonly strategyReviewFileExport: false;
   readonly strategyReviewInvestmentAdvice: false;
+  // Phase 41 strategy review report fixture capabilities
+  readonly strategyReviewReportFixtures: true;
+  readonly syntheticStrategyReviewReports: true;
+  readonly strategyReviewReportBuilders: true;
+  readonly strategyReviewReportSafetyValidation: true;
+  readonly strategyReviewDashboardReferences: true;
+  readonly strategyReviewReportActualFileExport: false;
+  readonly strategyReviewReportDownloadSupport: false;
+  readonly strategyReviewReportRealUiRendering: false;
+  readonly strategyReviewReportRealScoring: false;
+  readonly strategyReviewReportRealRanking: false;
+  readonly strategyReviewReportRecommendations: false;
+  readonly strategyReviewReportTradingSignals: false;
+  readonly strategyReviewReportPaperTrading: false;
+  readonly strategyReviewReportLiveTrading: false;
+  readonly strategyReviewReportExecution: false;
+  readonly strategyReviewReportSolanaRpc: false;
+  readonly strategyReviewReportExternalNetwork: false;
+  readonly strategyReviewReportPersistence: false;
+  readonly strategyReviewReportInvestmentAdvice: false;
   // Safety labels
   readonly fixtureOnly: true;
   readonly analysisOnly: true;

@@ -1,5 +1,23 @@
 # Phase Log
 
+## Phase 41 — Strategy Review Report Fixtures v1
+
+- Adds `apps/dashboard/src/strategy-review-reports/` with deterministic strategy review report fixture layer:
+  - `types.ts` — Phase 41 constants, 16 fixture names/kinds, dashboard-reference/section/card/table/summary/safety/meta/validation/build/capability interfaces
+  - `capabilities.ts` — `getStrategyReviewReportFixtureCapabilities()` with Phase 41 flags
+  - `normalization.ts` — deterministic ordering, serializability, equality, name/kind/source helpers
+  - `validation.ts` — `validateStrategyReviewReportFixture`, `validateStrategyReviewReportSafety`
+  - `builders.ts` — `buildStrategyReviewReportFixture`, `buildStrategyReviewReportSummary`
+  - `fixtures.ts` — 16 deterministic strategy review report fixtures plus `listStrategyReviewReportFixtures` / `getStrategyReviewReportFixture`
+  - `index.ts` — barrel export
+- Exports all Phase 41 strategy-review-report helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard and read-only-api capability surfaces with Phase 41 strategy-review-report flags
+- Adds `docs/STRATEGY_REVIEW_REPORT_FIXTURES.md`
+- Adds `tests/phase41.test.ts` with 300+ new tests
+- **No live data. No actual file export/download behavior. No real UI rendering. No real scoring/ranking. No recommendations/signals. No replay/backtesting/paper/live trading. No Solana RPC/provider/Jito/MEV/mempool. No wallet or execution logic. No external network. No persistence/browser storage.**
+
+**Next phase guidance:** Phase 42 may add strategy review serialization preview fixtures. Do not add live data or execution controls.
+
 ## Phase 40 — Strategy Review Dashboard Fixtures v1
 
 - Adds `apps/dashboard/src/strategy-review-fixtures/` with deterministic strategy review dashboard fixture layer:
@@ -16,7 +34,7 @@
 - Adds `tests/phase40.test.ts` with 300+ new tests
 - **No live data. No real UI rendering. No real scoring/ranking. No recommendations/signals. No replay/backtesting/paper/live trading. No Solana RPC/provider/Jito/MEV/mempool. No wallet or execution logic. No external network. No persistence/browser storage. No file export/download support.**
 
-**Next phase guidance:** Phase 41 may add strategy review report fixtures. Do not add live data or execution controls.
+**Next phase guidance:** Phase 42 may add strategy review serialization preview fixtures. Do not add live data or execution controls.
 
 ## Phase 39 — Strategy Comparison Matrix Fixtures v1
 
