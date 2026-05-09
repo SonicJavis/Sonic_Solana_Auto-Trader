@@ -1,5 +1,9 @@
 # Architecture
 
+## Phase 44 Update
+
+Phase 44 extends `apps/dashboard/` with `src/strategy-review-export-queue/`, a deterministic strategy review export queue fixture layer that references Phase 43 strategy review export-planning fixtures to produce 16 typed synthetic export-queue fixtures modelling queued export-plan states for future local review workflow orchestration. This layer is queue-modelling-only, local-only, read-only, fixture-backed, deterministic, in-memory, external-network-free, non-advisory, non-accusatory, file-export-free, queue-worker-free, and execution-free.
+
 ## Phase 42 Update
 
 Phase 42 extends `apps/dashboard/` with `src/strategy-review-serialization/`, a deterministic strategy review serialization preview fixture layer that references Phase 41 strategy review report fixtures to produce 16 typed synthetic serialization preview fixtures (JSON, Markdown, text, metadata formats). This layer is preview-only, local-only, read-only, fixture-backed, deterministic, in-memory, external-network-free, non-advisory, non-accusatory, file-export-free, and execution-free.

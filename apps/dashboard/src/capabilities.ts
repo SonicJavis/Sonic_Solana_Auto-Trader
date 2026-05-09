@@ -324,5 +324,19 @@ export function getDashboardUiShellCapabilities(): DashboardUiShellCapabilities 
     strategyReviewExportExecution: false,
     strategyReviewExportTradingSignals: false,
     strategyReviewExportInvestmentAdvice: false,
+    // Phase 44 strategy review export queue fixture capabilities
+    strategyReviewExportQueueFixtures: true,
+    syntheticStrategyReviewExportQueues: true,
+    strategyReviewExportQueueBuilders: true,
+    strategyReviewExportQueueSafetyValidation: true,
+    strategyReviewExportPlanReferences: true,
+    strategyReviewActualQueueWorkers: false,
+    strategyReviewScheduledJobs: false,
+    strategyReviewBackgroundJobs: false,
+    strategyReviewExportQueueExternalNetwork: false,
+    strategyReviewExportQueuePersistence: false,
+    strategyReviewExportQueueExecution: false,
+    strategyReviewExportQueueTradingSignals: false,
+    strategyReviewExportQueueInvestmentAdvice: false,
   };
 }

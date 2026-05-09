@@ -1,6 +1,42 @@
 # Phase Log
 
-## Phase 42 — Strategy Review Serialization Preview Fixtures v1
+## Phase 44 — Strategy Review Export Queue Fixtures v1
+
+- Adds `apps/dashboard/src/strategy-review-export-queue/` with deterministic export-queue fixture layer:
+  - `types.ts` — Phase 44 constants, 16 fixture names/kinds, queue-state/priority/plan-reference/item/summary/meta/safety/validation/build/capability interfaces
+  - `capabilities.ts` — `getStrategyReviewExportQueueCapabilities()` with Phase 44 flags
+  - `normalization.ts` — deterministic ordering, key sorting, serializability, equality, guard helpers, stable checksum
+  - `validation.ts` — `validateStrategyReviewExportQueueFixture`, `validateStrategyReviewExportQueueSafety`
+  - `builders.ts` — `buildStrategyReviewExportQueueFixture`, `buildStrategyReviewExportQueueSummary`, `listStrategyReviewExportQueueFixtures`, `getStrategyReviewExportQueueFixture`, name-to-kind/plan/state/priority mapping tables
+  - `fixtures.ts` — 16 deterministic strategy review export queue fixtures + Map + List
+  - `index.ts` — barrel export
+- Exports all Phase 44 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard capability surface with Phase 44 flags (`strategyReviewExportQueueFixtures`, `syntheticStrategyReviewExportQueues`, `strategyReviewActualQueueWorkers: false`, etc.)
+- Adds `docs/STRATEGY_REVIEW_EXPORT_QUEUE_FIXTURES.md`
+- Adds `tests/phase44.test.ts` with 309 new tests (15274 total)
+- **No live data. No actual queue workers, scheduled jobs, or background jobs. No file exports, filesystem writes, browser downloads, PDF/CSV/HTML generation. No real queue execution. No real UI rendering. No real scoring/ranking. No recommendations/signals. No replay/backtesting/paper/live trading. No Solana RPC/provider/Jito/MEV/mempool. No wallet or execution logic. No external network. No persistence/browser storage.**
+
+**Next phase guidance:** Phase 45 may add strategy review export audit fixtures. Do not add live data or execution controls.
+
+## Phase 43 — Strategy Review Report Export Planning Fixtures v1
+
+- Adds `apps/dashboard/src/strategy-review-export-planning/` with deterministic export-planning fixture layer:
+  - `types.ts` — Phase 43 constants, 16 fixture names/kinds/targets, serialization-preview-reference/export-plan-definition/meta/summary/safety/validation/build/capability interfaces
+  - `capabilities.ts` — `getStrategyReviewExportPlanCapabilities()` with Phase 43 flags
+  - `normalization.ts` — deterministic ordering, key sorting, serializability, equality, guard helpers, stable checksum
+  - `validation.ts` — `validateStrategyReviewExportPlanFixture`, `validateStrategyReviewExportPlanSafety`
+  - `builders.ts` — `buildStrategyReviewExportPlanFixture`, `buildStrategyReviewExportPlanSummary`, list/get helpers, name-to-kind/preview/target mapping tables
+  - `fixtures.ts` — 16 deterministic strategy review export planning fixtures
+  - `index.ts` — barrel export
+- Exports all Phase 43 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard, dashboard-types, and read-only-api capability surfaces with Phase 43 flags
+- Adds `docs/STRATEGY_REVIEW_REPORT_EXPORT_PLANNING_FIXTURES.md`
+- Adds `tests/phase43.test.ts` with 300+ new tests
+- **No live data. No actual file export/download behavior. No real UI rendering. No real scoring/ranking. No recommendations/signals. No replay/backtesting/paper/live trading. No Solana RPC/provider/Jito/MEV/mempool. No wallet or execution logic. No external network. No persistence/browser storage.**
+
+**Next phase guidance:** Phase 44 may add strategy review export queue fixtures. Do not add live data or execution controls.
+
+
 
 - Adds `apps/dashboard/src/strategy-review-serialization/` with deterministic serialization preview fixture layer:
   - `types.ts` — Phase 42 constants, 16 fixture names/kinds/formats, preview/meta/summary/safety/validation/build/capability interfaces
