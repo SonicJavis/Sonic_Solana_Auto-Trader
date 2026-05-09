@@ -54,14 +54,17 @@ Phase 40 (Dashboard Fixtures)
        ↓
 Phase 41 (Strategy Review Report Fixtures)
        ↓
-Phase 42 (Strategy Review Serialization Preview Fixtures) ← this phase
+Phase 42 (Strategy Review Serialization Preview Fixtures)
        ↓
-Phase 43 (Export Planning Fixtures — future, not implemented)
+Phase 43 (Export Planning Fixtures — planning only, no actual export)
+       ↓
+Phase 44 (Export Queue Fixtures — future, not implemented)
 ```
 
-Phase 42 creates in-memory **preview** fixtures only. No actual serialization to disk, network,
-or any persistent store occurs. All preview content is generated deterministically from the
-synthetic Phase 41 report fixtures.
+Phase 42 creates in-memory **preview** fixtures only. Phase 43 may reference these previews for
+deterministic planning metadata, but neither phase performs actual serialization to disk, network,
+or any persistent store. All preview content is generated deterministically from the synthetic
+Phase 41 report fixtures.
 
 ---
 

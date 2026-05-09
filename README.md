@@ -1,8 +1,37 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 42 — Strategy Review Serialization Preview Fixtures v1**
+**Phase 43 — Strategy Review Report Export Planning Fixtures v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 42.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 43.
+
+## Features (Phase 43 — adds to Phase 42)
+
+- Adds `apps/dashboard/src/strategy-review-export-planning/` deterministic export-planning fixture layer:
+  - strict export-plan fixture/preview-reference/plan/meta/summary/safety-boundary/validation/build/capability types
+  - pure deterministic builders, normalization, serialization, equality, validation, and safety-validation helpers
+  - 16 deterministic synthetic export-planning fixtures referencing Phase 42 serialization previews
+  - planned target formats for JSON, Markdown, text, and metadata without performing exports
+- Adds Phase 43 strategy-review-export-planning capability flags:
+  - `strategyReviewExportPlanningFixtures: true`
+  - `syntheticStrategyReviewExportPlans: true`
+  - `strategyReviewExportPlanBuilders: true`
+  - `strategyReviewExportPlanSafetyValidation: true`
+  - `strategyReviewSerializationPreviewReferences: true`
+  - `strategyReviewActualFileExport: false`
+  - `strategyReviewFilesystemWrites: false`
+  - `strategyReviewDownloadSupport: false`
+  - `strategyReviewPdfGeneration: false`
+  - `strategyReviewCsvGeneration: false`
+  - `strategyReviewHtmlGeneration: false`
+  - `strategyReviewExportExternalNetwork: false`
+  - `strategyReviewExportPersistence: false`
+  - `strategyReviewExportExecution: false`
+  - `strategyReviewExportTradingSignals: false`
+  - `strategyReviewExportInvestmentAdvice: false`
+- Extends dashboard/read-only-api capability surfaces with Phase 43 flags
+- Adds `docs/STRATEGY_REVIEW_REPORT_EXPORT_PLANNING_FIXTURES.md`
+- Adds Phase 43 tests (300+ new tests)
+- No actual file export, no filesystem writes, no browser downloads, no PDF/CSV/HTML generation, no live data, no real UI rendering, no real scoring/ranking, no recommendations/signals, no execution, no network, no persistence
 
 ## Features (Phase 42 — adds to Phase 41)
 
