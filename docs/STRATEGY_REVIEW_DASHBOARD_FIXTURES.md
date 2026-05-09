@@ -83,7 +83,7 @@ Phase 40 prepares future local strategy-review dashboard/report workflows by pro
 
 No live dashboard rendering framework work, no real scoring/ranking engine, no asset selection, no recommendations/signals, no execution, no replay/backtest engine, no paper/live trading, no PnL/balance/order/fill logic, and no external connectivity.
 
-## 11) Phase 41 Preview Only
+## 11) Phase 42 Preview Only
 
 Next phase preview:
-**Phase 41 — Strategy Review Report Fixtures v1**
+**Phase 42 — Strategy Review Serialization Preview Fixtures v1**

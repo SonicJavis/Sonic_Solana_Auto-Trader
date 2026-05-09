@@ -1,8 +1,39 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 40 — Strategy Review Dashboard Fixtures v1**
+**Phase 41 — Strategy Review Report Fixtures v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 40.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 41.
+
+## Features (Phase 41 — adds to Phase 40)
+
+- Adds `apps/dashboard/src/strategy-review-reports/` deterministic strategy review report fixture layer:
+  - strict report fixture/dashboard-reference/section/card/table/summary/safety/meta/validation/build/capability types
+  - pure deterministic builders, normalization, serialization, equality, validation, and safety-validation helpers
+  - 16 deterministic synthetic strategy review report fixtures referencing Phase 40 dashboard fixtures
+- Adds Phase 41 strategy-review-report capability flags:
+  - `strategyReviewReportFixtures: true`
+  - `syntheticStrategyReviewReports: true`
+  - `strategyReviewReportBuilders: true`
+  - `strategyReviewReportSafetyValidation: true`
+  - `strategyReviewDashboardReferences: true`
+  - `strategyReviewReportActualFileExport: false`
+  - `strategyReviewReportDownloadSupport: false`
+  - `strategyReviewReportRealUiRendering: false`
+  - `strategyReviewReportRealScoring: false`
+  - `strategyReviewReportRealRanking: false`
+  - `strategyReviewReportRecommendations: false`
+  - `strategyReviewReportTradingSignals: false`
+  - `strategyReviewReportPaperTrading: false`
+  - `strategyReviewReportLiveTrading: false`
+  - `strategyReviewReportExecution: false`
+  - `strategyReviewReportSolanaRpc: false`
+  - `strategyReviewReportExternalNetwork: false`
+  - `strategyReviewReportPersistence: false`
+  - `strategyReviewReportInvestmentAdvice: false`
+- Extends dashboard/read-only-api capability surfaces with the same Phase 41 flags
+- Adds `docs/STRATEGY_REVIEW_REPORT_FIXTURES.md`
+- Adds Phase 41 regression and safety tests
+- No live data, no file export/download behavior, no real UI rendering, no real scoring/ranking, no recommendations/signals, no replay/backtesting/paper/live trading, no execution, no network, no persistence
 
 ## Features (Phase 40 — adds to Phase 39)
 
