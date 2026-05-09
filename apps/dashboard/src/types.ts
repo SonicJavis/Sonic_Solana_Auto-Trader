@@ -392,4 +392,19 @@ export interface DashboardUiShellCapabilities {
   readonly strategyReviewSerializationExecution: false;
   readonly strategyReviewSerializationTradingSignals: false;
   readonly strategyReviewSerializationInvestmentAdvice: false;
+  // Phase 43 strategy review export planning fixture capabilities
+  readonly strategyReviewExportPlanningFixtures: true;
+  readonly syntheticStrategyReviewExportPlans: true;
+  readonly strategyReviewExportPlanBuilders: true;
+  readonly strategyReviewExportPlanSafetyValidation: true;
+  readonly strategyReviewSerializationPreviewReferences: true;
+  readonly strategyReviewFilesystemWrites: false;
+  readonly strategyReviewPdfGeneration: false;
+  readonly strategyReviewCsvGeneration: false;
+  readonly strategyReviewHtmlGeneration: false;
+  readonly strategyReviewExportExternalNetwork: false;
+  readonly strategyReviewExportPersistence: false;
+  readonly strategyReviewExportExecution: false;
+  readonly strategyReviewExportTradingSignals: false;
+  readonly strategyReviewExportInvestmentAdvice: false;
 }
