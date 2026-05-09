@@ -1,5 +1,23 @@
 # Phase Log
 
+## Phase 42 — Strategy Review Serialization Preview Fixtures v1
+
+- Adds `apps/dashboard/src/strategy-review-serialization/` with deterministic serialization preview fixture layer:
+  - `types.ts` — Phase 42 constants, 16 fixture names/kinds/formats, preview/meta/summary/safety/validation/build/capability interfaces
+  - `capabilities.ts` — `getStrategyReviewSerializationPreviewCapabilities()` with Phase 42 flags
+  - `normalization.ts` — deterministic ordering, key sorting, serializability, equality, guard helpers, stable checksum
+  - `validation.ts` — `validateStrategyReviewSerializationPreviewFixture`, `validateStrategyReviewSerializationSafety`
+  - `builders.ts` — `buildStrategyReviewSerializationPreviewFixture`, `buildStrategyReviewSerializationSummary`, list/get helpers
+  - `fixtures.ts` — 16 deterministic strategy review serialization preview fixtures
+  - `index.ts` — barrel export
+- Exports all Phase 42 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard, dashboard-types, and read-only-api capability surfaces with Phase 42 flags
+- Adds `docs/STRATEGY_REVIEW_SERIALIZATION_PREVIEW_FIXTURES.md`
+- Adds `tests/phase42.test.ts` with 300+ new tests
+- **No live data. No actual file export/download behavior. No real UI rendering. No real scoring/ranking. No recommendations/signals. No replay/backtesting/paper/live trading. No Solana RPC/provider/Jito/MEV/mempool. No wallet or execution logic. No external network. No persistence/browser storage.**
+
+**Next phase guidance:** Phase 43 may add strategy review report export planning fixtures. Do not add live data or execution controls.
+
 ## Phase 41 — Strategy Review Report Fixtures v1
 
 - Adds `apps/dashboard/src/strategy-review-reports/` with deterministic strategy review report fixture layer:
