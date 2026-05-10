@@ -1,5 +1,9 @@
 # Architecture
 
+## Phase 47 Update
+
+Phase 47 extends `apps/dashboard/` with `src/strategy-review-export-audit-report-view-models/`, a deterministic strategy review export audit report view-model layer derived strictly from Phase 46 strategy review export audit report fixtures. This layer is fixture-derived view-model-only, local-only, read-only, deterministic, in-memory, external-network-free, non-rendering, non-DOM, non-persistent, non-executable, and non-advisory.
+
 ## Phase 46 Update
 
 Phase 46 extends `apps/dashboard/` with `src/strategy-review-export-audit-report/`, a deterministic strategy review export audit report fixture layer that references Phase 45 strategy review export audit fixtures to produce one typed synthetic report-shaped fixture per source audit fixture. This layer is report-modelling-only, local-only, read-only, fixture-backed, deterministic, in-memory, external-network-free, non-advisory, file-write-free, download-free, generation-free, and execution-free.

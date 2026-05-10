@@ -399,6 +399,29 @@ export interface LocalReadOnlyApiCapabilities {
   readonly strategyReviewReportScheduledJobs: false;
   readonly strategyReviewReportLiveData: false;
   readonly strategyReviewReportNetworkAccess: false;
+  // Phase 47 strategy review export audit report view-model capabilities
+  readonly strategyReviewExportAuditReportViewModels: true;
+  readonly syntheticStrategyReviewExportAuditReportViewModels: true;
+  readonly deterministicStrategyReviewExportAuditReportViewModels: true;
+  readonly localOnlyStrategyReviewExportAuditReportViewModels: true;
+  readonly readOnlyStrategyReviewExportAuditReportViewModels: true;
+  readonly fixtureDerivedStrategyReviewExportAuditReportViewModels: true;
+  readonly strategyReviewExportAuditReportViewModelLiveData: false;
+  readonly strategyReviewExportAuditReportViewModelNetworkAccess: false;
+  readonly strategyReviewExportAuditReportViewModelPersistence: false;
+  readonly strategyReviewExportAuditReportViewModelFilesystemWrites: false;
+  readonly strategyReviewExportAuditReportViewModelDownloads: false;
+  readonly strategyReviewExportAuditReportViewModelPdfGeneration: false;
+  readonly strategyReviewExportAuditReportViewModelCsvGeneration: false;
+  readonly strategyReviewExportAuditReportViewModelHtmlGeneration: false;
+  readonly strategyReviewExportAuditReportViewModelUiRendering: false;
+  readonly strategyReviewExportAuditReportViewModelDomAccess: false;
+  readonly strategyReviewExportAuditReportViewModelBackgroundJobs: false;
+  readonly strategyReviewExportAuditReportViewModelScheduledJobs: false;
+  readonly strategyReviewExportAuditReportViewModelExecution: false;
+  readonly strategyReviewExportAuditReportViewModelTradingSignals: false;
+  readonly strategyReviewExportAuditReportViewModelRecommendations: false;
+  readonly strategyReviewExportAuditReportViewModelInvestmentAdvice: false;
   // Safety labels
   readonly fixtureOnly: true;
   readonly analysisOnly: true;

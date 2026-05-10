@@ -773,3 +773,32 @@ export {
   isValidStrategyReviewExportAuditReportGeneratedAt,
   isValidStrategyReviewExportAuditReportSource,
 } from './strategy-review-export-audit-report/index.js';
+
+// Phase 47 — Strategy Review Export Audit Report View Models v1
+export {
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_VIEW_MODEL_PHASE,
+  PHASE_47_STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_VIEW_MODEL_GENERATED_AT,
+  PHASE_47_STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_VIEW_MODEL_SOURCE,
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_VIEW_MODEL_NAMES,
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_VIEW_MODEL_KINDS,
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_VIEW_MODELS,
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_VIEW_MODEL_MAP,
+  listStrategyReviewExportAuditReportViewModels,
+  getStrategyReviewExportAuditReportViewModel,
+  buildStrategyReviewExportAuditReportListItemViewModel,
+  buildStrategyReviewExportAuditReportDetailViewModel,
+  buildStrategyReviewExportAuditReportSummaryViewModel,
+  buildStrategyReviewExportAuditReportViewModel,
+  validateStrategyReviewExportAuditReportViewModel,
+  validateStrategyReviewExportAuditReportViewModelSafety,
+  normalizeStrategyReviewExportAuditReportViewModel,
+  serializeStrategyReviewExportAuditReportViewModel,
+  areStrategyReviewExportAuditReportViewModelsEqual,
+  getStrategyReviewExportAuditReportViewModelCapabilities,
+  isValidStrategyReviewExportAuditReportViewModelName,
+  isValidStrategyReviewExportAuditReportViewModelKind,
+  isValidStrategyReviewExportAuditReportViewModelStatus,
+  isValidStrategyReviewExportAuditReportViewModelSeverity,
+  isValidStrategyReviewExportAuditReportViewModelGeneratedAt,
+  isValidStrategyReviewExportAuditReportViewModelSource,
+} from './strategy-review-export-audit-report-view-models/index.js';
