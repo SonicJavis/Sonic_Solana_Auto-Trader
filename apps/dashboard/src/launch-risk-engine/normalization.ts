@@ -31,7 +31,7 @@ function sortKeysDeep(value: unknown): unknown {
   }
   if (value !== null && typeof value === 'object') {
     return Object.entries(value as Record<string, unknown>)
-      .sort(([left], [right]) => left.localeCompare(right))
+      .sort(([left], [right]) => left.localeCompare(right, 'en-US'))
       .reduce<Record<string, unknown>>((accumulator, [key, nextValue]) => {
         accumulator[key] = sortKeysDeep(nextValue);
         return accumulator;

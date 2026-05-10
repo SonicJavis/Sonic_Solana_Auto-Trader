@@ -33,7 +33,9 @@ const FORBIDDEN_FILESYSTEM_PATTERN =
   /\b(?:fs\.|writeFile|createWriteStream|localStorage|indexedDB)\b/i;
 const FORBIDDEN_RUNTIME_PATTERN = /\b(?:route\b|handler\b|server\b|listen\()\b/i;
 const FORBIDDEN_WALLET_PATTERN =
-  /\b(?:privateKey|secretKey|seedPhrase|mnemonic|Keypair)(?![\s_-]*cluster)\b/i;
+  // The negative lookahead `(?![\s_-]*cluster)` excludes "wallet_cluster_risk" factor kind
+  // which legitimately contains "wallet" as part of a risk factor name (not a wallet implementation).
+  /\b(?:privateKey|secretKey|seedPhrase|mnemonic|Keypair|wallet)(?![\s_-]*cluster)\b/i;
 const FORBIDDEN_EXECUTION_PATTERN =
   /\b(?:signTransaction|sendTransaction|execute|buy now|sell now|enter now|exit now|ape|snipe now|trading signals?|investment advice)\b/i;
 const FORBIDDEN_PROVIDER_REFERENCE_PATTERN =
