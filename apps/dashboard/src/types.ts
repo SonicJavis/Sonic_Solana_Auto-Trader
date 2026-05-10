@@ -824,7 +824,6 @@ export interface DashboardUiShellCapabilities {
   readonly launchRiskRealProviders: false;
   readonly launchRiskProviderAdapters: false;
   readonly launchRiskSolanaRpc: false;
-  readonly launchRiskWebSocketAccess: false;
   readonly launchRiskGeyserYellowstone: false;
   readonly launchRiskPumpFunIntegration: false;
   readonly launchRiskDexIntegration: false;

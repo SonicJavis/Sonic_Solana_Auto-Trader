@@ -1,5 +1,9 @@
 # Safety Rules
 
+## Phase 58 Safety Extension
+
+Phase 58 launch risk engine surfaces must remain synthetic-only, local-only, read-only, deterministic, fixture-derived, rule-based, evidence-backed, pure, serializable, in-memory, non-persistent, external-network-free, non-rendering, non-DOM, non-wallet, non-executable, non-advisory, paper-simulation-free, and strategy-selection-free. Phase 58 does not permit live data, real provider adapters, Solana RPC connections, WebSocket/Geyser/Yellowstone, Pump.fun/Jupiter/Raydium/Orca/Meteora integrations, real endpoints, route handlers, runtime request handling, filesystem writes, persistence, downloads, queue/background/scheduled jobs, wallet/private key handling, signing/sending logic, execution logic, trading signals, recommendations, investment advice, paper simulation, live execution, or strategy selection. Risk outputs are non-advisory classifications only: they must not be interpreted as buy/sell signals, trading recommendations, or investment guidance.
+
 ## Phase 57 Safety Extension
 
 Phase 57 synthetic event stream replay harness surfaces must remain synthetic-only, local-only, read-only, deterministic, fixture-derived, replay-only, pure, serializable, in-memory, non-persistent, external-network-free, non-rendering, non-DOM, non-wallet, non-executable, non-advisory, and paper-simulation-free. Phase 57 does not permit live data, real provider adapters, Solana RPC connections, WebSocket/Geyser/Yellowstone, Pump.fun/Jupiter/Raydium/Orca/Meteora integrations, real endpoints, route handlers, runtime request handling, filesystem writes, persistence, downloads, queue/background/scheduled jobs, wallet/private key handling, signing/sending logic, execution logic, trading signals, recommendations, investment advice, live execution, or paper simulation.

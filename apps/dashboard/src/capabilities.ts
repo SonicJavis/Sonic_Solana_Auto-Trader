@@ -741,7 +741,6 @@ export function getDashboardUiShellCapabilities(): DashboardUiShellCapabilities 
     launchRiskRealProviders: false,
     launchRiskProviderAdapters: false,
     launchRiskSolanaRpc: false,
-    launchRiskWebSocketAccess: false,
     launchRiskGeyserYellowstone: false,
     launchRiskPumpFunIntegration: false,
     launchRiskDexIntegration: false,

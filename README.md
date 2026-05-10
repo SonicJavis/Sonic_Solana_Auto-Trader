@@ -1,8 +1,25 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 57 — Synthetic Event Stream Replay Harness v1**
+**Phase 58 — Launch Risk Engine v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 57.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 58.
+
+## Features (Phase 58 — adds to Phase 57)
+
+- Adds `apps/dashboard/src/launch-risk-engine/` deterministic, fixture-derived, read-only, rule-based synthetic risk engine vertical slice:
+  - 8 deterministic risk assessment fixtures mapped 1:1 to Phase 57 replay fixtures and Phase 56 lifecycle fixtures (clean launch, thin liquidity, concentrated holders, suspicious creator, possible bundle cluster, metadata incomplete, high early-volume, safety rejected)
+  - 12 risk factor kinds: metadata completeness, mint authority, freeze authority, thin liquidity, liquidity volatility, holder concentration, creator activity, wallet cluster, early volume burst, bundle-like pattern, replay integrity, safety rejection
+  - deterministic factor outputs with factorId, factorKind, severity, scoreContribution, weight, confidenceLabel, reasonCode, summary, sourceLifecycleEventIds, sourceReplaySnapshotIds, evidenceReferenceIds, and safetyNotes
+  - rule-based weighted risk scoring, threshold bands (low/moderate/elevated/high/rejected), and structured risk assessments
+  - deterministic view-model builders, API contract fixtures (list/detail/summary/error), pure selector helpers, normalization/serialization/equality helpers, and structural/safety validation
+  - explicit Phase 56 lifecycle fixture linkage and Phase 57 replay fixture linkage throughout all factor evidence references
+  - negative fixtures and corruption tests: missing evidence, invalid scores, band mismatch, unsafe advisory text, missing reason code, unsafe capability flags
+- Adds Phase 58 capability flags with all live/network/provider/RPC/persistence/filesystem/route/runtime/UI/DOM/background/wallet/signing/execution/signal/recommendation/advice/paper/live-execution/strategy-selection flags fixed to `false`
+- Adds `docs/LAUNCH_RISK_ENGINE.md`
+- Adds `tests/phase58.test.ts`
+- **No live data. No real provider adapters. No Solana RPC connections. No WebSocket/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora integrations. No wallet/private key/signing/sending logic. No execution. No recommendations/signals/investment advice. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/background jobs. No paper simulation. No strategy selection.**
+
+**Next phase: Phase 59 — Risk Explanation and Evidence Models v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 57 — adds to Phase 56)
 

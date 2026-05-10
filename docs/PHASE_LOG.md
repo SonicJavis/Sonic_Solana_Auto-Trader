@@ -1,5 +1,30 @@
 # Phase Log
 
+## Phase 58 — Launch Risk Engine v1
+
+- Adds `apps/dashboard/src/launch-risk-engine/` complete deterministic, fixture-derived, read-only, rule-based synthetic risk engine milestone surface:
+  - `types.ts` — Phase 58 constants, assessment names/kinds, factor kinds, severity/confidence/band values, risk identity/factor-output/assessment/threshold/view-model/API-contract/selector/validation/capability interfaces
+  - `factors.ts` — 12 deterministic risk factor definitions with weights and reason code templates
+  - `scoring.ts` — deterministic weighted risk score calculation (`calculateLaunchRiskScore`)
+  - `thresholds.ts` — risk band threshold model (`LAUNCH_RISK_ENGINE_DEFAULT_THRESHOLDS`, `classifyLaunchRiskBand`)
+  - `builders.ts` — deterministic fixture builder (`buildLaunchRiskEngineFixture`) and factor output/assessment builders
+  - `fixtures.ts` — `LAUNCH_RISK_ENGINE_FIXTURES` (8 fixtures), map/list/get helpers
+  - `assessments.ts` — `buildLaunchRiskAssessment` with rejection/warning classification
+  - `view-models.ts` / `contracts.ts` / `selectors.ts` — risk view models, list/detail/summary/error API contracts, and pure local selectors
+  - `normalization.ts` / `validation.ts` — deterministic checksum/normalization/serialization/equality/isValid helpers plus structural/safety validation
+  - `capabilities.ts` — `getLaunchRiskEngineCapabilities()` with positive and negative Phase 58 risk engine flags
+  - `index.ts` — re-exports all public API
+- Exports all Phase 58 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard/read-only-api capability surfaces with Phase 58 launch risk engine flags
+- Each risk fixture references a valid Phase 56 lifecycle fixture and Phase 57 replay fixture
+- Each factor output has evidence references, reason codes, source lifecycle event IDs, and source replay snapshot IDs
+- Adds `tests/phase58.test.ts` with 134+ tests covering fixtures, factor outputs, thresholds, scoring, assessments, view models, API contracts, selectors, normalization, validation (success and failure), capability flags, dashboard exports, safety scan, determinism, and immutability
+- Adds `docs/LAUNCH_RISK_ENGINE.md`
+- **No live data. No Solana RPC connections. No real provider adapters. No WebSocket/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora integration. No wallet handling. No signing. No sending. No execution. No recommendations. No trading signals. No investment advice. No persistence. No background jobs. No route handlers. No UI rendering. No paper simulation. No strategy selection.**
+- FULL_AUTO and LIMITED_LIVE remain locked
+
+**Next phase guidance:** Phase 59 — Risk Explanation and Evidence Models v1 (preview only; not implemented).
+
 ## Phase 57 — Synthetic Event Stream Replay Harness v1
 
 - Adds `apps/dashboard/src/synthetic-event-stream-replay-harness/` complete deterministic, fixture-derived, read-only replay milestone surface:

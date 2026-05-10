@@ -738,18 +738,6 @@ export function buildLaunchRiskEngineFixture(
   const hardRejectionReasons = buildHardRejectionReasons(fixtureName);
   const softWarningReasons = buildSoftWarningReasons(fixtureName);
 
-  const evidenceCount = factorOutputs.reduce(
-    (sum, f) => sum + f.evidenceReferenceIds.length,
-    0,
-  );
-
-  const assessmentStatus =
-    hardRejectionReasons.length > 0
-      ? 'safety_rejected'
-      : evidenceCount === 0
-        ? 'insufficient_evidence'
-        : 'assessed';
-
   const assessment = buildLaunchRiskAssessment({
     assessmentId,
     assessmentName: fixtureName,
