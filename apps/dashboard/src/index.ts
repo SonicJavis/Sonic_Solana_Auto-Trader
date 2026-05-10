@@ -986,3 +986,33 @@ export {
   isValidStrategyReviewExportAuditReportSurfaceRegistrySource,
   stableDeterministicStrategyReviewExportAuditReportSurfaceRegistryChecksum,
 } from './strategy-review-export-audit-report-surface-registry/index.js';
+
+// ─── Phase 53 — Synthetic Launch Intelligence Foundation ─────
+
+export {
+  SYNTHETIC_LAUNCH_INTELLIGENCE_PHASE,
+  PHASE_53_SYNTHETIC_LAUNCH_INTELLIGENCE_GENERATED_AT,
+  PHASE_53_SYNTHETIC_LAUNCH_INTELLIGENCE_SOURCE,
+  PHASE_53_SYNTHETIC_LAUNCH_INTELLIGENCE_VERSION,
+  SYNTHETIC_LAUNCH_INTELLIGENCE_SCENARIO_NAMES,
+  SYNTHETIC_LAUNCH_INTELLIGENCE_SCENARIO_KINDS,
+  SYNTHETIC_LAUNCH_INTELLIGENCE_FIXTURES,
+  SYNTHETIC_LAUNCH_INTELLIGENCE_FIXTURE_MAP,
+  listSyntheticLaunchIntelligenceFixtures,
+  getSyntheticLaunchIntelligenceFixture,
+  buildSyntheticLaunchIntelligenceFixture,
+  buildSyntheticLaunchIntelligenceViewModel,
+  buildSyntheticLaunchIntelligenceApiContract,
+  selectSyntheticLaunchIntelligenceFixture,
+  validateSyntheticLaunchIntelligenceFixture,
+  validateSyntheticLaunchIntelligenceSafety,
+  normalizeSyntheticLaunchIntelligenceFixture,
+  serializeSyntheticLaunchIntelligenceFixture,
+  areSyntheticLaunchIntelligenceFixturesEqual,
+  getSyntheticLaunchIntelligenceCapabilities,
+  stableDeterministicSyntheticLaunchIntelligenceChecksum,
+  isValidSyntheticLaunchIntelligenceScenarioName,
+  isValidSyntheticLaunchIntelligenceScenarioKind,
+  isValidSyntheticLaunchIntelligenceGeneratedAt,
+  isValidSyntheticLaunchIntelligenceSource,
+} from './synthetic-launch-intelligence/index.js';

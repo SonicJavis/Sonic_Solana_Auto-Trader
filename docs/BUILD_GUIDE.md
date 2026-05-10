@@ -1,5 +1,9 @@
 # Build Guide
 
+## Phase 53 Note
+
+Phase 53 introduces synthetic launch intelligence in `apps/dashboard/src/synthetic-launch-intelligence/` as a complete aggressive-safe vertical slice (fixtures, view models, contracts, selectors, normalization, validation, capabilities, docs, tests). Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. No live data, provider adapters, Solana RPC, Pump.fun/Jupiter/Raydium/Orca/Meteora integrations, wallet logic, signing/sending, execution, recommendations/signals/investment advice, endpoints/routes/handlers/runtime request handling, UI rendering/DOM, filesystem writes, persistence, or background jobs are introduced.
+
 ## Phase 52 Note
 
 Phase 52 introduces strategy review export audit report surface registry consolidation in `apps/dashboard/src/strategy-review-export-audit-report-surface-registry/`, sourced from completed Phase 45–51 surfaces. It also introduces `docs/AGGRESSIVE_SAFE_PHASE_POLICY.md` to move from micro-phases to aggressive-but-safe milestone phases while preserving hard safety gates. Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. No real UI rendering, DOM access, endpoints, route handlers, runtime request handling, live query parsing, real reports, downloads, PDF/CSV/HTML generation, filesystem writes, persistence, background/scheduled jobs, real audit execution, live data, network access, wallet logic, execution logic, recommendations, signals, or investment advice is introduced.
