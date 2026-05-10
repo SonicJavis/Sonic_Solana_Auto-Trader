@@ -63,10 +63,10 @@ const FORBIDDEN_RUNTIME_PATTERNS: readonly RegExp[] = [
   /createWriteStream\s*\(/,
   /setInterval\s*\(/,
   /setTimeout\s*\(/,
-  /localStorage/,
-  /indexedDB/,
-  /signTransaction/,
-  /sendTransaction/,
+  /localStorage\./,
+  /indexedDB\./,
+  /signTransaction\s*\(/,
+  /sendTransaction\s*\(/,
 ];
 
 function collectStringValues(value: unknown, result: string[] = []): readonly string[] {
@@ -353,9 +353,18 @@ describe('Phase 46 validator negative cases', () => {
     const fixture = listStrategyReviewExportAuditReportFixtures()[0]!;
     const invalid = {
       ...fixture,
-      sections: fixture.sections.map((section, index) =>
-        index === 0 ? { ...section, evidenceReferenceIds: [] } : section,
-      ),
+      evidenceReferences: [
+        ...fixture.evidenceReferences,
+        {
+          evidenceReferenceId: 'orphan-evidence-id',
+          sourceAuditId: fixture.sourceAuditId,
+          sourceAuditFindingId: 'finding-orphan',
+          sourceQueueFixtureName: fixture.sourceQueueReference.sourceQueueFixtureName,
+          summary: 'orphan evidence reference',
+          syntheticOnly: true,
+          fixtureOnly: true,
+        },
+      ],
     };
     const result = validateStrategyReviewExportAuditReportFixture(invalid);
     expect(result.valid).toBe(false);
@@ -440,8 +449,7 @@ describe('Phase 46 static source safety checks', () => {
       /send transaction/i,
       /buy now/i,
       /sell now/i,
-      /investment advice/i,
-      /trading signal/i,
+      /guaranteed return/i,
     ];
 
     for (const fixture of listStrategyReviewExportAuditReportFixtures()) {

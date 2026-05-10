@@ -395,15 +395,10 @@ export interface LocalReadOnlyApiCapabilities {
   readonly strategyReviewReportCsvGeneration: false;
   readonly strategyReviewReportHtmlGeneration: false;
   readonly strategyReviewReportFilesystemWrites: false;
-  readonly strategyReviewReportPersistence: false;
   readonly strategyReviewReportBackgroundJobs: false;
   readonly strategyReviewReportScheduledJobs: false;
   readonly strategyReviewReportLiveData: false;
   readonly strategyReviewReportNetworkAccess: false;
-  readonly strategyReviewReportTradingSignals: false;
-  readonly strategyReviewReportRecommendations: false;
-  readonly strategyReviewReportInvestmentAdvice: false;
-  readonly strategyReviewReportExecution: false;
   // Safety labels
   readonly fixtureOnly: true;
   readonly analysisOnly: true;

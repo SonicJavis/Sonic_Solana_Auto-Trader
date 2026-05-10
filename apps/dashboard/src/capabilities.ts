@@ -368,14 +368,9 @@ export function getDashboardUiShellCapabilities(): DashboardUiShellCapabilities 
     strategyReviewReportCsvGeneration: false,
     strategyReviewReportHtmlGeneration: false,
     strategyReviewReportFilesystemWrites: false,
-    strategyReviewReportPersistence: false,
     strategyReviewReportBackgroundJobs: false,
     strategyReviewReportScheduledJobs: false,
     strategyReviewReportLiveData: false,
     strategyReviewReportNetworkAccess: false,
-    strategyReviewReportTradingSignals: false,
-    strategyReviewReportRecommendations: false,
-    strategyReviewReportInvestmentAdvice: false,
-    strategyReviewReportExecution: false,
   };
 }

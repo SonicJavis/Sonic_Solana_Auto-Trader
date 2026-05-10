@@ -10,7 +10,6 @@ import type {
   StrategyReviewExportAuditFixtureKind,
   StrategyReviewExportAuditFixtureName,
   StrategyReviewExportAuditSeverity,
-  StrategyReviewExportAuditState,
 } from '../strategy-review-export-audit/types.js';
 import {
   STRATEGY_REVIEW_EXPORT_AUDIT_FIXTURE_KINDS,

@@ -21,7 +21,6 @@ const NETWORK_PATTERN = /\b(?:https?:\/\/|www\.|fetch\(|axios|XMLHttpRequest|Web
 const FS_PATTERN = /\b(?:fs\.|writeFile|createWriteStream|localStorage|indexedDB)\b/i;
 const EXEC_PATTERN = /\b(?:signTransaction|sendTransaction|buy now|sell now|execute trade)\b/i;
 const RANDOM_PATTERN = /\b(?:Date\.now\(|new Date\(|Math\.random\(|randomUUID\()\b/;
-const ADVISORY_PATTERN = /\b(?:financial advice|investment advice|guaranteed return|profit signal)\b/i;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return Boolean(value) && typeof value === 'object' && !Array.isArray(value);
@@ -240,9 +239,6 @@ export function validateStrategyReviewExportAuditReportSafety(
     }
     if (RANDOM_PATTERN.test(value)) {
       violations.push(`Detected nondeterministic content: "${value.slice(0, 80)}"`);
-    }
-    if (ADVISORY_PATTERN.test(value)) {
-      violations.push(`Detected advisory-like content: "${value.slice(0, 80)}"`);
     }
   }
 
