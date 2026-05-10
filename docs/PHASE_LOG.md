@@ -13,7 +13,7 @@
 - Exports all Phase 45 helpers through `apps/dashboard/src/index.ts`
 - Extends dashboard capability surface with Phase 45 flags (`strategyReviewExportAuditFixtures`, `syntheticStrategyReviewExportAudits`, `strategyReviewActualAuditLogs: false`, etc.)
 - Adds `docs/STRATEGY_REVIEW_EXPORT_AUDIT_FIXTURES.md`
-- Adds `tests/phase45.test.ts` with 1026 new tests (16300 total)
+- Adds `tests/phase45.test.ts` with 1036 new tests (16310 total)
 - **No live data. No actual audit logs, queue workers, scheduled jobs, or background jobs. No file exports, filesystem writes, browser downloads, PDF/CSV/HTML generation. No real audit execution. No real UI rendering. No real scoring/ranking. No recommendations/signals. No replay/backtesting/paper/live trading. No Solana RPC/provider/Jito/MEV/mempool. No wallet or execution logic. No external network. No persistence/browser storage.**
 
 **Next phase guidance:** Phase 46 may add strategy review export audit report fixtures. Do not add live data or execution controls.

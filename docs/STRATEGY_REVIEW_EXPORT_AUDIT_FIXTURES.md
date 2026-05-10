@@ -164,7 +164,7 @@ getStrategyReviewExportAuditCapabilities()
 
 ### Test Coverage
 
-`tests/phase45.test.ts` — 1026 tests covering:
+`tests/phase45.test.ts` — 1036 tests covering:
 - Constants and exports
 - Capability flags (module and dashboard)
 - Fixture map (16 entries)
