@@ -583,4 +583,32 @@ export interface DashboardUiShellCapabilities {
   readonly strategyReviewExportAuditReportSelectorViewModelApiContractTradingSignals: false;
   readonly strategyReviewExportAuditReportSelectorViewModelApiContractRecommendations: false;
   readonly strategyReviewExportAuditReportSelectorViewModelApiContractInvestmentAdvice: false;
+  // Phase 52 strategy review export audit report surface registry capabilities
+  readonly strategyReviewExportAuditReportSurfaceRegistry: true;
+  readonly syntheticStrategyReviewExportAuditReportSurfaceRegistry: true;
+  readonly deterministicStrategyReviewExportAuditReportSurfaceRegistry: true;
+  readonly localOnlyStrategyReviewExportAuditReportSurfaceRegistry: true;
+  readonly readOnlyStrategyReviewExportAuditReportSurfaceRegistry: true;
+  readonly fixtureDerivedStrategyReviewExportAuditReportSurfaceRegistry: true;
+  readonly aggressiveSafePhasePolicy: true;
+  readonly preventsUnnecessaryDerivativeLayers: true;
+  readonly strategyReviewExportAuditReportSurfaceRegistryLiveData: false;
+  readonly strategyReviewExportAuditReportSurfaceRegistryNetworkAccess: false;
+  readonly strategyReviewExportAuditReportSurfaceRegistryPersistence: false;
+  readonly strategyReviewExportAuditReportSurfaceRegistryFilesystemWrites: false;
+  readonly strategyReviewExportAuditReportSurfaceRegistryDownloads: false;
+  readonly strategyReviewExportAuditReportSurfaceRegistryPdfGeneration: false;
+  readonly strategyReviewExportAuditReportSurfaceRegistryCsvGeneration: false;
+  readonly strategyReviewExportAuditReportSurfaceRegistryHtmlGeneration: false;
+  readonly strategyReviewExportAuditReportSurfaceRegistryRouteHandlers: false;
+  readonly strategyReviewExportAuditReportSurfaceRegistryHttpServer: false;
+  readonly strategyReviewExportAuditReportSurfaceRegistryRuntimeRequests: false;
+  readonly strategyReviewExportAuditReportSurfaceRegistryUiRendering: false;
+  readonly strategyReviewExportAuditReportSurfaceRegistryDomAccess: false;
+  readonly strategyReviewExportAuditReportSurfaceRegistryBackgroundJobs: false;
+  readonly strategyReviewExportAuditReportSurfaceRegistryScheduledJobs: false;
+  readonly strategyReviewExportAuditReportSurfaceRegistryExecution: false;
+  readonly strategyReviewExportAuditReportSurfaceRegistryTradingSignals: false;
+  readonly strategyReviewExportAuditReportSurfaceRegistryRecommendations: false;
+  readonly strategyReviewExportAuditReportSurfaceRegistryInvestmentAdvice: false;
 }

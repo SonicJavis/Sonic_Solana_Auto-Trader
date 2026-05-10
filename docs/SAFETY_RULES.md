@@ -1,5 +1,9 @@
 # Safety Rules
 
+## Phase 52 Safety Extension
+
+Phase 52 strategy review export audit report surface registry must remain fixture-derived-registry-only, local-only, read-only, synthetic-only, deterministic, pure, serializable, in-memory, non-persistent, external-network-free, non-rendering, non-DOM, non-executable, and non-advisory. Phase 52 does not permit real UI rendering, DOM access, real HTTP endpoints, route handlers, runtime request handling, live query parsing, real reports, browser downloads, PDF/CSV/HTML generation, filesystem writes, persistence, queue workers, scheduled jobs, background jobs, real audit execution, actual audit logs, live data, Solana RPC/provider APIs, wallet access/private keys, execution/trading logic, recommendations, trading signals, or investment advice. Phase 52 also enforces aggressive-safe anti-recursion policy: no wrapper-on-wrapper derivative layers without a real consumer.
+
 ## Phase 51 Safety Extension
 
 Phase 51 strategy review export audit report selector view-model API contracts must remain fixture-derived-contract-only, local-only, read-only, synthetic-only, deterministic, pure, serializable, in-memory, non-persistent, external-network-free, non-rendering, non-DOM, non-executable, and non-advisory. Phase 51 does not permit real UI rendering, DOM access, real HTTP endpoints, route handlers, runtime request handling, live query parsing, real reports, browser downloads, PDF/CSV/HTML generation, filesystem writes, persistence, queue workers, scheduled jobs, background jobs, real audit execution, actual audit logs, live data, Solana RPC/provider APIs, wallet access/private keys, execution/trading logic, recommendations, trading signals, or investment advice. All selector-view-model API contract data is deterministic, static, and fixture-derived from Phase 50 selector view models.
