@@ -1,42 +1,44 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 46 — Strategy Review Export Audit Report Fixtures v1**
+**Phase 47 — Strategy Review Export Audit Report View Models v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 46.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 47.
 
-## Features (Phase 46 — adds to Phase 45)
+## Features (Phase 47 — adds to Phase 46)
 
-- Adds `apps/dashboard/src/strategy-review-export-audit-report/` deterministic report-shaped fixture layer:
-  - strict report-fixture/section/evidence/safety/meta/validation/build/capability types
+- Adds `apps/dashboard/src/strategy-review-export-audit-report-view-models/` deterministic fixture-derived view-model layer:
+  - strict list/detail/summary-card/section/evidence/safety/validation/capability types
   - pure deterministic builders, normalization, serialization, equality, validation, and safety-validation helpers
-  - one deterministic synthetic report fixture per Phase 45 export-audit fixture
-  - stable section ordering, evidence references, validation notes, and limitations/non-goals text
-- Adds Phase 46 strategy-review-export-audit-report capability flags:
-  - `strategyReviewExportAuditReportFixtures: true`
-  - `syntheticStrategyReviewExportAuditReports: true`
-  - `deterministicStrategyReviewExportAuditReports: true`
-  - `localOnlyStrategyReviewExportAuditReports: true`
-  - `readOnlyStrategyReviewExportAuditReports: true`
-  - `strategyReviewActualAuditReports: false`
-  - `strategyReviewReportDownloads: false`
-  - `strategyReviewReportPdfGeneration: false`
-  - `strategyReviewReportCsvGeneration: false`
-  - `strategyReviewReportHtmlGeneration: false`
-  - `strategyReviewReportFilesystemWrites: false`
-  - `strategyReviewReportPersistence: false`
-  - `strategyReviewReportBackgroundJobs: false`
-  - `strategyReviewReportScheduledJobs: false`
-  - `strategyReviewReportLiveData: false`
-  - `strategyReviewReportNetworkAccess: false`
-  - `strategyReviewReportTradingSignals: false`
-  - `strategyReviewReportRecommendations: false`
-  - `strategyReviewReportInvestmentAdvice: false`
-  - `strategyReviewReportExecution: false`
-- Adds `docs/STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_FIXTURES.md` documentation
-- Adds `tests/phase46.test.ts` coverage for deterministic report fixtures and safety guards
-- **No real reports. No downloads. No PDF/CSV/HTML generation. No filesystem writes. No persistence. No queue/background/scheduled jobs. No live data. No network. No wallet. No execution. No recommendations/signals/investment advice.**
+  - one deterministic synthetic view model per Phase 46 export-audit-report fixture
+  - stable summary-card ordering, detail-section ordering, evidence linking, and limitation/non-goal text
+- Adds Phase 47 strategy-review-export-audit-report-view-model capability flags:
+  - `strategyReviewExportAuditReportViewModels: true`
+  - `syntheticStrategyReviewExportAuditReportViewModels: true`
+  - `deterministicStrategyReviewExportAuditReportViewModels: true`
+  - `localOnlyStrategyReviewExportAuditReportViewModels: true`
+  - `readOnlyStrategyReviewExportAuditReportViewModels: true`
+  - `fixtureDerivedStrategyReviewExportAuditReportViewModels: true`
+  - `strategyReviewExportAuditReportViewModelLiveData: false`
+  - `strategyReviewExportAuditReportViewModelNetworkAccess: false`
+  - `strategyReviewExportAuditReportViewModelPersistence: false`
+  - `strategyReviewExportAuditReportViewModelFilesystemWrites: false`
+  - `strategyReviewExportAuditReportViewModelDownloads: false`
+  - `strategyReviewExportAuditReportViewModelPdfGeneration: false`
+  - `strategyReviewExportAuditReportViewModelCsvGeneration: false`
+  - `strategyReviewExportAuditReportViewModelHtmlGeneration: false`
+  - `strategyReviewExportAuditReportViewModelUiRendering: false`
+  - `strategyReviewExportAuditReportViewModelDomAccess: false`
+  - `strategyReviewExportAuditReportViewModelBackgroundJobs: false`
+  - `strategyReviewExportAuditReportViewModelScheduledJobs: false`
+  - `strategyReviewExportAuditReportViewModelExecution: false`
+  - `strategyReviewExportAuditReportViewModelTradingSignals: false`
+  - `strategyReviewExportAuditReportViewModelRecommendations: false`
+  - `strategyReviewExportAuditReportViewModelInvestmentAdvice: false`
+- Adds `docs/STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_VIEW_MODELS.md` documentation
+- Adds `tests/phase47.test.ts` coverage for deterministic view models and safety guards
+- **No real reports. No downloads. No PDF/CSV/HTML generation. No filesystem writes. No persistence. No queue/background/scheduled jobs. No live data. No network. No wallet. No execution. No recommendations/signals/investment advice. No UI rendering. No DOM access. No API endpoints added.**
 
-**Next phase: Phase 47 — Strategy Review Export Audit Report Rendering Models v1 (preview only, no real rendering or exports)**
+**Next phase: Phase 48 — reserved for future phase-gated work (not implemented in this phase).**
 
 ---
 
