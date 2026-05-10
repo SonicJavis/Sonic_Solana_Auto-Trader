@@ -1,8 +1,22 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 53 — Synthetic Launch Intelligence Foundation v1**
+**Phase 54 — Read-Only Provider Interface Contracts v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 52.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 54.
+
+## Features (Phase 54 — adds to Phase 53)
+
+- Adds `apps/dashboard/src/read-only-provider-contracts/` deterministic, fixture-derived, read-only provider interface contracts vertical slice:
+  - 8 provider contract fixtures: Solana RPC, Pump Launch, DEX Liquidity, Token Metadata, Holder Distribution, Wallet Cluster, Risk Intelligence, and Disabled Unsafe
+  - provider identity model, interface contract shapes, capability contracts, health/status contracts, synthetic response contracts (derived from Phase 53 scenarios)
+  - deterministic view-model builders, API contract fixtures (list/detail/summary/error), selector helpers, normalization/serialization/equality helpers, and structural/safety validation
+  - explicit provider capability contracts (all live capabilities disabled, all fixture capabilities enabled)
+- Adds Phase 54 capability flags for read-only provider contracts with all live/network/adapter/RPC/persistence/filesystem/route/runtime/UI/DOM/background/wallet/signing/execution/signal/recommendation/advice flags fixed to `false`
+- Adds `docs/READ_ONLY_PROVIDER_CONTRACTS.md`
+- Adds `tests/phase54.test.ts`
+- **No live data. No provider adapters. No Solana RPC connections. No WebSocket/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora integrations. No wallet/private key/signing/sending logic. No execution. No recommendations/signals/investment advice. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/background jobs.**
+
+**Next phase: Phase 55 — Read-Only Provider Adapter Mocks v1 (not yet implemented).**
 
 ## Features (Phase 53 — adds to Phase 52)
 

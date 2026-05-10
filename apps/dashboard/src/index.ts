@@ -1016,3 +1016,33 @@ export {
   isValidSyntheticLaunchIntelligenceGeneratedAt,
   isValidSyntheticLaunchIntelligenceSource,
 } from './synthetic-launch-intelligence/index.js';
+
+// ─── Phase 54 — Read-Only Provider Interface Contracts ────────
+
+export {
+  READ_ONLY_PROVIDER_CONTRACTS_PHASE,
+  PHASE_54_READ_ONLY_PROVIDER_CONTRACTS_GENERATED_AT,
+  PHASE_54_READ_ONLY_PROVIDER_CONTRACTS_SOURCE,
+  PHASE_54_READ_ONLY_PROVIDER_CONTRACTS_VERSION,
+  READ_ONLY_PROVIDER_CONTRACT_NAMES,
+  READ_ONLY_PROVIDER_CONTRACT_KINDS,
+  READ_ONLY_PROVIDER_CONTRACT_FIXTURES,
+  READ_ONLY_PROVIDER_CONTRACT_FIXTURE_MAP,
+  listReadOnlyProviderContractFixtures,
+  getReadOnlyProviderContractFixture,
+  buildReadOnlyProviderContractFixture,
+  buildReadOnlyProviderContractViewModel,
+  buildReadOnlyProviderApiContract,
+  selectReadOnlyProviderContractFixture,
+  validateReadOnlyProviderContractFixture,
+  validateReadOnlyProviderContractSafety,
+  normalizeReadOnlyProviderContractFixture,
+  serializeReadOnlyProviderContractFixture,
+  areReadOnlyProviderContractFixturesEqual,
+  getReadOnlyProviderContractCapabilities,
+  stableDeterministicReadOnlyProviderContractChecksum,
+  isValidReadOnlyProviderContractName,
+  isValidReadOnlyProviderContractKind,
+  isValidReadOnlyProviderContractGeneratedAt,
+  isValidReadOnlyProviderContractSource,
+} from './read-only-provider-contracts/index.js';

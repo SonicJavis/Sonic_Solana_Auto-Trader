@@ -1,5 +1,9 @@
 # Safety Rules
 
+## Phase 54 Safety Extension
+
+Phase 54 read-only provider interface contracts must remain contract-gate-only, local-only, read-only, synthetic-only, deterministic, pure, serializable, in-memory, non-persistent, external-network-free, non-rendering, non-DOM, non-wallet, non-executable, and non-advisory. Phase 54 does not permit live data, provider adapters, Solana RPC connections, WebSocket/Geyser/Yellowstone, Pump.fun/Jupiter/Raydium/Orca/Meteora integrations, real endpoints, route handlers, runtime request handling, filesystem writes, persistence, downloads, queue/background/scheduled jobs, wallet/private key handling, signing/sending logic, execution logic, trading signals, recommendations, or investment advice.
+
 ## Phase 53 Safety Extension
 
 Phase 53 synthetic launch intelligence must remain fixture-derived-launch-intelligence-only, local-only, read-only, synthetic-only, deterministic, pure, serializable, in-memory, non-persistent, external-network-free, non-rendering, non-DOM, non-wallet, non-executable, and non-advisory. Phase 53 does not permit live data, provider adapters, Solana RPC, Pump.fun/Jupiter/Raydium/Orca/Meteora integrations, real endpoints, route handlers, runtime request handling, filesystem writes, persistence, downloads, queue/background/scheduled jobs, wallet/private key handling, signing/sending logic, execution logic, trading signals, recommendations, or investment advice.
