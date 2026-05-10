@@ -35,10 +35,14 @@ function buildErrorResult(
 export function runReadOnlyProviderAdapterMock(
   input: ReadOnlyProviderAdapterMockRunInput = {},
 ): ReadOnlyProviderAdapterMockResult {
+  const selectorQuery = {
+    ...(input.fixtureId ? { fixtureId: input.fixtureId } : {}),
+    ...(input.adapterKind ? { adapterKind: input.adapterKind } : {}),
+    ...(input.domain ? { domain: input.domain } : {}),
+  };
+
   const selected = selectReadOnlyProviderAdapterMockFixture({
-    fixtureId: input.fixtureId,
-    adapterKind: input.adapterKind,
-    domain: input.domain,
+    ...selectorQuery,
   });
 
   const fixture = READ_ONLY_PROVIDER_ADAPTER_MOCK_FIXTURES.find(

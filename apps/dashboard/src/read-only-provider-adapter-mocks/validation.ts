@@ -60,6 +60,8 @@ const EXCLUDED_SCAN_FIELDS = new Set([
   'disabledSummary',
   'nonAdvisorySummary',
   'safetyBadge',
+  'deterministicFailureExamples',
+  'message',
 ]);
 
 function isRecord(value: unknown): value is Record<string, unknown> {

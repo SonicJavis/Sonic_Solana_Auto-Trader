@@ -614,7 +614,6 @@ export function getDashboardUiShellCapabilities(): DashboardUiShellCapabilities 
     readOnlyProviderAdapterMockNetworkAccess: false,
     readOnlyProviderAdapterMockRealAdapters: false,
     readOnlyProviderAdapterMockSolanaRpc: false,
-    readOnlyProviderAdapterMockWebSocketAccess: false,
     readOnlyProviderAdapterMockGeyserYellowstone: false,
     readOnlyProviderAdapterMockPumpFunIntegration: false,
     readOnlyProviderAdapterMockDexIntegration: false,

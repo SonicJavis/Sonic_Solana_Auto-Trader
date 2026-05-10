@@ -15,7 +15,6 @@ import {
   buildReadOnlyProviderAdapterMockFixture,
   buildReadOnlyProviderAdapterMockViewModel,
   buildReadOnlyProviderAdapterMockApiContract,
-  listReadOnlyProviderAdapterMockFixtures,
   getReadOnlyProviderAdapterMockFixture,
   selectReadOnlyProviderAdapterMockFixture,
   runReadOnlyProviderAdapterMock,
@@ -31,7 +30,6 @@ import {
   isValidReadOnlyProviderAdapterMockGeneratedAt,
   isValidReadOnlyProviderAdapterMockSource,
   PHASE_55_READ_ONLY_PROVIDER_ADAPTER_MOCKS_GENERATED_AT,
-  PHASE_55_READ_ONLY_PROVIDER_ADAPTER_MOCKS_SOURCE,
 } from '../apps/dashboard/src/read-only-provider-adapter-mocks/index.js';
 import {
   READ_ONLY_PROVIDER_ADAPTER_MOCKS_PHASE as ROOT_PHASE,
@@ -268,6 +266,9 @@ describe('Phase 55 — selectors, normalization, serialization, equality', () =>
     expect(
       isValidReadOnlyProviderAdapterMockSource('phase55_read_only_provider_adapter_mocks_v1'),
     ).toBe(true);
+    expect(
+      isValidReadOnlyProviderAdapterMockSource('phase55_read_only_provider_adapter_mocks_v0'),
+    ).toBe(false);
   });
 });
 

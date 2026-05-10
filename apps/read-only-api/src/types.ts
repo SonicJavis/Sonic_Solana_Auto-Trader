@@ -641,7 +641,6 @@ export interface LocalReadOnlyApiCapabilities {
   readonly readOnlyProviderAdapterMockNetworkAccess: false;
   readonly readOnlyProviderAdapterMockRealAdapters: false;
   readonly readOnlyProviderAdapterMockSolanaRpc: false;
-  readonly readOnlyProviderAdapterMockWebSocketAccess: false;
   readonly readOnlyProviderAdapterMockGeyserYellowstone: false;
   readonly readOnlyProviderAdapterMockPumpFunIntegration: false;
   readonly readOnlyProviderAdapterMockDexIntegration: false;
