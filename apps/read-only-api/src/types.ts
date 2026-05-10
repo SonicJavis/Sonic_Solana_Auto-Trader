@@ -422,6 +422,32 @@ export interface LocalReadOnlyApiCapabilities {
   readonly strategyReviewExportAuditReportViewModelTradingSignals: false;
   readonly strategyReviewExportAuditReportViewModelRecommendations: false;
   readonly strategyReviewExportAuditReportViewModelInvestmentAdvice: false;
+  // Phase 48 strategy review export audit report read-only API contract capabilities
+  readonly strategyReviewExportAuditReportApiContracts: true;
+  readonly syntheticStrategyReviewExportAuditReportApiContracts: true;
+  readonly deterministicStrategyReviewExportAuditReportApiContracts: true;
+  readonly localOnlyStrategyReviewExportAuditReportApiContracts: true;
+  readonly readOnlyStrategyReviewExportAuditReportApiContracts: true;
+  readonly fixtureDerivedStrategyReviewExportAuditReportApiContracts: true;
+  readonly strategyReviewExportAuditReportApiContractLiveData: false;
+  readonly strategyReviewExportAuditReportApiContractNetworkAccess: false;
+  readonly strategyReviewExportAuditReportApiContractPersistence: false;
+  readonly strategyReviewExportAuditReportApiContractFilesystemWrites: false;
+  readonly strategyReviewExportAuditReportApiContractDownloads: false;
+  readonly strategyReviewExportAuditReportApiContractPdfGeneration: false;
+  readonly strategyReviewExportAuditReportApiContractCsvGeneration: false;
+  readonly strategyReviewExportAuditReportApiContractHtmlGeneration: false;
+  readonly strategyReviewExportAuditReportApiContractRouteHandlers: false;
+  readonly strategyReviewExportAuditReportApiContractHttpServer: false;
+  readonly strategyReviewExportAuditReportApiContractRuntimeRequests: false;
+  readonly strategyReviewExportAuditReportApiContractUiRendering: false;
+  readonly strategyReviewExportAuditReportApiContractDomAccess: false;
+  readonly strategyReviewExportAuditReportApiContractBackgroundJobs: false;
+  readonly strategyReviewExportAuditReportApiContractScheduledJobs: false;
+  readonly strategyReviewExportAuditReportApiContractExecution: false;
+  readonly strategyReviewExportAuditReportApiContractTradingSignals: false;
+  readonly strategyReviewExportAuditReportApiContractRecommendations: false;
+  readonly strategyReviewExportAuditReportApiContractInvestmentAdvice: false;
   // Safety labels
   readonly fixtureOnly: true;
   readonly analysisOnly: true;
