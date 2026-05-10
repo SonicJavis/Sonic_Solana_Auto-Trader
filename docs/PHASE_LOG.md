@@ -1,5 +1,23 @@
 # Phase Log
 
+## Phase 48 — Strategy Review Export Audit Report Read-Only API Contracts v1
+
+- Adds `apps/dashboard/src/strategy-review-export-audit-report-contracts/` with deterministic, fixture-derived, read-only API contract layer:
+  - `types.ts` — Phase 48 constants, contract kinds/names, list/detail/summary/error contract interfaces, meta/safety/pagination/filter/sort/capability types
+  - `capabilities.ts` — `getStrategyReviewExportAuditReportApiContractCapabilities()` with Phase 48 contract-only flags
+  - `normalization.ts` — deterministic ordering, serialization, equality, and guard helpers; stable FNV-1a checksum
+  - `validation.ts` — `validateStrategyReviewExportAuditReportApiContract`, `validateStrategyReviewExportAuditReportApiContractSafety`
+  - `builders.ts` — pure deterministic builders for list/detail/summary/error/generic contracts derived from Phase 47 view models
+  - `fixtures.ts` — prebuilt deterministic contract list + maps + list/get helpers derived from Phase 47 view models
+  - `index.ts` — barrel export
+- Exports all Phase 48 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard/read-only-api capability surfaces with Phase 48 flags (`strategyReviewExportAuditReportApiContracts`, `syntheticStrategyReviewExportAuditReportApiContracts`, `strategyReviewExportAuditReportApiContractExecution: false`, etc.)
+- Adds `docs/STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_API_CONTRACTS.md`
+- Adds `tests/phase48.test.ts`
+- **No real endpoints. No route handlers. No runtime request handling. No real reports. No downloads. No PDF/CSV/HTML generation. No filesystem writes. No persistence. No background jobs. No scheduled jobs. No queue workers. No real audit execution. No live data. No network. No wallet or execution logic. No recommendations/signals/investment advice. No UI rendering. No DOM access.**
+
+**Next phase guidance:** Phase 49 is not implemented in this phase.
+
 ## Phase 47 — Strategy Review Export Audit Report View Models v1
 
 - Adds `apps/dashboard/src/strategy-review-export-audit-report-view-models/` with deterministic fixture-derived view-model layer:

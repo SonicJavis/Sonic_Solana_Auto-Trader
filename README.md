@@ -1,8 +1,52 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 47 — Strategy Review Export Audit Report View Models v1**
+**Phase 48 — Strategy Review Export Audit Report Read-Only API Contracts v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 47.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 48.
+
+## Features (Phase 48 — adds to Phase 47)
+
+- Adds `apps/dashboard/src/strategy-review-export-audit-report-contracts/` deterministic, fixture-derived, read-only API contract layer:
+  - strict list/detail/summary/error contract types, meta/safety/pagination/filter/sort/capability types
+  - pure deterministic builders, normalization, serialization, equality, validation, and safety-validation helpers
+  - one deterministic detail contract per Phase 47 view model; one list contract; one summary contract; two error contracts
+  - stable metadata envelopes, safety envelopes, and capability flags
+- Adds Phase 48 strategy-review-export-audit-report-api-contract capability flags:
+  - `strategyReviewExportAuditReportApiContracts: true`
+  - `syntheticStrategyReviewExportAuditReportApiContracts: true`
+  - `deterministicStrategyReviewExportAuditReportApiContracts: true`
+  - `localOnlyStrategyReviewExportAuditReportApiContracts: true`
+  - `readOnlyStrategyReviewExportAuditReportApiContracts: true`
+  - `fixtureDerivedStrategyReviewExportAuditReportApiContracts: true`
+  - `strategyReviewExportAuditReportApiContractLiveData: false`
+  - `strategyReviewExportAuditReportApiContractNetworkAccess: false`
+  - `strategyReviewExportAuditReportApiContractPersistence: false`
+  - `strategyReviewExportAuditReportApiContractFilesystemWrites: false`
+  - `strategyReviewExportAuditReportApiContractDownloads: false`
+  - `strategyReviewExportAuditReportApiContractPdfGeneration: false`
+  - `strategyReviewExportAuditReportApiContractCsvGeneration: false`
+  - `strategyReviewExportAuditReportApiContractHtmlGeneration: false`
+  - `strategyReviewExportAuditReportApiContractRouteHandlers: false`
+  - `strategyReviewExportAuditReportApiContractHttpServer: false`
+  - `strategyReviewExportAuditReportApiContractRuntimeRequests: false`
+  - `strategyReviewExportAuditReportApiContractUiRendering: false`
+  - `strategyReviewExportAuditReportApiContractDomAccess: false`
+  - `strategyReviewExportAuditReportApiContractBackgroundJobs: false`
+  - `strategyReviewExportAuditReportApiContractScheduledJobs: false`
+  - `strategyReviewExportAuditReportApiContractExecution: false`
+  - `strategyReviewExportAuditReportApiContractTradingSignals: false`
+  - `strategyReviewExportAuditReportApiContractRecommendations: false`
+  - `strategyReviewExportAuditReportApiContractInvestmentAdvice: false`
+- Adds `docs/STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_API_CONTRACTS.md` documentation
+- Adds `tests/phase48.test.ts` coverage for deterministic API contracts and safety guards
+- **No real endpoints. No route handlers. No runtime request handling. No real reports. No downloads. No PDF/CSV/HTML generation. No filesystem writes. No persistence. No background/scheduled/queue jobs. No live data. No network. No wallet. No execution. No recommendations/signals/investment advice. No UI rendering. No DOM access.**
+
+**Next phase: Phase 49 — reserved for future phase-gated work (not implemented in this phase).**
+
+---
+
+<!-- Phase 47 — Strategy Review Export Audit Report View Models v1 -->
+<!-- docs/STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_VIEW_MODELS.md -->
 
 ## Features (Phase 47 — adds to Phase 46)
 
@@ -38,7 +82,7 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 - Adds `tests/phase47.test.ts` coverage for deterministic view models and safety guards
 - **No real reports. No downloads. No PDF/CSV/HTML generation. No filesystem writes. No persistence. No queue/background/scheduled jobs. No live data. No network. No wallet. No execution. No recommendations/signals/investment advice. No UI rendering. No DOM access. No API endpoints added.**
 
-**Next phase: Phase 48 — reserved for future phase-gated work (not implemented in this phase).**
+**Next phase: Phase 48 — implemented. See Phase 48 entry above.**
 
 ---
 

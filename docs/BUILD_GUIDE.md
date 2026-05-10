@@ -1,5 +1,9 @@
 # Build Guide
 
+## Phase 48 Note
+
+Phase 48 introduces strategy review export audit report read-only API contracts in `apps/dashboard/src/strategy-review-export-audit-report-contracts/`, sourced strictly from Phase 47 view models. Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. No real endpoints, route handlers, runtime request handling, real reports, downloads, PDF/CSV/HTML generation, filesystem writes, persistence, background/scheduled jobs, real audit execution, actual audit logs, live data, network access, wallet logic, execution logic, recommendations, signals, investment advice, UI rendering, or DOM access is introduced.
+
 ## Phase 47 Note
 
 Phase 47 introduces strategy review export audit report view models in `apps/dashboard/src/strategy-review-export-audit-report-view-models/`, sourced strictly from Phase 46 export audit report fixtures. Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. No real reports, downloads, PDF/CSV/HTML generation, filesystem writes, persistence, background/scheduled jobs, real audit execution, actual audit logs, live data, network access, wallet logic, execution logic, recommendations, signals, investment advice, UI rendering, or DOM access is introduced.

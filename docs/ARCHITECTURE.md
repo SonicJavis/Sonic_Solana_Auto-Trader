@@ -1,5 +1,9 @@
 # Architecture
 
+## Phase 48 Update
+
+Phase 48 extends `apps/dashboard/` with `src/strategy-review-export-audit-report-contracts/`, a deterministic, fixture-derived, read-only API contract layer derived strictly from Phase 47 strategy review export audit report view models. This layer provides stable local-only API contract data structures for future local read-only API phases. It is fixture-derived-contract-only, local-only, read-only, deterministic, in-memory, external-network-free, non-rendering, non-DOM, non-persistent, non-executable, non-advisory, route-handler-free, server-free, and request-handling-free.
+
 ## Phase 47 Update
 
 Phase 47 extends `apps/dashboard/` with `src/strategy-review-export-audit-report-view-models/`, a deterministic strategy review export audit report view-model layer derived strictly from Phase 46 strategy review export audit report fixtures. This layer is fixture-derived view-model-only, local-only, read-only, deterministic, in-memory, external-network-free, non-rendering, non-DOM, non-persistent, non-executable, and non-advisory.
