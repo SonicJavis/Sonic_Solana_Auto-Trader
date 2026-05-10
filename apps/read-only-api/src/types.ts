@@ -351,6 +351,38 @@ export interface LocalReadOnlyApiCapabilities {
   readonly strategyReviewExportExecution: false;
   readonly strategyReviewExportTradingSignals: false;
   readonly strategyReviewExportInvestmentAdvice: false;
+  // Phase 44 strategy review export queue fixture capabilities
+  readonly strategyReviewExportQueueFixtures: true;
+  readonly syntheticStrategyReviewExportQueues: true;
+  readonly strategyReviewExportQueueBuilders: true;
+  readonly strategyReviewExportQueueSafetyValidation: true;
+  readonly strategyReviewExportPlanReferences: true;
+  readonly strategyReviewActualQueueWorkers: false;
+  readonly strategyReviewScheduledJobs: false;
+  readonly strategyReviewBackgroundJobs: false;
+  readonly strategyReviewExportQueueExternalNetwork: false;
+  readonly strategyReviewExportQueuePersistence: false;
+  readonly strategyReviewExportQueueExecution: false;
+  readonly strategyReviewExportQueueTradingSignals: false;
+  readonly strategyReviewExportQueueInvestmentAdvice: false;
+  // Phase 45 strategy review export audit fixture capabilities
+  readonly strategyReviewExportAuditFixtures: true;
+  readonly syntheticStrategyReviewExportAudits: true;
+  readonly strategyReviewExportAuditBuilders: true;
+  readonly strategyReviewExportAuditSafetyValidation: true;
+  readonly strategyReviewExportQueueReferences: true;
+  readonly strategyReviewActualAuditLogs: false;
+  readonly strategyReviewAuditPersistence: false;
+  readonly strategyReviewAuditFileWrites: false;
+  readonly strategyReviewAuditExternalNetwork: false;
+  readonly strategyReviewAuditQueueWorkers: false;
+  readonly strategyReviewAuditScheduledJobs: false;
+  readonly strategyReviewAuditBackgroundJobs: false;
+  readonly strategyReviewAuditActualFileExport: false;
+  readonly strategyReviewAuditDownloadSupport: false;
+  readonly strategyReviewAuditExecution: false;
+  readonly strategyReviewAuditTradingSignals: false;
+  readonly strategyReviewAuditInvestmentAdvice: false;
   // Safety labels
   readonly fixtureOnly: true;
   readonly analysisOnly: true;

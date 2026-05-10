@@ -1,5 +1,9 @@
 # Architecture
 
+## Phase 45 Update
+
+Phase 45 extends `apps/dashboard/` with `src/strategy-review-export-audit/`, a deterministic strategy review export audit fixture layer that references Phase 44 strategy review export-queue fixtures to produce 16 typed synthetic export-audit fixtures modelling audit states for export-queue items. This layer is audit-modelling-only, local-only, read-only, fixture-backed, deterministic, in-memory, external-network-free, non-advisory, non-accusatory, file-write-free, audit-log-free, and execution-free.
+
 ## Phase 44 Update
 
 Phase 44 extends `apps/dashboard/` with `src/strategy-review-export-queue/`, a deterministic strategy review export queue fixture layer that references Phase 43 strategy review export-planning fixtures to produce 16 typed synthetic export-queue fixtures modelling queued export-plan states for future local review workflow orchestration. This layer is queue-modelling-only, local-only, read-only, fixture-backed, deterministic, in-memory, external-network-free, non-advisory, non-accusatory, file-export-free, queue-worker-free, and execution-free.
