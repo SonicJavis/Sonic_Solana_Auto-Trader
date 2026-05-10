@@ -654,7 +654,6 @@ export function getDashboardUiShellCapabilities(): DashboardUiShellCapabilities 
     syntheticEventStreamRealProviders: false,
     syntheticEventStreamProviderAdapters: false,
     syntheticEventStreamSolanaRpc: false,
-    syntheticEventStreamWebSocketAccess: false,
     syntheticEventStreamGeyserYellowstone: false,
     syntheticEventStreamPumpFunIntegration: false,
     syntheticEventStreamDexIntegration: false,

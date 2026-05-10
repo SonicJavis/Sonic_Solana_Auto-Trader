@@ -737,7 +737,6 @@ export interface DashboardUiShellCapabilities {
   readonly syntheticEventStreamRealProviders: false;
   readonly syntheticEventStreamProviderAdapters: false;
   readonly syntheticEventStreamSolanaRpc: false;
-  readonly syntheticEventStreamWebSocketAccess: false;
   readonly syntheticEventStreamGeyserYellowstone: false;
   readonly syntheticEventStreamPumpFunIntegration: false;
   readonly syntheticEventStreamDexIntegration: false;

@@ -22,15 +22,15 @@ import {
 } from './normalization.js';
 import { reduceSyntheticEventStreamLifecycle } from './reducers.js';
 
-const FORBIDDEN_URL_PATTERN = /https?:\/\/[\w.-]+/i;
-const FORBIDDEN_NETWORK_PATTERN = /(?:fetch\(|axios|WebSocket|RPC)/i;
+const FORBIDDEN_URL_PATTERN = /\bhttps?:\/\/[\w.-]+/i;
+const FORBIDDEN_NETWORK_PATTERN = /\b(?:fetch\(|axios|WebSocket|RPC)\b/i;
 const FORBIDDEN_FILESYSTEM_PATTERN =
-  /(?:fs\.|writeFile|createWriteStream|localStorage|indexedDB)/i;
-const FORBIDDEN_RUNTIME_PATTERN = /(?:route|handler|server|listen\()/i;
+  /\b(?:fs\.|writeFile|createWriteStream|localStorage|indexedDB)\b/i;
+const FORBIDDEN_RUNTIME_PATTERN = /\b(?:route|handler|server|listen\()\b/i;
 const FORBIDDEN_WALLET_PATTERN =
-  /(?:privateKey|secretKey|seedPhrase|mnemonic|Keypair|wallet)(?![\s_-]*cluster)/i;
+  /\b(?:privateKey|secretKey|seedPhrase|mnemonic|Keypair|wallet)(?![\s_-]*cluster)\b/i;
 const FORBIDDEN_EXECUTION_PATTERN =
-  /(?:signTransaction|sendTransaction|execute|buy|sell|trade|order|recommendation|signal)|investment\s+advice/i;
+  /\b(?:signTransaction|sendTransaction|execute|buy|sell|trade|order|recommendation)\b|\btrading\s+signals?\b|\binvestment\s+advice\b/i;
 
 const EXCLUDED_SCAN_FIELDS = new Set([
   'fixtureId',
