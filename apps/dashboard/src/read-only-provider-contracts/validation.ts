@@ -22,9 +22,9 @@ const FORBIDDEN_FILESYSTEM_PATTERN =
   /\b(?:fs\.|writeFile|createWriteStream|localStorage|indexedDB)\b/i;
 const FORBIDDEN_RUNTIME_PATTERN = /\b(?:route|handler|server|listen\()\b/i;
 const FORBIDDEN_WALLET_PATTERN =
-  /\b(?:privateKey|secretKey|seedPhrase|mnemonic|Keypair|wallet(?! cluster))\b/i;
+  /\b(?:privateKey|secretKey|seedPhrase|mnemonic|Keypair|wallet)(?![\s_-]*cluster)\b/i;
 const FORBIDDEN_EXECUTION_PATTERN =
-  /\b(?:signTransaction|sendTransaction|execute|buy|sell|trade|order|recommendation|signal|investment advice)\b/i;
+  /\b(?:signTransaction|sendTransaction|execute|buy|sell|trade|order|recommendation|signal)\b|\binvestment\s+advice\b/i;
 
 const EXCLUDED_SCAN_FIELDS = new Set([
   'fixtureId',
