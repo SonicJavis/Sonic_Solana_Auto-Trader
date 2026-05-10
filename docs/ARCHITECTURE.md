@@ -1,5 +1,9 @@
 # Architecture
 
+## Phase 57 Update
+
+Phase 57 extends `apps/dashboard/` with `src/synthetic-event-stream-replay-harness/`, a deterministic, fixture-derived, read-only synthetic replay milestone surface built directly on Phase 56 lifecycle fixtures and reducer behavior. It bundles replay identities, fixed replay clocks, replay steps, replay snapshots, mismatch taxonomy, pure replay harness execution, replay reports, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs in one aggressive-safe vertical slice. This layer is synthetic-only, local-only, read-only, deterministic, pure, in-memory, non-networked, non-persistent, non-rendering, non-DOM, non-wallet, non-executable, non-advisory, and paper-simulation-free.
+
 ## Phase 56 Update
 
 Phase 56 extends `apps/dashboard/` with `src/synthetic-event-stream-lifecycle/`, a deterministic, fixture-derived, read-only synthetic event stream lifecycle milestone surface built on Phase 55 adapter mocks and Phase 53 synthetic launch intelligence fixture references. It bundles stream identities, append-only event envelopes, pure lifecycle reducers, derived lifecycle read models, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs in one aggressive-safe vertical slice. This layer is synthetic-only, local-only, read-only, deterministic, pure, in-memory, non-networked, non-persistent, non-rendering, non-DOM, non-wallet, non-executable, non-advisory, replay-harness-free, and paper-simulation-free.

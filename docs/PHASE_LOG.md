@@ -1,5 +1,27 @@
 # Phase Log
 
+## Phase 57 — Synthetic Event Stream Replay Harness v1
+
+- Adds `apps/dashboard/src/synthetic-event-stream-replay-harness/` complete deterministic, fixture-derived, read-only replay milestone surface:
+  - `types.ts` — Phase 57 constants, replay scenario names/kinds, mismatch taxonomy, replay identity/clock/step/snapshot/report/view-model/API-contract/selector/validation/capability interfaces
+  - `clock.ts` — deterministic fixed replay clock helper (`buildSyntheticEventStreamReplayClock`)
+  - `builders.ts` — deterministic fixture builder (`buildSyntheticEventStreamReplayHarnessFixture`) and replay step/snapshot/report builders
+  - `fixtures.ts` — `SYNTHETIC_EVENT_STREAM_REPLAY_HARNESS_FIXTURES` (8 fixtures), map/list/get helpers
+  - `harness.ts` — pure deterministic replay runner (`runSyntheticEventStreamReplayHarness`) that replays Phase 56 events using Phase 56 reducer and compares expected snapshots
+  - `snapshots.ts` / `comparators.ts` / `reports.ts` — deterministic replay snapshot, mismatch comparison, and report builders
+  - `view-models.ts` / `contracts.ts` / `selectors.ts` — replay view models, list/detail/summary/error API contracts, and pure local selectors
+  - `normalization.ts` / `validation.ts` — deterministic checksum/normalization/serialization/equality/isValid helpers plus structural/safety validation
+  - `capabilities.ts` — `getSyntheticEventStreamReplayHarnessCapabilities()` with positive and negative Phase 57 replay flags
+  - `index.ts` — re-exports all public API
+- Exports all Phase 57 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard/read-only-api capability surfaces with Phase 57 replay harness flags
+- Adds `tests/phase57.test.ts` with coverage for replay fixtures, clocks, steps, snapshots, reports, mismatch taxonomy, harness behavior, validation/safety rejection, selectors, contracts, capabilities, determinism, and immutability
+- Adds `docs/SYNTHETIC_EVENT_STREAM_REPLAY_HARNESS.md`
+- **No live data. No Solana RPC connections. No real provider adapters. No WebSocket/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora integration. No wallet handling. No signing. No sending. No execution. No recommendations. No trading signals. No investment advice. No persistence. No background jobs. No route handlers. No UI rendering. No paper simulation.**
+- FULL_AUTO and LIMITED_LIVE remain locked
+
+**Next phase guidance:** Phase 58 — Launch Risk Engine v1 (preview only; not implemented).
+
 ## Phase 56 — Synthetic Event Stream Lifecycle v1
 
 - Adds `apps/dashboard/src/synthetic-event-stream-lifecycle/` complete deterministic, fixture-derived, read-only lifecycle stream milestone surface:

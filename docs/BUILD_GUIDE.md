@@ -1,5 +1,9 @@
 # Build Guide
 
+## Phase 57 Note
+
+Phase 57 introduces synthetic event stream replay harness models in `apps/dashboard/src/synthetic-event-stream-replay-harness/` as a complete aggressive-safe vertical slice (types, clock, builders, fixtures, harness, snapshots, reports, comparators, view models, contracts, selectors, normalization, validation, capabilities, docs, tests). Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. No live data, real provider adapters, Solana RPC, WebSocket/Geyser/Yellowstone, Pump.fun/Jupiter/Raydium/Orca/Meteora integrations, wallet logic, signing/sending, execution, recommendations/signals/investment advice, endpoints/routes/handlers/runtime request handling, UI rendering/DOM, filesystem writes, persistence, background jobs, or paper simulation are introduced.
+
 ## Phase 56 Note
 
 Phase 56 introduces synthetic event stream lifecycle models in `apps/dashboard/src/synthetic-event-stream-lifecycle/` as a complete aggressive-safe vertical slice (types, builders, fixtures, reducers, view models, contracts, selectors, normalization, validation, capabilities, docs, tests). Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. No live data, real provider adapters, Solana RPC, WebSocket/Geyser/Yellowstone, Pump.fun/Jupiter/Raydium/Orca/Meteora integrations, wallet logic, signing/sending, execution, recommendations/signals/investment advice, endpoints/routes/handlers/runtime request handling, UI rendering/DOM, filesystem writes, persistence, background jobs, replay harness, or paper simulation are introduced.
