@@ -7,7 +7,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import {
-  PHASE_46_STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_FIXTURES,
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_FIXTURES,
   STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_FIXTURE_MAP,
   STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_FIXTURE_NAMES,
   serializeStrategyReviewExportAuditReportFixture,
@@ -137,19 +137,19 @@ describe('Phase 47 capabilities and propagation', () => {
 describe('Phase 47 fixtures/list/map/get behavior', () => {
   it('exposes deterministic list/map/get utilities', () => {
     expect(STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_VIEW_MODELS).toHaveLength(
-      PHASE_46_STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_FIXTURES.length,
+      STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_FIXTURES.length,
     );
     expect(STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_VIEW_MODEL_MAP.size).toBe(
       STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_FIXTURE_MAP.size,
     );
     expect(listStrategyReviewExportAuditReportViewModels()).toHaveLength(
-      PHASE_46_STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_FIXTURES.length,
+      STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_FIXTURES.length,
     );
     expect(getStrategyReviewExportAuditReportViewModel('unknown')).toBeNull();
   });
 
   it('maintains one-to-one linkage with Phase 46 source report fixtures', () => {
-    for (const sourceReport of PHASE_46_STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_FIXTURES) {
+    for (const sourceReport of STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_FIXTURES) {
       const viewModel = getStrategyReviewExportAuditReportViewModel(
         `${sourceReport.reportName}-view-model`,
       );
@@ -164,7 +164,7 @@ describe('Phase 47 fixtures/list/map/get behavior', () => {
 
 describe('Phase 47 builders and shape integrity', () => {
   it('builds list/detail/summary/full view models deterministically', () => {
-    const source = PHASE_46_STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_FIXTURES[0]!;
+    const source = STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_FIXTURES[0]!;
     const listItem = buildStrategyReviewExportAuditReportListItemViewModel(source);
     const detail = buildStrategyReviewExportAuditReportDetailViewModel(source);
     const summary = buildStrategyReviewExportAuditReportSummaryViewModel(source);
@@ -258,9 +258,19 @@ describe('Phase 47 normalization/serialization/equality/validation', () => {
 
     const orphanEvidence = {
       ...viewModel,
-      detailSections: viewModel.detailSections.map((section, index) =>
-        index === 0 ? { ...section, evidenceReferenceIds: ['missing-evidence-id'] } : section,
-      ),
+      evidenceItems: [
+        ...viewModel.evidenceItems,
+        {
+          evidenceId: 'orphan-evidence-id',
+          label: 'Orphan',
+          sourceReportId: viewModel.sourceReportId,
+          sourceSectionId: viewModel.detailSections[0]!.sectionId,
+          description: 'orphan evidence',
+          order: 999,
+          syntheticOnly: true,
+          liveData: false,
+        },
+      ],
     };
     expect(validateStrategyReviewExportAuditReportViewModel(orphanEvidence).valid).toBe(false);
 
@@ -310,7 +320,7 @@ describe('Phase 47 guard helpers and source immutability', () => {
   });
 
   it('does not mutate source Phase 46 fixtures while building view models', () => {
-    const source = PHASE_46_STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_FIXTURES[0]!;
+    const source = STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_FIXTURES[0]!;
     const before = serializeStrategyReviewExportAuditReportFixture(source);
     buildStrategyReviewExportAuditReportViewModel({ sourceReportFixture: source });
     const after = serializeStrategyReviewExportAuditReportFixture(source);
