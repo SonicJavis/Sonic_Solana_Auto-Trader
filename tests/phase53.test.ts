@@ -156,8 +156,13 @@ describe('Phase 53 — normalization, serialization, equality, and validation', 
 
   it('validation passes for baseline fixtures and rejects corruption', () => {
     const fixture = clone(SYNTHETIC_LAUNCH_INTELLIGENCE_FIXTURES[0]);
-    expect(validateSyntheticLaunchIntelligenceFixture(fixture).valid).toBe(true);
-    expect(validateSyntheticLaunchIntelligenceSafety(fixture).safe).toBe(true);
+    const validation = validateSyntheticLaunchIntelligenceFixture(fixture);
+    expect(validation.issues).toEqual([]);
+    expect(validation.valid).toBe(true);
+    expect(validateSyntheticLaunchIntelligenceSafety(fixture)).toEqual({
+      safe: true,
+      violations: [],
+    });
 
     const badPhase = { ...clone(fixture), phase: 999 };
     expect(validateSyntheticLaunchIntelligenceFixture(badPhase).valid).toBe(false);

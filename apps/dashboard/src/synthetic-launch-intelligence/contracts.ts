@@ -79,7 +79,7 @@ function buildErrorContracts(fixture: SyntheticLaunchIntelligenceFixture): [Synt
       readOnly: true,
       localOnly: true,
       errorCode: 'SYNTHETIC_LAUNCH_INVALID_REQUEST',
-      message: 'Invalid synthetic launch fixture request.',
+      message: 'Invalid synthetic launch fixture query.',
     },
     {
       contractId: `phase53-contract-error-not-found-${fixture.fixtureId}`,

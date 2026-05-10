@@ -167,7 +167,7 @@ function buildLaunchEvents(fixtureName: SyntheticLaunchIntelligenceScenarioName)
     eventKind,
     eventOrder: index + 1,
     syntheticTimestamp: `2026-01-09T00:${String(index).padStart(2, '0')}:00.000Z`,
-    summary: summaries[index],
+    summary: summaries[index] ?? 'Synthetic launch intelligence event.',
     source: 'synthetic_fixture_only',
     confidenceLabel: index >= 6 ? 'medium' : 'high',
     safetyNotes: ['fixture-only', 'not actionable', 'descriptive risk observed'],
