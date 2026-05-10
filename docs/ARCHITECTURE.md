@@ -1,5 +1,9 @@
 # Architecture
 
+## Phase 50 Update
+
+Phase 50 extends `apps/dashboard/` with `src/strategy-review-export-audit-report-selector-view-models/`, a deterministic, fixture-derived, read-only selector view-model layer derived strictly from Phase 49 strategy review export audit report API contract selector fixtures. This layer provides stable local-only display-contract data for selector/query/result state for future local dashboard/read-only API consumption. It is fixture-derived-view-model-only, local-only, read-only, deterministic, pure, in-memory, external-network-free, non-rendering, non-DOM, non-persistent, non-executable, non-advisory, route-handler-free, server-free, and request-handling-free.
+
 ## Phase 49 Update
 
 Phase 49 extends `apps/dashboard/` with `src/strategy-review-export-audit-report-contract-selectors/`, a deterministic, fixture-derived, read-only selector/query layer derived strictly from Phase 48 strategy review export audit report API contract fixtures. This layer provides stable local-only selector/query/result fixtures and pure selector helpers for future local read-only API phases. It is fixture-derived-selector-only, local-only, read-only, deterministic, pure, in-memory, external-network-free, non-rendering, non-DOM, non-persistent, non-executable, non-advisory, route-handler-free, server-free, and request-handling-free.

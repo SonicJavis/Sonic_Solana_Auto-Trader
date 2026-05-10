@@ -1,5 +1,23 @@
 # Phase Log
 
+## Phase 50 — Strategy Review Export Audit Report Selector View Models v1
+
+- Adds `apps/dashboard/src/strategy-review-export-audit-report-selector-view-models/` with deterministic, fixture-derived, read-only selector view-model layer:
+  - `types.ts` — Phase 50 constants, selector view-model kinds/names, query/result panel, summary/detail, meta/safety/validation/capability interfaces
+  - `capabilities.ts` — `getStrategyReviewExportAuditReportSelectorViewModelCapabilities()` with Phase 50 selector view-model flags
+  - `normalization.ts` — deterministic ordering, serialization, equality, guard helpers, and stable checksum
+  - `builders.ts` — pure deterministic list/detail/summary/error selector view-model builders derived strictly from Phase 49 selectors
+  - `fixtures.ts` — prebuilt deterministic selector view-model list + map + list/get helpers with one view model per Phase 49 selector
+  - `validation.ts` — `validateStrategyReviewExportAuditReportSelectorViewModel`, `validateStrategyReviewExportAuditReportSelectorViewModelSafety`
+  - `index.ts` — barrel export
+- Exports all Phase 50 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard/read-only-api capability surfaces with Phase 50 flags (`strategyReviewExportAuditReportSelectorViewModels`, `strategyReviewExportAuditReportSelectorViewModelRuntimeRequests: false`, etc.)
+- Adds `docs/STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SELECTOR_VIEW_MODELS.md`
+- Adds `tests/phase50.test.ts`
+- **No real UI rendering. No DOM access. No real endpoints. No route handlers. No runtime request handling or live query parsing. No real reports. No downloads. No PDF/CSV/HTML generation. No filesystem writes. No persistence. No background/scheduled jobs. No queue workers. No real audit execution. No live data. No network. No wallet or execution logic. No recommendations/signals/investment advice.**
+
+**Next phase guidance:** Phase 51 is not implemented in this phase.
+
 ## Phase 49 — Strategy Review Export Audit Report API Contract Selectors v1
 
 - Adds `apps/dashboard/src/strategy-review-export-audit-report-contract-selectors/` with deterministic, fixture-derived, read-only selector/query layer:

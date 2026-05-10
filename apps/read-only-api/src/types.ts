@@ -475,6 +475,32 @@ export interface LocalReadOnlyApiCapabilities {
   readonly strategyReviewExportAuditReportApiContractSelectorTradingSignals: false;
   readonly strategyReviewExportAuditReportApiContractSelectorRecommendations: false;
   readonly strategyReviewExportAuditReportApiContractSelectorInvestmentAdvice: false;
+  // Phase 50 strategy review export audit report selector view-model capabilities
+  readonly strategyReviewExportAuditReportSelectorViewModels: true;
+  readonly syntheticStrategyReviewExportAuditReportSelectorViewModels: true;
+  readonly deterministicStrategyReviewExportAuditReportSelectorViewModels: true;
+  readonly localOnlyStrategyReviewExportAuditReportSelectorViewModels: true;
+  readonly readOnlyStrategyReviewExportAuditReportSelectorViewModels: true;
+  readonly fixtureDerivedStrategyReviewExportAuditReportSelectorViewModels: true;
+  readonly strategyReviewExportAuditReportSelectorViewModelLiveData: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelNetworkAccess: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelPersistence: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelFilesystemWrites: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelDownloads: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelPdfGeneration: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelCsvGeneration: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelHtmlGeneration: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelRouteHandlers: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelHttpServer: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelRuntimeRequests: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelUiRendering: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelDomAccess: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelBackgroundJobs: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelScheduledJobs: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelExecution: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelTradingSignals: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelRecommendations: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelInvestmentAdvice: false;
   // Safety labels
   readonly fixtureOnly: true;
   readonly analysisOnly: true;
