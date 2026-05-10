@@ -957,3 +957,32 @@ export {
   isValidStrategyReviewExportAuditReportSelectorViewModelApiContractSource,
   stableDeterministicSelectorViewModelApiContractChecksum,
 } from './strategy-review-export-audit-report-selector-view-model-contracts/index.js';
+
+// ─── Phase 52 — Strategy Review Export Audit Report Surface Registry ─────
+
+export {
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SURFACE_REGISTRY_PHASE,
+  PHASE_52_STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SURFACE_REGISTRY_GENERATED_AT,
+  PHASE_52_STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SURFACE_REGISTRY_SOURCE,
+  PHASE_52_STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SURFACE_REGISTRY_VERSION,
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SURFACE_REGISTRY_ENTRY_NAMES,
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SURFACE_REGISTRY_ENTRY_KINDS,
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SURFACE_REGISTRY_ENTRIES,
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SURFACE_REGISTRY,
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SURFACE_REGISTRY_MAP,
+  listStrategyReviewExportAuditReportSurfaceRegistryEntries,
+  getStrategyReviewExportAuditReportSurfaceRegistryEntry,
+  buildStrategyReviewExportAuditReportSurfaceRegistry,
+  buildStrategyReviewExportAuditReportSurfaceRegistryEntry,
+  validateStrategyReviewExportAuditReportSurfaceRegistry,
+  validateStrategyReviewExportAuditReportSurfaceRegistrySafety,
+  normalizeStrategyReviewExportAuditReportSurfaceRegistry,
+  serializeStrategyReviewExportAuditReportSurfaceRegistry,
+  areStrategyReviewExportAuditReportSurfaceRegistriesEqual,
+  getStrategyReviewExportAuditReportSurfaceRegistryCapabilities,
+  isValidStrategyReviewExportAuditReportSurfaceRegistryEntryName,
+  isValidStrategyReviewExportAuditReportSurfaceRegistryEntryKind,
+  isValidStrategyReviewExportAuditReportSurfaceRegistryGeneratedAt,
+  isValidStrategyReviewExportAuditReportSurfaceRegistrySource,
+  stableDeterministicStrategyReviewExportAuditReportSurfaceRegistryChecksum,
+} from './strategy-review-export-audit-report-surface-registry/index.js';

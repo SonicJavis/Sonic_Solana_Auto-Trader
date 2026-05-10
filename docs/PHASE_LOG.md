@@ -1,5 +1,24 @@
 # Phase Log
 
+## Phase 52 — Strategy Review Export Audit Report Surface Registry and Aggressive-Safe Roadmap Gate v1
+
+- Adds `apps/dashboard/src/strategy-review-export-audit-report-surface-registry/` with deterministic, fixture-derived, read-only consolidation registry layer:
+  - `types.ts` — Phase 52 constants, entry/registry/relationship/policy/next-milestone/capability/safety/validation interfaces
+  - `capabilities.ts` — `getStrategyReviewExportAuditReportSurfaceRegistryCapabilities()` with Phase 52 registry flags
+  - `normalization.ts` — deterministic ordering, serialization, equality, guards, and stable checksum
+  - `builders.ts` — pure deterministic entry/registry builders consolidating completed Phase 45–51 strategy-review export surfaces
+  - `fixtures.ts` — prebuilt registry fixture, entry list/map, and list/get helpers
+  - `validation.ts` — `validateStrategyReviewExportAuditReportSurfaceRegistry`, `validateStrategyReviewExportAuditReportSurfaceRegistrySafety`
+  - `index.ts` — barrel export
+- Exports all Phase 52 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard/read-only-api capability surfaces with Phase 52 flags (`strategyReviewExportAuditReportSurfaceRegistry`, `aggressiveSafePhasePolicy`, `preventsUnnecessaryDerivativeLayers`, etc.)
+- Adds `docs/STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SURFACE_REGISTRY.md`
+- Adds `docs/AGGRESSIVE_SAFE_PHASE_POLICY.md`
+- Adds `tests/phase52.test.ts`
+- **No real UI rendering. No DOM access. No real endpoints. No route handlers. No runtime request handling or live query parsing. No real reports/downloads/PDF/CSV/HTML/filesystem writes. No persistence/background/scheduled jobs/queue workers. No real audit execution/logs/live data/network. No wallet/execution/recommendations/signals/investment advice.**
+
+**Next phase guidance:** Phase 53 is preview metadata only in this phase and is not implemented.
+
 ## Phase 51 — Strategy Review Export Audit Report Selector View Model API Contracts v1
 
 - Adds `apps/dashboard/src/strategy-review-export-audit-report-selector-view-model-contracts/` with deterministic, fixture-derived, read-only selector-view-model API contract layer:

@@ -1,5 +1,9 @@
 # Architecture
 
+## Phase 52 Update
+
+Phase 52 extends `apps/dashboard/` with `src/strategy-review-export-audit-report-surface-registry/`, a deterministic, fixture-derived, read-only consolidation registry/catalog layer over completed Phase 45–51 strategy-review export surfaces. This layer provides one stable consumer surface with entry metadata, relationship map, capability summary, safety summary, consumer guidance, aggressive-safe policy metadata, and next milestone gate metadata. It is fixture-derived-registry-only, local-only, read-only, deterministic, pure, in-memory, external-network-free, non-rendering, non-DOM, non-persistent, non-executable, non-advisory, route-handler-free, server-free, and request-handling-free.
+
 ## Phase 51 Update
 
 Phase 51 extends `apps/dashboard/` with `src/strategy-review-export-audit-report-selector-view-model-contracts/`, a deterministic, fixture-derived, read-only API contract layer derived strictly from Phase 50 strategy review export audit report selector view models. This layer provides stable local-only selector-view-model API contract fixtures (list/detail/summary/error) for future local read-only API phases. It is fixture-derived-contract-only, local-only, read-only, deterministic, pure, in-memory, external-network-free, non-rendering, non-DOM, non-persistent, non-executable, non-advisory, route-handler-free, server-free, and request-handling-free.

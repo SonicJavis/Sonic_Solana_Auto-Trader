@@ -1,8 +1,32 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 51 — Strategy Review Export Audit Report Selector View Model API Contracts v1**
+**Phase 52 — Strategy Review Export Audit Report Surface Registry and Aggressive-Safe Phase Policy v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 51.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 52.
+
+## Features (Phase 52 — adds to Phase 51)
+
+- Adds `apps/dashboard/src/strategy-review-export-audit-report-surface-registry/` deterministic, fixture-derived, read-only consolidation registry for Phase 45–51 strategy-review export surfaces:
+  - deterministic registry types, entry builders, fixtures, relationship map, capability/safety/policy/next-milestone metadata
+  - list/get helpers, normalization, serialization, equality, structural validation, and safety validation helpers
+  - explicit anti-recursive policy: no further derivative wrapper layers without a real consumer
+  - explicit next milestone gate metadata for `Phase 53 — Synthetic Launch Intelligence Foundation v1` (not implemented)
+- Adds Phase 52 strategy-review-export-audit-report-surface-registry capability flags:
+  - `strategyReviewExportAuditReportSurfaceRegistry: true`
+  - `syntheticStrategyReviewExportAuditReportSurfaceRegistry: true`
+  - `deterministicStrategyReviewExportAuditReportSurfaceRegistry: true`
+  - `localOnlyStrategyReviewExportAuditReportSurfaceRegistry: true`
+  - `readOnlyStrategyReviewExportAuditReportSurfaceRegistry: true`
+  - `fixtureDerivedStrategyReviewExportAuditReportSurfaceRegistry: true`
+  - `aggressiveSafePhasePolicy: true`
+  - `preventsUnnecessaryDerivativeLayers: true`
+  - all live/network/persistence/filesystem/download/generation/route/server/runtime/UI/DOM/background/scheduled/execution/signal/recommendation/advice flags remain `false`
+- Adds `docs/STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SURFACE_REGISTRY.md`
+- Adds `docs/AGGRESSIVE_SAFE_PHASE_POLICY.md`
+- Adds `tests/phase52.test.ts`
+- **No real UI rendering. No DOM access. No real endpoints. No route handlers. No runtime request handling or live query parsing. No real reports. No downloads. No PDF/CSV/HTML generation. No filesystem writes. No persistence. No background/scheduled jobs. No queue workers. No real audit execution. No live data. No network. No wallet. No execution. No recommendations/signals/investment advice.**
+
+**Next phase: Phase 53 — Synthetic Launch Intelligence Foundation v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 51 — adds to Phase 50)
 
@@ -41,7 +65,7 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 - Adds `tests/phase51.test.ts` coverage for deterministic selector-view-model API contracts and safety guards
 - **No real UI rendering. No DOM access. No real endpoints. No route handlers. No runtime request handling or live query parsing. No real reports. No downloads. No PDF/CSV/HTML generation. No filesystem writes. No persistence. No background/scheduled jobs. No queue workers. No real audit execution. No live data. No network. No wallet. No execution. No recommendations/signals/investment advice.**
 
-**Next phase: Phase 52 — reserved for future phase-gated work (not implemented in this phase).**
+**Next phase: Phase 53 — Synthetic Launch Intelligence Foundation v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 50 — adds to Phase 49)
 
@@ -80,7 +104,7 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 - Adds `tests/phase50.test.ts` coverage for deterministic selector view models and safety guards
 - **No real endpoints. No route handlers. No runtime request handling or live query parsing. No real reports. No downloads. No PDF/CSV/HTML generation. No filesystem writes. No persistence. No background jobs. No scheduled jobs. No queue workers. No real audit execution. No live data. No network. No wallet. No execution. No recommendations/signals/investment advice. No UI rendering. No DOM access.**
 
-**Next phase: Phase 52 — reserved for future phase-gated work (not implemented in this phase).**
+**Next phase: Phase 53 — Synthetic Launch Intelligence Foundation v1 (preview only; not implemented in this phase).**
 
 ---
 

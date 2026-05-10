@@ -1,5 +1,9 @@
 # Build Guide
 
+## Phase 52 Note
+
+Phase 52 introduces strategy review export audit report surface registry consolidation in `apps/dashboard/src/strategy-review-export-audit-report-surface-registry/`, sourced from completed Phase 45–51 surfaces. It also introduces `docs/AGGRESSIVE_SAFE_PHASE_POLICY.md` to move from micro-phases to aggressive-but-safe milestone phases while preserving hard safety gates. Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. No real UI rendering, DOM access, endpoints, route handlers, runtime request handling, live query parsing, real reports, downloads, PDF/CSV/HTML generation, filesystem writes, persistence, background/scheduled jobs, real audit execution, live data, network access, wallet logic, execution logic, recommendations, signals, or investment advice is introduced.
+
 ## Phase 51 Note
 
 Phase 51 introduces strategy review export audit report selector view-model API contracts in `apps/dashboard/src/strategy-review-export-audit-report-selector-view-model-contracts/`, sourced strictly from Phase 50 selector view models. Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. No real UI rendering, DOM access, endpoints, route handlers, runtime request handling, live query parsing, real reports, downloads, PDF/CSV/HTML generation, filesystem writes, persistence, background/scheduled jobs, real audit execution, live data, network access, wallet logic, execution logic, recommendations, signals, or investment advice is introduced.
