@@ -1,5 +1,9 @@
 # Safety Rules
 
+## Phase 50 Safety Extension
+
+Phase 50 strategy review export audit report selector view models must remain fixture-derived-view-model-only, local-only, read-only, synthetic-only, deterministic, pure, serializable, in-memory, non-persistent, external-network-free, non-rendering, non-DOM, non-executable, and non-advisory. Phase 50 does not permit real UI rendering, DOM access, real HTTP endpoints, route handlers, runtime request handling, live query parsing, real reports, browser downloads, PDF/CSV/HTML generation, filesystem writes, persistence, queue workers, scheduled jobs, background jobs, real audit execution, actual audit logs, live data, Solana RPC/provider APIs, wallet access/private keys, execution/trading logic, recommendations, trading signals, or investment advice. All selector view-model data is deterministic, static, and fixture-derived from Phase 49 selectors.
+
 ## Phase 49 Safety Extension
 
 Phase 49 strategy review export audit report API contract selectors must remain fixture-derived-selector-only, local-only, read-only, synthetic-only, deterministic, pure, serializable, in-memory, non-persistent, external-network-free, non-rendering, non-DOM, non-executable, and non-advisory. Phase 49 does not permit real HTTP endpoints, route handlers, runtime request handling, live query parsing, real reports, browser downloads, PDF/CSV/HTML generation, filesystem writes, persistence, queue workers, scheduled jobs, background jobs, real audit execution, actual audit logs, live data, Solana RPC/provider APIs, wallet access/private keys, execution/trading logic, recommendations, trading signals, investment advice, UI rendering, or DOM access. All selector/query/result data is deterministic, static, and fixture-derived from Phase 48.

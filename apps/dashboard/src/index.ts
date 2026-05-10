@@ -883,3 +883,38 @@ export {
   isValidStrategyReviewExportAuditReportApiContractSelectorSource,
   stableDeterministicSelectorChecksum,
 } from './strategy-review-export-audit-report-contract-selectors/index.js';
+
+// ─── Phase 50 — Strategy Review Export Audit Report Selector View Models ───────
+
+export {
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SELECTOR_VIEW_MODEL_PHASE,
+  PHASE_50_STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SELECTOR_VIEW_MODEL_GENERATED_AT,
+  PHASE_50_STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SELECTOR_VIEW_MODEL_SOURCE,
+  PHASE_50_STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SELECTOR_VIEW_MODEL_VERSION,
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SELECTOR_VIEW_MODEL_NAMES,
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SELECTOR_VIEW_MODEL_KINDS,
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SELECTOR_VIEW_MODELS,
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SELECTOR_VIEW_MODEL_MAP,
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_LIST_SELECTOR_VIEW_MODEL,
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_DETAIL_SELECTOR_VIEW_MODELS,
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SUMMARY_SELECTOR_VIEW_MODEL,
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_ERROR_SELECTOR_VIEW_MODELS,
+  listStrategyReviewExportAuditReportSelectorViewModels,
+  getStrategyReviewExportAuditReportSelectorViewModel,
+  buildStrategyReviewExportAuditReportSelectorViewModel,
+  buildStrategyReviewExportAuditReportSelectorListViewModel,
+  buildStrategyReviewExportAuditReportSelectorDetailViewModel,
+  buildStrategyReviewExportAuditReportSelectorSummaryViewModel,
+  buildStrategyReviewExportAuditReportSelectorErrorViewModel,
+  validateStrategyReviewExportAuditReportSelectorViewModel,
+  validateStrategyReviewExportAuditReportSelectorViewModelSafety,
+  normalizeStrategyReviewExportAuditReportSelectorViewModel,
+  serializeStrategyReviewExportAuditReportSelectorViewModel,
+  areStrategyReviewExportAuditReportSelectorViewModelsEqual,
+  getStrategyReviewExportAuditReportSelectorViewModelCapabilities,
+  isValidStrategyReviewExportAuditReportSelectorViewModelName,
+  isValidStrategyReviewExportAuditReportSelectorViewModelKind,
+  isValidStrategyReviewExportAuditReportSelectorViewModelGeneratedAt,
+  isValidStrategyReviewExportAuditReportSelectorViewModelSource,
+  stableDeterministicSelectorViewModelChecksum,
+} from './strategy-review-export-audit-report-selector-view-models/index.js';

@@ -1,48 +1,47 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 49 — Strategy Review Export Audit Report API Contract Selectors v1**
+**Phase 50 — Strategy Review Export Audit Report Selector View Models v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 49.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 50.
 
-## Features (Phase 49 — adds to Phase 48)
+## Features (Phase 50 — adds to Phase 49)
 
-- Adds `apps/dashboard/src/strategy-review-export-audit-report-contract-selectors/` deterministic, fixture-derived, read-only selector/query layer:
-  - strict selector/query/result/meta/safety/validation/capability types
-  - pure deterministic selector builders, list/get helpers, selection helpers, normalization, serialization, equality, validation, and safety-validation helpers
-  - one deterministic selector per Phase 48 list/detail/summary/error contract fixture
-  - stable pagination/filter/sort query fixtures for the list selector
-- Adds Phase 49 strategy-review-export-audit-report-api-contract-selector capability flags:
-  - `strategyReviewExportAuditReportApiContractSelectors: true`
-  - `syntheticStrategyReviewExportAuditReportApiContractSelectors: true`
-  - `deterministicStrategyReviewExportAuditReportApiContractSelectors: true`
-  - `localOnlyStrategyReviewExportAuditReportApiContractSelectors: true`
-  - `readOnlyStrategyReviewExportAuditReportApiContractSelectors: true`
-  - `fixtureDerivedStrategyReviewExportAuditReportApiContractSelectors: true`
-  - `pureStrategyReviewExportAuditReportApiContractSelectors: true`
-  - `strategyReviewExportAuditReportApiContractSelectorLiveData: false`
-  - `strategyReviewExportAuditReportApiContractSelectorNetworkAccess: false`
-  - `strategyReviewExportAuditReportApiContractSelectorPersistence: false`
-  - `strategyReviewExportAuditReportApiContractSelectorFilesystemWrites: false`
-  - `strategyReviewExportAuditReportApiContractSelectorDownloads: false`
-  - `strategyReviewExportAuditReportApiContractSelectorPdfGeneration: false`
-  - `strategyReviewExportAuditReportApiContractSelectorCsvGeneration: false`
-  - `strategyReviewExportAuditReportApiContractSelectorHtmlGeneration: false`
-  - `strategyReviewExportAuditReportApiContractSelectorRouteHandlers: false`
-  - `strategyReviewExportAuditReportApiContractSelectorHttpServer: false`
-  - `strategyReviewExportAuditReportApiContractSelectorRuntimeRequests: false`
-  - `strategyReviewExportAuditReportApiContractSelectorUiRendering: false`
-  - `strategyReviewExportAuditReportApiContractSelectorDomAccess: false`
-  - `strategyReviewExportAuditReportApiContractSelectorBackgroundJobs: false`
-  - `strategyReviewExportAuditReportApiContractSelectorScheduledJobs: false`
-  - `strategyReviewExportAuditReportApiContractSelectorExecution: false`
-  - `strategyReviewExportAuditReportApiContractSelectorTradingSignals: false`
-  - `strategyReviewExportAuditReportApiContractSelectorRecommendations: false`
-  - `strategyReviewExportAuditReportApiContractSelectorInvestmentAdvice: false`
-- Adds `docs/STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_API_CONTRACT_SELECTORS.md` documentation
-- Adds `tests/phase49.test.ts` coverage for deterministic selectors and safety guards
+- Adds `apps/dashboard/src/strategy-review-export-audit-report-selector-view-models/` deterministic, fixture-derived, read-only selector view-model layer:
+  - strict selector view-model/query panel/result panel/meta/safety/validation/capability types
+  - pure deterministic list/detail/summary/error view-model builders and generic builder
+  - one deterministic selector view model per Phase 49 selector fixture
+  - deterministic fixtures, list/get helpers, normalization, serialization, equality, validation, and safety-validation helpers
+- Adds Phase 50 strategy-review-export-audit-report-selector-view-model capability flags:
+  - `strategyReviewExportAuditReportSelectorViewModels: true`
+  - `syntheticStrategyReviewExportAuditReportSelectorViewModels: true`
+  - `deterministicStrategyReviewExportAuditReportSelectorViewModels: true`
+  - `localOnlyStrategyReviewExportAuditReportSelectorViewModels: true`
+  - `readOnlyStrategyReviewExportAuditReportSelectorViewModels: true`
+  - `fixtureDerivedStrategyReviewExportAuditReportSelectorViewModels: true`
+  - `strategyReviewExportAuditReportSelectorViewModelLiveData: false`
+  - `strategyReviewExportAuditReportSelectorViewModelNetworkAccess: false`
+  - `strategyReviewExportAuditReportSelectorViewModelPersistence: false`
+  - `strategyReviewExportAuditReportSelectorViewModelFilesystemWrites: false`
+  - `strategyReviewExportAuditReportSelectorViewModelDownloads: false`
+  - `strategyReviewExportAuditReportSelectorViewModelPdfGeneration: false`
+  - `strategyReviewExportAuditReportSelectorViewModelCsvGeneration: false`
+  - `strategyReviewExportAuditReportSelectorViewModelHtmlGeneration: false`
+  - `strategyReviewExportAuditReportSelectorViewModelRouteHandlers: false`
+  - `strategyReviewExportAuditReportSelectorViewModelHttpServer: false`
+  - `strategyReviewExportAuditReportSelectorViewModelRuntimeRequests: false`
+  - `strategyReviewExportAuditReportSelectorViewModelUiRendering: false`
+  - `strategyReviewExportAuditReportSelectorViewModelDomAccess: false`
+  - `strategyReviewExportAuditReportSelectorViewModelBackgroundJobs: false`
+  - `strategyReviewExportAuditReportSelectorViewModelScheduledJobs: false`
+  - `strategyReviewExportAuditReportSelectorViewModelExecution: false`
+  - `strategyReviewExportAuditReportSelectorViewModelTradingSignals: false`
+  - `strategyReviewExportAuditReportSelectorViewModelRecommendations: false`
+  - `strategyReviewExportAuditReportSelectorViewModelInvestmentAdvice: false`
+- Adds `docs/STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SELECTOR_VIEW_MODELS.md` documentation
+- Adds `tests/phase50.test.ts` coverage for deterministic selector view models and safety guards
 - **No real endpoints. No route handlers. No runtime request handling or live query parsing. No real reports. No downloads. No PDF/CSV/HTML generation. No filesystem writes. No persistence. No background jobs. No scheduled jobs. No queue workers. No real audit execution. No live data. No network. No wallet. No execution. No recommendations/signals/investment advice. No UI rendering. No DOM access.**
 
-**Next phase: Phase 50 — reserved for future phase-gated work (not implemented in this phase).**
+**Next phase: Phase 51 — reserved for future phase-gated work (not implemented in this phase).**
 
 ---
 
