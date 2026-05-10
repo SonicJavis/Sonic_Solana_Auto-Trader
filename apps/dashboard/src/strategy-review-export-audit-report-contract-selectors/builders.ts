@@ -162,7 +162,7 @@ function buildResultMeta(
   };
 }
 
-function uniqueStrings(values: readonly string[]): readonly string[] {
+function uniqueStrings<T extends string>(values: readonly T[]): T[] {
   return [...new Set(values)];
 }
 

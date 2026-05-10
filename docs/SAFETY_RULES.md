@@ -1,5 +1,10 @@
 # Safety Rules
 
+## Phase 49 Safety Extension
+
+Phase 49 strategy review export audit report API contract selectors must remain fixture-derived-selector-only, local-only, read-only, synthetic-only, deterministic, pure, serializable, in-memory, non-persistent, external-network-free, non-rendering, non-DOM, non-executable, and non-advisory. Phase 49 does not permit real HTTP endpoints, route handlers, runtime request handling, live query parsing, real reports, browser downloads, PDF/CSV/HTML generation, filesystem writes, persistence, queue workers, scheduled jobs, background jobs, real audit execution, actual audit logs, live data, Solana RPC/provider APIs, wallet access/private keys, execution/trading logic, recommendations, trading signals, investment advice, UI rendering, or DOM access. All selector/query/result data is deterministic, static, and fixture-derived from Phase 48.
+
+
 ## Phase 48 Safety Extension
 
 Phase 48 strategy review export audit report read-only API contracts must remain fixture-derived-contract-only, local-only, read-only, synthetic-only, deterministic, serializable, in-memory, non-persistent, external-network-free, non-rendering, non-DOM, non-executable, and non-advisory. Phase 48 does not permit real HTTP endpoints, route handlers, runtime request handling, real reports, browser downloads, PDF/CSV/HTML generation, filesystem writes, persistence, queue workers, scheduled jobs, background jobs, real audit execution, actual audit logs, live data, Solana RPC/provider APIs, wallet access/private keys, execution/trading logic, recommendations, trading signals, investment advice, UI rendering, or DOM access. All API contract data is deterministic, static, and fixture-derived.

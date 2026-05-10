@@ -69,7 +69,7 @@ function issue(
   return { code, field, message, severity };
 }
 
-function uniqueStrings(values: readonly string[]): readonly string[] {
+function uniqueStrings<T extends string>(values: readonly T[]): T[] {
   return [...new Set(values)];
 }
 
@@ -373,10 +373,11 @@ export function validateStrategyReviewExportAuditReportApiContractSelectorResult
   }
 
   if (Array.isArray(input['contracts']) && isRecord(input['contract'])) {
+    const primaryContract = input['contract'];
     const match = input['contracts'].some(contract =>
       isRecord(contract) &&
-      contract['contractId'] === input['contract']['contractId'] &&
-      contract['contractName'] === input['contract']['contractName'],
+      contract['contractId'] === primaryContract['contractId'] &&
+      contract['contractName'] === primaryContract['contractName'],
     );
     if (!match) {
       issues.push(issue('PRIMARY_CONTRACT_MISSING', 'result.contracts', 'contracts must include the primary contract'));
