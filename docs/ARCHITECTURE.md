@@ -1,5 +1,9 @@
 # Architecture
 
+## Phase 54 Update
+
+Phase 54 extends `apps/dashboard/` with `src/read-only-provider-contracts/`, a deterministic, fixture-derived, read-only provider interface contracts milestone surface. It bundles provider identities, interface contract shapes, capability contracts, health/status contracts, synthetic response contracts (derived from Phase 53 scenarios), view models, API contract fixtures, selectors, normalization, validation, capabilities, tests, and docs in one aggressive-safe vertical slice. This layer defines the contract gate shapes for future read-only provider adapters. It is contract-only, local-only, read-only, deterministic, pure, in-memory, non-networked, non-persistent, non-rendering, non-DOM, non-wallet, non-executable, and non-advisory.
+
 ## Phase 53 Update
 
 Phase 53 extends `apps/dashboard/` with `src/synthetic-launch-intelligence/`, a deterministic, fixture-derived, read-only synthetic launch intelligence milestone surface. It bundles synthetic launch events, token profiles, pool/liquidity snapshots, creator profiles, holder distribution snapshots, wallet-cluster indicators, launch risk factor summaries, view models, API contract fixtures, selectors, normalization, validation, capabilities, tests, and docs in one aggressive-safe vertical slice. This layer is synthetic-only, local-only, read-only, deterministic, pure, in-memory, non-networked, non-persistent, non-rendering, non-DOM, non-wallet, non-executable, and non-advisory.

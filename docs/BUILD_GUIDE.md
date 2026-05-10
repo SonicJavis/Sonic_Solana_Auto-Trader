@@ -1,5 +1,9 @@
 # Build Guide
 
+## Phase 54 Note
+
+Phase 54 introduces read-only provider interface contracts in `apps/dashboard/src/read-only-provider-contracts/` as a complete aggressive-safe vertical slice (types, builders, fixtures, view models, contracts, selectors, normalization, validation, capabilities, docs, tests). Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. No live data, provider adapters, Solana RPC, WebSocket/Geyser/Yellowstone, Pump.fun/Jupiter/Raydium/Orca/Meteora integrations, wallet logic, signing/sending, execution, recommendations/signals/investment advice, endpoints/routes/handlers/runtime request handling, UI rendering/DOM, filesystem writes, persistence, or background jobs are introduced.
+
 ## Phase 53 Note
 
 Phase 53 introduces synthetic launch intelligence in `apps/dashboard/src/synthetic-launch-intelligence/` as a complete aggressive-safe vertical slice (fixtures, view models, contracts, selectors, normalization, validation, capabilities, docs, tests). Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. No live data, provider adapters, Solana RPC, Pump.fun/Jupiter/Raydium/Orca/Meteora integrations, wallet logic, signing/sending, execution, recommendations/signals/investment advice, endpoints/routes/handlers/runtime request handling, UI rendering/DOM, filesystem writes, persistence, or background jobs are introduced.
