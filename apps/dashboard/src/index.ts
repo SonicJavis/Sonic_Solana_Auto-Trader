@@ -1046,3 +1046,35 @@ export {
   isValidReadOnlyProviderContractGeneratedAt,
   isValidReadOnlyProviderContractSource,
 } from './read-only-provider-contracts/index.js';
+
+
+// ─── Phase 55 — Read-Only Provider Adapter Mocks ──────────────
+
+export {
+  READ_ONLY_PROVIDER_ADAPTER_MOCKS_PHASE,
+  PHASE_55_READ_ONLY_PROVIDER_ADAPTER_MOCKS_GENERATED_AT,
+  PHASE_55_READ_ONLY_PROVIDER_ADAPTER_MOCKS_SOURCE,
+  PHASE_55_READ_ONLY_PROVIDER_ADAPTER_MOCKS_VERSION,
+  READ_ONLY_PROVIDER_ADAPTER_MOCK_NAMES,
+  READ_ONLY_PROVIDER_ADAPTER_MOCK_KINDS,
+  READ_ONLY_PROVIDER_ADAPTER_MOCK_FIXTURES,
+  READ_ONLY_PROVIDER_ADAPTER_MOCK_FIXTURE_MAP,
+  listReadOnlyProviderAdapterMockFixtures,
+  getReadOnlyProviderAdapterMockFixture,
+  buildReadOnlyProviderAdapterMockFixture,
+  buildReadOnlyProviderAdapterMockViewModel,
+  buildReadOnlyProviderAdapterMockApiContract,
+  selectReadOnlyProviderAdapterMockFixture,
+  runReadOnlyProviderAdapterMock,
+  validateReadOnlyProviderAdapterMockFixture,
+  validateReadOnlyProviderAdapterMockSafety,
+  normalizeReadOnlyProviderAdapterMockFixture,
+  serializeReadOnlyProviderAdapterMockFixture,
+  areReadOnlyProviderAdapterMockFixturesEqual,
+  getReadOnlyProviderAdapterMockCapabilities,
+  stableDeterministicReadOnlyProviderAdapterMockChecksum,
+  isValidReadOnlyProviderAdapterMockName,
+  isValidReadOnlyProviderAdapterMockKind,
+  isValidReadOnlyProviderAdapterMockGeneratedAt,
+  isValidReadOnlyProviderAdapterMockSource,
+} from './read-only-provider-adapter-mocks/index.js';

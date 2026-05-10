@@ -1,8 +1,22 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 54 — Read-Only Provider Interface Contracts v1**
+**Phase 55 — Read-Only Provider Adapter Mocks v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 54.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 55.
+
+## Features (Phase 55 — adds to Phase 54)
+
+- Adds `apps/dashboard/src/read-only-provider-adapter-mocks/` deterministic, fixture-derived, read-only provider adapter mock vertical slice:
+  - 8 mock adapter fixtures: Solana RPC, Pump Launch, DEX Liquidity, Token Metadata, Holder Distribution, Wallet Cluster, Risk Intelligence, and Disabled Unsafe
+  - mock adapter identity model, capability profile model, health/status profile model, request/result/error shapes, deterministic runner (`runReadOnlyProviderAdapterMock()`)
+  - deterministic view-model builders, API contract fixtures (list/detail/summary/error), selector helpers, normalization/serialization/equality helpers, and structural/safety validation
+  - explicit Phase 54 provider-contract linkage + Phase 53 synthetic-launch fixture linkage
+- Adds Phase 55 capability flags for read-only provider adapter mocks with all live/network/real-adapter/RPC/WebSocket/persistence/filesystem/route/runtime/UI/DOM/background/wallet/signing/execution/signal/recommendation/advice flags fixed to `false`
+- Adds `docs/READ_ONLY_PROVIDER_ADAPTER_MOCKS.md`
+- Adds `tests/phase55.test.ts`
+- **No live data. No real provider adapters. No Solana RPC connections. No WebSocket/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora integrations. No wallet/private key/signing/sending logic. No execution. No recommendations/signals/investment advice. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/background jobs.**
+
+**Next phase: Phase 56 — Synthetic Event Stream Lifecycle v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 54 — adds to Phase 53)
 
@@ -16,7 +30,7 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 - Adds `tests/phase54.test.ts`
 - **No live data. No provider adapters. No Solana RPC connections. No WebSocket/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora integrations. No wallet/private key/signing/sending logic. No execution. No recommendations/signals/investment advice. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/background jobs.**
 
-**Next phase: Phase 55 — Read-Only Provider Adapter Mocks v1 (not yet implemented).**
+**Next phase: Phase 55 — Read-Only Provider Adapter Mocks v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 53 — adds to Phase 52)
 

@@ -682,4 +682,42 @@ export interface DashboardUiShellCapabilities {
   readonly readOnlyProviderTradingSignals: false;
   readonly readOnlyProviderRecommendations: false;
   readonly readOnlyProviderInvestmentAdvice: false;
+
+  // Phase 55 read-only provider adapter mock capabilities
+  readonly readOnlyProviderAdapterMocks: true;
+  readonly syntheticReadOnlyProviderAdapterMocks: true;
+  readonly deterministicReadOnlyProviderAdapterMocks: true;
+  readonly localOnlyReadOnlyProviderAdapterMocks: true;
+  readonly fixtureDerivedReadOnlyProviderAdapterMocks: true;
+  readonly pureReadOnlyProviderAdapterMocks: true;
+  readonly readOnlyProviderAdapterMockViewModels: true;
+  readonly readOnlyProviderAdapterMockApiContracts: true;
+  readonly readOnlyProviderAdapterMockSelectors: true;
+  readonly readOnlyProviderAdapterMockLiveData: false;
+  readonly readOnlyProviderAdapterMockNetworkAccess: false;
+  readonly readOnlyProviderAdapterMockRealAdapters: false;
+  readonly readOnlyProviderAdapterMockSolanaRpc: false;
+  readonly readOnlyProviderAdapterMockWebSocketAccess: false;
+  readonly readOnlyProviderAdapterMockGeyserYellowstone: false;
+  readonly readOnlyProviderAdapterMockPumpFunIntegration: false;
+  readonly readOnlyProviderAdapterMockDexIntegration: false;
+  readonly readOnlyProviderAdapterMockJitoIntegration: false;
+  readonly readOnlyProviderAdapterMockPersistence: false;
+  readonly readOnlyProviderAdapterMockFilesystemWrites: false;
+  readonly readOnlyProviderAdapterMockDownloads: false;
+  readonly readOnlyProviderAdapterMockRouteHandlers: false;
+  readonly readOnlyProviderAdapterMockHttpServer: false;
+  readonly readOnlyProviderAdapterMockRuntimeRequests: false;
+  readonly readOnlyProviderAdapterMockUiRendering: false;
+  readonly readOnlyProviderAdapterMockDomAccess: false;
+  readonly readOnlyProviderAdapterMockBackgroundJobs: false;
+  readonly readOnlyProviderAdapterMockScheduledJobs: false;
+  readonly readOnlyProviderAdapterMockWalletLogic: false;
+  readonly readOnlyProviderAdapterMockPrivateKeyHandling: false;
+  readonly readOnlyProviderAdapterMockSigning: false;
+  readonly readOnlyProviderAdapterMockTransactionSending: false;
+  readonly readOnlyProviderAdapterMockExecution: false;
+  readonly readOnlyProviderAdapterMockTradingSignals: false;
+  readonly readOnlyProviderAdapterMockRecommendations: false;
+  readonly readOnlyProviderAdapterMockInvestmentAdvice: false;
 }

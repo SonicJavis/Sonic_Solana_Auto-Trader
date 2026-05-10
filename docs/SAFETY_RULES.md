@@ -1,5 +1,9 @@
 # Safety Rules
 
+## Phase 55 Safety Extension
+
+Phase 55 read-only provider adapter mocks must remain mock-only, local-only, read-only, synthetic-only, deterministic, pure, serializable, in-memory, non-persistent, external-network-free, non-rendering, non-DOM, non-wallet, non-executable, and non-advisory. Phase 55 does not permit live data, real provider adapters, Solana RPC connections, WebSocket/Geyser/Yellowstone, Pump.fun/Jupiter/Raydium/Orca/Meteora integrations, real endpoints, route handlers, runtime request handling, filesystem writes, persistence, downloads, queue/background/scheduled jobs, wallet/private key handling, signing/sending logic, execution logic, trading signals, recommendations, or investment advice.
+
 ## Phase 54 Safety Extension
 
 Phase 54 read-only provider interface contracts must remain contract-gate-only, local-only, read-only, synthetic-only, deterministic, pure, serializable, in-memory, non-persistent, external-network-free, non-rendering, non-DOM, non-wallet, non-executable, and non-advisory. Phase 54 does not permit live data, provider adapters, Solana RPC connections, WebSocket/Geyser/Yellowstone, Pump.fun/Jupiter/Raydium/Orca/Meteora integrations, real endpoints, route handlers, runtime request handling, filesystem writes, persistence, downloads, queue/background/scheduled jobs, wallet/private key handling, signing/sending logic, execution logic, trading signals, recommendations, or investment advice.

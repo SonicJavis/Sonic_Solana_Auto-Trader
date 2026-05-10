@@ -1,5 +1,29 @@
 # Phase Log
 
+## Phase 55 — Read-Only Provider Adapter Mocks v1
+
+- Adds `apps/dashboard/src/read-only-provider-adapter-mocks/` complete deterministic, fixture-derived, read-only provider adapter mock milestone surface:
+  - `types.ts` — Phase 55 constants, mock adapter names/kinds/domains, identity/capability/health/request/result/view-model/API-contract/selector/meta/safety/capability interfaces
+  - `builders.ts` — deterministic `buildReadOnlyProviderAdapterMockFixture()` with 8 mock adapter scenario definitions linked to Phase 54 contracts and Phase 53 fixtures
+  - `fixtures.ts` — `READ_ONLY_PROVIDER_ADAPTER_MOCK_FIXTURES` (8 fixtures), `READ_ONLY_PROVIDER_ADAPTER_MOCK_FIXTURE_MAP`, `listReadOnlyProviderAdapterMockFixtures()`, `getReadOnlyProviderAdapterMockFixture()`
+  - `adapters.ts` — deterministic `runReadOnlyProviderAdapterMock()` with typed success/error results
+  - `view-models.ts` — `buildReadOnlyProviderAdapterMockViewModel()`
+  - `contracts.ts` — `buildReadOnlyProviderAdapterMockApiContract()` with list/detail/summary/error contract fixtures
+  - `selectors.ts` — `selectReadOnlyProviderAdapterMockFixture()` local selector helpers
+  - `normalization.ts` — normalization/serialization/equality/checksum/isValid* helpers
+  - `validation.ts` — structural/safety/capability validation helpers
+  - `capabilities.ts` — `getReadOnlyProviderAdapterMockCapabilities()` with positive/negative Phase 55 flags
+  - `index.ts` — re-exports all public API
+- Exports all Phase 55 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard/read-only-api capability surfaces with Phase 55 read-only provider adapter mock flags
+- Adds `tests/phase55.test.ts` with coverage for builders, fixtures, adapters, validation, safety checks, capability propagation, and deterministic behavior
+- Adds `docs/READ_ONLY_PROVIDER_ADAPTER_MOCKS.md`
+- **No live data. No Solana RPC connections. No real provider adapters. No WebSocket/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora integration. No wallet handling. No signing. No sending. No execution. No recommendations. No trading signals. No investment advice. No persistence. No background jobs. No route handlers. No UI rendering.**
+- FULL_AUTO and LIMITED_LIVE remain locked
+
+**Next phase guidance:** Phase 56 — Synthetic Event Stream Lifecycle v1 (preview only; not implemented).
+
+
 ## Phase 54 — Read-Only Provider Interface Contracts v1
 
 - Adds `apps/dashboard/src/read-only-provider-contracts/` complete deterministic, fixture-derived, read-only provider contract milestone surface:
