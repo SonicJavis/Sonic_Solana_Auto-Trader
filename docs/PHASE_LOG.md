@@ -1,5 +1,23 @@
 # Phase Log
 
+## Phase 51 — Strategy Review Export Audit Report Selector View Model API Contracts v1
+
+- Adds `apps/dashboard/src/strategy-review-export-audit-report-selector-view-model-contracts/` with deterministic, fixture-derived, read-only selector-view-model API contract layer:
+  - `types.ts` — Phase 51 constants, contract kinds/names, list/detail/summary/error contract interfaces, meta/safety/validation/pagination/filter/sort/capability types
+  - `capabilities.ts` — `getStrategyReviewExportAuditReportSelectorViewModelApiContractCapabilities()` with Phase 51 contract-only flags
+  - `normalization.ts` — deterministic ordering, serialization, equality, guard helpers, and stable checksum
+  - `builders.ts` — pure deterministic list/detail/summary/error/generic contract builders derived strictly from Phase 50 selector view models
+  - `fixtures.ts` — prebuilt deterministic contract list + maps + list/get helpers with one detail contract per Phase 50 selector view model
+  - `validation.ts` — `validateStrategyReviewExportAuditReportSelectorViewModelApiContract`, `validateStrategyReviewExportAuditReportSelectorViewModelApiContractSafety`
+  - `index.ts` — barrel export
+- Exports all Phase 51 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard/read-only-api capability surfaces with Phase 51 flags (`strategyReviewExportAuditReportSelectorViewModelApiContracts`, `strategyReviewExportAuditReportSelectorViewModelApiContractRuntimeRequests: false`, etc.)
+- Adds `docs/STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SELECTOR_VIEW_MODEL_API_CONTRACTS.md`
+- Adds `tests/phase51.test.ts`
+- **No real UI rendering. No DOM access. No real endpoints. No route handlers. No runtime request handling or live query parsing. No real reports. No downloads. No PDF/CSV/HTML generation. No filesystem writes. No persistence. No background/scheduled jobs. No queue workers. No real audit execution. No live data. No network. No wallet or execution logic. No recommendations/signals/investment advice.**
+
+**Next phase guidance:** Phase 52 is not implemented in this phase.
+
 ## Phase 50 — Strategy Review Export Audit Report Selector View Models v1
 
 - Adds `apps/dashboard/src/strategy-review-export-audit-report-selector-view-models/` with deterministic, fixture-derived, read-only selector view-model layer:

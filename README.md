@@ -1,8 +1,47 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 50 — Strategy Review Export Audit Report Selector View Models v1**
+**Phase 51 — Strategy Review Export Audit Report Selector View Model API Contracts v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 50.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 51.
+
+## Features (Phase 51 — adds to Phase 50)
+
+- Adds `apps/dashboard/src/strategy-review-export-audit-report-selector-view-model-contracts/` deterministic, fixture-derived, read-only selector-view-model API contract layer:
+  - strict list/detail/summary/error contract types plus deterministic meta/safety/validation/capability envelopes
+  - pure deterministic list/detail/summary/error builders and generic builder derived strictly from Phase 50 selector view models
+  - deterministic fixtures, list/get helpers, normalization, serialization, equality, validation, and safety-validation helpers
+  - one deterministic detail contract per Phase 50 selector view model, plus one list contract, one summary contract, and two static error contracts
+- Adds Phase 51 strategy-review-export-audit-report-selector-view-model-api-contract capability flags:
+  - `strategyReviewExportAuditReportSelectorViewModelApiContracts: true`
+  - `syntheticStrategyReviewExportAuditReportSelectorViewModelApiContracts: true`
+  - `deterministicStrategyReviewExportAuditReportSelectorViewModelApiContracts: true`
+  - `localOnlyStrategyReviewExportAuditReportSelectorViewModelApiContracts: true`
+  - `readOnlyStrategyReviewExportAuditReportSelectorViewModelApiContracts: true`
+  - `fixtureDerivedStrategyReviewExportAuditReportSelectorViewModelApiContracts: true`
+  - `strategyReviewExportAuditReportSelectorViewModelApiContractLiveData: false`
+  - `strategyReviewExportAuditReportSelectorViewModelApiContractNetworkAccess: false`
+  - `strategyReviewExportAuditReportSelectorViewModelApiContractPersistence: false`
+  - `strategyReviewExportAuditReportSelectorViewModelApiContractFilesystemWrites: false`
+  - `strategyReviewExportAuditReportSelectorViewModelApiContractDownloads: false`
+  - `strategyReviewExportAuditReportSelectorViewModelApiContractPdfGeneration: false`
+  - `strategyReviewExportAuditReportSelectorViewModelApiContractCsvGeneration: false`
+  - `strategyReviewExportAuditReportSelectorViewModelApiContractHtmlGeneration: false`
+  - `strategyReviewExportAuditReportSelectorViewModelApiContractRouteHandlers: false`
+  - `strategyReviewExportAuditReportSelectorViewModelApiContractHttpServer: false`
+  - `strategyReviewExportAuditReportSelectorViewModelApiContractRuntimeRequests: false`
+  - `strategyReviewExportAuditReportSelectorViewModelApiContractUiRendering: false`
+  - `strategyReviewExportAuditReportSelectorViewModelApiContractDomAccess: false`
+  - `strategyReviewExportAuditReportSelectorViewModelApiContractBackgroundJobs: false`
+  - `strategyReviewExportAuditReportSelectorViewModelApiContractScheduledJobs: false`
+  - `strategyReviewExportAuditReportSelectorViewModelApiContractExecution: false`
+  - `strategyReviewExportAuditReportSelectorViewModelApiContractTradingSignals: false`
+  - `strategyReviewExportAuditReportSelectorViewModelApiContractRecommendations: false`
+  - `strategyReviewExportAuditReportSelectorViewModelApiContractInvestmentAdvice: false`
+- Adds `docs/STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SELECTOR_VIEW_MODEL_API_CONTRACTS.md` documentation
+- Adds `tests/phase51.test.ts` coverage for deterministic selector-view-model API contracts and safety guards
+- **No real UI rendering. No DOM access. No real endpoints. No route handlers. No runtime request handling or live query parsing. No real reports. No downloads. No PDF/CSV/HTML generation. No filesystem writes. No persistence. No background/scheduled jobs. No queue workers. No real audit execution. No live data. No network. No wallet. No execution. No recommendations/signals/investment advice.**
+
+**Next phase: Phase 52 — reserved for future phase-gated work (not implemented in this phase).**
 
 ## Features (Phase 50 — adds to Phase 49)
 
@@ -41,7 +80,7 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 - Adds `tests/phase50.test.ts` coverage for deterministic selector view models and safety guards
 - **No real endpoints. No route handlers. No runtime request handling or live query parsing. No real reports. No downloads. No PDF/CSV/HTML generation. No filesystem writes. No persistence. No background jobs. No scheduled jobs. No queue workers. No real audit execution. No live data. No network. No wallet. No execution. No recommendations/signals/investment advice. No UI rendering. No DOM access.**
 
-**Next phase: Phase 51 — reserved for future phase-gated work (not implemented in this phase).**
+**Next phase: Phase 52 — reserved for future phase-gated work (not implemented in this phase).**
 
 ---
 
