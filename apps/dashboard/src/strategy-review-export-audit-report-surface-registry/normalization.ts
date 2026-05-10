@@ -10,6 +10,7 @@ import {
   type StrategyReviewExportAuditReportSurfaceRegistry,
   type StrategyReviewExportAuditReportSurfaceRegistryEntryKind,
   type StrategyReviewExportAuditReportSurfaceRegistryEntryName,
+  type StrategyReviewExportAuditReportSurfaceRegistryRelationships,
 } from './types.js';
 
 export function stableDeterministicStrategyReviewExportAuditReportSurfaceRegistryChecksum(
@@ -111,8 +112,10 @@ export function normalizeStrategyReviewExportAuditReportSurfaceRegistry(
     entries: normalizedEntries,
     relationships: {
       ...registry.relationships,
-      dependencies,
-      dependents,
+      dependencies:
+        dependencies as StrategyReviewExportAuditReportSurfaceRegistryRelationships['dependencies'],
+      dependents:
+        dependents as StrategyReviewExportAuditReportSurfaceRegistryRelationships['dependents'],
     },
     aggressiveSafePolicy: {
       ...registry.aggressiveSafePolicy,

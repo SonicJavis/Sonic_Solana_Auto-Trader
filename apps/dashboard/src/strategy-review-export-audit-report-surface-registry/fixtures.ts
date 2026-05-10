@@ -18,7 +18,7 @@ import {
 export const STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SURFACE_REGISTRY_ENTRIES =
   STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SURFACE_REGISTRY_ENTRY_NAMES.map(entryName =>
     buildStrategyReviewExportAuditReportSurfaceRegistryEntry({ entryName }),
-  ) as const satisfies readonly StrategyReviewExportAuditReportSurfaceRegistryEntry[];
+  ) satisfies readonly StrategyReviewExportAuditReportSurfaceRegistryEntry[];
 
 export const STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SURFACE_REGISTRY_MAP: ReadonlyMap<
   StrategyReviewExportAuditReportSurfaceRegistryEntryName,

@@ -37,6 +37,10 @@ const EXCLUDED_SCAN_FIELDS = new Set([
   'milestoneName',
   'source',
   'deterministicSeed',
+  'surfaceRole',
+  'notes',
+  'nextMilestoneNotes',
+  'requiredBeforeAnyLiveTrading',
 ]);
 
 function isRecord(value: unknown): value is Record<string, unknown> {
