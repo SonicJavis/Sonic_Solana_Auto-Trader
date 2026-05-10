@@ -356,5 +356,21 @@ export function getDashboardUiShellCapabilities(): DashboardUiShellCapabilities 
     strategyReviewAuditExecution: false,
     strategyReviewAuditTradingSignals: false,
     strategyReviewAuditInvestmentAdvice: false,
+    // Phase 46 strategy review export audit report fixture capabilities
+    strategyReviewExportAuditReportFixtures: true,
+    syntheticStrategyReviewExportAuditReports: true,
+    deterministicStrategyReviewExportAuditReports: true,
+    localOnlyStrategyReviewExportAuditReports: true,
+    readOnlyStrategyReviewExportAuditReports: true,
+    strategyReviewActualAuditReports: false,
+    strategyReviewReportDownloads: false,
+    strategyReviewReportPdfGeneration: false,
+    strategyReviewReportCsvGeneration: false,
+    strategyReviewReportHtmlGeneration: false,
+    strategyReviewReportFilesystemWrites: false,
+    strategyReviewReportBackgroundJobs: false,
+    strategyReviewReportScheduledJobs: false,
+    strategyReviewReportLiveData: false,
+    strategyReviewReportNetworkAccess: false,
   };
 }

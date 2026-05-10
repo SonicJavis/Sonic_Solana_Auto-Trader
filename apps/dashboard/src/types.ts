@@ -439,4 +439,20 @@ export interface DashboardUiShellCapabilities {
   readonly strategyReviewAuditExecution: false;
   readonly strategyReviewAuditTradingSignals: false;
   readonly strategyReviewAuditInvestmentAdvice: false;
+  // Phase 46 strategy review export audit report fixture capabilities
+  readonly strategyReviewExportAuditReportFixtures: true;
+  readonly syntheticStrategyReviewExportAuditReports: true;
+  readonly deterministicStrategyReviewExportAuditReports: true;
+  readonly localOnlyStrategyReviewExportAuditReports: true;
+  readonly readOnlyStrategyReviewExportAuditReports: true;
+  readonly strategyReviewActualAuditReports: false;
+  readonly strategyReviewReportDownloads: false;
+  readonly strategyReviewReportPdfGeneration: false;
+  readonly strategyReviewReportCsvGeneration: false;
+  readonly strategyReviewReportHtmlGeneration: false;
+  readonly strategyReviewReportFilesystemWrites: false;
+  readonly strategyReviewReportBackgroundJobs: false;
+  readonly strategyReviewReportScheduledJobs: false;
+  readonly strategyReviewReportLiveData: false;
+  readonly strategyReviewReportNetworkAccess: false;
 }

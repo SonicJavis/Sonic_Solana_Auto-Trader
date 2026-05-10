@@ -1,5 +1,9 @@
 # Build Guide
 
+## Phase 46 Note
+
+Phase 46 introduces strategy review export audit report fixture models in `apps/dashboard/src/strategy-review-export-audit-report/`, sourced strictly from Phase 45 export-audit fixtures. Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. No real report generation, report downloads, PDF/CSV/HTML generation, filesystem writes, persistence, background/scheduled jobs, live data, network access, wallet logic, execution logic, recommendations, signals, or investment advice is introduced.
+
 ## Phase 45 Note
 
 Phase 45 introduces strategy review export audit fixture models in `apps/dashboard/src/strategy-review-export-audit/`, sourced from Phase 44 export-queue fixtures. Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. No live data, real audit logs, real queue workers, filesystem writes, persistence, download support, execution logic, external network access, wallet logic, trading signals, investment advice, or file export/download behavior is introduced.

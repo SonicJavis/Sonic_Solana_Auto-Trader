@@ -1,5 +1,23 @@
 # Phase Log
 
+## Phase 46 — Strategy Review Export Audit Report Fixtures v1
+
+- Adds `apps/dashboard/src/strategy-review-export-audit-report/` with deterministic export-audit-report fixture layer:
+  - `types.ts` — Phase 46 constants, report fixture names/kinds, section/evidence/validation/safety/meta/build/capability interfaces
+  - `capabilities.ts` — `getStrategyReviewExportAuditReportCapabilities()` with Phase 46 fixture-only report flags
+  - `normalization.ts` — deterministic sorting, serialization, equality, and guard helpers
+  - `validation.ts` — `validateStrategyReviewExportAuditReportFixture`, `validateStrategyReviewExportAuditReportSafety`
+  - `builders.ts` — `buildStrategyReviewExportAuditReportFixture` deriving one report fixture from one Phase 45 audit fixture
+  - `fixtures.ts` — deterministic report fixture list + map + list/get helpers derived from Phase 45 fixtures
+  - `index.ts` — barrel export
+- Exports all Phase 46 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard/read-only-api capability surfaces with Phase 46 flags (`strategyReviewExportAuditReportFixtures`, `syntheticStrategyReviewExportAuditReports`, `strategyReviewReportDownloads: false`, etc.)
+- Adds `docs/STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_FIXTURES.md`
+- Adds `tests/phase46.test.ts`
+- **No real reports. No downloads. No PDF/CSV/HTML generation. No filesystem writes. No persistence. No queue workers, scheduled jobs, or background jobs. No real audit execution/log ingestion. No live data. No network. No wallet or execution logic. No recommendations/signals/investment advice.**
+
+**Next phase guidance:** Phase 47 may add deterministic report rendering models only. Do not add live data or execution controls.
+
 ## Phase 45 — Strategy Review Export Audit Fixtures v1
 
 - Adds `apps/dashboard/src/strategy-review-export-audit/` with deterministic export-audit fixture layer:
