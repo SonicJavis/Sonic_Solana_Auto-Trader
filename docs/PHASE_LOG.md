@@ -1,5 +1,25 @@
 # Phase Log
 
+## Phase 49 — Strategy Review Export Audit Report API Contract Selectors v1
+
+- Adds `apps/dashboard/src/strategy-review-export-audit-report-contract-selectors/` with deterministic, fixture-derived, read-only selector/query layer:
+  - `types.ts` — Phase 49 constants, selector kinds/names, selector/query/result/meta/safety/validation/capability interfaces
+  - `capabilities.ts` — `getStrategyReviewExportAuditReportApiContractSelectorCapabilities()` with Phase 49 selector-only flags
+  - `normalization.ts` — deterministic selector ordering, serialization, equality, validation guards, and stable checksum
+  - `builders.ts` — pure deterministic query/result/selector builders derived from Phase 48 contracts
+  - `fixtures.ts` — prebuilt deterministic selector list + maps + selector name list derived from Phase 48 contracts
+  - `selectors.ts` — pure list/get/select helpers for list/detail/summary/error contract selection
+  - `validation.ts` — `validateStrategyReviewExportAuditReportApiContractSelector`, `validateStrategyReviewExportAuditReportApiContractSelectorResult`, `validateStrategyReviewExportAuditReportApiContractSelectorSafety`
+  - `index.ts` — barrel export
+- Exports all Phase 49 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard/read-only-api capability surfaces with Phase 49 flags (`strategyReviewExportAuditReportApiContractSelectors`, `pureStrategyReviewExportAuditReportApiContractSelectors`, `strategyReviewExportAuditReportApiContractSelectorRuntimeRequests: false`, etc.)
+- Adds `docs/STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_API_CONTRACT_SELECTORS.md`
+- Adds `tests/phase49.test.ts`
+- **No real endpoints. No route handlers. No runtime request handling or live query parsing. No real reports. No downloads. No PDF/CSV/HTML generation. No filesystem writes. No persistence. No background jobs. No scheduled jobs. No queue workers. No real audit execution. No live data. No network. No wallet or execution logic. No recommendations/signals/investment advice. No UI rendering. No DOM access.**
+
+**Next phase guidance:** Phase 50 is not implemented in this phase.
+
+
 ## Phase 48 — Strategy Review Export Audit Report Read-Only API Contracts v1
 
 - Adds `apps/dashboard/src/strategy-review-export-audit-report-contracts/` with deterministic, fixture-derived, read-only API contract layer:

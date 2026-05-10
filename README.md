@@ -1,8 +1,53 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 48 — Strategy Review Export Audit Report Read-Only API Contracts v1**
+**Phase 49 — Strategy Review Export Audit Report API Contract Selectors v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 48.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 49.
+
+## Features (Phase 49 — adds to Phase 48)
+
+- Adds `apps/dashboard/src/strategy-review-export-audit-report-contract-selectors/` deterministic, fixture-derived, read-only selector/query layer:
+  - strict selector/query/result/meta/safety/validation/capability types
+  - pure deterministic selector builders, list/get helpers, selection helpers, normalization, serialization, equality, validation, and safety-validation helpers
+  - one deterministic selector per Phase 48 list/detail/summary/error contract fixture
+  - stable pagination/filter/sort query fixtures for the list selector
+- Adds Phase 49 strategy-review-export-audit-report-api-contract-selector capability flags:
+  - `strategyReviewExportAuditReportApiContractSelectors: true`
+  - `syntheticStrategyReviewExportAuditReportApiContractSelectors: true`
+  - `deterministicStrategyReviewExportAuditReportApiContractSelectors: true`
+  - `localOnlyStrategyReviewExportAuditReportApiContractSelectors: true`
+  - `readOnlyStrategyReviewExportAuditReportApiContractSelectors: true`
+  - `fixtureDerivedStrategyReviewExportAuditReportApiContractSelectors: true`
+  - `pureStrategyReviewExportAuditReportApiContractSelectors: true`
+  - `strategyReviewExportAuditReportApiContractSelectorLiveData: false`
+  - `strategyReviewExportAuditReportApiContractSelectorNetworkAccess: false`
+  - `strategyReviewExportAuditReportApiContractSelectorPersistence: false`
+  - `strategyReviewExportAuditReportApiContractSelectorFilesystemWrites: false`
+  - `strategyReviewExportAuditReportApiContractSelectorDownloads: false`
+  - `strategyReviewExportAuditReportApiContractSelectorPdfGeneration: false`
+  - `strategyReviewExportAuditReportApiContractSelectorCsvGeneration: false`
+  - `strategyReviewExportAuditReportApiContractSelectorHtmlGeneration: false`
+  - `strategyReviewExportAuditReportApiContractSelectorRouteHandlers: false`
+  - `strategyReviewExportAuditReportApiContractSelectorHttpServer: false`
+  - `strategyReviewExportAuditReportApiContractSelectorRuntimeRequests: false`
+  - `strategyReviewExportAuditReportApiContractSelectorUiRendering: false`
+  - `strategyReviewExportAuditReportApiContractSelectorDomAccess: false`
+  - `strategyReviewExportAuditReportApiContractSelectorBackgroundJobs: false`
+  - `strategyReviewExportAuditReportApiContractSelectorScheduledJobs: false`
+  - `strategyReviewExportAuditReportApiContractSelectorExecution: false`
+  - `strategyReviewExportAuditReportApiContractSelectorTradingSignals: false`
+  - `strategyReviewExportAuditReportApiContractSelectorRecommendations: false`
+  - `strategyReviewExportAuditReportApiContractSelectorInvestmentAdvice: false`
+- Adds `docs/STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_API_CONTRACT_SELECTORS.md` documentation
+- Adds `tests/phase49.test.ts` coverage for deterministic selectors and safety guards
+- **No real endpoints. No route handlers. No runtime request handling or live query parsing. No real reports. No downloads. No PDF/CSV/HTML generation. No filesystem writes. No persistence. No background jobs. No scheduled jobs. No queue workers. No real audit execution. No live data. No network. No wallet. No execution. No recommendations/signals/investment advice. No UI rendering. No DOM access.**
+
+**Next phase: Phase 50 — reserved for future phase-gated work (not implemented in this phase).**
+
+---
+
+<!-- Phase 48 — Strategy Review Export Audit Report Read-Only API Contracts v1 -->
+<!-- docs/STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_API_CONTRACTS.md -->
 
 ## Features (Phase 48 — adds to Phase 47)
 
@@ -39,9 +84,9 @@ A defensive intelligence and control foundation for Solana trading. No live trad
   - `strategyReviewExportAuditReportApiContractInvestmentAdvice: false`
 - Adds `docs/STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_API_CONTRACTS.md` documentation
 - Adds `tests/phase48.test.ts` coverage for deterministic API contracts and safety guards
-- **No real endpoints. No route handlers. No runtime request handling. No real reports. No downloads. No PDF/CSV/HTML generation. No filesystem writes. No persistence. No background/scheduled/queue jobs. No live data. No network. No wallet. No execution. No recommendations/signals/investment advice. No UI rendering. No DOM access.**
+- **No real endpoints. No route handlers. No runtime request handling. No real reports. No downloads. No PDF/CSV/HTML generation. No filesystem writes. No persistence. No background jobs. No scheduled jobs. No queue workers. No real audit execution. No live data. No network. No wallet. No execution. No recommendations/signals/investment advice. No UI rendering. No DOM access.**
 
-**Next phase: Phase 49 — reserved for future phase-gated work (not implemented in this phase).**
+**Next phase: Phase 49 — implemented above.**
 
 ---
 
