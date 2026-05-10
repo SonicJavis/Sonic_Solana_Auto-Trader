@@ -1,5 +1,9 @@
 # Build Guide
 
+## Phase 56 Note
+
+Phase 56 introduces synthetic event stream lifecycle models in `apps/dashboard/src/synthetic-event-stream-lifecycle/` as a complete aggressive-safe vertical slice (types, builders, fixtures, reducers, view models, contracts, selectors, normalization, validation, capabilities, docs, tests). Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. No live data, real provider adapters, Solana RPC, WebSocket/Geyser/Yellowstone, Pump.fun/Jupiter/Raydium/Orca/Meteora integrations, wallet logic, signing/sending, execution, recommendations/signals/investment advice, endpoints/routes/handlers/runtime request handling, UI rendering/DOM, filesystem writes, persistence, background jobs, replay harness, or paper simulation are introduced.
+
 ## Phase 55 Note
 
 Phase 55 introduces read-only provider adapter mocks in `apps/dashboard/src/read-only-provider-adapter-mocks/` as a complete aggressive-safe vertical slice (types, builders, fixtures, adapters, view models, contracts, selectors, normalization, validation, capabilities, docs, tests). Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. No live data, real provider adapters, Solana RPC, WebSocket/Geyser/Yellowstone, Pump.fun/Jupiter/Raydium/Orca/Meteora integrations, wallet logic, signing/sending, execution, recommendations/signals/investment advice, endpoints/routes/handlers/runtime request handling, UI rendering/DOM, filesystem writes, persistence, or background jobs are introduced.

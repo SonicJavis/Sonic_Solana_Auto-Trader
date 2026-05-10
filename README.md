@@ -1,8 +1,23 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 55 — Read-Only Provider Adapter Mocks v1**
+**Phase 56 — Synthetic Event Stream Lifecycle v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 55.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 56.
+
+## Features (Phase 56 — adds to Phase 55)
+
+- Adds `apps/dashboard/src/synthetic-event-stream-lifecycle/` deterministic, fixture-derived, read-only synthetic event stream lifecycle vertical slice:
+  - 8 deterministic lifecycle stream fixtures: clean launch, thin liquidity, concentrated holders, suspicious creator, bundle cluster, metadata incomplete, high early-volume, safety rejected
+  - append-only lifecycle event stream identities and event envelopes with deterministic sequence, causal links, and derived-from references
+  - pure lifecycle reducers, derived lifecycle read-model state, deterministic view-model builders, API contract fixtures (list/detail/summary/error), and selector helpers
+  - normalization/serialization/equality helpers, structural and safety validation helpers, and deterministic checksum utilities
+  - explicit Phase 53 synthetic-launch fixture references + Phase 55 read-only adapter mock references
+- Adds Phase 56 capability flags for synthetic event stream lifecycle surfaces with all live/network/provider/RPC/WebSocket/persistence/filesystem/route/runtime/UI/DOM/background/wallet/signing/execution/signal/recommendation/advice/replay/paper-simulation flags fixed to `false`
+- Adds `docs/SYNTHETIC_EVENT_STREAM_LIFECYCLE.md`
+- Adds `tests/phase56.test.ts`
+- **No live data. No real provider adapters. No Solana RPC connections. No WebSocket/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora integrations. No wallet/private key/signing/sending logic. No execution. No recommendations/signals/investment advice. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/background jobs. No replay harness. No paper simulation.**
+
+**Next phase: Phase 57 — Synthetic Event Stream Replay Harness v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 55 — adds to Phase 54)
 
