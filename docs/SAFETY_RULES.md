@@ -1,5 +1,9 @@
 # Safety Rules
 
+## Phase 46 Safety Extension
+
+Phase 46 strategy review export audit report fixture models must remain report-modelling-only, local-only, read-only, fixture-only, synthetic-only, deterministic, serializable, in-memory, non-persistent, external-network-free, non-executable, and non-advisory. Phase 46 does not permit real report generation, browser downloads, PDF/CSV/HTML generation, filesystem writes, persistence, queue workers, scheduled jobs, background jobs, real audit execution, real audit log ingestion, live data, Solana RPC/provider APIs, wallet access/private keys, execution/trading logic, recommendations, trading signals, or investment advice.
+
 ## Phase 45 Safety Extension
 
 Phase 45 strategy review export audit fixture models must remain audit-modelling-only, local-only, read-only, fixture-only, synthetic-only, deterministic, serializable, in-memory, non-persistent, external-network-free, file-write-free, audit-log-free, non-advisory, and non-accusatory. Phase 45 does not permit live data, actual audit log writes, real audit workers, filesystem writes, browser downloads, PDF/CSV/HTML generation, real queue workers, scheduled jobs, background jobs, real UI rendering, real scoring, real ranking, recommendations, signals, replay/backtesting, paper trading, live trading, execution logic, Solana RPC/provider APIs, wallet access/private keys, real PnL claims, persistence, browser storage, or any advisory output.

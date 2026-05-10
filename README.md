@@ -1,41 +1,42 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 45 — Strategy Review Export Audit Fixtures v1**
+**Phase 46 — Strategy Review Export Audit Report Fixtures v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 45.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 46.
 
-## Features (Phase 45 — adds to Phase 44)
+## Features (Phase 46 — adds to Phase 45)
 
-- Adds `apps/dashboard/src/strategy-review-export-audit/` deterministic export-audit fixture layer:
-  - strict audit-fixture/queue-reference/finding/item/summary/meta/safety-boundary/validation/build/capability types
+- Adds `apps/dashboard/src/strategy-review-export-audit-report/` deterministic report-shaped fixture layer:
+  - strict report-fixture/section/evidence/safety/meta/validation/build/capability types
   - pure deterministic builders, normalization, serialization, equality, validation, and safety-validation helpers
-  - 16 deterministic synthetic export-audit fixtures referencing Phase 44 export-queue fixtures
-  - 5 audit states: `audit-pending`, `audit-passed`, `audit-failed`, `audit-skipped`, `audit-blocked`
-  - 4 audit severities: `info`, `warning`, `error`, `critical`
-  - deterministic finding records per fixture with no real audit log writes
-- Adds Phase 45 strategy-review-export-audit capability flags:
-  - `strategyReviewExportAuditFixtures: true`
-  - `syntheticStrategyReviewExportAudits: true`
-  - `strategyReviewExportAuditBuilders: true`
-  - `strategyReviewExportAuditSafetyValidation: true`
-  - `strategyReviewExportQueueReferences: true`
-  - `strategyReviewActualAuditLogs: false`
-  - `strategyReviewAuditPersistence: false`
-  - `strategyReviewAuditFileWrites: false`
-  - `strategyReviewAuditExternalNetwork: false`
-  - `strategyReviewAuditQueueWorkers: false`
-  - `strategyReviewAuditScheduledJobs: false`
-  - `strategyReviewAuditBackgroundJobs: false`
-  - `strategyReviewAuditActualFileExport: false`
-  - `strategyReviewAuditDownloadSupport: false`
-  - `strategyReviewAuditExecution: false`
-  - `strategyReviewAuditTradingSignals: false`
-  - `strategyReviewAuditInvestmentAdvice: false`
-- Adds `docs/STRATEGY_REVIEW_EXPORT_AUDIT_FIXTURES.md` documentation
-- Adds `tests/phase45.test.ts` with 1036 new tests (16310 total, baseline 15274)
-- **No live data. No actual audit logs, filesystem writes, download support, queue workers, scheduled or background jobs. No real audit execution. No real scoring or ranking. No recommendations or signals. No replay/backtesting/paper/live trading. No network. No wallet. No execution. No persistence.**
+  - one deterministic synthetic report fixture per Phase 45 export-audit fixture
+  - stable section ordering, evidence references, validation notes, and limitations/non-goals text
+- Adds Phase 46 strategy-review-export-audit-report capability flags:
+  - `strategyReviewExportAuditReportFixtures: true`
+  - `syntheticStrategyReviewExportAuditReports: true`
+  - `deterministicStrategyReviewExportAuditReports: true`
+  - `localOnlyStrategyReviewExportAuditReports: true`
+  - `readOnlyStrategyReviewExportAuditReports: true`
+  - `strategyReviewActualAuditReports: false`
+  - `strategyReviewReportDownloads: false`
+  - `strategyReviewReportPdfGeneration: false`
+  - `strategyReviewReportCsvGeneration: false`
+  - `strategyReviewReportHtmlGeneration: false`
+  - `strategyReviewReportFilesystemWrites: false`
+  - `strategyReviewReportPersistence: false`
+  - `strategyReviewReportBackgroundJobs: false`
+  - `strategyReviewReportScheduledJobs: false`
+  - `strategyReviewReportLiveData: false`
+  - `strategyReviewReportNetworkAccess: false`
+  - `strategyReviewReportTradingSignals: false`
+  - `strategyReviewReportRecommendations: false`
+  - `strategyReviewReportInvestmentAdvice: false`
+  - `strategyReviewReportExecution: false`
+- Adds `docs/STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_FIXTURES.md` documentation
+- Adds `tests/phase46.test.ts` coverage for deterministic report fixtures and safety guards
+- **No real reports. No downloads. No PDF/CSV/HTML generation. No filesystem writes. No persistence. No queue/background/scheduled jobs. No live data. No network. No wallet. No execution. No recommendations/signals/investment advice.**
 
-**Next phase: Phase 46 — Strategy Review Export Audit Report Fixtures v1**
+**Next phase: Phase 47 — Strategy Review Export Audit Report Rendering Models v1 (preview only, no real rendering or exports)**
 
 ---
 

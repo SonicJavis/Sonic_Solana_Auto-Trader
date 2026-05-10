@@ -747,3 +747,29 @@ export {
   PHASE_45_STRATEGY_REVIEW_EXPORT_AUDIT_FIXTURES,
   PHASE_45_STRATEGY_REVIEW_EXPORT_AUDIT_FIXTURE_LIST,
 } from './strategy-review-export-audit/index.js';
+
+// Phase 46 — Strategy Review Export Audit Report Fixtures v1
+export {
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_PHASE,
+  PHASE_46_STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_GENERATED_AT,
+  PHASE_46_STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_SOURCE,
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_FIXTURE_NAMES,
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_FIXTURE_KINDS,
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_FIXTURES,
+  STRATEGY_REVIEW_EXPORT_AUDIT_REPORT_FIXTURE_MAP,
+  listStrategyReviewExportAuditReportFixtures,
+  getStrategyReviewExportAuditReportFixture,
+  buildStrategyReviewExportAuditReportFixture,
+  validateStrategyReviewExportAuditReportFixture,
+  validateStrategyReviewExportAuditReportSafety,
+  normalizeStrategyReviewExportAuditReportFixture,
+  serializeStrategyReviewExportAuditReportFixture,
+  areStrategyReviewExportAuditReportFixturesEqual,
+  getStrategyReviewExportAuditReportCapabilities,
+  isValidStrategyReviewExportAuditReportFixtureName,
+  isValidStrategyReviewExportAuditReportFixtureKind,
+  isValidStrategyReviewExportAuditReportState,
+  isValidStrategyReviewExportAuditReportSeverity,
+  isValidStrategyReviewExportAuditReportGeneratedAt,
+  isValidStrategyReviewExportAuditReportSource,
+} from './strategy-review-export-audit-report/index.js';
