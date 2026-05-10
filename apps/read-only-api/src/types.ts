@@ -501,6 +501,32 @@ export interface LocalReadOnlyApiCapabilities {
   readonly strategyReviewExportAuditReportSelectorViewModelTradingSignals: false;
   readonly strategyReviewExportAuditReportSelectorViewModelRecommendations: false;
   readonly strategyReviewExportAuditReportSelectorViewModelInvestmentAdvice: false;
+  // Phase 51 strategy review export audit report selector view-model API contract capabilities
+  readonly strategyReviewExportAuditReportSelectorViewModelApiContracts: true;
+  readonly syntheticStrategyReviewExportAuditReportSelectorViewModelApiContracts: true;
+  readonly deterministicStrategyReviewExportAuditReportSelectorViewModelApiContracts: true;
+  readonly localOnlyStrategyReviewExportAuditReportSelectorViewModelApiContracts: true;
+  readonly readOnlyStrategyReviewExportAuditReportSelectorViewModelApiContracts: true;
+  readonly fixtureDerivedStrategyReviewExportAuditReportSelectorViewModelApiContracts: true;
+  readonly strategyReviewExportAuditReportSelectorViewModelApiContractLiveData: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelApiContractNetworkAccess: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelApiContractPersistence: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelApiContractFilesystemWrites: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelApiContractDownloads: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelApiContractPdfGeneration: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelApiContractCsvGeneration: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelApiContractHtmlGeneration: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelApiContractRouteHandlers: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelApiContractHttpServer: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelApiContractRuntimeRequests: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelApiContractUiRendering: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelApiContractDomAccess: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelApiContractBackgroundJobs: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelApiContractScheduledJobs: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelApiContractExecution: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelApiContractTradingSignals: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelApiContractRecommendations: false;
+  readonly strategyReviewExportAuditReportSelectorViewModelApiContractInvestmentAdvice: false;
   // Safety labels
   readonly fixtureOnly: true;
   readonly analysisOnly: true;
