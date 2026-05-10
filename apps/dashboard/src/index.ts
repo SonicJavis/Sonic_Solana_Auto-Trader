@@ -1116,3 +1116,36 @@ export {
   isValidSyntheticEventStreamLifecycleSource,
   isValidSyntheticEventStreamLifecycleSchemaVersion,
 } from './synthetic-event-stream-lifecycle/index.js';
+
+// ─── Phase 57 — Synthetic Event Stream Replay Harness ──────────────
+
+export {
+  SYNTHETIC_EVENT_STREAM_REPLAY_HARNESS_PHASE,
+  PHASE_57_SYNTHETIC_EVENT_STREAM_REPLAY_HARNESS_GENERATED_AT,
+  PHASE_57_SYNTHETIC_EVENT_STREAM_REPLAY_HARNESS_SOURCE,
+  PHASE_57_SYNTHETIC_EVENT_STREAM_REPLAY_HARNESS_VERSION,
+  PHASE_57_SYNTHETIC_EVENT_STREAM_REPLAY_HARNESS_SCHEMA_VERSION,
+  SYNTHETIC_EVENT_STREAM_REPLAY_HARNESS_SCENARIO_NAMES,
+  SYNTHETIC_EVENT_STREAM_REPLAY_HARNESS_SCENARIO_KINDS,
+  SYNTHETIC_EVENT_STREAM_REPLAY_MISMATCH_KINDS,
+  SYNTHETIC_EVENT_STREAM_REPLAY_HARNESS_FIXTURES,
+  SYNTHETIC_EVENT_STREAM_REPLAY_HARNESS_FIXTURE_MAP,
+  listSyntheticEventStreamReplayHarnessFixtures,
+  getSyntheticEventStreamReplayHarnessFixture,
+  buildSyntheticEventStreamReplayHarnessFixture,
+  buildSyntheticEventStreamReplayClock,
+  buildSyntheticEventStreamReplayStep,
+  buildSyntheticEventStreamReplaySnapshot,
+  buildSyntheticEventStreamReplayReport,
+  runSyntheticEventStreamReplayHarness,
+  compareSyntheticEventStreamReplaySnapshots,
+  buildSyntheticEventStreamReplayHarnessViewModel,
+  buildSyntheticEventStreamReplayHarnessApiContract,
+  selectSyntheticEventStreamReplayHarnessFixture,
+  validateSyntheticEventStreamReplayHarnessFixture,
+  validateSyntheticEventStreamReplayHarnessSafety,
+  normalizeSyntheticEventStreamReplayHarnessFixture,
+  serializeSyntheticEventStreamReplayHarnessFixture,
+  areSyntheticEventStreamReplayHarnessFixturesEqual,
+  getSyntheticEventStreamReplayHarnessCapabilities,
+} from './synthetic-event-stream-replay-harness/index.js';

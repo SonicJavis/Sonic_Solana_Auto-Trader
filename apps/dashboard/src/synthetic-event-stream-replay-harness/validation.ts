@@ -7,12 +7,12 @@ import {
   type SyntheticEventStreamLifecycleStreamName,
 } from '../synthetic-event-stream-lifecycle/types.js';
 import {
-  PHASE_57_SYNTHETIC_EVENT_STREAM_REPLAY_HARNESS_SCHEMA_VERSION,
   SYNTHETIC_EVENT_STREAM_REPLAY_HARNESS_PHASE,
   SYNTHETIC_EVENT_STREAM_REPLAY_HARNESS_SCENARIO_KINDS,
   SYNTHETIC_EVENT_STREAM_REPLAY_HARNESS_SCENARIO_NAMES,
   SYNTHETIC_EVENT_STREAM_REPLAY_MISMATCH_KINDS,
   type SyntheticEventStreamReplayHarnessSafetyResult,
+  type SyntheticEventStreamReplayHarnessScenarioName,
   type SyntheticEventStreamReplayHarnessValidationIssue,
   type SyntheticEventStreamReplayHarnessValidationResult,
 } from './types.js';
@@ -32,7 +32,7 @@ const FORBIDDEN_RUNTIME_PATTERN = /\b(?:route|handler|server|listen\()\b/i;
 const FORBIDDEN_WALLET_PATTERN =
   /\b(?:privateKey|secretKey|seedPhrase|mnemonic|Keypair|wallet)(?![\s_-]*cluster)\b/i;
 const FORBIDDEN_EXECUTION_PATTERN =
-  /\b(?:signTransaction|sendTransaction|execute|buy|sell|trade|order|recommendation|signal)\b|\binvestment\s+advice\b/i;
+  /\b(?:signTransaction|sendTransaction|execute|buy|sell|trade|order|recommendation)\b|\btrading\s+signals?\b|\binvestment\s+advice\b/i;
 const FORBIDDEN_PROVIDER_REFERENCE_PATTERN =
   /\b(?:pump\.fun|jupiter|raydium|orca|meteora|geyser|yellowstone|solana\s*rpc)\b/i;
 

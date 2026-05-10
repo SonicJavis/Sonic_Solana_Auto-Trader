@@ -142,8 +142,10 @@ export function runSyntheticEventStreamReplayHarness(
 
   const seenEventIds = new Set<string>();
 
-  for (const sourceEvent of sourceFixture.events) {
+  for (let index = 0; index < sourceFixture.events.length; index += 1) {
+    const sourceEvent = sourceFixture.events[index]!;
     const stepSequence = sourceEvent.sequence;
+    const expectedStepSequence = index + 1;
     const inputState = reduceSyntheticEventStreamLifecycle(
       replayedEvents,
       sourceFixture.streamIdentity,
@@ -175,14 +177,14 @@ export function runSyntheticEventStreamReplayHarness(
       }),
     ];
 
-    if (sourceEvent.sequence !== stepSequence) {
+    if (sourceEvent.sequence !== expectedStepSequence) {
       stepMismatches.push(
         mismatchFromEvent(
           replayId,
           stepSequence,
           sourceEvent,
           'event_sequence_mismatch',
-          'Replay step sequence is not monotonic.',
+          'Replay event sequence is not monotonic with replay step order.',
         ),
       );
     }

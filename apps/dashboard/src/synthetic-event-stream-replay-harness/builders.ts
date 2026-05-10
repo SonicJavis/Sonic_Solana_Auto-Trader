@@ -5,6 +5,7 @@
 import {
   SYNTHETIC_EVENT_STREAM_LIFECYCLE_FIXTURES,
 } from '../synthetic-event-stream-lifecycle/fixtures.js';
+import { reduceSyntheticEventStreamLifecycle } from '../synthetic-event-stream-lifecycle/reducers.js';
 import type { SyntheticEventStreamEnvelope } from '../synthetic-event-stream-lifecycle/types.js';
 import { getSyntheticEventStreamReplayHarnessCapabilities } from './capabilities.js';
 import { buildSyntheticEventStreamReplayHarnessApiContract } from './contracts.js';
@@ -24,7 +25,6 @@ import {
   type SyntheticEventStreamReplayHarnessScenarioKind,
   type SyntheticEventStreamReplayHarnessScenarioName,
   type SyntheticEventStreamReplayMismatch,
-  type SyntheticEventStreamReplayReport,
   type SyntheticEventStreamReplaySnapshot,
   type SyntheticEventStreamReplayStep,
 } from './types.js';
@@ -84,35 +84,13 @@ function buildExpectedSnapshots(
   const replayedEvents: SyntheticEventStreamEnvelope[] = [];
   return sourceEvents.map(sourceEvent => {
     replayedEvents.push(sourceEvent);
-    const derivedState = sourceFixtureByName(sourceStreamIdentity.streamName)?.derivedLifecycleState;
-    const state =
-      derivedState && sourceEvent.sequence === sourceEvents[sourceEvents.length - 1]?.sequence
-        ? derivedState
-        : sourceFixtureByName(sourceStreamIdentity.streamName)?.events
-            .slice(0, sourceEvent.sequence)
-            .reduce((_, __, ___) => {
-              return undefined;
-            }, undefined);
-
-    const deterministicState =
-      sourceFixtureByName(sourceStreamIdentity.streamName)?.events
-        .slice(0, sourceEvent.sequence)
-        .reduce((accumulator, _event, index) => {
-          const fixture = sourceFixtureByName(sourceStreamIdentity.streamName);
-          if (!fixture) {
-            return accumulator;
-          }
-          return fixture.events[index] ? fixture.derivedLifecycleState : accumulator;
-        }, sourceFixtureByName(sourceStreamIdentity.streamName)?.derivedLifecycleState) ??
-      sourceFixtureByName(sourceStreamIdentity.streamName)?.derivedLifecycleState;
-
-    const fallbackState = sourceFixtureByName(sourceStreamIdentity.streamName)?.derivedLifecycleState;
+    const derivedState = reduceSyntheticEventStreamLifecycle(replayedEvents, sourceStreamIdentity);
 
     return buildSyntheticEventStreamReplaySnapshot(
       replayId,
       sourceEvent.sequence,
       sourceEvent,
-      deterministicState ?? state ?? fallbackState ?? sourceFixtureByName(sourceStreamIdentity.streamName)!.derivedLifecycleState,
+      derivedState,
     );
   });
 }

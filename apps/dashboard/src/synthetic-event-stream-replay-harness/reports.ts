@@ -12,10 +12,11 @@ import {
   type SyntheticEventStreamReplayStatus,
   type SyntheticEventStreamReplayStep,
 } from './types.js';
+import type { SyntheticEventStreamLifecycleStreamName } from '../synthetic-event-stream-lifecycle/types.js';
 
 export function buildSyntheticEventStreamReplayReport(input: {
   readonly replayId: string;
-  readonly sourceLifecycleFixtureName: string;
+  readonly sourceLifecycleFixtureName: SyntheticEventStreamLifecycleStreamName;
   readonly replayStatus: SyntheticEventStreamReplayStatus;
   readonly replaySteps: readonly SyntheticEventStreamReplayStep[];
   readonly mismatches: readonly SyntheticEventStreamReplayMismatch[];
@@ -28,7 +29,7 @@ export function buildSyntheticEventStreamReplayReport(input: {
   return {
     reportId: `phase57-report-${input.replayId}`,
     replayStatus: input.replayStatus,
-    sourceLifecycleFixtureName: input.sourceLifecycleFixtureName as never,
+    sourceLifecycleFixtureName: input.sourceLifecycleFixtureName,
     totalEvents: input.snapshots.length,
     totalSteps: input.replaySteps.length,
     passedSteps,

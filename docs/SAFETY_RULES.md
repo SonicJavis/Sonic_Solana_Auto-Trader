@@ -1,5 +1,9 @@
 # Safety Rules
 
+## Phase 57 Safety Extension
+
+Phase 57 synthetic event stream replay harness surfaces must remain synthetic-only, local-only, read-only, deterministic, fixture-derived, replay-only, pure, serializable, in-memory, non-persistent, external-network-free, non-rendering, non-DOM, non-wallet, non-executable, non-advisory, and paper-simulation-free. Phase 57 does not permit live data, real provider adapters, Solana RPC connections, WebSocket/Geyser/Yellowstone, Pump.fun/Jupiter/Raydium/Orca/Meteora integrations, real endpoints, route handlers, runtime request handling, filesystem writes, persistence, downloads, queue/background/scheduled jobs, wallet/private key handling, signing/sending logic, execution logic, trading signals, recommendations, investment advice, live execution, or paper simulation.
+
 ## Phase 56 Safety Extension
 
 Phase 56 synthetic event stream lifecycle surfaces must remain synthetic-only, local-only, read-only, deterministic, fixture-derived, append-only, pure, serializable, in-memory, non-persistent, external-network-free, non-rendering, non-DOM, non-wallet, non-executable, non-advisory, replay-harness-free, and paper-simulation-free. Phase 56 does not permit live data, real provider adapters, Solana RPC connections, WebSocket/Geyser/Yellowstone, Pump.fun/Jupiter/Raydium/Orca/Meteora integrations, real endpoints, route handlers, runtime request handling, filesystem writes, persistence, downloads, queue/background/scheduled jobs, wallet/private key handling, signing/sending logic, execution logic, trading signals, recommendations, investment advice, replay harness execution, or paper simulation.

@@ -17,7 +17,8 @@ export function buildSyntheticEventStreamReplayHarnessViewModel(
     replayStatus: fixture.actualReport.replayStatus,
     totalSteps: fixture.actualReport.totalSteps,
     mismatchCount: fixture.actualReport.mismatchCount,
-    finalLifecycleStatus: fixture.replaySteps.at(-1)?.safetyNotes[0] ?? 'replayed',
+    finalLifecycleStatus:
+      fixture.expectedSnapshots.at(-1)?.selectedStateSummary.lifecycleStatus ?? 'replayed',
     safetyLabel:
       fixture.actualReport.replayStatus === 'passed'
         ? 'fixture-only matched'
