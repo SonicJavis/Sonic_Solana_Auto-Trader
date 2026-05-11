@@ -192,4 +192,4 @@ Phase 59 does not include:
 
 **Phase 60 — Paper Sniper Simulation Foundation v1** is the next milestone.
 
-Phase 60 is preview guidance only in this document and is not implemented in Phase 59.
+Phase 60 is implemented in the repository as `apps/dashboard/src/paper-sniper-simulation/` and documented in `docs/PAPER_SNIPER_SIMULATION.md`.

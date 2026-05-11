@@ -1,8 +1,23 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 59 — Risk Explanation and Evidence Models v1**
+**Phase 60 — Paper Sniper Simulation Foundation v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 59.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 60.
+
+## Features (Phase 60 — adds to Phase 59)
+
+- Adds `apps/dashboard/src/paper-sniper-simulation/` deterministic, fixture-derived, read-only paper sniper simulation vertical slice:
+  - 8 deterministic simulation fixtures mapped 1:1 to Phase 59 explanation/evidence fixtures with practical linkage to Phase 58 risk fixtures, Phase 57 replay fixtures, and Phase 56 lifecycle fixtures
+  - deterministic market, latency, slippage, and failure models using explicit bucket taxonomy and fixed derivation rules
+  - deterministic simulation runner with fixed quote/submit/finalize step sequence and projected fill/slippage/latency/failure outcomes
+  - deterministic outcomes summaries, view-model builders, API contract fixtures (list/detail/summary/error), selectors, normalization/serialization/equality helpers, and strong structural+safety validation
+  - validation rejects unsafe text, real-order/wallet/transaction/provider references, and invalid bucket values
+- Adds Phase 60 capability flags with all live/network/provider/RPC/persistence/filesystem/route/runtime/UI/DOM/background/wallet/signing/transaction-sending/execution/signal/recommendation/advice/live-execution flags fixed to `false`
+- Adds `docs/PAPER_SNIPER_SIMULATION.md`
+- Adds `tests/phase60.test.ts`
+- **No live data. No real provider adapters. No Solana RPC connections. No WebSocket/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora integrations. No wallet/private key/signing/sending/order/transaction logic. No execution. No recommendations/signals/investment advice. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/background jobs.**
+
+**Next phase: Phase 61 — Safety-First Simulation Expansion v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 59 — adds to Phase 58)
 
@@ -17,7 +32,7 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 - Adds `tests/phase59.test.ts`
 - **No live data. No real provider adapters. No Solana RPC connections. No WebSocket/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora integrations. No wallet/private key/signing/sending logic. No execution. No recommendations/signals/investment advice. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/background jobs. No paper simulation yet. No strategy selection.**
 
-**Next phase: Phase 60 — Paper Sniper Simulation Foundation v1 (preview only; not implemented in this phase).**
+**Next phase: Phase 60 — Paper Sniper Simulation Foundation v1 (implemented in the current phase).**
 
 ## Features (Phase 58 — adds to Phase 57)
 
