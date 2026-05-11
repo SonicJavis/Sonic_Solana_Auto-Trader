@@ -1,5 +1,9 @@
 # Build Guide
 
+## Phase 59 Note
+
+Phase 59 introduces risk explanation and evidence models in `apps/dashboard/src/risk-explanation-evidence/` as a complete aggressive-safe vertical slice (types, evidence nodes, evidence edges, templates, builders, fixtures, graphs, renderers, view models, contracts, selectors, normalization, validation, capabilities, docs, tests). Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. No live data, real provider adapters, Solana RPC, WebSocket/Geyser/Yellowstone, Pump.fun/Jupiter/Raydium/Orca/Meteora integrations, wallet logic, signing/sending, execution, recommendations/signals/investment advice, endpoints/routes/handlers/runtime request handling, UI rendering/DOM, filesystem writes, persistence, background jobs, paper simulation, or strategy selection are introduced.
+
 ## Phase 58 Note
 
 Phase 58 introduces launch risk engine models in `apps/dashboard/src/launch-risk-engine/` as a complete aggressive-safe vertical slice (types, factors, scoring, thresholds, builders, fixtures, assessments, view models, contracts, selectors, normalization, validation, capabilities, docs, tests). Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. No live data, real provider adapters, Solana RPC, WebSocket/Geyser/Yellowstone, Pump.fun/Jupiter/Raydium/Orca/Meteora integrations, wallet logic, signing/sending, execution, recommendations/signals/investment advice, endpoints/routes/handlers/runtime request handling, UI rendering/DOM, filesystem writes, persistence, background jobs, paper simulation, or strategy selection are introduced.

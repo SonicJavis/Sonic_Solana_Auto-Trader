@@ -254,6 +254,6 @@ Phase 58 does NOT include:
 
 ### Next Milestone Guidance
 
-**Phase 59 — Risk Explanation and Evidence Models v1** (preview only, not implemented):
+**Phase 59 — Risk Explanation and Evidence Models v1** is implemented in the current repository revision.
 
-Phase 59 would build on Phase 58 by adding structured evidence explanation models: narrative text generation for risk factor evidence, evidence chain models linking lifecycle events to replay snapshots to risk assessments, explanation view models for each factor, and API contract fixtures for the explanation layer. Phase 59 remains synthetic, deterministic, local-only, non-advisory, and non-executing.
+Next milestone preview: **Phase 60 — Paper Sniper Simulation Foundation v1** (not implemented in this document).

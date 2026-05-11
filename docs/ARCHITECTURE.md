@@ -1,5 +1,9 @@
 # Architecture
 
+## Phase 59 Update
+
+Phase 59 extends `apps/dashboard/` with `src/risk-explanation-evidence/`, a deterministic, fixture-derived, read-only synthetic explanation and evidence milestone surface built directly on Phase 58 launch risk fixtures, Phase 57 replay fixtures, and Phase 56 lifecycle fixtures. It bundles explanation identities, evidence nodes, evidence edges, evidence graphs with orphan detection/checksums, fixed explanation templates, deterministic rendered outputs, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs in one aggressive-safe vertical slice. This layer is synthetic-only, local-only, read-only, deterministic, pure, in-memory, non-networked, non-persistent, non-rendering, non-DOM, non-wallet, non-executable, non-advisory, paper-simulation-free, and strategy-selection-free.
+
 ## Phase 58 Update
 
 Phase 58 extends `apps/dashboard/` with `src/launch-risk-engine/`, a deterministic, fixture-derived, read-only, rule-based synthetic risk engine milestone surface built directly on Phase 56 lifecycle fixtures and Phase 57 replay harness fixtures. It bundles risk identities, 12 risk factor kinds, factor outputs with evidence references, weighted risk scoring, threshold band classification, structured risk assessments, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs in one aggressive-safe vertical slice. This layer is synthetic-only, local-only, read-only, deterministic, pure, in-memory, non-networked, non-persistent, non-rendering, non-DOM, non-wallet, non-executable, non-advisory, paper-simulation-free, and strategy-selection-free.

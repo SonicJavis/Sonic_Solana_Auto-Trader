@@ -1195,3 +1195,36 @@ export {
   isValidLaunchRiskEngineSource,
   isValidLaunchRiskEngineSchemaVersion,
 } from './launch-risk-engine/index.js';
+
+// ─── Phase 59 — Risk Explanation and Evidence Models ───────────────────────────
+
+export {
+  RISK_EXPLANATION_EVIDENCE_PHASE,
+  PHASE_59_RISK_EXPLANATION_EVIDENCE_GENERATED_AT,
+  PHASE_59_RISK_EXPLANATION_EVIDENCE_SOURCE,
+  PHASE_59_RISK_EXPLANATION_EVIDENCE_VERSION,
+  PHASE_59_RISK_EXPLANATION_EVIDENCE_SCHEMA_VERSION,
+  RISK_EXPLANATION_EVIDENCE_NAMES,
+  RISK_EXPLANATION_EVIDENCE_KINDS,
+  RISK_EVIDENCE_NODE_KINDS,
+  RISK_EVIDENCE_EDGE_KINDS,
+  RISK_EXPLANATION_TEMPLATES,
+  RISK_EXPLANATION_EVIDENCE_FIXTURES,
+  RISK_EXPLANATION_EVIDENCE_FIXTURE_MAP,
+  listRiskExplanationEvidenceFixtures,
+  getRiskExplanationEvidenceFixture,
+  buildRiskExplanationEvidenceFixture,
+  buildRiskEvidenceNode,
+  buildRiskEvidenceEdge,
+  buildRiskEvidenceGraph,
+  buildRiskExplanationFromTemplate,
+  buildRiskExplanationEvidenceViewModel,
+  buildRiskExplanationEvidenceApiContract,
+  selectRiskExplanationEvidenceFixture,
+  validateRiskExplanationEvidenceFixture,
+  validateRiskExplanationEvidenceSafety,
+  normalizeRiskExplanationEvidenceFixture,
+  serializeRiskExplanationEvidenceFixture,
+  areRiskExplanationEvidenceFixturesEqual,
+  getRiskExplanationEvidenceCapabilities,
+} from './risk-explanation-evidence/index.js';
