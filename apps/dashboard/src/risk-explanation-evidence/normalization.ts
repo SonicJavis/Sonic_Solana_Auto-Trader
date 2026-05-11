@@ -77,7 +77,7 @@ export function isValidRiskExplanationEvidenceSchemaVersion(
   return value === PHASE_59_RISK_EXPLANATION_EVIDENCE_SCHEMA_VERSION;
 }
 
-function sortById<T extends Record<string, unknown>>(items: readonly T[], field: keyof T): readonly T[] {
+function sortById<T, K extends keyof T>(items: readonly T[], field: K): readonly T[] {
   return [...items].sort((left, right) =>
     String(left[field]).localeCompare(String(right[field]), 'en-US'),
   );

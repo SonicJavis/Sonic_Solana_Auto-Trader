@@ -8,7 +8,6 @@
 import type {
   LaunchRiskBand,
   LaunchRiskConfidenceLabel,
-  LaunchRiskEngineAssessmentKind,
   LaunchRiskEngineAssessmentName,
 } from '../launch-risk-engine/types.js';
 import type {

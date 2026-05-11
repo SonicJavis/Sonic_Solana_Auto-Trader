@@ -295,7 +295,11 @@ describe('Phase 59 — normalization, serialization, equality, validation', () =
 
   it('validation and safety pass for baseline fixtures', () => {
     for (const fixture of RISK_EXPLANATION_EVIDENCE_FIXTURES) {
-      expect(validateRiskExplanationEvidenceFixture(fixture).valid).toBe(true);
+      const result = validateRiskExplanationEvidenceFixture(fixture);
+      if (!result.valid) {
+        throw new Error(`Validation failed for: ${fixture.fixtureName}: ${JSON.stringify(result.issues)}`);
+      }
+      expect(result.valid).toBe(true);
       expect(validateRiskExplanationEvidenceSafety(fixture)).toEqual({
         safe: true,
         violations: [],

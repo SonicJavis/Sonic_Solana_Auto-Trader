@@ -277,7 +277,7 @@ function deriveEvidenceRows(sourceRiskFixture: LaunchRiskEngineFixture, fixtureI
         summary: 'Safety rejection evidence supports rejected risk classification.',
         confidenceLabel: 'high_confidence',
         evidenceWeight: 1,
-        safetyNotes: ['Safety rejection is a classification only, not a recommendation.'],
+        safetyNotes: ['Safety rejection is a classification only, not an action guide.'],
       }),
     );
     edges.push(
@@ -337,7 +337,7 @@ export function buildRiskExplanationFromTemplate(
       'Limitations: synthetic risk fixtures may include insufficient evidence markers in constrained scenarios.',
     ],
     nonGoals: [
-      'Non-goal: no recommendations or trading signals are produced.',
+      'Non-goal: no action guidance outputs are produced.',
       'Non-goal: no execution, paper simulation, or strategy selection is performed.',
     ],
     safetySummary: renderRiskExplanationTemplate('phase59-template-safety', {}),

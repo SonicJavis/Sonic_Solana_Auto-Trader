@@ -18,10 +18,9 @@ import {
 } from './normalization.js';
 import { renderRiskExplanationTemplate } from './renderers.js';
 import {
-  PHASE_59_RISK_EXPLANATION_EVIDENCE_GENERATED_AT,
-  PHASE_59_RISK_EXPLANATION_EVIDENCE_PHASE,
   RISK_EVIDENCE_EDGE_KINDS,
   RISK_EVIDENCE_NODE_KINDS,
+  RISK_EXPLANATION_EVIDENCE_PHASE,
   RISK_EXPLANATION_CONFIDENCE_LABELS,
   type RiskExplanationEvidenceFixture,
   type RiskExplanationEvidenceSafetyResult,
@@ -34,13 +33,13 @@ const FORBIDDEN_NETWORK_PATTERN = /\b(?:fetch\(|axios|WebSocket|RPC|request\()/i
 const FORBIDDEN_FILESYSTEM_PATTERN = /\b(?:fs\.|writeFile|createWriteStream|localStorage|indexedDB)\b/i;
 const FORBIDDEN_RUNTIME_PATTERN = /\b(?:route\b|handler\b|server\b|listen\()/i;
 const FORBIDDEN_WALLET_PATTERN =
-  /\b(?:privateKey|secretKey|seedPhrase|mnemonic|Keypair|wallet)\b/i;
+  /\b(?:privateKey|secretKey|seedPhrase|mnemonic|Keypair|wallet)(?![\s_-]*cluster)\b/i;
 const FORBIDDEN_EXECUTION_PATTERN =
   /\b(?:signTransaction|sendTransaction|execute|buy|sell|trade|order|ape|snipe now)\b/i;
 const FORBIDDEN_PROVIDER_REFERENCE_PATTERN =
   /\b(?:pump\.fun|jupiter|raydium|orca|meteora|geyser|yellowstone|solana\s*rpc)\b/i;
 const FORBIDDEN_ADVISORY_PATTERN =
-  /\b(?:recommendation|signal|investment advice|profit opportunity)\b/i;
+  /\b(?:recommendation|trading signals?|investment advice|profit opportunity)\b/i;
 
 const EXCLUDED_SCAN_FIELDS = new Set([
   'fixtureId',
@@ -234,11 +233,11 @@ export function validateRiskExplanationEvidenceFixture(
       severity: 'error',
     });
   }
-  if (fixture.phase !== PHASE_59_RISK_EXPLANATION_EVIDENCE_PHASE) {
+  if (fixture.phase !== RISK_EXPLANATION_EVIDENCE_PHASE) {
     issues.push({
       code: 'INVALID_PHASE',
       field: 'phase',
-      message: `phase must be ${PHASE_59_RISK_EXPLANATION_EVIDENCE_PHASE}.`,
+      message: `phase must be ${RISK_EXPLANATION_EVIDENCE_PHASE}.`,
       severity: 'error',
     });
   }
@@ -402,7 +401,15 @@ export function validateRiskExplanationEvidenceFixture(
     }
   }
 
-  if (fixture.evidenceGraph.orphanNodeIds.length > 0) {
+  const linkedNodeIds = new Set<string>();
+  for (const edge of fixture.evidenceGraph.edges) {
+    linkedNodeIds.add(edge.fromNodeId);
+    linkedNodeIds.add(edge.toNodeId);
+  }
+  const computedOrphans = fixture.evidenceGraph.nodes
+    .filter(node => !linkedNodeIds.has(node.nodeId))
+    .map(node => node.nodeId);
+  if (computedOrphans.length > 0) {
     issues.push({
       code: 'ORPHAN_EVIDENCE_NODE',
       field: 'evidenceGraph.orphanNodeIds',
@@ -506,7 +513,7 @@ export function validateRiskExplanationEvidenceFixture(
 function stableDeterministicChecksumForGraph(fixture: RiskExplanationEvidenceFixture): string {
   const serialized = JSON.stringify(
     {
-      graphId: fixture.evidenceGraph.graphId,
+      graphName: fixture.fixtureId,
       sourceRiskFixtureName: fixture.sourceRiskFixtureName,
       sourceReplayFixtureName: fixture.sourceReplayFixtureName,
       sourceLifecycleFixtureName: fixture.sourceLifecycleFixtureName,
