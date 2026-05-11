@@ -1,5 +1,26 @@
 # Phase Log
 
+## Phase 59 — Risk Explanation and Evidence Models v1
+
+- Adds `apps/dashboard/src/risk-explanation-evidence/` complete deterministic, fixture-derived, read-only synthetic explanation/evidence milestone surface:
+  - `types.ts` — Phase 59 constants, explanation names/kinds, evidence node/edge/template kinds, identity/graph/output/view-model/API-contract/selector/validation/capability interfaces
+  - `evidence-nodes.ts` / `evidence-edges.ts` / `graphs.ts` — deterministic evidence node/edge builders and graph builder with source coverage, orphan detection, and checksum
+  - `explanation-templates.ts` / `renderers.ts` — deterministic fixed-template model and deterministic renderer with no dynamic prose generation
+  - `builders.ts` — deterministic fixture builder (`buildRiskExplanationEvidenceFixture`) and template-output builder (`buildRiskExplanationFromTemplate`) linked to Phase 58/57/56 sources
+  - `fixtures.ts` — `RISK_EXPLANATION_EVIDENCE_FIXTURES` (8 fixtures), map/list/get helpers
+  - `view-models.ts` / `contracts.ts` / `selectors.ts` — explanation view models, list/detail/summary/error API contracts, and pure local selectors
+  - `normalization.ts` / `validation.ts` — deterministic checksum/normalization/serialization/equality/isValid helpers plus structural/safety validation
+  - `capabilities.ts` — `getRiskExplanationEvidenceCapabilities()` with positive and negative Phase 59 explanation/evidence flags
+  - `index.ts` — re-exports all public API
+- Exports all Phase 59 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard/read-only-api capability surfaces with Phase 59 risk explanation evidence flags (dashboard omits websocket-named flag per existing dashboard capability convention)
+- Adds `tests/phase59.test.ts` with coverage for fixtures, evidence graph structure, template rendering, view models, API contracts, selectors, normalization, validation/safety failures, capability propagation, deterministic behavior, and safety scans
+- Adds `docs/RISK_EXPLANATION_EVIDENCE_MODELS.md`
+- **No live data. No Solana RPC connections. No real provider adapters. No WebSocket/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora integration. No wallet handling. No signing. No sending. No execution. No recommendations. No trading signals. No investment advice. No persistence. No background jobs. No route handlers. No UI rendering. No paper simulation. No strategy selection.**
+- FULL_AUTO and LIMITED_LIVE remain locked
+
+**Next phase guidance:** Phase 60 — Paper Sniper Simulation Foundation v1 (preview only; not implemented).
+
 ## Phase 58 — Launch Risk Engine v1
 
 - Adds `apps/dashboard/src/launch-risk-engine/` complete deterministic, fixture-derived, read-only, rule-based synthetic risk engine milestone surface:
@@ -23,7 +44,7 @@
 - **No live data. No Solana RPC connections. No real provider adapters. No WebSocket/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora integration. No wallet handling. No signing. No sending. No execution. No recommendations. No trading signals. No investment advice. No persistence. No background jobs. No route handlers. No UI rendering. No paper simulation. No strategy selection.**
 - FULL_AUTO and LIMITED_LIVE remain locked
 
-**Next phase guidance:** Phase 59 — Risk Explanation and Evidence Models v1 (preview only; not implemented).
+**Next phase guidance:** Phase 59 — Risk Explanation and Evidence Models v1 (implemented in the current phase).
 
 ## Phase 57 — Synthetic Event Stream Replay Harness v1
 
