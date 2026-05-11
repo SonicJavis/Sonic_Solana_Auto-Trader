@@ -1,5 +1,26 @@
 # Phase Log
 
+## Phase 60 — Paper Sniper Simulation Foundation v1
+
+- Adds `apps/dashboard/src/paper-sniper-simulation/` complete deterministic, fixture-derived, read-only synthetic paper simulation milestone surface:
+  - `types.ts` — Phase 60 constants, simulation names/kinds, bucket taxonomies, identity/model/outcome/view-model/API-contract/selector/validation/capability interfaces
+  - `market-model.ts` / `latency-model.ts` / `slippage-model.ts` / `failure-model.ts` — deterministic model builders with explicit bucket derivation
+  - `simulator.ts` / `outcomes.ts` — deterministic simulation runner and outcomes summary builder
+  - `builders.ts` — deterministic fixture builder (`buildPaperSniperSimulationFixture`) linked to Phase 59/58/57/56 fixtures
+  - `fixtures.ts` — `PAPER_SNIPER_SIMULATION_FIXTURES` (8 fixtures), map/list/get helpers
+  - `view-models.ts` / `contracts.ts` / `selectors.ts` — simulation view models, list/detail/summary/error API contracts, and pure local selectors
+  - `normalization.ts` / `validation.ts` — deterministic checksum/normalization/serialization/equality/isValid helpers plus structural/safety validation
+  - `capabilities.ts` — `getPaperSniperSimulationCapabilities()` with positive and negative Phase 60 simulation flags
+  - `index.ts` — re-exports all public API
+- Exports all Phase 60 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard/read-only-api capability surfaces with Phase 60 paper sniper simulation flags (dashboard omits websocket-named flag per existing dashboard capability convention)
+- Adds `tests/phase60.test.ts` with coverage for fixtures, source linkage, model builders, simulator/outcomes, view models, API contracts, selectors, normalization, validation/safety failures, capability propagation, deterministic behavior, and safety scans
+- Adds `docs/PAPER_SNIPER_SIMULATION.md`
+- **No live data. No Solana RPC connections. No real provider adapters. No WebSocket/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora integration. No wallet handling. No signing. No sending. No execution. No recommendations. No trading signals. No investment advice. No persistence. No background jobs. No route handlers. No UI rendering.**
+- FULL_AUTO and LIMITED_LIVE remain locked
+
+**Next phase guidance:** Phase 61 — Safety-First Simulation Expansion v1 (preview only; not implemented).
+
 ## Phase 59 — Risk Explanation and Evidence Models v1
 
 - Adds `apps/dashboard/src/risk-explanation-evidence/` complete deterministic, fixture-derived, read-only synthetic explanation/evidence milestone surface:
@@ -19,7 +40,7 @@
 - **No live data. No Solana RPC connections. No real provider adapters. No WebSocket/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora integration. No wallet handling. No signing. No sending. No execution. No recommendations. No trading signals. No investment advice. No persistence. No background jobs. No route handlers. No UI rendering. No paper simulation. No strategy selection.**
 - FULL_AUTO and LIMITED_LIVE remain locked
 
-**Next phase guidance:** Phase 60 — Paper Sniper Simulation Foundation v1 (preview only; not implemented).
+**Next phase guidance:** Phase 60 — Paper Sniper Simulation Foundation v1 (implemented in the current phase).
 
 ## Phase 58 — Launch Risk Engine v1
 

@@ -458,13 +458,12 @@ describe('Phase 59 — determinism, immutability, and safety scan', () => {
     }
   });
 
-  it('Phase 60 is preview only and not implemented', () => {
+  it('Phase 60 milestone is documented', () => {
     const doc = readFileSync(
       resolve(REPO_ROOT, 'docs/RISK_EXPLANATION_EVIDENCE_MODELS.md'),
       'utf-8',
     );
     expect(doc).toContain('Phase 60 — Paper Sniper Simulation Foundation v1');
-    expect(doc).toContain('not implemented');
   });
 
   it('module constants remain deterministic', () => {
