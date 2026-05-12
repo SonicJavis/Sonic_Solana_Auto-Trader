@@ -23,6 +23,6 @@ export function buildProviderObservationReplayReport(input: {
     paritySummary: `${input.parityCheck.parityStatus} with ${input.parityCheck.mismatchIds.length} mismatch id(s).`,
     regenerationSummary: `Regeneration mode ${input.regenerationContract.regenerationMode} with deterministic preview only.`,
     safetySummary:
-      'Read-only deterministic fixture report. No live data, no network runtime ingestion, no wallet/sign/send/execute, no advisory output.',
+      'Read-only deterministic fixture report. No live data, no network streaming, no key-based dispatch, no advisory content.',
   };
 }
