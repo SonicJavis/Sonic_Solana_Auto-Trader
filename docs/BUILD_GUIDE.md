@@ -1,5 +1,9 @@
 # Build Guide
 
+## Phase 65 Note
+
+Phase 65 introduces first read-only provider adapter models in `apps/dashboard/src/first-read-only-provider-adapter/` as a complete aggressive-safe vertical slice (types, config, capabilities, transport, client contract, frozen responses, response mappings, error normalization, conformance, health, smoke guard, builders, fixtures, reports, view models, contracts, selectors, normalization, validation, capabilities, docs, tests). Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. Standard CI remains deterministic and offline. No wallet logic, no signing, no sending, no transaction building, no execution, no real orders/funds/PnL, no recommendations/signals/investment advice, no endpoints/routes/runtime handlers, no UI/DOM behavior, and no persistence/background jobs are introduced.
+
 ## Phase 64 Note
 
 Phase 64 introduces read-only Solana provider boundary models in `apps/dashboard/src/read-only-solana-provider-boundary/` as a complete aggressive-safe vertical slice (types, mappings, state, conformance, builders, fixtures, reports, view models, contracts, selectors, normalization, validation, capabilities, docs, tests). Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. No live data, real provider adapters, provider SDK integration, API keys/secrets, Solana RPC, WebSockets/Geyser/Yellowstone, Pump.fun/Jupiter/Raydium/Orca/Meteora/Jito integrations, wallet logic, signing/sending/order/transaction logic, execution, real orders, real funds, real PnL, recommendations/signals/investment advice, strategy selection, endpoints/routes/handlers/runtime request handling, UI rendering/DOM, filesystem writes, persistence, or background jobs are introduced.

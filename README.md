@@ -1,8 +1,21 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 64 — Read-Only Solana Provider Adapter Mock-to-Real Boundary v1**
+**Phase 65 — First Real Read-Only Provider Adapter v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 64.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 65.
+
+## Features (Phase 65 — adds to Phase 64)
+
+- Adds `apps/dashboard/src/first-read-only-provider-adapter/` deterministic, fixture-derived, local-only, read-only provider adapter vertical slice:
+  - 8 deterministic adapter fixtures for account-info success, mint-authority success, token-metadata success, provider-unavailable, malformed-response, rate-limited, gate-closed rejection, and unsupported-write-capability rejection
+  - deterministic provider config/capabilities/transport/client/frozen-response/response-mapping/error-normalization/conformance/health/smoke-guard/report/view-model/API-contract/selector/normalization/validation surfaces
+  - practical linkage to Phase 64 boundary fixtures and Phase 63 gate fixtures
+- Adds Phase 65 capability flags with all live/network/smoke-default/provider-sdk/api-key/write-rpc/wallet/signing/sending/execution/route/runtime/UI/DOM/persistence/background/real-order/real-funds/real-PnL/recommendation/signal/advice flags fixed to `false`
+- Adds `docs/FIRST_REAL_READ_ONLY_PROVIDER_ADAPTER.md`
+- Adds `tests/phase65.test.ts`
+- **No live data in standard CI. No real provider adapters in normal tests. No provider SDK integrations. No API keys/secrets. No Solana write RPC. No wallet/private key/signing/sending/transaction building/execution logic. No real orders. No real funds. No real PnL. No recommendations/signals/investment advice. No strategy selection. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/background jobs/filesystem writes.**
+
+**Next phase: Phase 66 — Multi-Provider Read-Only Abstraction and Normalization v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 64 — adds to Phase 63)
 
@@ -15,7 +28,7 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 - Adds `tests/phase64.test.ts`
 - **No live data. No real provider adapters. No provider SDK integrations. No API keys/secrets. No Solana RPC connections. No WebSockets/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora/Jito integrations. No wallet/private key/signing/sending/order/transaction logic. No execution. No real orders. No real funds. No real PnL. No recommendations/signals/investment advice. No strategy selection. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/background jobs.**
 
-**Next phase: Phase 65 — First Real Read-Only Provider Adapter v1 (preview only; not implemented in this phase).**
+**Next phase: Phase 65 — First Real Read-Only Provider Adapter v1 (implemented in the current phase).**
 
 ## Features (Phase 63 — adds to Phase 62)
 
