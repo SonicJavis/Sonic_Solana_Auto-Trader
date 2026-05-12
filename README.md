@@ -1,8 +1,21 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 66 — Multi-Provider Read-Only Foundation v1**
+**Phase 67 — Cross-Provider Data Quality and Reconciliation v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 66.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 67.
+
+## Features (Phase 67 — adds to Phase 66)
+
+- Adds `apps/dashboard/src/cross-provider-data-quality/` deterministic, fixture-derived, local-only, read-only cross-provider reconciliation/data-quality vertical slice:
+  - 8 deterministic fixtures covering provider agreement, stale mismatch, missing-field partial confidence, conflicting values, unhealthy provider rejection, fallback reconciliation, all-provider conflict fail-closed, and unsafe-capability rejection
+  - deterministic issue taxonomy, provider comparison, mismatch detection, reconciliation policy/result, confidence scoring, provenance, read-only enrichment contracts, reports, view models, API contracts, selectors, normalization/serialization/equality, validation, and capability surfaces
+  - practical linkage to Phase 66 multi-provider foundation fixture names
+- Adds Phase 67 capability flags with all live/network/write/wallet/signing/sending/execution/recommendation/signal/advice/route/runtime/UI/DOM/persistence/background/real-order/real-funds/real-PnL/live-reconciliation/auto-execution flags fixed to `false`
+- Adds `docs/CROSS_PROVIDER_DATA_QUALITY.md`
+- Adds `tests/phase67.test.ts`
+- **No new real providers. No live network in standard CI. No live reconciliation. No write methods. No wallet/private key/signing/sending/transaction building/execution logic. No real orders/funds/PnL. No recommendations/signals/investment advice. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/background jobs/filesystem writes.**
+
+**Next phase: Phase 68 — Provider-Aware Replay and Scenario Generation v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 66 — adds to Phase 65)
 
@@ -15,7 +28,7 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 - Adds `tests/phase66.test.ts`
 - **No new real providers. No live network in standard CI. No provider SDK/API-key requirements. No wallet/private key/signing/sending/transaction building/execution logic. No real orders/funds/PnL. No recommendations/signals/investment advice. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/background jobs/filesystem writes.**
 
-**Next phase: Phase 67 — Cross-Provider Data Quality and Reconciliation v1 (preview only; not implemented in this phase).**
+**Next phase: Phase 67 — Cross-Provider Data Quality and Reconciliation v1 (implemented in the current phase).**
 
 ## Features (Phase 65 — adds to Phase 64)
 

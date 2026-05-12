@@ -1,5 +1,9 @@
 # Architecture
 
+## Phase 67 Update
+
+Phase 67 extends `apps/dashboard/` with `src/cross-provider-data-quality/`, a deterministic, fixture-derived, local-only, read-only cross-provider data-quality and reconciliation milestone surface built directly on Phase 66 multi-provider foundation fixtures and preserving practical linkage to Phase 65/64/63/55/54 provider foundations. It bundles issue taxonomy, provider comparison, mismatch detection, reconciliation policy/results, confidence scoring, provenance records, read-only enrichment contracts, reports, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs in one aggressive-safe vertical slice. This layer is fixture-only, local-only, read-only, deterministic, fail-closed, reconciliation-only, non-networked in normal CI, non-wallet, non-signing, non-sending, non-executable, non-advisory, non-rendering, non-DOM, and non-persistent.
+
 ## Phase 66 Update
 
 Phase 66 extends `apps/dashboard/` with `src/multi-provider-read-only-foundation/`, a deterministic, fixture-derived, local-only, read-only multi-provider foundation milestone surface built on Phase 65 first adapter fixtures, Phase 64 boundary fixtures, and Phase 63 gate fixtures. It bundles provider registries, provider-entry identity/capability records, normalization models, health scoring models, stale-data checks, freshness policies, cache-policy contracts, selection/fallback fixtures, conformance summaries, reports, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs in one aggressive-safe vertical slice. This layer is fixture-only, local-only, read-only, deterministic, fail-closed, non-networked in normal CI, non-wallet, non-signing, non-sending, non-executable, non-advisory, non-persistent, non-rendering, and non-DOM.

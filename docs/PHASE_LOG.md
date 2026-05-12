@@ -1,5 +1,23 @@
 # Phase Log
 
+## Phase 67 — Cross-Provider Data Quality and Reconciliation v1
+
+- Adds `apps/dashboard/src/cross-provider-data-quality/` deterministic, fixture-derived reconciliation/data-quality vertical slice:
+  - `types.ts` — Phase 67 constants, issue taxonomy, comparison/mismatch/reconciliation/confidence/provenance/enrichment/report/view/API/selector/validation/capability interfaces
+  - `issue-taxonomy.ts` / `provider-comparison.ts` / `mismatch-detection.ts` / `reconciliation-policy.ts` / `confidence-scoring.ts` / `provenance.ts` / `enrichment-contracts.ts` — deterministic model builders
+  - `builders.ts` / `fixtures.ts` — deterministic fixture builder and list/map/get helpers (8 fixtures)
+  - `reports.ts` / `view-models.ts` / `contracts.ts` / `selectors.ts` — deterministic report/view/API/selectors
+  - `normalization.ts` / `validation.ts` — deterministic normalization/serialization/equality helpers and structural+safety validation
+  - `capabilities.ts` / `index.ts` — capability flags and public exports
+- Exports all Phase 67 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard/read-only-api capability surfaces with Phase 67 cross-provider quality/reconciliation flags
+- Adds `tests/phase67.test.ts`
+- Adds `docs/CROSS_PROVIDER_DATA_QUALITY.md`
+- **No new real providers. No live network in standard CI. No live reconciliation. No write methods. No wallet/signing/sending/execution. No recommendations/signals/investment advice. No real orders/funds/PnL. No route handlers/runtime requests. No UI/DOM. No persistence/background jobs/filesystem writes.**
+- FULL_AUTO and LIMITED_LIVE remain locked
+
+**Next phase guidance:** Phase 68 — Provider-Aware Replay and Scenario Generation v1 (preview only; not implemented).
+
 ## Phase 66 — Multi-Provider Read-Only Foundation v1
 
 - Adds `apps/dashboard/src/multi-provider-read-only-foundation/` complete deterministic, fixture-derived, read-only multi-provider vertical slice:

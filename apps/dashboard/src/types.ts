@@ -659,6 +659,7 @@ export interface DashboardUiShellCapabilities {
   readonly readOnlySolanaProviderBoundary: true;
   readonly firstReadOnlyProviderAdapter: true;
   readonly multiProviderReadOnlyFoundation: true;
+  readonly crossProviderDataQuality: true;
   readonly readOnlyProviderLiveData: false;
   readonly readOnlyProviderNetworkAccess: false;
   readonly readOnlyProviderAdapters: false;
@@ -1217,4 +1218,40 @@ export interface DashboardUiShellCapabilities {
   readonly multiProviderRealPnL: false;
   readonly multiProviderLiveStrategySelection: false;
   readonly multiProviderAutoExecution: false;
+  // Phase 67 cross-provider data-quality and reconciliation capabilities
+  readonly crossProviderComparison: true;
+  readonly deterministicProviderMismatchDetection: true;
+  readonly providerReconciliationReports: true;
+  readonly providerConfidenceScoring: true;
+  readonly providerProvenanceTracking: true;
+  readonly readOnlyProviderEnrichmentContracts: true;
+  readonly fixtureDerivedProviderQualityModels: true;
+  readonly localOnlyProviderQualityModels: true;
+  readonly crossProviderQualityViewModels: true;
+  readonly crossProviderQualityApiContracts: true;
+  readonly crossProviderQualitySelectors: true;
+  readonly crossProviderLiveData: false;
+  readonly crossProviderNetworkAccess: false;
+  readonly crossProviderWriteMethods: false;
+  readonly crossProviderWalletLogic: false;
+  readonly crossProviderPrivateKeyHandling: false;
+  readonly crossProviderSigning: false;
+  readonly crossProviderTransactionSending: false;
+  readonly crossProviderExecution: false;
+  readonly crossProviderTradingSignals: false;
+  readonly crossProviderRecommendations: false;
+  readonly crossProviderInvestmentAdvice: false;
+  readonly crossProviderRouteHandlers: false;
+  readonly crossProviderRuntimeRequests: false;
+  readonly crossProviderUiRendering: false;
+  readonly crossProviderDomAccess: false;
+  readonly crossProviderPersistence: false;
+  readonly crossProviderFilesystemWrites: false;
+  readonly crossProviderBackgroundJobs: false;
+  readonly crossProviderScheduledJobs: false;
+  readonly crossProviderRealOrders: false;
+  readonly crossProviderRealFunds: false;
+  readonly crossProviderRealPnL: false;
+  readonly crossProviderLiveReconciliation: false;
+  readonly crossProviderAutoExecution: false;
 }
