@@ -1156,7 +1156,6 @@ export interface DashboardUiShellCapabilities {
   readonly firstReadOnlyProviderRealTrading: false;
   readonly firstReadOnlyProviderWriteMethods: false;
   readonly firstReadOnlyProviderProviderSdkRequired: false;
-  readonly firstReadOnlyProviderApiKeysRequiredByDefault: false;
   readonly firstReadOnlyProviderSolanaWriteRpc: false;
   readonly firstReadOnlyProviderWalletLogic: false;
   readonly firstReadOnlyProviderPrivateKeyHandling: false;

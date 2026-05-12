@@ -1085,7 +1085,6 @@ export function getLocalReadOnlyApiCapabilities(): LocalReadOnlyApiCapabilities 
     firstReadOnlyProviderRealTrading: false,
     firstReadOnlyProviderWriteMethods: false,
     firstReadOnlyProviderProviderSdkRequired: false,
-    firstReadOnlyProviderApiKeysRequiredByDefault: false,
     firstReadOnlyProviderSolanaWriteRpc: false,
     firstReadOnlyProviderWalletLogic: false,
     firstReadOnlyProviderPrivateKeyHandling: false,

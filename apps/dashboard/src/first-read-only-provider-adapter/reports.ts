@@ -20,7 +20,6 @@ export function buildFirstReadOnlyProviderAdapterReport(input: {
       ? 'Conformance checks pass for deterministic fixture mode.'
       : 'Conformance checks failed for deterministic fixture mode.',
     smokeGuardSummary: `Smoke guard status: ${input.smokeStatus}.`,
-    safetySummary:
-      'No wallet, no signing, no sending, no execution, no recommendations, and no investment advice.',
+    safetySummary: 'Read-only safety constraints remain enforced in deterministic offline fixture mode.',
   };
 }

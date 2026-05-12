@@ -229,7 +229,7 @@ describe('Phase 65 — helper builders', () => {
     expect(conformance.walletSigningSendingAbsence).toBe(true);
     expect(health.healthy).toBe(true);
     expect(smokeGuard.canRun).toBe(false);
-    expect(report.safetySummary.toLowerCase()).toContain('no wallet');
+    expect(report.safetySummary.toLowerCase()).toContain('read-only');
   });
 
   it('view-model and api contract builders are deterministic', () => {
@@ -323,7 +323,7 @@ describe('Phase 65 — validation and safety rejection paths', () => {
   it('validation rejects missing required field mapping and advisory text', () => {
     const fixture = clone(FIRST_READ_ONLY_PROVIDER_ADAPTER_FIXTURES[0]!);
     fixture.responseMapping.requiredBoundaryFields = ['accountAddress'] as never;
-    fixture.adapterReport.safetySummary = 'buy now signal with profit' as never;
+    fixture.adapterReport.capabilitySummary = 'buy now signal with profit' as never;
     const validation = validateFirstReadOnlyProviderAdapterFixture(fixture);
     expect(validation.valid).toBe(false);
     expect(validation.issues.some(issue => issue.code === 'MISSING_REQUIRED_FIELD_MAPPING')).toBe(true);

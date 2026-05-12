@@ -53,6 +53,8 @@ const EXCLUDED_SCAN_FIELDS = new Set([
   'selectedFixtureKind',
   'requiredBoundaryFields',
   'categories',
+  'unsupportedWriteMethods',
+  'safetySummary',
 ]);
 
 function pushIssue(
