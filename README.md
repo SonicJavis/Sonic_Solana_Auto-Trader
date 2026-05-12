@@ -1,8 +1,21 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 62 — Synthetic Strategy Comparison Lab v1**
+**Phase 63 — Read-Only Provider Adapter Gate v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 62.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 63.
+
+## Features (Phase 63 — adds to Phase 62)
+
+- Adds `apps/dashboard/src/read-only-provider-adapter-gate/` deterministic, fixture-derived, local-only fail-closed gate vertical slice:
+  - 8 deterministic gate fixtures covering safe synthetic mock acceptance, closed-by-default behavior, missing-contract rejection, network rejection, wallet/signing/execution rejection, and live-provider rejection
+  - deterministic gate identity, policy, state, provider resolution, capability checks, compatibility checks, gate reports, view models, API contracts, selectors, normalization/serialization/equality helpers, and structural+safety validation
+  - practical linkage to Phase 54 provider contract names, Phase 55 adapter mock names, and Phase 62 comparison-lab references
+- Adds Phase 63 capability flags with all live/network/provider/RPC/persistence/filesystem/route/runtime/UI/DOM/background/wallet/signing/transaction-sending/execution/signal/recommendation/advice/live-execution/strategy-selection/real-order/real-funds/real-PnL flags fixed to `false`
+- Adds `docs/READ_ONLY_PROVIDER_ADAPTER_GATE.md`
+- Adds `tests/phase63.test.ts`
+- **No live data. No real provider adapters. No provider SDK integrations. No Solana RPC connections. No WebSockets/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora/Jito integrations. No wallet/private key/signing/sending/order/transaction logic. No execution. No real orders. No real funds. No real PnL. No recommendations/signals/investment advice. No strategy selection. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/background jobs.**
+
+**Next phase: Phase 64 — Read-Only Solana Provider Adapter Mock-to-Real Boundary v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 62 — adds to Phase 61)
 
@@ -16,7 +29,7 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 - Adds `tests/phase62.test.ts`
 - **No live data. No real provider adapters. No Solana RPC connections. No WebSockets/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora/Jito integrations. No wallet/private key/signing/sending/order/transaction logic. No execution. No real orders. No real funds. No real PnL. No recommendations/signals/investment advice. No strategy selection. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/background jobs.**
 
-**Next phase: Phase 63 — Read-Only Provider Adapter Gate v1 (preview only; not implemented in this phase).**
+**Next phase: Phase 63 — Read-Only Provider Adapter Gate v1 (implemented in the current phase).**
 
 ## Features (Phase 61 — adds to Phase 60)
 

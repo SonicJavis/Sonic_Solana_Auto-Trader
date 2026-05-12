@@ -1,5 +1,9 @@
 # Architecture
 
+## Phase 63 Update
+
+Phase 63 extends `apps/dashboard/` with `src/read-only-provider-adapter-gate/`, a deterministic, fixture-derived, read-only provider adapter gate milestone surface built on Phase 54 provider contracts, Phase 55 provider adapter mocks, and Phase 62 synthetic strategy comparison lab references. It bundles gate identities, gate policies, gate states, provider resolution fixtures, capability checks, compatibility checks, gate reports, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs in one aggressive-safe vertical slice. This layer is synthetic-only, local-only, read-only, deterministic, gate-only, fail-closed, pure, in-memory, non-networked, non-persistent, non-rendering, non-DOM, non-wallet, non-executable, and non-advisory.
+
 ## Phase 62 Update
 
 Phase 62 extends `apps/dashboard/` with `src/synthetic-strategy-comparison-lab/`, a deterministic, fixture-derived, read-only synthetic strategy comparison lab milestone surface built directly on Phase 61 paper execution quality metric fixtures and preserving practical linkage to Phase 60 simulation fixtures, Phase 59 evidence fixtures, Phase 58 risk fixtures, Phase 57 replay fixtures, and Phase 56 lifecycle fixtures. It bundles comparison identities, hypothetical strategy variants, scenario matrixes, comparison runs, scorecards, sensitivity and overfit warnings, aggregate summaries, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs in one aggressive-safe vertical slice. This layer is synthetic-only, local-only, read-only, deterministic, pure, in-memory, non-networked, non-persistent, non-rendering, non-DOM, non-wallet, non-executable, non-advisory, strategy-selection-free, and real-order-free.

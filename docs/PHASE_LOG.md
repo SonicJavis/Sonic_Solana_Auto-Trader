@@ -1,5 +1,23 @@
 # Phase Log
 
+## Phase 63 — Read-Only Provider Adapter Gate v1
+
+- Adds `apps/dashboard/src/read-only-provider-adapter-gate/` complete deterministic, fixture-derived, read-only provider adapter gate vertical slice:
+  - `types.ts` — Phase 63 constants, gate names/kinds, policy/state/resolution/capability-check/compatibility-check/report/view-model/API-contract/selector/validation interfaces
+  - `gate-policies.ts` / `gate-state.ts` / `provider-resolution.ts` / `capability-checks.ts` / `compatibility.ts` / `reports.ts` — deterministic gate model builders
+  - `builders.ts` / `fixtures.ts` — deterministic fixture builder and fixture list/map/get helpers (8 fixtures)
+  - `view-models.ts` / `contracts.ts` / `selectors.ts` — deterministic view models, list/detail/summary/error contracts, and pure selectors
+  - `normalization.ts` / `validation.ts` — deterministic normalization/serialization/equality helpers and structural/safety validation
+  - `capabilities.ts` / `index.ts` — capability flags and public exports
+- Exports all Phase 63 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard/read-only-api capability surfaces with Phase 63 read-only provider adapter gate flags (dashboard omits websocket-named flag per existing dashboard capability convention)
+- Adds `tests/phase63.test.ts`
+- Adds `docs/READ_ONLY_PROVIDER_ADAPTER_GATE.md`
+- **No live data. No real provider adapters. No provider SDK integrations. No Solana RPC. No WebSockets/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora/Jito integration. No wallet handling. No signing. No sending. No execution. No real orders. No real funds. No real PnL. No recommendations. No trading signals. No investment advice. No strategy selection. No persistence. No background jobs. No route handlers. No runtime request handling. No UI rendering.**
+- FULL_AUTO and LIMITED_LIVE remain locked
+
+**Next phase guidance:** Phase 64 — Read-Only Solana Provider Adapter Mock-to-Real Boundary v1 (preview only; not implemented).
+
 ## Phase 62 — Synthetic Strategy Comparison Lab v1
 
 - Adds `apps/dashboard/src/synthetic-strategy-comparison-lab/` complete deterministic, fixture-derived, read-only synthetic comparison-lab vertical slice:
@@ -16,7 +34,7 @@
 - **No live data. No real provider adapters. No Solana RPC. No WebSockets/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora/Jito integration. No wallet handling. No signing. No sending. No execution. No real orders. No real funds. No real PnL. No recommendations. No trading signals. No investment advice. No strategy selection. No persistence. No background jobs. No route handlers. No runtime request handling. No UI rendering.**
 - FULL_AUTO and LIMITED_LIVE remain locked
 
-**Next phase guidance:** Phase 63 — Read-Only Provider Adapter Gate v1 (preview only; not implemented).
+**Next phase guidance:** Phase 63 — Read-Only Provider Adapter Gate v1 (implemented in the current phase).
 
 ## Phase 61 — Paper Execution Quality Metrics v1
 
