@@ -27,7 +27,7 @@ const FORBIDDEN_FILESYSTEM_PATTERN = /\b(?:fs\.|writeFile|createWriteStream|loca
 const FORBIDDEN_TIMER_PATTERN = /\b(?:Date\.now\(|new Date\(|setInterval\(|setTimeout\()/;
 const FORBIDDEN_WALLET_PATTERN = /\b(?:wallet|privateKey|secretKey|seedPhrase|mnemonic|Keypair)\b/i;
 const FORBIDDEN_TX_PATTERN = /\b(?:signTransaction|sendTransaction|transaction|tx\b|signature)\b/i;
-const FORBIDDEN_EXECUTION_PATTERN = /\b(?:execute|buy|sell|trade|order|profit|pnl|recommendation|signal|investment advice)\b/i;
+const FORBIDDEN_EXECUTION_PATTERN = /\b(?:execute|buy|sell|trade|order|profit|pnl|recommendation|signal|investment\s+advice)\b/i;
 const FORBIDDEN_PROVIDER_PATTERN =
   /\b(?:pump\.fun|jupiter|raydium|orca|meteora|geyser|yellowstone|provider sdk|solana\s*rpc)\b/i;
 
