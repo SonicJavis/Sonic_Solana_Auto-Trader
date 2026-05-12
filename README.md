@@ -1,8 +1,21 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 63 — Read-Only Provider Adapter Gate v1**
+**Phase 64 — Read-Only Solana Provider Adapter Mock-to-Real Boundary v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 63.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 64.
+
+## Features (Phase 64 — adds to Phase 63)
+
+- Adds `apps/dashboard/src/read-only-solana-provider-boundary/` deterministic, fixture-derived, local-only boundary vertical slice:
+  - 8 deterministic boundary fixtures for account info, token metadata, mint authority, holder distribution, liquidity snapshot, provider health, error normalization, and unsafe write-capability rejection
+  - deterministic boundary identity/state, mock-to-real mapping rules, field mapping rules, error normalization rules, conformance checks, reports, view models, API contracts, selectors, normalization/serialization/equality helpers, and structural+safety validation
+  - practical linkage to Phase 63 gate fixtures, Phase 55 provider mock names, and Phase 54 provider contract names
+- Adds Phase 64 capability flags with all live/network/provider/provider-sdk/api-key/rpc/persistence/filesystem/route/runtime/UI/DOM/background/wallet/signing/transaction-sending/execution/signal/recommendation/advice/live-execution/strategy-selection/real-order/real-funds/real-PnL/write-capability flags fixed to `false`
+- Adds `docs/READ_ONLY_SOLANA_PROVIDER_BOUNDARY.md`
+- Adds `tests/phase64.test.ts`
+- **No live data. No real provider adapters. No provider SDK integrations. No API keys/secrets. No Solana RPC connections. No WebSockets/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora/Jito integrations. No wallet/private key/signing/sending/order/transaction logic. No execution. No real orders. No real funds. No real PnL. No recommendations/signals/investment advice. No strategy selection. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/background jobs.**
+
+**Next phase: Phase 65 — First Real Read-Only Provider Adapter v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 63 — adds to Phase 62)
 

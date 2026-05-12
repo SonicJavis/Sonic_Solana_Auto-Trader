@@ -1,5 +1,23 @@
 # Phase Log
 
+## Phase 64 — Read-Only Solana Provider Adapter Mock-to-Real Boundary v1
+
+- Adds `apps/dashboard/src/read-only-solana-provider-boundary/` complete deterministic, fixture-derived, read-only Solana provider boundary vertical slice:
+  - `types.ts` — Phase 64 constants, boundary names/kinds/states, mapping/error/conformance/report/view-model/API-contract/selector/validation/capability interfaces
+  - `mock-to-real-mapping.ts` / `field-mapping.ts` / `error-normalization.ts` / `conformance.ts` / `boundary-state.ts` / `reports.ts` — deterministic boundary model builders
+  - `builders.ts` / `fixtures.ts` — deterministic fixture builder and fixture list/map/get helpers (8 fixtures)
+  - `view-models.ts` / `contracts.ts` / `selectors.ts` — deterministic view models, list/detail/summary/error contracts, and pure selectors
+  - `normalization.ts` / `validation.ts` — deterministic normalization/serialization/equality helpers and structural/safety validation
+  - `capabilities.ts` / `index.ts` — capability flags and public exports
+- Exports all Phase 64 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard/read-only-api capability surfaces with Phase 64 boundary flags (dashboard omits websocket-named flag per existing dashboard capability convention)
+- Adds `tests/phase64.test.ts`
+- Adds `docs/READ_ONLY_SOLANA_PROVIDER_BOUNDARY.md`
+- **No live data. No real provider adapters. No provider SDK integrations. No API keys/secrets. No Solana RPC. No WebSockets/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora/Jito integration. No wallet handling. No signing. No sending. No execution. No real orders. No real funds. No real PnL. No recommendations. No trading signals. No investment advice. No strategy selection. No persistence. No background jobs. No route handlers. No runtime request handling. No UI rendering.**
+- FULL_AUTO and LIMITED_LIVE remain locked
+
+**Next phase guidance:** Phase 65 — First Real Read-Only Provider Adapter v1 (preview only; not implemented).
+
 ## Phase 63 — Read-Only Provider Adapter Gate v1
 
 - Adds `apps/dashboard/src/read-only-provider-adapter-gate/` complete deterministic, fixture-derived, read-only provider adapter gate vertical slice:
