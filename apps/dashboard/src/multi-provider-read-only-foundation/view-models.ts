@@ -1,10 +1,13 @@
-import type {
-  MultiProviderReadOnlyFoundationFixture,
-  MultiProviderReadOnlyFoundationViewModel,
-} from './types.js';
+import type { MultiProviderReadOnlyFoundationViewModel } from './types.js';
 
 export function buildMultiProviderViewModel(
-  fixture: Omit<MultiProviderReadOnlyFoundationFixture, 'viewModel'>,
+  fixture: {
+    readonly fixtureId: string;
+    readonly fixtureName: MultiProviderReadOnlyFoundationViewModel['fixtureName'];
+    readonly providerSelection: { readonly selectedProviderId: string; readonly fallbackProviderIds: readonly string[] };
+    readonly staleDataChecks: readonly { readonly providerId: string; readonly stale: boolean }[];
+    readonly providerRegistry: { readonly disabledProviderEntries: readonly string[] };
+  },
 ): MultiProviderReadOnlyFoundationViewModel {
   const staleProviderIds = fixture.staleDataChecks.filter(check => check.stale).map(check => check.providerId);
 

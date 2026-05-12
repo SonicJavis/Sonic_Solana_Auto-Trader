@@ -1,10 +1,14 @@
 import type {
   MultiProviderReadOnlyFoundationApiContract,
-  MultiProviderReadOnlyFoundationFixture,
 } from './types.js';
 
 export function buildMultiProviderApiContract(
-  fixture: Omit<MultiProviderReadOnlyFoundationFixture, 'apiContract'>,
+  fixture: {
+    readonly fixtureId: string;
+    readonly viewModel: MultiProviderReadOnlyFoundationApiContract['detail']['data'];
+    readonly providerSelection: { readonly selectedProviderId: string };
+    readonly staleDataChecks: readonly { readonly stale: boolean }[];
+  },
 ): MultiProviderReadOnlyFoundationApiContract {
   return {
     list: {
