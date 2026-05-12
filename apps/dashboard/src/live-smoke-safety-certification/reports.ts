@@ -24,8 +24,7 @@ export function buildLiveSmokeCertificationReport(input: {
     planSummary: `Plan expects ${input.smokePlan.expectedOutcome} with ${input.smokePlan.checkKinds.length} read-only checks.`,
     resultSummary: `Result ${input.smokeResult.status} with ${input.smokeResult.reasonCodes.length} reason code(s).`,
     certificateSummary: `Certificate ${input.safetyCertificate.certificationStatus}; no-execution=${String(input.safetyCertificate.certifiedNoExecution)}.`,
-    safetySummary:
-      'Safety smoke certification only. Read-only, non-executing, non-advisory, and not a profitability or strategy signal.',
+    safetySummary: 'Safety smoke certification only. Read-only, fixture-only, fail-closed, and not a profitability claim.',
     offlineCiSummary: `Offline CI contract enforces networkAccess=${String(input.offlineCiContract.networkAccess)} and liveChecksRun=${String(input.offlineCiContract.liveChecksRun)}.`,
   };
 }

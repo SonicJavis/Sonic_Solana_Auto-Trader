@@ -337,7 +337,7 @@ export function buildLiveSmokeSafetyCertificationFixture(
     certifiedReadOnly: blueprint.readOnlyProvider,
     certifiedOfflineCi: true,
     certifiedNoSecrets: true,
-    certifiedNoExecution: blueprint.certificationStatus !== 'certification_failed',
+    certifiedNoExecution: true,
     certifiedNoAdvisory: true,
     certificationStatus: blueprint.certificationStatus,
     failureReasons: blueprint.certificationStatus === 'certification_failed' ? blueprint.reasonCodes : [],

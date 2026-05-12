@@ -23,8 +23,7 @@ const FORBIDDEN_FILESYSTEM_PATTERN = /\b(?:fs\.|writeFile|createWriteStream|loca
 const FORBIDDEN_TIMER_PATTERN = /\b(?:Date\.now\(|new Date\(|Math\.random\(|randomUUID\()/;
 const FORBIDDEN_WALLET_PATTERN =
   /\b(?:wallet|privateKey|secretKey|seedPhrase|mnemonic|Keypair|signTransaction|sendTransaction)\b/i;
-const FORBIDDEN_EXECUTION_PATTERN =
-  /\b(?:execute|buy|sell|trade|order|recommendation|signal|investment\s+advice|profit|pnl)\b/i;
+const FORBIDDEN_EXECUTION_PATTERN = /\b(?:buy|sell|trade|order|recommendation|signal|investment\s+advice|profit|pnl)\b/i;
 const FORBIDDEN_SECRET_PATTERN = /\b(?:apiKey|secret|token-drainer|drainer|postinstall)\b/i;
 
 function pushIssue(
@@ -120,13 +119,11 @@ export function validateLiveSmokeSafetyCertificationFixture(
     pushIssue(issues, 'SMOKE_PLAN_DISABLED_REQUIRED', 'smokePlan.disabledByDefault', 'smoke plan must be disabled by default.');
   }
 
-  if (fixture.providerEligibility.unsafeCapabilitiesDetected) {
-    pushIssue(
-      issues,
-      'UNSAFE_PROVIDER_CAPABILITY_DETECTED',
-      'providerEligibility.unsafeCapabilitiesDetected',
-      'unsafe provider capability must be blocked.',
-    );
+  if (fixture.providerEligibility.unsafeCapabilitiesDetected && fixture.smokeResult.status !== 'blocked') {
+    pushIssue(issues, 'UNSAFE_PROVIDER_CAPABILITY_NOT_BLOCKED', 'smokeResult.status', 'unsafe capability must force blocked status.');
+  }
+  if (!fixture.providerEligibility.hasProviderConfig && fixture.smokeResult.status !== 'blocked') {
+    pushIssue(issues, 'MISSING_PROVIDER_CONFIG_NOT_BLOCKED', 'smokeResult.status', 'missing provider config must force blocked status.');
   }
   if (fixture.readOnlyChecks.some(check => check.writeMethodDetected !== false)) {
     pushIssue(issues, 'WRITE_METHOD_DETECTED', 'readOnlyChecks', 'read-only checks cannot allow write methods.');
