@@ -109,7 +109,7 @@ export function buildSyntheticStrategyComparisonScorecard(
     ],
     nonAdvisorySummary:
       'Hypothetical synthetic comparison score under fixture constraints; non-actionable and not live predictive.',
-    safetySummary: 'No live data, no execution path, no wallet path, and no advisory output.',
+    safetySummary: 'No live data, no signing path, no sending path, and no advisory output.',
     validationSummary:
       'Deterministic scorecard derived from fixture inputs with sensitivity and overfit warning taxonomy checks.',
     meta: {
