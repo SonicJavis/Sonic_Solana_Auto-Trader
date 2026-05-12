@@ -1,8 +1,21 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 67 — Cross-Provider Data Quality and Reconciliation v1**
+**Phase 68 — Provider-Aware Replay and Scenario Generation v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 67.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 68.
+
+## Features (Phase 68 — adds to Phase 67)
+
+- Adds `apps/dashboard/src/provider-aware-replay-scenarios/` deterministic, fixture-derived, local-only, read-only provider-aware replay/scenario-generation vertical slice:
+  - 8 deterministic fixtures covering high-confidence agreement, stale replay mismatch, missing-field partial, conflicting fail-closed, unhealthy rejection, fallback reconciliation, all-conflict regeneration block, and unsafe-capability block scenarios
+  - deterministic import models, scenario generation, provenance mapping, parity checks, regeneration contracts, observation reports, lifecycle previews, replay expectations, view models, API contracts, selectors, normalization/serialization/equality, validation, and capability surfaces
+  - practical linkage to Phase 67 quality fixtures, Phase 57 replay fixtures, and Phase 56 lifecycle fixtures
+- Adds Phase 68 capability flags with all live/network/runtime-ingestion/filesystem/download/persistence/wallet/signing/sending/execution/recommendation/signal/advice/route/runtime/UI/DOM/background/real-order/real-funds/real-PnL/live-strategy/auto-execution flags fixed to `false`
+- Adds `docs/PROVIDER_AWARE_REPLAY_SCENARIOS.md`
+- Adds `tests/phase68.test.ts`
+- **No live provider ingestion. No live network in standard CI. No runtime ingestion. No fixture export/download/filesystem writes. No wallet/private key/signing/sending/transaction building/execution logic. No recommendations/signals/investment advice. No real orders/funds/PnL. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/background jobs.**
+
+**Next phase: Phase 69 — Live Smoke Harness Expansion and Safety Certification v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 67 — adds to Phase 66)
 
