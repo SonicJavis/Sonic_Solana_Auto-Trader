@@ -1,5 +1,9 @@
 # Safety Rules
 
+## Phase 65 Safety Extension
+
+Phase 65 first read-only provider adapter surfaces must remain synthetic-only in standard CI, local-only, read-only, deterministic, fixture-derived, fail-closed by default, and non-advisory. Phase 65 does not permit live data by default, provider SDK requirements, API key requirements by default, Solana write RPC, wallet/private key handling, signing, transaction sending, transaction building, execution, recommendations, trading signals, investment advice, route handlers, runtime request handling, UI rendering, DOM access, persistence, filesystem writes, queue/background/scheduled jobs, real orders, real funds, or real PnL.
+
 ## Phase 64 Safety Extension
 
 Phase 64 read-only Solana provider boundary surfaces must remain synthetic-only, local-only, read-only, deterministic, fixture-derived, boundary-contract-only, mock-to-real-parity-only, conformance-only, pure, serializable, in-memory, non-persistent, external-network-free, non-rendering, non-DOM, non-wallet, non-executable, real-order-free, real-funds-free, real-PnL-free, strategy-selection-free, and non-advisory. Phase 64 does not permit live data, real provider adapters, provider SDK integrations, API keys/secrets, Solana RPC connections, WebSockets/Geyser/Yellowstone, Pump.fun/Jupiter/Raydium/Orca/Meteora/Jito integrations, real endpoints, route handlers, runtime request handling, filesystem writes, persistence, downloads, queue/background/scheduled jobs, wallet/private key handling, signing/sending logic, real-order logic, transaction execution, recommendations, trading signals, investment advice, strategy selection, live execution, real funds, or real PnL.

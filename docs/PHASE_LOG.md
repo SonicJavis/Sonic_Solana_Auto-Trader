@@ -1,5 +1,23 @@
 # Phase Log
 
+## Phase 65 — First Real Read-Only Provider Adapter v1
+
+- Adds `apps/dashboard/src/first-read-only-provider-adapter/` complete deterministic, fixture-derived, read-only provider adapter vertical slice:
+  - `types.ts` — Phase 65 constants, adapter names/kinds/config/transport/error/health models, fixture/report/view-model/API-contract/selector/validation/capability interfaces
+  - `provider-config.ts` / `provider-capabilities.ts` / `provider-transport.ts` / `provider-client.ts` / `response-mapping.ts` / `error-normalization.ts` / `conformance.ts` / `health.ts` / `smoke-guard.ts` — deterministic adapter model builders
+  - `builders.ts` / `fixtures.ts` — deterministic fixture builder and fixture list/map/get helpers (8 fixtures)
+  - `reports.ts` / `view-models.ts` / `contracts.ts` / `selectors.ts` — deterministic report, view model, list/detail/summary/error API contracts, and pure selectors
+  - `normalization.ts` / `validation.ts` — deterministic normalization/serialization/equality helpers and structural/safety validation
+  - `capabilities.ts` / `index.ts` — capability flags and public exports
+- Exports all Phase 65 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard/read-only-api capability surfaces with Phase 65 first read-only provider adapter flags
+- Adds `tests/phase65.test.ts`
+- Adds `docs/FIRST_REAL_READ_ONLY_PROVIDER_ADAPTER.md`
+- **No live data in standard CI. No real provider adapters in normal test flows. No provider SDK integrations. No API keys/secrets. No Solana write RPC. No wallet handling. No signing. No sending. No execution. No real orders. No real funds. No real PnL. No recommendations. No trading signals. No investment advice. No strategy selection. No persistence. No background jobs. No route handlers. No runtime request handling. No UI rendering.**
+- FULL_AUTO and LIMITED_LIVE remain locked
+
+**Next phase guidance:** Phase 66 — Multi-Provider Read-Only Abstraction and Normalization v1 (preview only; not implemented).
+
 ## Phase 64 — Read-Only Solana Provider Adapter Mock-to-Real Boundary v1
 
 - Adds `apps/dashboard/src/read-only-solana-provider-boundary/` complete deterministic, fixture-derived, read-only Solana provider boundary vertical slice:
