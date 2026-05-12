@@ -1,10 +1,14 @@
 # Safety Rules
 
+## Phase 61 Safety Extension
+
+Phase 61 paper execution quality metric surfaces must remain synthetic-only, local-only, read-only, deterministic, fixture-derived, hypothetical-only, metrics-only, pure, serializable, in-memory, non-persistent, external-network-free, non-rendering, non-DOM, non-wallet, non-executable, real-order-free, real-funds-free, real-PnL-free, strategy-selection-free, and non-advisory. Phase 61 does not permit live data, real provider adapters, Solana RPC connections, WebSockets/Geyser/Yellowstone, Pump.fun/Jupiter/Raydium/Orca/Meteora integrations, real endpoints, route handlers, runtime request handling, filesystem writes, persistence, downloads, queue/background/scheduled jobs, wallet/private key handling, signing/sending logic, real-order logic, transaction execution, recommendations, trading signals, investment advice, strategy selection, live execution, real funds, or real PnL. Paper execution quality outputs are deterministic hypothetical quality summaries only and must not be interpreted as live trading instructions.
+
 ## Phase 60 Safety Extension
 
 Phase 60 paper sniper simulation surfaces must remain synthetic-only, local-only, read-only, deterministic, fixture-derived, simulation-only, pure, serializable, in-memory, non-persistent, external-network-free, non-rendering, non-DOM, non-wallet, non-executable, and non-advisory. Phase 60 does not permit live data, real provider adapters, Solana RPC connections, WebSocket/Geyser/Yellowstone, Pump.fun/Jupiter/Raydium/Orca/Meteora integrations, real endpoints, route handlers, runtime request handling, filesystem writes, persistence, downloads, queue/background/scheduled jobs, wallet/private key handling, signing/sending logic, real-order logic, transaction execution, recommendations, trading signals, investment advice, or live execution. Paper simulation outputs are deterministic synthetic projections only and must not be interpreted as live trading instructions.
 
-## Phase 59 Safety Extension
+
 
 Phase 59 risk explanation evidence model surfaces must remain synthetic-only, local-only, read-only, deterministic, fixture-derived, evidence-backed, explanation-only, pure, serializable, in-memory, non-persistent, external-network-free, non-rendering, non-DOM, non-wallet, non-executable, non-advisory, paper-simulation-free, and strategy-selection-free. Phase 59 does not permit live data, real provider adapters, Solana RPC connections, WebSocket/Geyser/Yellowstone, Pump.fun/Jupiter/Raydium/Orca/Meteora integrations, real endpoints, route handlers, runtime request handling, filesystem writes, persistence, downloads, queue/background/scheduled jobs, wallet/private key handling, signing/sending logic, execution logic, trading signals, recommendations, investment advice, paper simulation, live execution, or strategy selection. Explanation outputs are non-advisory classifications only and must not be interpreted as buy/sell signals or investment guidance.
 

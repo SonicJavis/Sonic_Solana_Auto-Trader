@@ -1,8 +1,22 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 60 — Paper Sniper Simulation Foundation v1**
+**Phase 61 — Paper Execution Quality Metrics v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 60.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 61.
+
+## Features (Phase 61 — adds to Phase 60)
+
+- Adds `apps/dashboard/src/paper-execution-quality-metrics/` deterministic, fixture-derived, read-only paper execution quality metrics vertical slice:
+  - 8 deterministic metric fixtures mapped 1:1 to practical Phase 60 paper sniper simulation fixtures with practical linkage to Phase 59 evidence fixtures, Phase 58 risk fixtures, Phase 57 replay fixtures, and Phase 56 lifecycle fixtures
+  - deterministic latency, fill quality, slippage, and rejection taxonomy metrics derived only from Phase 60 synthetic outcomes
+  - deterministic scorecards, aggregate summaries, view-model builders, API contract fixtures (list/detail/summary/error), selectors, normalization/serialization/equality helpers, and structural+safety validation
+  - validation rejects unsafe advisory text, real order/fill/wallet/transaction/provider references, invalid quality buckets, and invalid taxonomy values
+- Adds Phase 61 capability flags with all live/network/provider/RPC/persistence/filesystem/route/runtime/UI/DOM/background/wallet/signing/transaction-sending/execution/signal/recommendation/advice/live-execution/strategy-selection/real-order/real-funds/real-PnL flags fixed to `false`
+- Adds `docs/PAPER_EXECUTION_QUALITY_METRICS.md`
+- Adds `tests/phase61.test.ts`
+- **No live data. No real provider adapters. No Solana RPC connections. No WebSockets/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora integrations. No wallet/private key/signing/sending/order/transaction logic. No execution. No real orders. No real funds. No real PnL. No recommendations/signals/investment advice. No strategy selection. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/background jobs.**
+
+**Next phase: Phase 62 — Synthetic Strategy Comparison Lab v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 60 — adds to Phase 59)
 
@@ -17,9 +31,9 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 - Adds `tests/phase60.test.ts`
 - **No live data. No real provider adapters. No Solana RPC connections. No WebSocket/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora integrations. No wallet/private key/signing/sending/order/transaction logic. No execution. No recommendations/signals/investment advice. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/background jobs.**
 
-**Next phase: Phase 61 — Safety-First Simulation Expansion v1 (preview only; not implemented in this phase).**
+**Next phase: Phase 61 — Paper Execution Quality Metrics v1 (implemented in the current phase).**
 
-## Features (Phase 59 — adds to Phase 58)
+
 
 - Adds `apps/dashboard/src/risk-explanation-evidence/` deterministic, fixture-derived, read-only risk explanation/evidence vertical slice:
   - 8 deterministic explanation/evidence fixtures mapped 1:1 to practical Phase 58 risk fixtures and linked back to Phase 57 replay fixtures + Phase 56 lifecycle fixtures
