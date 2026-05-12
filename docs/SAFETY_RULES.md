@@ -1,5 +1,9 @@
 # Safety Rules
 
+## Phase 67 Safety Extension
+
+Phase 67 cross-provider data-quality and reconciliation surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, reconciliation-only, and non-advisory. Phase 67 does not permit new real providers, live network access by default, live reconciliation, write methods, wallet/private key handling, signing, transaction sending, transaction building, execution, recommendations, trading signals, investment advice, route handlers, runtime request handling, UI rendering, DOM access, persistence, filesystem writes, queue/background/scheduled jobs, real orders, real funds, or real PnL.
+
 ## Phase 66 Safety Extension
 
 Phase 66 multi-provider read-only foundation surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, provider-registry-only, non-advisory, and non-executable. Phase 66 does not permit new real providers, live network access by default, provider SDK/API-key requirements, write methods, wallet/private key handling, signing, transaction sending, transaction building, execution, recommendations, trading signals, investment advice, route handlers, runtime request handling, UI rendering, DOM access, persistence, filesystem writes, queue/background/scheduled jobs, real orders, real funds, or real PnL.

@@ -29,6 +29,8 @@ Phase 64 follows this policy by shipping a complete read-only Solana provider bo
 
 Phase 66 also follows this policy by shipping a complete multi-provider read-only foundation vertical slice (registry, normalization, health, stale/freshness/cache policies, selection/fallback, conformance, reports, contracts, selectors, validation, tests, and docs) while keeping live/network/write capability locked.
 
+Phase 67 follows this policy by shipping a complete cross-provider data-quality and reconciliation vertical slice (issue taxonomy, comparison, mismatch detection, reconciliation policy/results, confidence scoring, provenance, enrichment contracts, reports, contracts, selectors, validation, tests, and docs) while keeping live/network/write/execution capability locked.
+
 ---
 
 ## What remains forbidden

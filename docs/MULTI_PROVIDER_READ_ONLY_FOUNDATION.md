@@ -180,4 +180,6 @@ Phase 66 does not add:
 
 ### Next phase guidance
 
-**Phase 67 — Cross-Provider Data Quality and Reconciliation v1** is preview only in this document and is not implemented in Phase 66.
+**Phase 67 — Cross-Provider Data Quality and Reconciliation v1** is implemented in the current phase.
+
+Next milestone preview only: **Phase 68 — Provider-Aware Replay and Scenario Generation v1** (not implemented in this document).
