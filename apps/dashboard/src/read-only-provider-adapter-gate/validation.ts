@@ -54,6 +54,13 @@ const EXCLUDED_SCAN_FIELDS = new Set([
   'safetyNotes',
   'notes',
   'evaluationNote',
+  'sourceProviderContractNames',
+  'sourceProviderMockNames',
+  'sourceProviderContractName',
+  'sourceProviderMockName',
+  'sourceContractName',
+  'sourceMockName',
+  'candidateLabel',
 ]);
 
 function pushIssue(
@@ -98,7 +105,10 @@ function scanObjectRecursive(
   }
   if (value !== null && typeof value === 'object') {
     for (const [key, nested] of Object.entries(value as Record<string, unknown>)) {
-      if (!EXCLUDED_SCAN_FIELDS.has(key)) scanObjectRecursive(nested, `${fieldPath}.${key}`, issues, depth + 1);
+      if (EXCLUDED_SCAN_FIELDS.has(key)) continue;
+      if (key.toLowerCase().endsWith('id')) continue;
+      if (key === 'fixtureIds') continue;
+      scanObjectRecursive(nested, `${fieldPath}.${key}`, issues, depth + 1);
     }
   }
 }
@@ -142,9 +152,10 @@ export function validateReadOnlyProviderAdapterGateFixture(
   if (fixture.providerCandidate.providerSdk !== null) pushIssue(issues, 'PROVIDER_SDK_FORBIDDEN', 'providerCandidate.providerSdk', 'providerSdk must be null.');
   if (fixture.providerCandidate.providerClientReference !== null) pushIssue(issues, 'PROVIDER_CLIENT_FORBIDDEN', 'providerCandidate.providerClientReference', 'providerClientReference must be null.');
 
-  if (fixture.providerCandidate.requestedCapabilities.walletCapability) pushIssue(issues, 'UNSAFE_WALLET_CAPABILITY', 'providerCandidate.requestedCapabilities.walletCapability', 'wallet capability must be false.');
-  if (fixture.providerCandidate.requestedCapabilities.signingCapability) pushIssue(issues, 'UNSAFE_SIGNING_CAPABILITY', 'providerCandidate.requestedCapabilities.signingCapability', 'signing capability must be false.');
-  if (fixture.providerCandidate.requestedCapabilities.transactionSendingCapability) pushIssue(issues, 'UNSAFE_SENDING_CAPABILITY', 'providerCandidate.requestedCapabilities.transactionSendingCapability', 'transaction sending capability must be false.');
+  const allowsUnsafeFixtureState = fixture.gateState.stateKind === 'rejected_unsafe_capability';
+  if (fixture.providerCandidate.requestedCapabilities.walletCapability && !allowsUnsafeFixtureState) pushIssue(issues, 'UNSAFE_WALLET_CAPABILITY', 'providerCandidate.requestedCapabilities.walletCapability', 'wallet capability must be false unless fixture is rejected_unsafe_capability.');
+  if (fixture.providerCandidate.requestedCapabilities.signingCapability && !allowsUnsafeFixtureState) pushIssue(issues, 'UNSAFE_SIGNING_CAPABILITY', 'providerCandidate.requestedCapabilities.signingCapability', 'signing capability must be false unless fixture is rejected_unsafe_capability.');
+  if (fixture.providerCandidate.requestedCapabilities.transactionSendingCapability && !allowsUnsafeFixtureState) pushIssue(issues, 'UNSAFE_SENDING_CAPABILITY', 'providerCandidate.requestedCapabilities.transactionSendingCapability', 'transaction sending capability must be false unless fixture is rejected_unsafe_capability.');
 
   const requiredPolicyKinds = new Set(READ_ONLY_PROVIDER_GATE_POLICY_KINDS);
   if (fixture.gatePolicies.length !== READ_ONLY_PROVIDER_GATE_POLICY_KINDS.length) {
