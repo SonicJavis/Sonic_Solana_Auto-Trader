@@ -1,5 +1,23 @@
 # Phase Log
 
+## Phase 62 — Synthetic Strategy Comparison Lab v1
+
+- Adds `apps/dashboard/src/synthetic-strategy-comparison-lab/` complete deterministic, fixture-derived, read-only synthetic comparison-lab vertical slice:
+  - `types.ts` — Phase 62 constants, fixture names/kinds, variant/scenario/run/scorecard/aggregate/view-model/API-contract/selector/validation/capability interfaces
+  - `strategy-variants.ts` / `scenario-matrix.ts` / `comparison-runs.ts` / `scorecards.ts` / `sensitivity.ts` / `aggregators.ts` — deterministic hypothetical comparison models and warning taxonomy
+  - `builders.ts` / `fixtures.ts` — deterministic fixture builder and fixture list/map/get helpers (8 fixtures)
+  - `view-models.ts` / `contracts.ts` / `selectors.ts` — deterministic view models, list/detail/summary/error contracts, and pure selectors
+  - `normalization.ts` / `validation.ts` — deterministic normalization/serialization/equality helpers and structural/safety validation
+  - `capabilities.ts` / `index.ts` — capability flags and public exports
+- Exports all Phase 62 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard/read-only-api capability surfaces with Phase 62 synthetic strategy comparison flags (dashboard omits websocket-named flag per existing dashboard capability convention)
+- Adds `tests/phase62.test.ts`
+- Adds `docs/SYNTHETIC_STRATEGY_COMPARISON_LAB.md`
+- **No live data. No real provider adapters. No Solana RPC. No WebSockets/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora/Jito integration. No wallet handling. No signing. No sending. No execution. No real orders. No real funds. No real PnL. No recommendations. No trading signals. No investment advice. No strategy selection. No persistence. No background jobs. No route handlers. No runtime request handling. No UI rendering.**
+- FULL_AUTO and LIMITED_LIVE remain locked
+
+**Next phase guidance:** Phase 63 — Read-Only Provider Adapter Gate v1 (preview only; not implemented).
+
 ## Phase 61 — Paper Execution Quality Metrics v1
 
 - Adds `apps/dashboard/src/paper-execution-quality-metrics/` complete deterministic, fixture-derived, read-only synthetic paper execution quality milestone surface:

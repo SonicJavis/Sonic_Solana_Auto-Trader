@@ -1,8 +1,22 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 61 — Paper Execution Quality Metrics v1**
+**Phase 62 — Synthetic Strategy Comparison Lab v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 61.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 62.
+
+## Features (Phase 62 — adds to Phase 61)
+
+- Adds `apps/dashboard/src/synthetic-strategy-comparison-lab/` deterministic, fixture-derived, read-only synthetic strategy comparison lab vertical slice:
+  - 8 deterministic comparison-lab fixtures mapped 1:1 to practical Phase 61 paper execution quality metric fixtures with practical linkage to Phase 60/59/58/57/56 fixtures
+  - 4 hypothetical synthetic variants (`conservative_safety_first`, `liquidity_sensitive`, `latency_sensitive`, `evidence_weighted`)
+  - deterministic scenario matrix with identical inputs across variants, deterministic scorecards, comparison rows/ranks, sensitivity warnings, aggregate summaries, view models, API contracts, selectors, normalization/serialization/equality helpers, and structural+safety validation
+  - validation rejects missing source references, invalid variants, inconsistent scenario inputs, invalid scores/ranks, unsafe advisory text, and unsafe order/wallet/transaction/provider/network references
+- Adds Phase 62 capability flags with all live/network/provider/RPC/persistence/filesystem/route/runtime/UI/DOM/background/wallet/signing/transaction-sending/execution/signal/recommendation/advice/live-execution/strategy-selection/real-order/real-funds/real-PnL flags fixed to `false`
+- Adds `docs/SYNTHETIC_STRATEGY_COMPARISON_LAB.md`
+- Adds `tests/phase62.test.ts`
+- **No live data. No real provider adapters. No Solana RPC connections. No WebSockets/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora/Jito integrations. No wallet/private key/signing/sending/order/transaction logic. No execution. No real orders. No real funds. No real PnL. No recommendations/signals/investment advice. No strategy selection. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/background jobs.**
+
+**Next phase: Phase 63 — Read-Only Provider Adapter Gate v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 61 — adds to Phase 60)
 

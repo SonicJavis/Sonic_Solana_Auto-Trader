@@ -1,5 +1,9 @@
 # Architecture
 
+## Phase 62 Update
+
+Phase 62 extends `apps/dashboard/` with `src/synthetic-strategy-comparison-lab/`, a deterministic, fixture-derived, read-only synthetic strategy comparison lab milestone surface built directly on Phase 61 paper execution quality metric fixtures and preserving practical linkage to Phase 60 simulation fixtures, Phase 59 evidence fixtures, Phase 58 risk fixtures, Phase 57 replay fixtures, and Phase 56 lifecycle fixtures. It bundles comparison identities, hypothetical strategy variants, scenario matrixes, comparison runs, scorecards, sensitivity and overfit warnings, aggregate summaries, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs in one aggressive-safe vertical slice. This layer is synthetic-only, local-only, read-only, deterministic, pure, in-memory, non-networked, non-persistent, non-rendering, non-DOM, non-wallet, non-executable, non-advisory, strategy-selection-free, and real-order-free.
+
 ## Phase 61 Update
 
 Phase 61 extends `apps/dashboard/` with `src/paper-execution-quality-metrics/`, a deterministic, fixture-derived, read-only synthetic paper execution quality milestone surface built directly on Phase 60 paper sniper simulation fixtures and preserving practical linkage to Phase 59 evidence fixtures, Phase 58 risk fixtures, Phase 57 replay fixtures, and Phase 56 lifecycle fixtures. It bundles metrics identities, latency/fill/slippage/rejection metric models, scorecards, aggregate summaries, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs in one aggressive-safe vertical slice. This layer is synthetic-only, local-only, read-only, deterministic, pure, in-memory, non-networked, non-persistent, non-rendering, non-DOM, non-wallet, non-executable, non-advisory, strategy-selection-free, and real-order-free.
