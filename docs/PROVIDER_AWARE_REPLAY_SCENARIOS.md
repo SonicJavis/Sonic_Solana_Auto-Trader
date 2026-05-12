@@ -216,4 +216,6 @@ Phase 68 does not implement:
 
 ### Next phase guidance
 
-**Phase 69 — Live Smoke Harness Expansion and Safety Certification v1** is preview only and **not implemented** in Phase 68.
+**Phase 69 — Live Smoke Harness Expansion and Safety Certification v1** is implemented in the current phase lineage.
+
+Next milestone preview only: **Phase 70 — Provider Reliability Telemetry and Drift Audit v1** (not implemented in this document).

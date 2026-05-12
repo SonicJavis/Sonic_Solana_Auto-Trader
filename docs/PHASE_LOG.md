@@ -1,5 +1,23 @@
 # Phase Log
 
+## Phase 69 — Live Smoke Harness Expansion and Safety Certification v1
+
+- Adds `apps/dashboard/src/live-smoke-safety-certification/` deterministic, fixture-derived, disabled-by-default, read-only live-smoke safety-certification vertical slice:
+  - `types.ts` — Phase 69 constants and smoke config/guard/plan/check/eligibility/network/result/gate/certificate/offline-contract/report/view/API/selector/validation/capability interfaces
+  - `smoke-config.ts` / `smoke-guard-policy.ts` / `smoke-plans.ts` / `read-only-checks.ts` / `provider-eligibility.ts` / `network-isolation.ts` / `smoke-results.ts` / `certification-gates.ts` / `safety-certificates.ts` / `offline-ci-contracts.ts` / `reports.ts` — deterministic model builders
+  - `builders.ts` / `fixtures.ts` — deterministic fixture builder and list/map/get helpers (8 fixtures)
+  - `view-models.ts` / `contracts.ts` / `selectors.ts` — deterministic derived consumer surfaces
+  - `normalization.ts` / `validation.ts` — deterministic normalization/serialization/equality and structural+safety validation
+  - `capabilities.ts` / `index.ts` — capability flags and public exports
+- Exports all Phase 69 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard/read-only-api capability surfaces with Phase 69 safety-certification flags
+- Adds `tests/phase69.test.ts`
+- Adds `docs/LIVE_SMOKE_SAFETY_CERTIFICATION.md`
+- **No live smoke execution in standard CI. No default live network. No secrets/API keys required. No provider expansion. No live reconciliation. No live replay import. No write methods. No wallet/signing/sending/execution. No recommendations/signals/investment advice. No real orders/funds/PnL. No route handlers/runtime requests. No UI/DOM. No persistence/background jobs.**
+- FULL_AUTO and LIMITED_LIVE remain locked
+
+**Next phase guidance:** Phase 70 — Provider Reliability Telemetry and Drift Audit v1 (preview only; not implemented).
+
 ## Phase 68 — Provider-Aware Replay and Scenario Generation v1
 
 - Adds `apps/dashboard/src/provider-aware-replay-scenarios/` deterministic, fixture-derived provider-aware replay/scenario-generation vertical slice:
