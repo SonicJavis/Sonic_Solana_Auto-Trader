@@ -465,7 +465,7 @@ export function buildCrossProviderDataQualityFixture(
   } satisfies CrossProviderDataQualityFixture;
 
   const viewModel = buildCrossProviderDataQualityViewModel(base);
-  const report = buildCrossProviderDataQualityReport({ ...base, viewModel });
+  const report = buildCrossProviderDataQualityReport(base);
   const apiContract = buildCrossProviderDataQualityApiContract({
     fixtureId: base.fixtureId,
     viewModel,
