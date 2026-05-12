@@ -21,6 +21,6 @@ export function buildPaperExecutionQualityMetricsViewModel(
     rejectionTaxonomyKind: fixture.rejectionMetrics.rejectionTaxonomyKind,
     aggregateQualityBand: fixture.scorecard.aggregateQualityBand,
     nonAdvisorySummary:
-      'Hypothetical paper execution quality view; fixture-derived and not a signal.',
+      'Hypothetical paper execution quality view; fixture-derived and non-actionable.',
   };
 }

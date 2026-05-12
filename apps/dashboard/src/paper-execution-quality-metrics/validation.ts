@@ -45,7 +45,7 @@ const FORBIDDEN_TX_PATTERN = /\b(?:transaction|tx\b|signature|signTransaction|se
 const FORBIDDEN_PROVIDER_PATTERN =
   /\b(?:pump\.fun|jupiter|raydium|orca|meteora|geyser|yellowstone|provider|solana\s*rpc)\b/i;
 const FORBIDDEN_ADVISORY_PATTERN =
-  /\b(?:buy|sell|enter|exit|ape|snipe now|trade now|profit|pnl|recommendation|signal|investment advice)\b/i;
+  /\b(?:buy now|sell now|enter now|exit now|ape now|snipe now|trade now|profit opportunity|pnl|recommendation|trading signals?|investment advice)\b/i;
 
 const EXCLUDED_SCAN_FIELDS = new Set([
   'fixtureId',

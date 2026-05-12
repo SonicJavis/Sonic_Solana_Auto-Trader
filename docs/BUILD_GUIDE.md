@@ -1,10 +1,14 @@
 # Build Guide
 
+## Phase 61 Note
+
+Phase 61 introduces paper execution quality metrics in `apps/dashboard/src/paper-execution-quality-metrics/` as a complete aggressive-safe vertical slice (types, latency metrics, fill quality metrics, slippage metrics, rejection metrics, builders, fixtures, scorecards, aggregates, view models, contracts, selectors, normalization, validation, capabilities, docs, tests). Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. No live data, real provider adapters, Solana RPC, WebSockets/Geyser/Yellowstone, Pump.fun/Jupiter/Raydium/Orca/Meteora integrations, wallet logic, signing/sending/order/transaction logic, execution, real orders, real funds, real PnL, recommendations/signals/investment advice, strategy selection, endpoints/routes/handlers/runtime request handling, UI rendering/DOM, filesystem writes, persistence, or background jobs are introduced.
+
 ## Phase 60 Note
 
 Phase 60 introduces paper sniper simulation models in `apps/dashboard/src/paper-sniper-simulation/` as a complete aggressive-safe vertical slice (types, market model, latency model, slippage model, failure model, builders, fixtures, simulator, outcomes, view models, contracts, selectors, normalization, validation, capabilities, docs, tests). Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. No live data, real provider adapters, Solana RPC, WebSocket/Geyser/Yellowstone, Pump.fun/Jupiter/Raydium/Orca/Meteora integrations, wallet logic, signing/sending/order/transaction logic, execution, recommendations/signals/investment advice, endpoints/routes/handlers/runtime request handling, UI rendering/DOM, filesystem writes, persistence, or background jobs are introduced.
 
-## Phase 59 Note
+
 
 Phase 59 introduces risk explanation and evidence models in `apps/dashboard/src/risk-explanation-evidence/` as a complete aggressive-safe vertical slice (types, evidence nodes, evidence edges, templates, builders, fixtures, graphs, renderers, view models, contracts, selectors, normalization, validation, capabilities, docs, tests). Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. No live data, real provider adapters, Solana RPC, WebSocket/Geyser/Yellowstone, Pump.fun/Jupiter/Raydium/Orca/Meteora integrations, wallet logic, signing/sending, execution, recommendations/signals/investment advice, endpoints/routes/handlers/runtime request handling, UI rendering/DOM, filesystem writes, persistence, background jobs, paper simulation, or strategy selection are introduced.
 

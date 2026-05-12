@@ -55,14 +55,13 @@ export function buildPaperExecutionQualityScorecard(
     qualityWarnings,
     limitationNotes: [
       'Hypothetical paper-only quality metric summary.',
-      'Fixture-derived output only; not a signal.',
+      'Fixture-derived output only; non-actionable.',
     ],
     nonAdvisorySummary:
-      'Paper-only execution quality summary generated from deterministic fixtures; non-actionable and not a signal.',
+      'Paper-only execution quality summary generated from deterministic fixtures; non-actionable and fixture-derived.',
     sourceOutcomeId: input.fillQualityMetrics.sourceOutcomeId,
     sourceEvidenceReferenceIds: [...input.fillQualityMetrics.sourceOutcomeReferences],
-    safetySummary:
-      'No live data, no wallet logic, no execution path, no provider integration, and no investment advice.',
+    safetySummary: 'No live data, no signing path, no sending path, and no advisory output.',
     validationSummary:
       'Deterministic fixture-derived scorecard with safety-first quality taxonomy checks.',
     meta: {

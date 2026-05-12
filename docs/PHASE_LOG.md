@@ -1,5 +1,26 @@
 # Phase Log
 
+## Phase 61 — Paper Execution Quality Metrics v1
+
+- Adds `apps/dashboard/src/paper-execution-quality-metrics/` complete deterministic, fixture-derived, read-only synthetic paper execution quality milestone surface:
+  - `types.ts` — Phase 61 constants, metric names/kinds, quality bucket taxonomies, identity/metric/scorecard/aggregate/view-model/API-contract/selector/validation/capability interfaces
+  - `latency-metrics.ts` / `fill-quality-metrics.ts` / `slippage-metrics.ts` / `rejection-metrics.ts` — deterministic metric builders with explicit taxonomy derivation from Phase 60 synthetic outcomes
+  - `scorecards.ts` / `aggregators.ts` — deterministic scorecard and aggregate summary builders
+  - `builders.ts` — deterministic fixture builder (`buildPaperExecutionQualityMetricFixture`) linked to Phase 60/59/58/57/56 fixtures
+  - `fixtures.ts` — `PAPER_EXECUTION_QUALITY_METRIC_FIXTURES` (8 fixtures), map/list/get helpers
+  - `view-models.ts` / `contracts.ts` / `selectors.ts` — quality-metric view models, list/detail/summary/error API contracts, and pure local selectors
+  - `normalization.ts` / `validation.ts` — deterministic checksum/normalization/serialization/equality/isValid helpers plus structural/safety validation
+  - `capabilities.ts` — `getPaperExecutionQualityMetricsCapabilities()` with positive and negative Phase 61 metric flags
+  - `index.ts` — re-exports all public API
+- Exports all Phase 61 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard/read-only-api capability surfaces with Phase 61 paper execution quality metric flags (dashboard omits websocket-named flag per existing dashboard capability convention)
+- Adds `tests/phase61.test.ts` with coverage for fixtures, source linkage, metrics builders, scorecards, aggregates, view models, API contracts, selectors, normalization, validation/safety failures, capability propagation, deterministic behavior, and safety scans
+- Adds `docs/PAPER_EXECUTION_QUALITY_METRICS.md`
+- **No live data. No Solana RPC connections. No real provider adapters. No WebSockets/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora integration. No wallet handling. No signing. No sending. No execution. No real orders. No real funds. No real PnL. No recommendations. No trading signals. No investment advice. No strategy selection. No persistence. No background jobs. No route handlers. No UI rendering.**
+- FULL_AUTO and LIMITED_LIVE remain locked
+
+**Next phase guidance:** Phase 62 — Synthetic Strategy Comparison Lab v1 (preview only; not implemented).
+
 ## Phase 60 — Paper Sniper Simulation Foundation v1
 
 - Adds `apps/dashboard/src/paper-sniper-simulation/` complete deterministic, fixture-derived, read-only synthetic paper simulation milestone surface:
@@ -19,9 +40,9 @@
 - **No live data. No Solana RPC connections. No real provider adapters. No WebSocket/Geyser/Yellowstone. No Pump.fun/Jupiter/Raydium/Orca/Meteora integration. No wallet handling. No signing. No sending. No execution. No recommendations. No trading signals. No investment advice. No persistence. No background jobs. No route handlers. No UI rendering.**
 - FULL_AUTO and LIMITED_LIVE remain locked
 
-**Next phase guidance:** Phase 61 — Safety-First Simulation Expansion v1 (preview only; not implemented).
+**Next phase guidance:** Phase 61 — Paper Execution Quality Metrics v1 (implemented in the current phase).
 
-## Phase 59 — Risk Explanation and Evidence Models v1
+
 
 - Adds `apps/dashboard/src/risk-explanation-evidence/` complete deterministic, fixture-derived, read-only synthetic explanation/evidence milestone surface:
   - `types.ts` — Phase 59 constants, explanation names/kinds, evidence node/edge/template kinds, identity/graph/output/view-model/API-contract/selector/validation/capability interfaces
