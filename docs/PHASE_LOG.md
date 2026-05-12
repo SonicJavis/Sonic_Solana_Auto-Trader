@@ -1,5 +1,23 @@
 # Phase Log
 
+## Phase 68 — Provider-Aware Replay and Scenario Generation v1
+
+- Adds `apps/dashboard/src/provider-aware-replay-scenarios/` deterministic, fixture-derived provider-aware replay/scenario-generation vertical slice:
+  - `types.ts` — Phase 68 constants and import/scenario/provenance/parity/regeneration/report/lifecycle/expectation/view/API/selector/validation/capability interfaces
+  - `import-models.ts` / `scenario-generation.ts` / `provenance-mapping.ts` / `parity-checks.ts` / `regeneration-contracts.ts` / `observation-reports.ts` / `lifecycle-preview.ts` / `replay-expectations.ts` — deterministic model builders
+  - `builders.ts` / `fixtures.ts` — deterministic fixture builder and list/map/get helpers (8 fixtures)
+  - `view-models.ts` / `contracts.ts` / `selectors.ts` — deterministic report-consumer surfaces
+  - `normalization.ts` / `validation.ts` — deterministic normalization/serialization/equality and structural+safety validation
+  - `capabilities.ts` / `index.ts` — capability flags and public exports
+- Exports all Phase 68 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard/read-only-api capability surfaces with Phase 68 provider-aware replay flags
+- Adds `tests/phase68.test.ts`
+- Adds `docs/PROVIDER_AWARE_REPLAY_SCENARIOS.md`
+- **No live provider ingestion. No live network in standard CI. No runtime ingestion. No fixture export/download/filesystem writes. No wallet/signing/sending/execution. No recommendations/signals/investment advice. No real orders/funds/PnL. No route handlers/runtime requests. No UI/DOM. No persistence/background jobs.**
+- FULL_AUTO and LIMITED_LIVE remain locked
+
+**Next phase guidance:** Phase 69 — Live Smoke Harness Expansion and Safety Certification v1 (preview only; not implemented).
+
 ## Phase 67 — Cross-Provider Data Quality and Reconciliation v1
 
 - Adds `apps/dashboard/src/cross-provider-data-quality/` deterministic, fixture-derived reconciliation/data-quality vertical slice:
