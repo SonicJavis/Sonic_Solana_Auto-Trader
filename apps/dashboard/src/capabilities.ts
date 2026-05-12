@@ -1022,7 +1022,6 @@ export function getDashboardUiShellCapabilities(): DashboardUiShellCapabilities 
     readOnlySolanaBoundaryRealProviders: false,
     readOnlySolanaBoundaryProviderAdapters: false,
     readOnlySolanaBoundaryProviderSdk: false,
-    readOnlySolanaBoundaryApiKeys: false,
     readOnlySolanaBoundarySolanaRpc: false,
     readOnlySolanaBoundaryGeyserYellowstone: false,
     readOnlySolanaBoundaryPumpFunIntegration: false,

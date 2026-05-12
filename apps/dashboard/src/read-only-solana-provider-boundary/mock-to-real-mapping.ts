@@ -1,9 +1,9 @@
 import type {
   ReadOnlySolanaFieldMappingRule,
   ReadOnlySolanaMockToRealMapping,
-  ReadOnlyProviderAdapterMockName,
-  ReadOnlyProviderContractName,
 } from './types.js';
+import type { ReadOnlyProviderAdapterMockName } from '../read-only-provider-adapter-mocks/types.js';
+import type { ReadOnlyProviderContractName } from '../read-only-provider-contracts/types.js';
 
 export function buildReadOnlySolanaMockToRealMapping(input: {
   fixtureId: string;
@@ -25,4 +25,3 @@ export function buildReadOnlySolanaMockToRealMapping(input: {
     unmappedRequiredFields,
   };
 }
-

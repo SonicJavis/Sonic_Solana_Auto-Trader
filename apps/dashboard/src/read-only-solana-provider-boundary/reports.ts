@@ -22,10 +22,9 @@ export function buildReadOnlySolanaBoundaryReport(
     unsafeCapabilitySummary: 'Unsafe capabilities are rejected and remain disabled.',
     futureProviderNotes: [
       'Future-only placeholder contract; not connected.',
-      'No live execution, recommendation output, or advisory behavior.',
+      'No live activity, recommendation output, or advisory behavior.',
     ],
     noLiveExecution: true,
     noRecommendationOutput: true,
   };
 }
-

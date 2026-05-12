@@ -1104,7 +1104,6 @@ export interface DashboardUiShellCapabilities {
   readonly readOnlySolanaBoundaryRealProviders: false;
   readonly readOnlySolanaBoundaryProviderAdapters: false;
   readonly readOnlySolanaBoundaryProviderSdk: false;
-  readonly readOnlySolanaBoundaryApiKeys: false;
   readonly readOnlySolanaBoundarySolanaRpc: false;
   readonly readOnlySolanaBoundaryGeyserYellowstone: false;
   readonly readOnlySolanaBoundaryPumpFunIntegration: false;

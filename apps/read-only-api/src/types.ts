@@ -1053,7 +1053,6 @@ export interface LocalReadOnlyApiCapabilities {
   readonly readOnlySolanaBoundaryRealProviders: false;
   readonly readOnlySolanaBoundaryProviderAdapters: false;
   readonly readOnlySolanaBoundaryProviderSdk: false;
-  readonly readOnlySolanaBoundaryApiKeys: false;
   readonly readOnlySolanaBoundarySolanaRpc: false;
   readonly readOnlySolanaBoundaryWebSocketAccess: false;
   readonly readOnlySolanaBoundaryGeyserYellowstone: false;

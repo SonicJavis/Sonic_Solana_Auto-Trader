@@ -253,8 +253,15 @@ describe('Phase 64 — validation and safety rejection paths', () => {
   it('validation and safety pass for baseline fixtures', () => {
     for (const fixture of READ_ONLY_SOLANA_PROVIDER_BOUNDARY_FIXTURES) {
       const validation = validateReadOnlySolanaProviderBoundaryFixture(fixture);
+      if (!validation.valid) {
+        throw new Error(`${fixture.fixtureName}: ${JSON.stringify(validation.issues)}`);
+      }
       expect(validation.valid).toBe(true);
-      expect(validateReadOnlySolanaProviderBoundarySafety(fixture)).toEqual({ safe: true, violations: [] });
+      const safety = validateReadOnlySolanaProviderBoundarySafety(fixture);
+      if (!safety.safe) {
+        throw new Error(`${fixture.fixtureName}: ${JSON.stringify(safety.violations)}`);
+      }
+      expect(safety).toEqual({ safe: true, violations: [] });
     }
   });
 
@@ -371,4 +378,3 @@ describe('Phase 64 — safety scan and policy alignment', () => {
     expect(docs.toLowerCase()).toContain('not implemented');
   });
 });
-

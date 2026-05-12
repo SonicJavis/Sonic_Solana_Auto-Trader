@@ -1032,7 +1032,6 @@ export function getLocalReadOnlyApiCapabilities(): LocalReadOnlyApiCapabilities 
     readOnlySolanaBoundaryRealProviders: false,
     readOnlySolanaBoundaryProviderAdapters: false,
     readOnlySolanaBoundaryProviderSdk: false,
-    readOnlySolanaBoundaryApiKeys: false,
     readOnlySolanaBoundarySolanaRpc: false,
     readOnlySolanaBoundaryWebSocketAccess: false,
     readOnlySolanaBoundaryGeyserYellowstone: false,

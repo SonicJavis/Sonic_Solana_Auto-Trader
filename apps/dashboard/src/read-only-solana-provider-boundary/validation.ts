@@ -55,9 +55,12 @@ const EXCLUDED_SCAN_FIELDS = new Set([
   'sourceGateFixtureName',
   'sourceProviderContractName',
   'sourceMockAdapterName',
+  'sourceContractName',
+  'sourceMockAdapterFixtureName',
   'sourceGateFixtureNames',
   'sourceProviderContractNames',
   'sourceMockAdapterNames',
+  'futureProviderNotes',
   'sourceErrorCode',
   'normalizedErrorCode',
 ]);
