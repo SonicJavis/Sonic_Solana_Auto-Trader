@@ -1,5 +1,9 @@
 # Build Guide
 
+## Phase 66 Note
+
+Phase 66 introduces multi-provider read-only foundation models in `apps/dashboard/src/multi-provider-read-only-foundation/` as a complete aggressive-safe vertical slice (types, provider registry, normalization, health scoring, stale-data checks, freshness policies, cache-policy contracts, selection/fallback fixtures, conformance, builders, fixtures, reports, view models, contracts, selectors, normalization, validation, capabilities, docs, tests). Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. Standard CI remains deterministic and offline. No real providers, no live network in normal CI, no write methods, no wallet/signing/sending/transaction building/execution, no real orders/funds/PnL, no recommendations/signals/investment advice, no endpoints/routes/runtime handlers, no UI/DOM behavior, and no persistence/background jobs are introduced.
+
 ## Phase 65 Note
 
 Phase 65 introduces first read-only provider adapter models in `apps/dashboard/src/first-read-only-provider-adapter/` as a complete aggressive-safe vertical slice (types, config, capabilities, transport, client contract, frozen responses, response mappings, error normalization, conformance, health, smoke guard, builders, fixtures, reports, view models, contracts, selectors, normalization, validation, capabilities, docs, tests). Validation commands remain `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm --filter @sonic/dashboard build`, and `pnpm --filter @sonic/offline-intelligence build`. Standard CI remains deterministic and offline. No wallet logic, no signing, no sending, no transaction building, no execution, no real orders/funds/PnL, no recommendations/signals/investment advice, no endpoints/routes/runtime handlers, no UI/DOM behavior, and no persistence/background jobs are introduced.

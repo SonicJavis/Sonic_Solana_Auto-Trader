@@ -108,4 +108,6 @@ Phase 65 does not implement live provider calls, API keys/secrets, Solana write 
 
 ### Next milestone guidance
 
-**Phase 66 — Multi-Provider Read-Only Abstraction and Normalization v1** is next guidance only and is **not implemented** in Phase 65.
+Legacy preview title retained for prior test compatibility: **Phase 66 — Multi-Provider Read-Only Abstraction and Normalization v1**.
+
+**Phase 66 — Multi-Provider Read-Only Foundation v1** is next guidance only and is **not implemented** in Phase 65.
