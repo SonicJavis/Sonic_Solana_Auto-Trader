@@ -1,5 +1,9 @@
 # Architecture
 
+## Phase 66 Update
+
+Phase 66 extends `apps/dashboard/` with `src/multi-provider-read-only-foundation/`, a deterministic, fixture-derived, local-only, read-only multi-provider foundation milestone surface built on Phase 65 first adapter fixtures, Phase 64 boundary fixtures, and Phase 63 gate fixtures. It bundles provider registries, provider-entry identity/capability records, normalization models, health scoring models, stale-data checks, freshness policies, cache-policy contracts, selection/fallback fixtures, conformance summaries, reports, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs in one aggressive-safe vertical slice. This layer is fixture-only, local-only, read-only, deterministic, fail-closed, non-networked in normal CI, non-wallet, non-signing, non-sending, non-executable, non-advisory, non-persistent, non-rendering, and non-DOM.
+
 ## Phase 65 Update
 
 Phase 65 extends `apps/dashboard/` with `src/first-read-only-provider-adapter/`, a deterministic, fixture-derived, local-only, read-only first provider adapter milestone surface built on Phase 64 read-only Solana boundary fixtures and Phase 63 provider gate fixtures. It bundles adapter identity/config/capabilities/transport/client/frozen-response/mapping/error-normalization/conformance/health/smoke-guard/reports/view-models/contracts/selectors/normalization/validation/capabilities/tests/docs in one aggressive-safe vertical slice. This layer remains synthetic-only in standard CI, local-only, read-only, deterministic, fail-closed by default, non-networked by default, non-persistent, non-rendering, non-DOM, non-wallet, non-signing, non-sending, non-executable, and non-advisory.

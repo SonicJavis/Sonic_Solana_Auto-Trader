@@ -27,6 +27,8 @@ When safe, a milestone phase should bundle a complete vertical slice:
 
 Phase 64 follows this policy by shipping a complete read-only Solana provider boundary vertical slice (fixtures, mappings, conformance checks, reports, contracts, selectors, validation, tests, and docs) without enabling any live provider capability.
 
+Phase 66 also follows this policy by shipping a complete multi-provider read-only foundation vertical slice (registry, normalization, health, stale/freshness/cache policies, selection/fallback, conformance, reports, contracts, selectors, validation, tests, and docs) while keeping live/network/write capability locked.
+
 ---
 
 ## What remains forbidden

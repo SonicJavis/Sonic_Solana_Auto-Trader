@@ -1,8 +1,21 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 65 — First Real Read-Only Provider Adapter v1**
+**Phase 66 — Multi-Provider Read-Only Foundation v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 65.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 66.
+
+## Features (Phase 66 — adds to Phase 65)
+
+- Adds `apps/dashboard/src/multi-provider-read-only-foundation/` deterministic, fixture-derived, local-only multi-provider read-only vertical slice:
+  - 8 deterministic fixtures covering healthy single/multi provider states, stale detection, fallback selection, fail-closed all-stale behavior, disabled provider blocking, capability mismatch rejection, and unsafe write-capability rejection
+  - deterministic provider registry, normalization, health scoring, stale-data checks, freshness policies, cache-policy contracts, selection/fallback fixtures, conformance summaries, reports, view models, API contracts, selectors, normalization/serialization/equality, validation, and capability surfaces
+  - practical linkage to Phase 65 adapter fixtures, Phase 64 boundary fixtures, and Phase 63 gate fixtures
+- Adds Phase 66 capability flags with all live/network/write/wallet/signing/sending/execution/recommendation/signal/advice/route/runtime/UI/DOM/persistence/background/real-order/real-funds/real-PnL/live-strategy/auto-execution flags fixed to `false`
+- Adds `docs/MULTI_PROVIDER_READ_ONLY_FOUNDATION.md`
+- Adds `tests/phase66.test.ts`
+- **No new real providers. No live network in standard CI. No provider SDK/API-key requirements. No wallet/private key/signing/sending/transaction building/execution logic. No real orders/funds/PnL. No recommendations/signals/investment advice. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/background jobs/filesystem writes.**
+
+**Next phase: Phase 67 — Cross-Provider Data Quality and Reconciliation v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 65 — adds to Phase 64)
 
@@ -15,7 +28,7 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 - Adds `tests/phase65.test.ts`
 - **No live data in standard CI. No real provider adapters in normal tests. No provider SDK integrations. No API keys/secrets. No Solana write RPC. No wallet/private key/signing/sending/transaction building/execution logic. No real orders. No real funds. No real PnL. No recommendations/signals/investment advice. No strategy selection. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/background jobs/filesystem writes.**
 
-**Next phase: Phase 66 — Multi-Provider Read-Only Abstraction and Normalization v1 (preview only; not implemented in this phase).**
+**Next phase: Phase 66 — Multi-Provider Read-Only Foundation v1 (implemented in the current phase).**
 
 ## Features (Phase 64 — adds to Phase 63)
 
