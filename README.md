@@ -1,8 +1,21 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 70 — Provider Reliability Telemetry and Drift Audit v1**
+**Phase 71 — Read-Only Historical Snapshot Ingestion Contracts v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 70.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 71.
+
+## Features (Phase 71 — adds to Phase 70)
+
+- Adds `apps/dashboard/src/historical-snapshot-ingestion-contracts/` deterministic, fixture-derived, local-only, read-only historical snapshot ingestion contract vertical slice:
+  - 8 deterministic fixtures covering healthy snapshot contract, stale warning, schema drift rejection, missing critical field block, partial snapshot quarantine, replay-linked snapshot, reliability-linked drift snapshot, and cross-provider quality conflict
+  - deterministic snapshot manifest, source metadata, schema/provenance/normalization/validation/freshness/integrity/import/rejection contracts, replay/reliability linkage, audit reports, view models, API contracts, selectors, normalization/serialization/equality, validation, and capabilities
+  - practical linkage to Phase 70/69/68/67/66/65 fixture snapshots
+- Adds Phase 71 capability flags with live-ingestion/runtime-ingestion/network/runtime-collector/secret-requirement/write/wallet/signing/sending/execution/recommendation/signal/advice/route/runtime/UI/DOM/persistence/filesystem/background/scheduled/real-order/real-funds/real-PnL/provider-expansion flags fixed to `false`
+- Adds `docs/HISTORICAL_SNAPSHOT_INGESTION_CONTRACTS.md`
+- Adds `tests/phase71.test.ts`
+- **No live ingestion. No runtime ingestion. No runtime collectors. No default live network. No secrets/API keys required. No provider expansion. No live reconciliation or live replay import. No write methods. No wallet/private key/signing/sending/transaction building/execution logic. No recommendations/signals/investment advice. No real orders/funds/PnL. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/filesystem writes/background jobs.**
+
+**Next phase: Phase 72 — Deterministic Scenario Generator from Historical Snapshots v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 70 — adds to Phase 69)
 

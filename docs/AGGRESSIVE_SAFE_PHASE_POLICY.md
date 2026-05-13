@@ -33,6 +33,8 @@ Phase 67 follows this policy by shipping a complete cross-provider data-quality 
 
 Phase 70 follows this policy by shipping a complete provider reliability telemetry and drift-audit vertical slice (telemetry/freshness/reliability/drift/schema/conformance/linkage/report/contract/selector/validation/test/doc surfaces) while keeping live telemetry/network/runtime monitoring/write/wallet/execution/advisory capability locked.
 
+Phase 71 follows this policy by shipping a complete historical snapshot ingestion contract vertical slice (manifest/source/schema/provenance/normalization/validation/freshness/integrity/import/rejection/linkage/report/contract/selector/validation/test/doc surfaces) while keeping live ingestion/runtime ingestion/network/write/wallet/execution/advisory capability locked.
+
 ---
 
 ## What remains forbidden
