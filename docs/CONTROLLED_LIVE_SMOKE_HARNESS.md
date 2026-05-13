@@ -10,6 +10,8 @@ Phase 74 introduces a controlled live-smoke harness expansion: a fully determini
 
 This phase defines the *contracts and plans* that would govern a manually triggered read-only smoke check — not an implementation of one.
 
+Current upstream phase status: Phase 75 and Phase 76 readiness-contract layers are implemented; smoke harness remains read-only and does not authorize live execution.
+
 ---
 
 ## Relationship to Prior Phases

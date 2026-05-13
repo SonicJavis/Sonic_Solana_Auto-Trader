@@ -1,5 +1,9 @@
 # Safety Rules
 
+## Phase 76 Safety Extension
+
+Phase 76 manual-confirm live readiness surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, readiness-contract-only, and non-advisory. Phase 76 does not permit unlock authority, live/manual trading, LIMITED_LIVE/FULL_AUTO unlock, transaction building, transaction sending, wallet/private key handling, signing, execution, recommendations, trading signals, investment advice, real orders/funds/PnL, default live network access, scheduled jobs, runtime monitoring/collectors, provider expansion, secrets/API key requirements in deterministic paths, persistence/filesystem writes, route handlers/runtime requests, UI rendering, DOM access, or background jobs. Readiness reports do not authorize live trading or execution and do not imply profitability.
+
 ## Phase 75 Safety Extension
 
 Phase 75 pre-live safety certification surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, certification-contract-only, and non-advisory. Phase 75 does not permit unlock authority, live/manual trading, LIMITED_LIVE/FULL_AUTO unlock, transaction building, transaction sending, wallet/private key handling, signing, execution, recommendations, trading signals, investment advice, real orders/funds/PnL, default live network access, scheduled jobs, runtime monitoring/collectors, provider expansion, secrets/API key requirements in deterministic paths, persistence/filesystem writes, route handlers/runtime requests, UI rendering, DOM access, or background jobs. Certification reports do not authorize live trading or execution and do not imply profitability.

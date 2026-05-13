@@ -126,4 +126,6 @@ Certification does not authorize live trading or execution.
 
 ## Next Phase Guidance
 
-Next recommended phase (preview only): **Phase 76 — Manual-Confirm Live Readiness Contracts v1**.
+Next recommended phase (implemented): **Phase 76 — Manual-Confirm Live Readiness Contracts v1**.
+
+Next recommended preview-only phase: **Phase 77 — Manual-Confirm Live Dry-Run Control Contracts v1**.
