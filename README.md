@@ -1,8 +1,21 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 68 — Provider-Aware Replay and Scenario Generation v1**
+**Phase 69 — Live Smoke Harness Expansion and Safety Certification v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 68.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 69.
+
+## Features (Phase 69 — adds to Phase 68)
+
+- Adds `apps/dashboard/src/live-smoke-safety-certification/` deterministic, fixture-derived, disabled-by-default, read-only safety-certification vertical slice:
+  - 8 deterministic fixtures covering standard-CI skipped, manual disabled default, read-only offline certification, unsafe capability block, missing config block, stale warning, cross-provider quality gate block, and provider-aware replay certification-ready scenarios
+  - deterministic smoke config, smoke guard policy, smoke plans, read-only checks, provider eligibility checks, network isolation policies, smoke results, certification gates, safety certificates, offline CI contracts, reports, view models, API contracts, selectors, normalization/serialization/equality, validation, and capabilities
+  - practical linkage to Phase 65/66/67/68 fixture snapshots
+- Adds Phase 69 capability flags with live/network/secret/api-key requirement/write/wallet/signing/sending/execution/recommendation/signal/advice/route/runtime/UI/DOM/persistence/background/real-order/real-funds/real-PnL/provider-expansion/live-reconciliation/live-replay-import flags fixed to `false`
+- Adds `docs/LIVE_SMOKE_SAFETY_CERTIFICATION.md`
+- Adds `tests/phase69.test.ts`
+- **No live smoke execution in standard CI. No default live network. No secrets/API keys required. No provider expansion. No live reconciliation. No live replay import. No write methods. No wallet/private key/signing/sending/transaction building/execution logic. No recommendations/signals/investment advice. No real orders/funds/PnL. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/background jobs.**
+
+**Next phase: Phase 70 — Provider Reliability Telemetry and Drift Audit v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 68 — adds to Phase 67)
 

@@ -1,5 +1,9 @@
 # Architecture
 
+## Phase 69 Update
+
+Phase 69 extends `apps/dashboard/` with `src/live-smoke-safety-certification/`, a deterministic, fixture-derived, disabled-by-default, read-only live-smoke harness and safety-certification milestone surface built directly on Phase 68 provider-aware replay fixtures and preserving practical linkage to Phase 67 cross-provider quality fixtures, Phase 66 multi-provider foundation fixtures, and Phase 65 first adapter fixtures. It bundles smoke configuration, smoke guard policy, smoke plans, read-only checks, provider eligibility checks, network isolation policy, smoke results, certification gates, safety certificates, offline CI contracts, reports, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs in one aggressive-safe vertical slice. This layer is fixture-only, local-only, read-only, deterministic, fail-closed, non-networked in standard CI, non-wallet, non-signing, non-sending, non-executing, non-advisory, non-rendering, non-DOM, and non-persistent.
+
 ## Phase 67 Update
 
 Phase 67 extends `apps/dashboard/` with `src/cross-provider-data-quality/`, a deterministic, fixture-derived, local-only, read-only cross-provider data-quality and reconciliation milestone surface built directly on Phase 66 multi-provider foundation fixtures and preserving practical linkage to Phase 65/64/63/55/54 provider foundations. It bundles issue taxonomy, provider comparison, mismatch detection, reconciliation policy/results, confidence scoring, provenance records, read-only enrichment contracts, reports, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs in one aggressive-safe vertical slice. This layer is fixture-only, local-only, read-only, deterministic, fail-closed, reconciliation-only, non-networked in normal CI, non-wallet, non-signing, non-sending, non-executable, non-advisory, non-rendering, non-DOM, and non-persistent.
