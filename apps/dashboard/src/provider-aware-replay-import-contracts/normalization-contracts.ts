@@ -1,19 +1,16 @@
-import type { SnapshotNormalizationContract } from './types.js';
+import type { ReplayImportNormalizationContract } from './types.js';
 
-export function buildSnapshotNormalizationContract(input: {
-  fixtureId: string;
-  normalizationMode: SnapshotNormalizationContract['normalizationMode'];
-  stableOrdering: boolean;
-  deterministicChecksum: boolean;
-  localeIndependent: boolean;
-  mutationFree: boolean;
-}): SnapshotNormalizationContract {
+export function buildReplayImportNormalizationContract(
+  input: Omit<ReplayImportNormalizationContract, 'normalizationContractId'> & { fixtureId: string },
+): ReplayImportNormalizationContract {
   return {
-    normalizationContractId: `${input.fixtureId}-normalization-contract`,
+    normalizationContractId: `${input.fixtureId}-normalization`,
     normalizationMode: input.normalizationMode,
-    stableOrdering: input.stableOrdering,
-    deterministicChecksum: input.deterministicChecksum,
-    localeIndependent: input.localeIndependent,
-    mutationFree: input.mutationFree,
+    stableOrdering: true,
+    deterministicChecksum: true,
+    localeIndependent: true,
+    mutationFree: true,
   };
 }
+
+export const buildSnapshotNormalizationContract = buildReplayImportNormalizationContract;

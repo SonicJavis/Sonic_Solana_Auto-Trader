@@ -1,5 +1,9 @@
 # Architecture
 
+## Phase 73 Update
+
+Phase 73 extends `apps/dashboard/` with `src/provider-aware-replay-import-contracts/`, a deterministic, fixture-backed, local-only, read-only, fail-closed replay-import-contract surface that links Phase 72 scenario-generator fixtures with Phase 71 ingestion fixtures plus Phase 70/68/67/66/65 lineage references. It bundles optional replay import candidate/manifests/source metadata/compatibility/gate policy/import plan/rejection/normalization/validation/integrity/provenance/linkage/report/view/API/selector models for planning and validation only. This layer is contract-only, local-only, read-only, deterministic, non-networked in standard CI, non-wallet, non-signing, non-sending, non-executing, non-advisory, non-rendering, non-DOM, and non-persistent.
+
 ## Phase 72 Update
 
 Phase 72 extends `apps/dashboard/` with `src/historical-snapshot-scenario-generator/`, a deterministic, fixture-derived, local-only, read-only historical snapshot scenario-generation contract surface built directly on hardened Phase 71 historical snapshot ingestion fixtures and preserving practical linkage to Phase 70 reliability drift fixtures, Phase 68 replay scenarios, Phase 67 cross-provider quality fixtures, Phase 66 multi-provider foundation fixtures, and Phase 65 first adapter fixtures. It bundles generation plans, source selection, generated scenario descriptors, replay descriptors, lineage models, generation rules, integrity/validation/rejection contracts, quality/reliability/risk linkage, audit reports, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs in one aggressive-safe vertical slice. This layer is fixture-only, local-only, read-only, deterministic, fail-closed, non-networked in standard CI, non-wallet, non-signing, non-sending, non-executing, non-advisory, non-rendering, non-DOM, and non-persistent.

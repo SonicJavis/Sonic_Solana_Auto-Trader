@@ -1,189 +1,196 @@
 import type { CrossProviderDataQualityName } from '../cross-provider-data-quality/types.js';
 import type { FirstReadOnlyProviderAdapterName } from '../first-read-only-provider-adapter/types.js';
-import type { LiveSmokeSafetyCertificationName } from '../live-smoke-safety-certification/types.js';
+import type { HistoricalSnapshotIngestionContractName } from '../historical-snapshot-ingestion-contracts/types.js';
+import type { HistoricalSnapshotScenarioGeneratorName } from '../historical-snapshot-scenario-generator/types.js';
 import type { MultiProviderReadOnlyFoundationName } from '../multi-provider-read-only-foundation/types.js';
 import type { ProviderAwareReplayScenarioName } from '../provider-aware-replay-scenarios/types.js';
 import type { ProviderReliabilityDriftAuditName } from '../provider-reliability-drift-audit/types.js';
 
-export const PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_PHASE = 71 as const;
+export const PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_PHASE = 73 as const;
 export const PHASE_73_PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_GENERATED_AT = '2026-05-13T00:00:00.000Z' as const;
 export const PHASE_73_PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_SOURCE =
-  'phase71_read_only_historical_snapshot_ingestion_contracts_v1' as const;
+  'phase73_optional_provider_aware_replay_import_contracts_v1' as const;
 export const PHASE_73_PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_VERSION = '1.0.0' as const;
 export const PHASE_73_PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_SCHEMA_VERSION = '1.0.0' as const;
 
 export const PROVIDER_AWARE_REPLAY_IMPORT_CONTRACT_NAMES = [
-  'healthy-provider-snapshot-contract',
-  'stale-provider-snapshot-warning',
-  'schema-drift-snapshot-rejected',
-  'missing-critical-field-snapshot-blocked',
-  'partial-provider-snapshot-quarantined',
-  'replay-linked-historical-snapshot',
-  'reliability-linked-drift-snapshot',
-  'cross-provider-quality-snapshot-conflict',
+  'clean-scenario-import-contract',
+  'stale-snapshot-import-warning',
+  'schema-drift-import-blocked',
+  'missing-critical-field-import-rejected',
+  'quarantined-scenario-import-blocked',
+  'replay-linked-import-ready-fixture-only',
+  'reliability-drift-import-warning',
+  'cross-provider-conflict-import-rejected',
 ] as const;
 
 export const PROVIDER_AWARE_REPLAY_IMPORT_CONTRACT_KINDS = [
-  'healthy_provider_snapshot_contract',
-  'stale_provider_snapshot_warning',
-  'schema_drift_snapshot_rejected',
-  'missing_critical_field_snapshot_blocked',
-  'partial_provider_snapshot_quarantined',
-  'replay_linked_historical_snapshot',
-  'reliability_linked_drift_snapshot',
-  'cross_provider_quality_snapshot_conflict',
+  'clean_scenario_import_contract',
+  'stale_snapshot_import_warning',
+  'schema_drift_import_blocked',
+  'missing_critical_field_import_rejected',
+  'quarantined_scenario_import_blocked',
+  'replay_linked_import_ready_fixture_only',
+  'reliability_drift_import_warning',
+  'cross_provider_conflict_import_rejected',
 ] as const;
-
-export const HISTORICAL_SNAPSHOT_KINDS = ['full_snapshot', 'incremental_snapshot', 'partial_snapshot', 'conflict_snapshot'] as const;
-export const HISTORICAL_SNAPSHOT_SOURCE_KINDS = ['provider_fixture', 'replay_fixture', 'reliability_fixture', 'cross_provider_fixture'] as const;
-export const HISTORICAL_SNAPSHOT_COMPATIBILITY_LEVELS = ['strict', 'backward_compatible', 'forward_compatible'] as const;
-export const HISTORICAL_SNAPSHOT_NORMALIZATION_MODES = ['canonical_json', 'field_sorted', 'schema_locked'] as const;
-export const HISTORICAL_SNAPSHOT_FRESHNESS_BUCKETS = ['fresh', 'aging', 'stale', 'critical_stale'] as const;
-export const HISTORICAL_SNAPSHOT_REJECTION_KINDS = [
-  'schema_drift',
-  'missing_critical_field',
-  'partial_snapshot',
-  'integrity_failure',
-  'unsafe_state',
-] as const;
-export const HISTORICAL_SNAPSHOT_REJECTION_SEVERITIES = ['warning', 'error', 'critical'] as const;
 
 export type ProviderAwareReplayImportContractName = (typeof PROVIDER_AWARE_REPLAY_IMPORT_CONTRACT_NAMES)[number];
 export type ProviderAwareReplayImportContractKind = (typeof PROVIDER_AWARE_REPLAY_IMPORT_CONTRACT_KINDS)[number];
-export type HistoricalSnapshotKind = (typeof HISTORICAL_SNAPSHOT_KINDS)[number];
-export type HistoricalSnapshotSourceKind = (typeof HISTORICAL_SNAPSHOT_SOURCE_KINDS)[number];
-export type HistoricalSnapshotCompatibilityLevel = (typeof HISTORICAL_SNAPSHOT_COMPATIBILITY_LEVELS)[number];
-export type HistoricalSnapshotNormalizationMode = (typeof HISTORICAL_SNAPSHOT_NORMALIZATION_MODES)[number];
-export type HistoricalSnapshotFreshnessBucket = (typeof HISTORICAL_SNAPSHOT_FRESHNESS_BUCKETS)[number];
-export type HistoricalSnapshotRejectionKind = (typeof HISTORICAL_SNAPSHOT_REJECTION_KINDS)[number];
-export type HistoricalSnapshotRejectionSeverity = (typeof HISTORICAL_SNAPSHOT_REJECTION_SEVERITIES)[number];
 
-export interface SnapshotManifest {
-  readonly snapshotId: string;
-  readonly snapshotName: string;
-  readonly snapshotKind: HistoricalSnapshotKind;
+export interface ReplayImportCandidate {
+  readonly candidateId: string;
+  readonly candidateName: string;
+  readonly candidateKind: ProviderAwareReplayImportContractKind;
   readonly phase: typeof PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_PHASE;
-  readonly schemaVersion: typeof PHASE_73_PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_SCHEMA_VERSION;
-  readonly capturedAt: string;
+  readonly sourceScenarioFixtureName: ProviderAwareReplayScenarioName;
+  readonly sourceSnapshotFixtureName: HistoricalSnapshotIngestionContractName;
   readonly fixtureOnly: true;
-  readonly liveData: false;
-  readonly sourceProviderId: string;
-  readonly sourceReliabilityFixtureName: ProviderReliabilityDriftAuditName;
-}
-
-export interface SnapshotSourceMetadata {
-  readonly sourceMetadataId: string;
-  readonly sourceKind: HistoricalSnapshotSourceKind;
-  readonly providerId: string;
-  readonly providerName: string;
-  readonly reliabilityBand: string;
-  readonly freshnessBand: HistoricalSnapshotFreshnessBucket;
-  readonly observationWindow: string;
-  readonly sourceRefs: readonly string[];
-}
-
-export interface SnapshotSchemaContract {
-  readonly schemaContractId: string;
-  readonly expectedSchemaVersion: string;
-  readonly compatibilityLevel: HistoricalSnapshotCompatibilityLevel;
-  readonly requiredFields: readonly string[];
-  readonly optionalFields: readonly string[];
-  readonly criticalFields: readonly string[];
-  readonly failClosedOnCriticalDrift: boolean;
-}
-
-export interface SnapshotProvenanceContract {
-  readonly provenanceId: string;
-  readonly sourcePhaseRefs: readonly (65 | 66 | 67 | 68 | 69 | 70)[];
-  readonly sourceFixtureRefs: readonly string[];
-  readonly providerReliabilityRefs: readonly string[];
-  readonly replayScenarioRefs: readonly string[];
-  readonly dataQualityRefs: readonly string[];
-  readonly lineageSummary: string;
-}
-
-export interface SnapshotNormalizationContract {
-  readonly normalizationContractId: string;
-  readonly normalizationMode: HistoricalSnapshotNormalizationMode;
-  readonly stableOrdering: boolean;
-  readonly deterministicChecksum: boolean;
-  readonly localeIndependent: boolean;
-  readonly mutationFree: boolean;
-}
-
-export interface SnapshotValidationContract {
-  readonly validationContractId: string;
-  readonly rules: readonly string[];
-  readonly rejectionReasons: readonly string[];
-  readonly criticalFailureReasons: readonly string[];
-  readonly warningReasons: readonly string[];
+  readonly liveImport: false;
+  readonly runtimeImport: false;
   readonly failClosed: boolean;
 }
 
-export interface SnapshotFreshnessContract {
-  readonly freshnessContractId: string;
-  readonly snapshotAgeBucket: HistoricalSnapshotFreshnessBucket;
-  readonly stale: boolean;
-  readonly staleReasonCode: string;
-  readonly freshnessWindow: string;
-  readonly sourceTelemetryRefs: readonly string[];
-}
-
-export interface SnapshotIntegrityContract {
-  readonly integrityContractId: string;
+export interface ReplayImportManifest {
+  readonly manifestId: string;
+  readonly manifestName: string;
+  readonly manifestKind: 'replay_import_manifest';
+  readonly schemaVersion: typeof PHASE_73_PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_SCHEMA_VERSION;
+  readonly generatedAt: typeof PHASE_73_PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_GENERATED_AT;
+  readonly sourceCandidateIds: readonly string[];
   readonly checksum: string;
-  readonly checksumAlgorithm: 'fnv1a32';
-  readonly manifestHash: string;
-  readonly sourceHash: string;
-  readonly deterministic: boolean;
+  readonly deterministic: true;
 }
 
-export interface SnapshotImportPlan {
+export interface ReplayImportSourceMetadata {
+  readonly sourceMetadataId: string;
+  readonly sourcePhaseRefs: readonly (65 | 66 | 67 | 68 | 70 | 71 | 72)[];
+  readonly sourceFixtureRefs: readonly string[];
+  readonly sourceProviderIds: readonly string[];
+  readonly sourceScenarioRefs: readonly ProviderAwareReplayScenarioName[];
+  readonly sourceSnapshotRefs: readonly HistoricalSnapshotIngestionContractName[];
+  readonly sourceReliabilityRefs: readonly ProviderReliabilityDriftAuditName[];
+}
+
+export interface ReplayImportCompatibilityContract {
+  readonly compatibilityId: string;
+  readonly replaySchemaCompatible: boolean;
+  readonly scenarioCompatible: boolean;
+  readonly snapshotCompatible: boolean;
+  readonly qualityCompatible: boolean;
+  readonly reliabilityCompatible: boolean;
+  readonly compatibilityStatus: 'compatible' | 'warning' | 'blocked' | 'rejected';
+  readonly incompatibilityReasonCodes: readonly string[];
+  readonly failClosed: boolean;
+}
+
+export interface ReplayImportGatePolicy {
+  readonly gatePolicyId: string;
+  readonly gateState: 'disabled' | 'warning' | 'blocked';
+  readonly disabledByDefault: true;
+  readonly requiresManualEnable: true;
+  readonly allowsLiveImport: false;
+  readonly allowsFilesystemImport: false;
+  readonly allowsRuntimeIngestion: false;
+  readonly failClosed: boolean;
+}
+
+export interface ReplayImportPlan {
   readonly importPlanId: string;
   readonly planMode: 'fixture_contract_only';
+  readonly candidateIds: readonly string[];
   readonly disabledRuntimeImport: true;
+  readonly disabledFilesystemImport: true;
   readonly requiresNetwork: false;
   readonly requiresFilesystem: false;
   readonly requiresSecrets: false;
-  readonly plannedSteps: readonly string[];
   readonly expectedOutcome: string;
 }
 
-export interface SnapshotRejectionContract {
+export interface ReplayImportRejectionContract {
   readonly rejectionId: string;
-  readonly rejectionKind: HistoricalSnapshotRejectionKind;
-  readonly severity: HistoricalSnapshotRejectionSeverity;
+  readonly rejectionKind: 'none' | 'schema_drift' | 'missing_critical_field' | 'quarantined' | 'cross_provider_conflict' | 'reliability_drift';
+  readonly severity: 'warning' | 'error' | 'critical';
   readonly reasonCode: string;
   readonly failClosed: boolean;
   readonly safetyNotes: readonly string[];
 }
 
-export interface SnapshotReplayLinkage {
-  readonly replayLinkageId: string;
-  readonly replayScenarioRef: ProviderAwareReplayScenarioName;
-  readonly parityStatus: 'passed' | 'failed' | 'rejected';
-  readonly failClosed: boolean;
-  readonly sourceRefs: readonly string[];
+export interface ReplayImportNormalizationContract {
+  readonly normalizationContractId: string;
+  readonly normalizationMode: 'canonical_json' | 'field_sorted';
+  readonly stableOrdering: true;
+  readonly deterministicChecksum: true;
+  readonly localeIndependent: true;
+  readonly mutationFree: true;
 }
 
-export interface SnapshotReliabilityLinkage {
+export interface ReplayImportValidationContract {
+  readonly validationId: string;
+  readonly rules: readonly string[];
+  readonly rejectionReasons: readonly string[];
+  readonly criticalFailureReasons: readonly string[];
+  readonly warningReasons: readonly string[];
+  readonly failClosed: true;
+}
+
+export interface ReplayImportIntegrityContract {
+  readonly integrityId: string;
+  readonly checksum: string;
+  readonly checksumAlgorithm: 'fnv1a32';
+  readonly manifestHash: string;
+  readonly sourceHash: string;
+  readonly deterministic: true;
+}
+
+export interface ReplayImportProvenanceContract {
+  readonly provenanceId: string;
+  readonly sourceScenarioRefs: readonly ProviderAwareReplayScenarioName[];
+  readonly sourceSnapshotRefs: readonly HistoricalSnapshotIngestionContractName[];
+  readonly sourceReliabilityRefs: readonly ProviderReliabilityDriftAuditName[];
+  readonly sourceQualityRefs: readonly CrossProviderDataQualityName[];
+  readonly lineageSummary: string;
+}
+
+export interface ReplayImportScenarioLinkage {
+  readonly scenarioLinkageId: string;
+  readonly scenarioFixtureRef: ProviderAwareReplayScenarioName;
+  readonly scenarioStatus: 'aligned' | 'warning' | 'blocked';
+  readonly failClosed: boolean;
+}
+
+export interface ReplayImportSnapshotLinkage {
+  readonly snapshotLinkageId: string;
+  readonly snapshotFixtureRef: HistoricalSnapshotIngestionContractName;
+  readonly snapshotStatus: 'aligned' | 'warning' | 'blocked';
+  readonly failClosed: boolean;
+}
+
+export interface ReplayImportReliabilityLinkage {
   readonly reliabilityLinkageId: string;
-  readonly providerReliabilityRef: ProviderReliabilityDriftAuditName;
+  readonly sourceReliabilityFixtureRef: ProviderReliabilityDriftAuditName;
+  readonly reliabilityStatus: 'stable' | 'degraded' | 'drifted';
   readonly driftSeverity: 'low' | 'moderate' | 'high' | 'critical';
-  readonly driftCompatible: boolean;
   readonly failClosed: boolean;
-  readonly sourceRefs: readonly string[];
 }
 
-export interface HistoricalSnapshotAuditReport {
+export interface ReplayImportQualityLinkage {
+  readonly qualityLinkageId: string;
+  readonly sourceQualityFixtureRef: CrossProviderDataQualityName;
+  readonly qualityStatus: 'clean' | 'warning' | 'blocked';
+  readonly reasonCodes: readonly string[];
+  readonly failClosed: boolean;
+}
+
+export interface ReplayImportAuditReport {
   readonly reportId: string;
+  readonly candidateSummary: string;
   readonly manifestSummary: string;
-  readonly schemaSummary: string;
+  readonly compatibilitySummary: string;
+  readonly gatePolicySummary: string;
+  readonly importPlanSummary: string;
   readonly provenanceSummary: string;
-  readonly freshnessSummary: string;
   readonly integritySummary: string;
-  readonly validationSummary: string;
-  readonly linkageSummary: string;
   readonly safetySummary: string;
 }
 
@@ -191,9 +198,10 @@ export interface ProviderAwareReplayImportContractViewModel {
   readonly viewModelId: string;
   readonly fixtureId: string;
   readonly fixtureName: ProviderAwareReplayImportContractName;
-  readonly snapshotId: string;
-  readonly stale: boolean;
-  readonly rejected: boolean;
+  readonly candidateId: string;
+  readonly compatibilityStatus: ReplayImportCompatibilityContract['compatibilityStatus'];
+  readonly blocked: boolean;
+  readonly warning: boolean;
   readonly summary: string;
 }
 
@@ -225,9 +233,9 @@ export interface ProviderAwareReplayImportContractApiContract {
     readonly localOnly: true;
     readonly data: {
       readonly fixtureId: string;
-      readonly snapshotId: string;
-      readonly stale: boolean;
-      readonly rejected: boolean;
+      readonly candidateId: string;
+      readonly blocked: boolean;
+      readonly warning: boolean;
     };
   };
   readonly errors: readonly [
@@ -252,8 +260,7 @@ export interface ProviderAwareReplayImportContractSelectorQuery {
   readonly fixtureId?: string;
   readonly fixtureName?: ProviderAwareReplayImportContractName;
   readonly fixtureKind?: ProviderAwareReplayImportContractKind;
-  readonly snapshotId?: string;
-  readonly sourceProviderId?: string;
+  readonly candidateId?: string;
 }
 
 export interface ProviderAwareReplayImportContractSelectorResult {
@@ -261,55 +268,61 @@ export interface ProviderAwareReplayImportContractSelectorResult {
   readonly selectedFixtureId: string;
   readonly selectedFixtureKind: ProviderAwareReplayImportContractKind;
   readonly matched: boolean;
-  readonly source: 'synthetic_fixture_only';
+  readonly source: 'deterministic_fixture_only';
 }
 
 export interface ProviderAwareReplayImportContractCapabilities {
   readonly providerAwareReplayImportContracts: true;
-  readonly deterministicHistoricalSnapshotFixtures: true;
-  readonly fixtureDerivedSnapshotManifests: true;
-  readonly readOnlySnapshotSourceMetadata: true;
-  readonly snapshotSchemaContracts: true;
-  readonly snapshotProvenanceContracts: true;
-  readonly snapshotNormalizationContracts: true;
-  readonly snapshotValidationContracts: true;
-  readonly snapshotFreshnessContracts: true;
-  readonly snapshotIntegrityContracts: true;
-  readonly snapshotImportPlanContracts: true;
-  readonly snapshotRejectionContracts: true;
-  readonly snapshotReplayLinkage: true;
-  readonly snapshotReliabilityLinkage: true;
-  readonly snapshotAuditReports: true;
-  readonly snapshotViewModels: true;
-  readonly snapshotApiContracts: true;
-  readonly snapshotSelectors: true;
-  readonly historicalSnapshotLiveIngestion: false;
-  readonly historicalSnapshotRuntimeIngestion: false;
-  readonly historicalSnapshotLiveNetworkAccess: false;
-  readonly historicalSnapshotRuntimeCollectors: false;
-  readonly historicalSnapshotSecretsRequired: false;
-  readonly historicalSnapshotApiKeyRequired: false;
-  readonly historicalSnapshotWriteMethods: false;
-  readonly historicalSnapshotWalletLogic: false;
-  readonly historicalSnapshotPrivateKeyHandling: false;
-  readonly historicalSnapshotSigning: false;
-  readonly historicalSnapshotTransactionSending: false;
-  readonly historicalSnapshotExecution: false;
-  readonly historicalSnapshotTradingSignals: false;
-  readonly historicalSnapshotRecommendations: false;
-  readonly historicalSnapshotInvestmentAdvice: false;
-  readonly historicalSnapshotRouteHandlers: false;
-  readonly historicalSnapshotRuntimeRequests: false;
-  readonly historicalSnapshotUiRendering: false;
-  readonly historicalSnapshotDomAccess: false;
-  readonly historicalSnapshotPersistence: false;
-  readonly historicalSnapshotFilesystemWrites: false;
-  readonly historicalSnapshotBackgroundJobs: false;
-  readonly historicalSnapshotScheduledJobs: false;
-  readonly historicalSnapshotRealOrders: false;
-  readonly historicalSnapshotRealFunds: false;
-  readonly historicalSnapshotRealPnL: false;
-  readonly historicalSnapshotProviderExpansion: false;
+  readonly deterministicReplayImportContracts: true;
+  readonly fixtureDerivedReplayImportCandidates: true;
+  readonly replayImportManifests: true;
+  readonly replayImportSourceMetadata: true;
+  readonly replayImportCompatibilityContracts: true;
+  readonly replayImportGatePolicies: true;
+  readonly replayImportPlanContracts: true;
+  readonly replayImportRejectionContracts: true;
+  readonly replayImportNormalizationContracts: true;
+  readonly replayImportValidationContracts: true;
+  readonly replayImportIntegrityContracts: true;
+  readonly replayImportProvenanceContracts: true;
+  readonly replayImportScenarioLinkage: true;
+  readonly replayImportSnapshotLinkage: true;
+  readonly replayImportReliabilityLinkage: true;
+  readonly replayImportQualityLinkage: true;
+  readonly replayImportAuditReports: true;
+  readonly replayImportViewModels: true;
+  readonly replayImportApiContracts: true;
+  readonly replayImportSelectors: true;
+  readonly replayImportLiveImport: false;
+  readonly replayImportRuntimeImport: false;
+  readonly replayImportLiveIngestion: false;
+  readonly replayImportRuntimeIngestion: false;
+  readonly replayImportFilesystemImport: false;
+  readonly replayImportLiveNetworkAccess: false;
+  readonly replayImportRuntimeCollectors: false;
+  readonly replayImportSecretsRequired: false;
+  readonly replayImportApiKeyRequired: false;
+  readonly replayImportWriteMethods: false;
+  readonly replayImportWalletLogic: false;
+  readonly replayImportPrivateKeyHandling: false;
+  readonly replayImportSigning: false;
+  readonly replayImportTransactionSending: false;
+  readonly replayImportExecution: false;
+  readonly replayImportTradingSignals: false;
+  readonly replayImportRecommendations: false;
+  readonly replayImportInvestmentAdvice: false;
+  readonly replayImportRouteHandlers: false;
+  readonly replayImportRuntimeRequests: false;
+  readonly replayImportUiRendering: false;
+  readonly replayImportDomAccess: false;
+  readonly replayImportPersistence: false;
+  readonly replayImportFilesystemWrites: false;
+  readonly replayImportBackgroundJobs: false;
+  readonly replayImportScheduledJobs: false;
+  readonly replayImportRealOrders: false;
+  readonly replayImportRealFunds: false;
+  readonly replayImportRealPnL: false;
+  readonly replayImportProviderExpansion: false;
 }
 
 export interface ProviderAwareReplayImportContractFixture {
@@ -318,19 +331,22 @@ export interface ProviderAwareReplayImportContractFixture {
   readonly fixtureKind: ProviderAwareReplayImportContractKind;
   readonly phase: typeof PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_PHASE;
   readonly schemaVersion: typeof PHASE_73_PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_SCHEMA_VERSION;
-  readonly manifest: SnapshotManifest;
-  readonly sourceMetadata: SnapshotSourceMetadata;
-  readonly schemaContract: SnapshotSchemaContract;
-  readonly provenanceContract: SnapshotProvenanceContract;
-  readonly normalizationContract: SnapshotNormalizationContract;
-  readonly validationContract: SnapshotValidationContract;
-  readonly freshnessContract: SnapshotFreshnessContract;
-  readonly integrityContract: SnapshotIntegrityContract;
-  readonly importPlan: SnapshotImportPlan;
-  readonly rejectionContract: SnapshotRejectionContract;
-  readonly replayLinkage: SnapshotReplayLinkage;
-  readonly reliabilityLinkage: SnapshotReliabilityLinkage;
-  readonly auditReport: HistoricalSnapshotAuditReport;
+  readonly importCandidate: ReplayImportCandidate;
+  readonly manifest: ReplayImportManifest;
+  readonly sourceMetadata: ReplayImportSourceMetadata;
+  readonly compatibilityContract: ReplayImportCompatibilityContract;
+  readonly gatePolicy: ReplayImportGatePolicy;
+  readonly importPlan: ReplayImportPlan;
+  readonly rejectionContract: ReplayImportRejectionContract;
+  readonly normalizationContract: ReplayImportNormalizationContract;
+  readonly validationContract: ReplayImportValidationContract;
+  readonly integrityContract: ReplayImportIntegrityContract;
+  readonly provenanceContract: ReplayImportProvenanceContract;
+  readonly scenarioLinkage: ReplayImportScenarioLinkage;
+  readonly snapshotLinkage: ReplayImportSnapshotLinkage;
+  readonly reliabilityLinkage: ReplayImportReliabilityLinkage;
+  readonly qualityLinkage: ReplayImportQualityLinkage;
+  readonly auditReport: ReplayImportAuditReport;
   readonly viewModel: ProviderAwareReplayImportContractViewModel;
   readonly apiContract: ProviderAwareReplayImportContractApiContract;
   readonly selectorExamples: readonly ProviderAwareReplayImportContractSelectorResult[];
@@ -339,15 +355,17 @@ export interface ProviderAwareReplayImportContractFixture {
   readonly sourcePhase66FixtureSnapshot: readonly MultiProviderReadOnlyFoundationName[];
   readonly sourcePhase67FixtureSnapshot: readonly CrossProviderDataQualityName[];
   readonly sourcePhase68FixtureSnapshot: readonly ProviderAwareReplayScenarioName[];
-  readonly sourcePhase69FixtureSnapshot: readonly LiveSmokeSafetyCertificationName[];
   readonly sourcePhase70FixtureSnapshot: readonly ProviderReliabilityDriftAuditName[];
+  readonly sourcePhase71FixtureSnapshot: readonly HistoricalSnapshotIngestionContractName[];
+  readonly sourcePhase72FixtureSnapshot: readonly HistoricalSnapshotScenarioGeneratorName[];
   readonly sourceRefs: {
     readonly phase65FixtureId: string;
     readonly phase66FixtureId: string;
     readonly phase67FixtureId: string;
     readonly phase68FixtureId: string;
-    readonly phase69FixtureId: string;
     readonly phase70FixtureId: string;
+    readonly phase71FixtureId: string;
+    readonly phase72FixtureId: string;
   };
   readonly meta: {
     readonly generatedAt: typeof PHASE_73_PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_GENERATED_AT;
@@ -361,7 +379,8 @@ export interface ProviderAwareReplayImportContractFixture {
     readonly localOnly: true;
     readonly readOnly: true;
     readonly failClosed: true;
-    readonly noLiveData: true;
+    readonly noLiveImport: true;
+    readonly noRuntimeImport: true;
     readonly noNetworkAccessByDefault: true;
     readonly nonAdvisory: true;
     readonly notExecutable: true;
@@ -388,3 +407,18 @@ export interface ProviderAwareReplayImportContractSafetyResult {
   readonly safe: boolean;
   readonly violations: readonly string[];
 }
+
+// Backward-compatible aliases for local module implementation helpers
+export type SnapshotManifest = ReplayImportManifest;
+export type SnapshotSourceMetadata = ReplayImportSourceMetadata;
+export type SnapshotSchemaContract = ReplayImportCompatibilityContract;
+export type SnapshotFreshnessContract = ReplayImportGatePolicy;
+export type SnapshotImportPlan = ReplayImportPlan;
+export type SnapshotRejectionContract = ReplayImportRejectionContract;
+export type SnapshotNormalizationContract = ReplayImportNormalizationContract;
+export type SnapshotValidationContract = ReplayImportValidationContract;
+export type SnapshotIntegrityContract = ReplayImportIntegrityContract;
+export type SnapshotProvenanceContract = ReplayImportProvenanceContract;
+export type SnapshotReplayLinkage = ReplayImportScenarioLinkage;
+export type SnapshotReliabilityLinkage = ReplayImportReliabilityLinkage;
+export type HistoricalSnapshotAuditReport = ReplayImportAuditReport;

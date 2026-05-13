@@ -1,25 +1,24 @@
-import type { SnapshotManifest } from './types.js';
+import type { ReplayImportCandidate } from './types.js';
 
-export function buildSnapshotManifest(input: {
+export function buildReplayImportCandidate(input: {
   fixtureId: string;
-  snapshotName: string;
-  snapshotKind: SnapshotManifest['snapshotKind'];
-  capturedAt: string;
-  sourceProviderId: string;
-  sourceReliabilityFixtureName: SnapshotManifest['sourceReliabilityFixtureName'];
-  schemaVersion: SnapshotManifest['schemaVersion'];
-  phase: SnapshotManifest['phase'];
-}): SnapshotManifest {
+  candidateName: string;
+  candidateKind: ReplayImportCandidate['candidateKind'];
+  sourceScenarioFixtureName: ReplayImportCandidate['sourceScenarioFixtureName'];
+  sourceSnapshotFixtureName: ReplayImportCandidate['sourceSnapshotFixtureName'];
+  phase: ReplayImportCandidate['phase'];
+  failClosed: boolean;
+}): ReplayImportCandidate {
   return {
-    snapshotId: `${input.fixtureId}-snapshot`,
-    snapshotName: input.snapshotName,
-    snapshotKind: input.snapshotKind,
+    candidateId: `${input.fixtureId}-candidate`,
+    candidateName: input.candidateName,
+    candidateKind: input.candidateKind,
     phase: input.phase,
-    schemaVersion: input.schemaVersion,
-    capturedAt: input.capturedAt,
+    sourceScenarioFixtureName: input.sourceScenarioFixtureName,
+    sourceSnapshotFixtureName: input.sourceSnapshotFixtureName,
     fixtureOnly: true,
-    liveData: false,
-    sourceProviderId: input.sourceProviderId,
-    sourceReliabilityFixtureName: input.sourceReliabilityFixtureName,
+    liveImport: false,
+    runtimeImport: false,
+    failClosed: input.failClosed,
   };
 }

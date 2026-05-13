@@ -1,17 +1,12 @@
-import type { SnapshotReplayLinkage } from './types.js';
+import type { ReplayImportSnapshotLinkage } from './types.js';
 
-export function buildSnapshotReplayLinkage(input: {
-  fixtureId: string;
-  replayScenarioRef: SnapshotReplayLinkage['replayScenarioRef'];
-  parityStatus: SnapshotReplayLinkage['parityStatus'];
-  failClosed: boolean;
-  sourceRefs: readonly string[];
-}): SnapshotReplayLinkage {
+export function buildReplayImportSnapshotLinkage(
+  input: Omit<ReplayImportSnapshotLinkage, 'snapshotLinkageId'> & { fixtureId: string },
+): ReplayImportSnapshotLinkage {
   return {
-    replayLinkageId: `${input.fixtureId}-replay-linkage`,
-    replayScenarioRef: input.replayScenarioRef,
-    parityStatus: input.parityStatus,
+    snapshotLinkageId: `${input.fixtureId}-snapshot-linkage`,
+    snapshotFixtureRef: input.snapshotFixtureRef,
+    snapshotStatus: input.snapshotStatus,
     failClosed: input.failClosed,
-    sourceRefs: [...input.sourceRefs],
   };
 }

@@ -1,13 +1,8 @@
-import type { SnapshotRejectionContract } from './types.js';
+import type { ReplayImportRejectionContract } from './types.js';
 
-export function buildSnapshotRejectionContract(input: {
-  fixtureId: string;
-  rejectionKind: SnapshotRejectionContract['rejectionKind'];
-  severity: SnapshotRejectionContract['severity'];
-  reasonCode: string;
-  failClosed: boolean;
-  safetyNotes: readonly string[];
-}): SnapshotRejectionContract {
+export function buildReplayImportRejectionContract(
+  input: Omit<ReplayImportRejectionContract, 'rejectionId'> & { fixtureId: string },
+): ReplayImportRejectionContract {
   return {
     rejectionId: `${input.fixtureId}-rejection`,
     rejectionKind: input.rejectionKind,
@@ -17,3 +12,5 @@ export function buildSnapshotRejectionContract(input: {
     safetyNotes: [...input.safetyNotes],
   };
 }
+
+export const buildSnapshotRejectionContract = buildReplayImportRejectionContract;

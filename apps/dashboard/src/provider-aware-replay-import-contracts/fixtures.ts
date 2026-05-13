@@ -17,16 +17,16 @@ export const PROVIDER_AWARE_REPLAY_IMPORT_CONTRACT_FIXTURE_MAP: ReadonlyMap<stri
 
 if (PROVIDER_AWARE_REPLAY_IMPORT_CONTRACT_FIXTURES.length < 8) {
   throw new Error(
-    `Phase 71 fixture count mismatch: expected >= 8, received ${PROVIDER_AWARE_REPLAY_IMPORT_CONTRACT_FIXTURES.length}`,
+    `Phase 73 fixture count mismatch: expected >= 8, received ${PROVIDER_AWARE_REPLAY_IMPORT_CONTRACT_FIXTURES.length}`,
   );
 }
 if (PROVIDER_AWARE_REPLAY_IMPORT_CONTRACT_NAMES.length !== PROVIDER_AWARE_REPLAY_IMPORT_CONTRACT_KINDS.length) {
-  throw new Error('Phase 71 name/kind cardinality mismatch');
+  throw new Error('Phase 73 name/kind cardinality mismatch');
 }
 
 const tableValidation = validateProviderAwareReplayImportContractFixtureTable(PROVIDER_AWARE_REPLAY_IMPORT_CONTRACT_FIXTURES);
 if (!tableValidation.valid) {
-  throw new Error(`Phase 71 fixture table validation failed: ${JSON.stringify(tableValidation.issues)}`);
+  throw new Error(`Phase 73 fixture table validation failed: ${JSON.stringify(tableValidation.issues)}`);
 }
 
 export function listProviderAwareReplayImportContractFixtures(): readonly ProviderAwareReplayImportContractFixture[] {

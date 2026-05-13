@@ -195,4 +195,4 @@ Phase 72 does not implement live generation, runtime generation, live ingestion,
 
 ### Next phase guidance
 
-**Phase 73 — Optional Provider-Aware Replay Import Contracts v1** is preview only and **not implemented** in Phase 72.
+**Phase 74 — Controlled Live Smoke-Test Harness Expansion v1** is preview only and **not implemented** in this phase lineage.

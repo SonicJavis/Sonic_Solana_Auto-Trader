@@ -1,18 +1,17 @@
-import type { SnapshotImportPlan } from './types.js';
+import type { ReplayImportPlan } from './types.js';
 
-export function buildSnapshotImportPlan(input: {
-  fixtureId: string;
-  plannedSteps: readonly string[];
-  expectedOutcome: string;
-}): SnapshotImportPlan {
+export function buildReplayImportPlan(input: Omit<ReplayImportPlan, 'importPlanId'> & { fixtureId: string }): ReplayImportPlan {
   return {
     importPlanId: `${input.fixtureId}-import-plan`,
     planMode: 'fixture_contract_only',
+    candidateIds: [...input.candidateIds],
     disabledRuntimeImport: true,
+    disabledFilesystemImport: true,
     requiresNetwork: false,
     requiresFilesystem: false,
     requiresSecrets: false,
-    plannedSteps: [...input.plannedSteps],
     expectedOutcome: input.expectedOutcome,
   };
 }
+
+export const buildSnapshotImportPlan = buildReplayImportPlan;

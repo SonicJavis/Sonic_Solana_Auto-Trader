@@ -1,9 +1,9 @@
 import {
-  PROVIDER_AWARE_REPLAY_IMPORT_CONTRACT_KINDS,
-  PROVIDER_AWARE_REPLAY_IMPORT_CONTRACT_NAMES,
   PHASE_73_PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_GENERATED_AT,
   PHASE_73_PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_SCHEMA_VERSION,
   PHASE_73_PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_SOURCE,
+  PROVIDER_AWARE_REPLAY_IMPORT_CONTRACT_KINDS,
+  PROVIDER_AWARE_REPLAY_IMPORT_CONTRACT_NAMES,
   type ProviderAwareReplayImportContractFixture,
   type ProviderAwareReplayImportContractKind,
   type ProviderAwareReplayImportContractName,
@@ -35,15 +35,11 @@ function stablePrettyJsonStringify(value: unknown): string {
   return `${JSON.stringify(sortKeysDeep(value), null, 2)}\n`;
 }
 
-export function isValidProviderAwareReplayImportContractName(
-  value: unknown,
-): value is ProviderAwareReplayImportContractName {
+export function isValidProviderAwareReplayImportContractName(value: unknown): value is ProviderAwareReplayImportContractName {
   return typeof value === 'string' && (PROVIDER_AWARE_REPLAY_IMPORT_CONTRACT_NAMES as readonly string[]).includes(value);
 }
 
-export function isValidProviderAwareReplayImportContractKind(
-  value: unknown,
-): value is ProviderAwareReplayImportContractKind {
+export function isValidProviderAwareReplayImportContractKind(value: unknown): value is ProviderAwareReplayImportContractKind {
   return typeof value === 'string' && (PROVIDER_AWARE_REPLAY_IMPORT_CONTRACT_KINDS as readonly string[]).includes(value);
 }
 
@@ -70,39 +66,58 @@ export function normalizeProviderAwareReplayImportContractFixture(
 ): ProviderAwareReplayImportContractFixture {
   return {
     ...fixture,
-    schemaContract: {
-      ...fixture.schemaContract,
-      requiredFields: [...fixture.schemaContract.requiredFields].sort((left, right) => left.localeCompare(right, 'en-US')),
-      optionalFields: [...fixture.schemaContract.optionalFields].sort((left, right) => left.localeCompare(right, 'en-US')),
-      criticalFields: [...fixture.schemaContract.criticalFields].sort((left, right) => left.localeCompare(right, 'en-US')),
+    manifest: {
+      ...fixture.manifest,
+      sourceCandidateIds: [...fixture.manifest.sourceCandidateIds].sort((a, b) => a.localeCompare(b, 'en-US')),
     },
-    provenanceContract: {
-      ...fixture.provenanceContract,
-      sourcePhaseRefs: [...fixture.provenanceContract.sourcePhaseRefs].sort((left, right) => left - right),
-      sourceFixtureRefs: [...fixture.provenanceContract.sourceFixtureRefs].sort((left, right) => left.localeCompare(right, 'en-US')),
-      providerReliabilityRefs: [...fixture.provenanceContract.providerReliabilityRefs].sort((left, right) =>
-        left.localeCompare(right, 'en-US'),
+    sourceMetadata: {
+      ...fixture.sourceMetadata,
+      sourcePhaseRefs: [...fixture.sourceMetadata.sourcePhaseRefs].sort((a, b) => a - b),
+      sourceFixtureRefs: [...fixture.sourceMetadata.sourceFixtureRefs].sort((a, b) => a.localeCompare(b, 'en-US')),
+      sourceProviderIds: [...fixture.sourceMetadata.sourceProviderIds].sort((a, b) => a.localeCompare(b, 'en-US')),
+      sourceScenarioRefs: [...fixture.sourceMetadata.sourceScenarioRefs].sort((a, b) => a.localeCompare(b, 'en-US')),
+      sourceSnapshotRefs: [...fixture.sourceMetadata.sourceSnapshotRefs].sort((a, b) => a.localeCompare(b, 'en-US')),
+      sourceReliabilityRefs: [...fixture.sourceMetadata.sourceReliabilityRefs].sort((a, b) => a.localeCompare(b, 'en-US')),
+    },
+    compatibilityContract: {
+      ...fixture.compatibilityContract,
+      incompatibilityReasonCodes: [...fixture.compatibilityContract.incompatibilityReasonCodes].sort((a, b) =>
+        a.localeCompare(b, 'en-US'),
       ),
-      replayScenarioRefs: [...fixture.provenanceContract.replayScenarioRefs].sort((left, right) =>
-        left.localeCompare(right, 'en-US'),
-      ),
-      dataQualityRefs: [...fixture.provenanceContract.dataQualityRefs].sort((left, right) => left.localeCompare(right, 'en-US')),
+    },
+    importPlan: {
+      ...fixture.importPlan,
+      candidateIds: [...fixture.importPlan.candidateIds].sort((a, b) => a.localeCompare(b, 'en-US')),
+    },
+    rejectionContract: {
+      ...fixture.rejectionContract,
+      safetyNotes: [...fixture.rejectionContract.safetyNotes].sort((a, b) => a.localeCompare(b, 'en-US')),
     },
     validationContract: {
       ...fixture.validationContract,
-      rules: [...fixture.validationContract.rules].sort((left, right) => left.localeCompare(right, 'en-US')),
-      rejectionReasons: [...fixture.validationContract.rejectionReasons].sort((left, right) => left.localeCompare(right, 'en-US')),
-      criticalFailureReasons: [...fixture.validationContract.criticalFailureReasons].sort((left, right) =>
-        left.localeCompare(right, 'en-US'),
-      ),
-      warningReasons: [...fixture.validationContract.warningReasons].sort((left, right) => left.localeCompare(right, 'en-US')),
+      rules: [...fixture.validationContract.rules].sort((a, b) => a.localeCompare(b, 'en-US')),
+      rejectionReasons: [...fixture.validationContract.rejectionReasons].sort((a, b) => a.localeCompare(b, 'en-US')),
+      criticalFailureReasons: [...fixture.validationContract.criticalFailureReasons].sort((a, b) => a.localeCompare(b, 'en-US')),
+      warningReasons: [...fixture.validationContract.warningReasons].sort((a, b) => a.localeCompare(b, 'en-US')),
+    },
+    provenanceContract: {
+      ...fixture.provenanceContract,
+      sourceScenarioRefs: [...fixture.provenanceContract.sourceScenarioRefs].sort((a, b) => a.localeCompare(b, 'en-US')),
+      sourceSnapshotRefs: [...fixture.provenanceContract.sourceSnapshotRefs].sort((a, b) => a.localeCompare(b, 'en-US')),
+      sourceReliabilityRefs: [...fixture.provenanceContract.sourceReliabilityRefs].sort((a, b) => a.localeCompare(b, 'en-US')),
+      sourceQualityRefs: [...fixture.provenanceContract.sourceQualityRefs].sort((a, b) => a.localeCompare(b, 'en-US')),
+    },
+    qualityLinkage: {
+      ...fixture.qualityLinkage,
+      reasonCodes: [...fixture.qualityLinkage.reasonCodes].sort((a, b) => a.localeCompare(b, 'en-US')),
     },
     sourcePhase65FixtureSnapshot: [...fixture.sourcePhase65FixtureSnapshot],
     sourcePhase66FixtureSnapshot: [...fixture.sourcePhase66FixtureSnapshot],
     sourcePhase67FixtureSnapshot: [...fixture.sourcePhase67FixtureSnapshot],
     sourcePhase68FixtureSnapshot: [...fixture.sourcePhase68FixtureSnapshot],
-    sourcePhase69FixtureSnapshot: [...fixture.sourcePhase69FixtureSnapshot],
     sourcePhase70FixtureSnapshot: [...fixture.sourcePhase70FixtureSnapshot],
+    sourcePhase71FixtureSnapshot: [...fixture.sourcePhase71FixtureSnapshot],
+    sourcePhase72FixtureSnapshot: [...fixture.sourcePhase72FixtureSnapshot],
   };
 }
 

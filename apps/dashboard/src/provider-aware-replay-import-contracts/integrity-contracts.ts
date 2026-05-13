@@ -1,13 +1,10 @@
-import type { SnapshotIntegrityContract } from './types.js';
+import type { ReplayImportIntegrityContract } from './types.js';
 
-export function buildSnapshotIntegrityContract(input: {
-  fixtureId: string;
-  checksum: string;
-  manifestHash: string;
-  sourceHash: string;
-}): SnapshotIntegrityContract {
+export function buildReplayImportIntegrityContract(
+  input: Omit<ReplayImportIntegrityContract, 'integrityId'> & { fixtureId: string },
+): ReplayImportIntegrityContract {
   return {
-    integrityContractId: `${input.fixtureId}-integrity-contract`,
+    integrityId: `${input.fixtureId}-integrity`,
     checksum: input.checksum,
     checksumAlgorithm: 'fnv1a32',
     manifestHash: input.manifestHash,
@@ -15,3 +12,5 @@ export function buildSnapshotIntegrityContract(input: {
     deterministic: true,
   };
 }
+
+export const buildSnapshotIntegrityContract = buildReplayImportIntegrityContract;

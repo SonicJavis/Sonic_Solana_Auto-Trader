@@ -1,19 +1,16 @@
-import type { SnapshotValidationContract } from './types.js';
+import type { ReplayImportValidationContract } from './types.js';
 
-export function buildSnapshotValidationContract(input: {
-  fixtureId: string;
-  rules: readonly string[];
-  rejectionReasons: readonly string[];
-  criticalFailureReasons: readonly string[];
-  warningReasons: readonly string[];
-  failClosed: boolean;
-}): SnapshotValidationContract {
+export function buildReplayImportValidationContract(
+  input: Omit<ReplayImportValidationContract, 'validationId'> & { fixtureId: string },
+): ReplayImportValidationContract {
   return {
-    validationContractId: `${input.fixtureId}-validation-contract`,
+    validationId: `${input.fixtureId}-validation`,
     rules: [...input.rules],
     rejectionReasons: [...input.rejectionReasons],
     criticalFailureReasons: [...input.criticalFailureReasons],
     warningReasons: [...input.warningReasons],
-    failClosed: input.failClosed,
+    failClosed: true,
   };
 }
+
+export const buildSnapshotValidationContract = buildReplayImportValidationContract;

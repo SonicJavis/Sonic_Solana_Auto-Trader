@@ -1,25 +1,23 @@
-import type { SnapshotManifest } from './types.js';
+import type { ReplayImportManifest } from './types.js';
 
-export function buildSnapshotManifest(input: {
+export function buildReplayImportManifest(input: {
   fixtureId: string;
-  snapshotName: string;
-  snapshotKind: SnapshotManifest['snapshotKind'];
-  capturedAt: string;
-  sourceProviderId: string;
-  sourceReliabilityFixtureName: SnapshotManifest['sourceReliabilityFixtureName'];
-  schemaVersion: SnapshotManifest['schemaVersion'];
-  phase: SnapshotManifest['phase'];
-}): SnapshotManifest {
+  manifestName: string;
+  generatedAt: ReplayImportManifest['generatedAt'];
+  schemaVersion: ReplayImportManifest['schemaVersion'];
+  sourceCandidateIds: readonly string[];
+  checksum: string;
+}): ReplayImportManifest {
   return {
-    snapshotId: `${input.fixtureId}-snapshot`,
-    snapshotName: input.snapshotName,
-    snapshotKind: input.snapshotKind,
-    phase: input.phase,
+    manifestId: `${input.fixtureId}-manifest`,
+    manifestName: input.manifestName,
+    manifestKind: 'replay_import_manifest',
     schemaVersion: input.schemaVersion,
-    capturedAt: input.capturedAt,
-    fixtureOnly: true,
-    liveData: false,
-    sourceProviderId: input.sourceProviderId,
-    sourceReliabilityFixtureName: input.sourceReliabilityFixtureName,
+    generatedAt: input.generatedAt,
+    sourceCandidateIds: [...input.sourceCandidateIds],
+    checksum: input.checksum,
+    deterministic: true,
   };
 }
+
+export const buildSnapshotManifest = buildReplayImportManifest;

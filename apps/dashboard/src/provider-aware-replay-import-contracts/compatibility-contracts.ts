@@ -1,21 +1,19 @@
-import type { SnapshotSchemaContract } from './types.js';
+import type { ReplayImportCompatibilityContract } from './types.js';
 
-export function buildSnapshotSchemaContract(input: {
-  fixtureId: string;
-  expectedSchemaVersion: string;
-  compatibilityLevel: SnapshotSchemaContract['compatibilityLevel'];
-  requiredFields: readonly string[];
-  optionalFields: readonly string[];
-  criticalFields: readonly string[];
-  failClosedOnCriticalDrift: boolean;
-}): SnapshotSchemaContract {
+export function buildReplayImportCompatibilityContract(
+  input: Omit<ReplayImportCompatibilityContract, 'compatibilityId'> & { fixtureId: string },
+): ReplayImportCompatibilityContract {
   return {
-    schemaContractId: `${input.fixtureId}-schema-contract`,
-    expectedSchemaVersion: input.expectedSchemaVersion,
-    compatibilityLevel: input.compatibilityLevel,
-    requiredFields: [...input.requiredFields],
-    optionalFields: [...input.optionalFields],
-    criticalFields: [...input.criticalFields],
-    failClosedOnCriticalDrift: input.failClosedOnCriticalDrift,
+    compatibilityId: `${input.fixtureId}-compatibility`,
+    replaySchemaCompatible: input.replaySchemaCompatible,
+    scenarioCompatible: input.scenarioCompatible,
+    snapshotCompatible: input.snapshotCompatible,
+    qualityCompatible: input.qualityCompatible,
+    reliabilityCompatible: input.reliabilityCompatible,
+    compatibilityStatus: input.compatibilityStatus,
+    incompatibilityReasonCodes: [...input.incompatibilityReasonCodes],
+    failClosed: input.failClosed,
   };
 }
+
+export const buildSnapshotSchemaContract = buildReplayImportCompatibilityContract;

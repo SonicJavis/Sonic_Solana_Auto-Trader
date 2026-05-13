@@ -1,21 +1,16 @@
-import type { SnapshotProvenanceContract } from './types.js';
+import type { ReplayImportProvenanceContract } from './types.js';
 
-export function buildSnapshotProvenanceContract(input: {
-  fixtureId: string;
-  sourcePhaseRefs: SnapshotProvenanceContract['sourcePhaseRefs'];
-  sourceFixtureRefs: readonly string[];
-  providerReliabilityRefs: readonly string[];
-  replayScenarioRefs: readonly string[];
-  dataQualityRefs: readonly string[];
-  lineageSummary: string;
-}): SnapshotProvenanceContract {
+export function buildReplayImportProvenanceContract(
+  input: Omit<ReplayImportProvenanceContract, 'provenanceId'> & { fixtureId: string },
+): ReplayImportProvenanceContract {
   return {
     provenanceId: `${input.fixtureId}-provenance`,
-    sourcePhaseRefs: [...input.sourcePhaseRefs],
-    sourceFixtureRefs: [...input.sourceFixtureRefs],
-    providerReliabilityRefs: [...input.providerReliabilityRefs],
-    replayScenarioRefs: [...input.replayScenarioRefs],
-    dataQualityRefs: [...input.dataQualityRefs],
+    sourceScenarioRefs: [...input.sourceScenarioRefs],
+    sourceSnapshotRefs: [...input.sourceSnapshotRefs],
+    sourceReliabilityRefs: [...input.sourceReliabilityRefs],
+    sourceQualityRefs: [...input.sourceQualityRefs],
     lineageSummary: input.lineageSummary,
   };
 }
+
+export const buildSnapshotProvenanceContract = buildReplayImportProvenanceContract;

@@ -12,8 +12,7 @@ function matchesQuery(
   if (query.fixtureId && fixture.fixtureId !== query.fixtureId) return false;
   if (query.fixtureName && fixture.fixtureName !== query.fixtureName) return false;
   if (query.fixtureKind && fixture.fixtureKind !== query.fixtureKind) return false;
-  if (query.snapshotId && fixture.manifest.snapshotId !== query.snapshotId) return false;
-  if (query.sourceProviderId && fixture.manifest.sourceProviderId !== query.sourceProviderId) return false;
+  if (query.candidateId && fixture.importCandidate.candidateId !== query.candidateId) return false;
   return true;
 }
 
@@ -23,11 +22,11 @@ export function selectProviderAwareReplayImportContractFixture(
   const selected = PROVIDER_AWARE_REPLAY_IMPORT_CONTRACT_FIXTURES.find(fixture => matchesQuery(fixture, query));
   if (!selected) {
     return {
-      selectorId: 'phase71-selector-miss',
+      selectorId: 'phase73-selector-miss',
       selectedFixtureId: 'not-found',
-      selectedFixtureKind: 'healthy_provider_snapshot_contract',
+      selectedFixtureKind: 'clean_scenario_import_contract',
       matched: false,
-      source: 'synthetic_fixture_only',
+      source: 'deterministic_fixture_only',
     };
   }
   return {
@@ -35,6 +34,6 @@ export function selectProviderAwareReplayImportContractFixture(
     selectedFixtureId: selected.fixtureId,
     selectedFixtureKind: selected.fixtureKind,
     matched: true,
-    source: 'synthetic_fixture_only',
+    source: 'deterministic_fixture_only',
   };
 }
