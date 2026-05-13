@@ -171,4 +171,6 @@ READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked.
 
 ## Next Phase Guidance
 
-Next recommended phase (preview only): **Phase 78 — Read-Only Live Snapshot Capture Contracts v1**.
+Next recommended phase (implemented): **Phase 78 — Read-Only Live Snapshot Capture Contracts v1**.
+
+Next recommended preview-only phase: **Phase 79 — Live Snapshot to Replay Parity Audit Contracts v1**.

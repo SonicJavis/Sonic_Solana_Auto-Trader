@@ -1,5 +1,9 @@
 # Architecture
 
+## Phase 78 Update
+
+Phase 78 extends `apps/dashboard/` with `src/read-only-live-snapshot-capture/`, a deterministic, fixture-backed, fail-closed read-only live snapshot capture contract surface. It adds capture gates, capture requests, provider targets, capture scope/bounds contracts, staged response + quarantine contracts, normalization/provenance/integrity/schema validation contracts, promotion/fixture-candidate contracts, certification/report models, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs. This layer is capture-contract-only, local-only, read-only, deterministic, non-networked in standard CI, non-wallet, non-signing, non-sending, non-executing, non-advisory, non-rendering, non-DOM, and non-persistent. Phase 78 does not implement runtime live capture.
+
 ## Phase 77 Update
 
 Phase 77 extends `apps/dashboard/` with `src/manual-confirm-dry-run-control/`, a deterministic, fixture-backed, fail-closed manual-confirm dry-run control contract surface. It adds dry-run gates, operator intent contracts, dry-run preflight checks, dry-run control contracts, dispatch blocks, abort/cancellation contracts, confirmation snapshots, simulated decisions, evidence bundles, capability audits, safety invariants, readiness/certification/smoke/replay linkage models, scorecards, dry-run reports, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs. This layer is dry-run-contract-only, local-only, read-only, deterministic, non-networked in standard CI, non-wallet, non-signing, non-sending, non-executing, non-advisory, non-rendering, non-DOM, and non-persistent. Dry-run control does not unlock live/manual trading or execution.
