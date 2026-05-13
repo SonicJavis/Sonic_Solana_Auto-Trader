@@ -1,5 +1,9 @@
 # Architecture
 
+## Phase 74 Update
+
+Phase 74 extends `apps/dashboard/` with `src/controlled-live-smoke-harness/`, a deterministic, fixture-backed, local-only, read-only, disabled-by-default controlled live-smoke harness expansion. It provides smoke plan contracts, manual-enable policies, guard contracts, read-only check contracts, eligibility models, environment contracts, secret-denial contracts, result/skip fixtures, failure taxonomy, certification reports, readiness view models, API contracts, and selectors — all as pure fixture-backed contract models. Live smoke remains disabled/skipped by default in standard CI. All Phase 74 surfaces link to Phase 65/69/70/73 source fixture snapshots. This layer is contract-only, local-only, read-only, deterministic, fail-closed, non-networked in standard CI, non-wallet, non-signing, non-sending, non-executing, non-advisory, non-rendering, non-DOM, and non-persistent.
+
 ## Phase 73 Update
 
 Phase 73 extends `apps/dashboard/` with `src/provider-aware-replay-import-contracts/`, a deterministic, fixture-backed, local-only, read-only, fail-closed replay-import-contract surface that links Phase 72 scenario-generator fixtures with Phase 71 ingestion fixtures plus Phase 70/68/67/66/65 lineage references. It bundles optional replay import candidate/manifests/source metadata/compatibility/gate policy/import plan/rejection/normalization/validation/integrity/provenance/linkage/report/view/API/selector models for planning and validation only. This layer is contract-only, local-only, read-only, deterministic, non-networked in standard CI, non-wallet, non-signing, non-sending, non-executing, non-advisory, non-rendering, non-DOM, and non-persistent.

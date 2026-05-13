@@ -1,5 +1,9 @@
 # Safety Rules
 
+## Phase 74 Safety Extension
+
+Phase 74 controlled live-smoke harness expansion surfaces must remain contract-only in standard CI, local-only, read-only, deterministic, fail-closed, disabled/skipped by default, non-advisory, and fixture-backed. Phase 74 does not permit live smoke execution, live network calls in standard CI, scheduled smoke jobs, runtime monitoring/collectors, secrets/API key requirements in deterministic paths, provider expansion, live replay import, live ingestion, filesystem reads/writes, wallet/private key handling, signing, transaction sending, transaction building, execution, recommendations, trading signals, investment advice, route handlers, runtime request handling, UI rendering, DOM access, persistence, background/scheduled jobs, real orders, real funds, or real PnL. A smoke certification report does not authorize execution or imply trading safety.
+
 ## Phase 73 Safety Extension
 
 Phase 73 provider-aware replay import contract surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, replay-import-contract-only, optional-planning-only, and non-advisory. Phase 73 does not permit live replay import, runtime replay import, live ingestion, runtime ingestion, filesystem import, runtime collectors, default live network access, secrets/API key requirements, provider expansion, live reconciliation, write methods, wallet/private key handling, signing, transaction sending, transaction building, execution, recommendations, trading signals, investment advice, route handlers, runtime request handling, UI rendering, DOM access, persistence, filesystem writes, queue/background/scheduled jobs, real orders, real funds, or real PnL.

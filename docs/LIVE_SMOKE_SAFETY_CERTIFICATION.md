@@ -188,3 +188,7 @@ Phase 69 does not implement live provider smoke execution, runtime request handl
 ### Next phase guidance
 
 **Phase 70 — Provider Reliability Telemetry and Drift Audit v1** is preview only and **not implemented** in Phase 69.
+
+## Phase 74 Linkage
+
+Phase 74 controlled live-smoke harness expansion references Phase 69 certification fixture names via `sourceCertificationFixtureName` in each smoke plan. This linkage is deterministic and fixture-backed only — no live certification checks run in standard CI. Phase 74 smoke certification reports do not authorize execution or imply trading safety.
