@@ -1,5 +1,23 @@
 # Phase Log
 
+## Phase 78 — Read-Only Live Snapshot Capture Contracts v1
+
+- Adds `apps/dashboard/src/read-only-live-snapshot-capture/` deterministic, fixture-backed, fail-closed read-only live snapshot capture contracts:
+  - `types.ts` / `capture-gates.ts` / `capture-requests.ts` / `provider-targets.ts`
+  - `capture-scope.ts` / `capture-bounds.ts` / `response-staging.ts` / `quarantine-contracts.ts`
+  - `normalization-contracts.ts` / `provenance-contracts.ts` / `integrity-contracts.ts` / `schema-validation.ts`
+  - `promotion-candidates.ts` / `fixture-candidate-contracts.ts` / `capture-certification.ts` / `capture-reports.ts` / `reports.ts`
+  - `builders.ts` / `fixtures.ts` / `view-models.ts` / `contracts.ts` / `selectors.ts` / `normalization.ts` / `validation.ts` / `capabilities.ts` / `index.ts`
+- Adds 8 deterministic required fixtures for ready, readiness-missing-blocked, provider-ineligible-blocked, scope-too-wide-rejected, staged-quarantine, schema-warning-review, promotion-manual-review, and unsafe-capability-rejected scenarios.
+- Links source fixture snapshots across Phase 65/66/67/68/69/70/72/73/74/75/76/77 where practical.
+- Exports all Phase 78 helpers through `apps/dashboard/src/index.ts`.
+- Extends dashboard/read-only-api capability surfaces with Phase 78 snapshot capture flags.
+- Adds `tests/phase78.test.ts`.
+- Adds `docs/READ_ONLY_LIVE_SNAPSHOT_CAPTURE.md`.
+- **Snapshot capture remains contract-only and does not implement runtime live capture. READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked. No live network in standard CI. No scheduled capture. No provider expansion. No wallet/signing/sending/execution. No order creation/transaction building. No dispatch. No recommendations/signals/advice. No real orders/funds/PnL. No filesystem writes/persistence. No route handlers/runtime requests. No UI/DOM. No background jobs.**
+
+**Next phase guidance:** Phase 79 — Live Snapshot to Replay Parity Audit Contracts v1 (preview only; not implemented).
+
 ## Phase 77 — Manual-Confirm Live Dry-Run Control Contracts v1
 
 - Adds `apps/dashboard/src/manual-confirm-dry-run-control/` deterministic, fixture-backed, fail-closed manual-confirm dry-run control contracts:
@@ -17,7 +35,7 @@
 - Adds `docs/MANUAL_CONFIRM_DRY_RUN_CONTROL.md`.
 - **Dry-run control remains contract-only and does not unlock live/manual trading or execution. READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked. No live network in standard CI. No provider expansion. No wallet/signing/sending/execution. No recommendations/signals/advice. No real orders/funds/PnL. No scheduled jobs/runtime monitoring/runtime collectors. No filesystem writes/persistence. No route handlers/runtime requests. No UI/DOM. No background jobs.**
 
-**Next phase guidance:** Phase 78 — Read-Only Live Snapshot Capture Contracts v1 (preview only; not implemented).
+**Next phase guidance:** Phase 78 — Read-Only Live Snapshot Capture Contracts v1 (implemented in this phase).
 
 ## Phase 76 — Manual-Confirm Live Readiness Contracts v1
 

@@ -1,5 +1,9 @@
 # Safety Rules
 
+## Phase 78 Safety Extension
+
+Phase 78 read-only live snapshot capture surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, capture-contract-only, and non-advisory. Phase 78 does not permit runtime live capture, unlock authority, live/manual trading, LIMITED_LIVE/FULL_AUTO unlock, order creation, transaction building/sending, dispatch, wallet/private key handling, signing, execution, recommendations, trading signals, investment advice, real orders/funds/PnL, default live network access, scheduled capture jobs, runtime monitoring/collectors, provider expansion, secrets/API key requirements in deterministic paths, persistence/filesystem writes, route handlers/runtime requests, UI rendering, DOM access, or background jobs. Capture reports do not authorize live trading or imply profitability.
+
 ## Phase 77 Safety Extension
 
 Phase 77 manual-confirm dry-run control surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, dry-run-contract-only, and non-advisory. Phase 77 does not permit unlock authority, live/manual trading, LIMITED_LIVE/FULL_AUTO unlock, order creation, transaction construction/sending, dispatch, wallet/private key handling, signing, execution, recommendations, trading signals, investment advice, real orders/funds/PnL, default live network access, scheduled jobs, runtime monitoring/collectors, provider expansion, secrets/API key requirements in deterministic paths, persistence/filesystem writes, route handlers/runtime requests, UI rendering, DOM access, or background jobs. Dry-run reports do not authorize live trading or execution and do not imply profitability.
