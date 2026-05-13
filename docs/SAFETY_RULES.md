@@ -1,5 +1,9 @@
 # Safety Rules
 
+## Phase 73 Safety Extension
+
+Phase 73 provider-aware replay import contract surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, replay-import-contract-only, optional-planning-only, and non-advisory. Phase 73 does not permit live replay import, runtime replay import, live ingestion, runtime ingestion, filesystem import, runtime collectors, default live network access, secrets/API key requirements, provider expansion, live reconciliation, write methods, wallet/private key handling, signing, transaction sending, transaction building, execution, recommendations, trading signals, investment advice, route handlers, runtime request handling, UI rendering, DOM access, persistence, filesystem writes, queue/background/scheduled jobs, real orders, real funds, or real PnL.
+
 ## Phase 72 Safety Extension
 
 Phase 72 historical snapshot scenario generator surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, scenario-generator-contract-only, replay-safe, and non-advisory. Phase 72 does not permit live generation, runtime generation, live ingestion, runtime ingestion, live replay import, runtime collectors, default live network access, secrets/API key requirements, provider expansion, live reconciliation, write methods, wallet/private key handling, signing, transaction sending, transaction building, execution, recommendations, trading signals, investment advice, route handlers, runtime request handling, UI rendering, DOM access, persistence, filesystem writes, queue/background/scheduled jobs, real orders, real funds, or real PnL.

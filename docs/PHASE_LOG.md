@@ -1,5 +1,20 @@
 # Phase Log
 
+## Phase 73 — Optional Provider-Aware Replay Import Contracts v1
+
+- Adds `apps/dashboard/src/provider-aware-replay-import-contracts/` deterministic, fixture-backed, read-only replay-import-contract layer:
+  - `types.ts` plus model files for import candidates/manifests/source metadata/compatibility/gate policy/import plan/rejection/normalization/validation/integrity/provenance/scenario/snapshot/reliability/quality linkage/report surfaces
+  - `builders.ts` / `fixtures.ts` with 8 deterministic required fixtures
+  - `view-models.ts` / `contracts.ts` / `selectors.ts` / `normalization.ts` / `validation.ts` / `capabilities.ts` / `index.ts`
+- Exports all Phase 73 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard/read-only-api capability surfaces with Phase 73 replay-import flags
+- Adds `tests/phase73.test.ts`
+- Adds `docs/PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS.md`
+- **No live replay import. No runtime replay import. No live ingestion. No runtime ingestion. No filesystem import. No runtime collectors. No default live network. No secrets/API keys required. No provider expansion. No live reconciliation. No write methods. No wallet/signing/sending/execution. No recommendations/signals/investment advice. No real orders/funds/PnL. No route handlers/runtime requests. No UI/DOM. No persistence/filesystem writes/background jobs.**
+- FULL_AUTO and LIMITED_LIVE remain locked
+
+**Next phase guidance:** Phase 74 — Controlled Live Smoke-Test Harness Expansion v1 (preview only; not implemented).
+
 ## Phase 72 — Deterministic Scenario Generator from Historical Snapshots v1
 
 - Mandatory preflight hardening completed for Phase 71 in this PR before Phase 72 build:

@@ -423,9 +423,9 @@ describe('Phase 72 — safety scan assertions', () => {
     }
   });
 
-  it('docs retain Phase 73 as preview-only, not implemented', () => {
+  it('docs retain Phase 74 as preview-only, not implemented', () => {
     const doc = readFileSync(resolve(REPO_ROOT, 'docs/HISTORICAL_SNAPSHOT_SCENARIO_GENERATOR.md'), 'utf-8');
-    expect(doc).toContain('Phase 73');
+    expect(doc).toContain('Phase 74');
     expect(doc.toLowerCase()).toContain('preview only');
     expect(doc.toLowerCase()).toContain('not implemented');
   });

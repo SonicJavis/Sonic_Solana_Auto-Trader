@@ -37,6 +37,8 @@ Phase 71 follows this policy by shipping a complete historical snapshot ingestio
 
 Phase 72 follows this policy by shipping a complete deterministic historical snapshot scenario generator vertical slice (generation/source-selection/scenario/replay/lineage/rule/integrity/validation/rejection/linkage/report/contract/selector/validation/test/doc surfaces) while keeping live generation/runtime generation/ingestion/replay-import/network/write/wallet/execution/advisory capability locked.
 
+Phase 73 follows this policy by shipping a complete deterministic provider-aware replay import contract vertical slice (candidate/manifest/source/compatibility/gate/import-plan/rejection/normalization/validation/integrity/provenance/linkage/report/contract/selector/validation/test/doc surfaces) while keeping live/runtime import and ingestion/network/filesystem/write/wallet/execution/advisory capability locked.
+
 ---
 
 ## What remains forbidden

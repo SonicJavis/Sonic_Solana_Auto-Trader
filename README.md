@@ -1,8 +1,21 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 72 — Deterministic Scenario Generator from Historical Snapshots v1**
+**Phase 73 — Optional Provider-Aware Replay Import Contracts v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 72.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 73.
+
+## Features (Phase 73 — adds to Phase 72)
+
+- Adds `apps/dashboard/src/provider-aware-replay-import-contracts/` deterministic, fixture-backed, optional replay-import contract vertical slice:
+  - 8 deterministic fixtures: clean import, stale warning, schema drift blocked, missing critical field rejected, quarantined blocked, replay-linked ready (fixture-only), reliability drift warning, cross-provider conflict rejected
+  - deterministic replay import candidate/manifest/source metadata/compatibility/gate policy/import plan/rejection/normalization/validation/integrity/provenance/scenario+snapshot+reliability+quality linkage/audit report/view/API/selector surfaces
+  - practical linkage to Phase 72/71/70/68/67/66/65 fixture snapshots
+- Adds Phase 73 capability flags with replay-import live/runtime/network/filesystem/secrets/write/wallet/signing/sending/execution/advisory/route/runtime/UI/DOM/persistence/background/real-order/real-funds/real-PnL/provider-expansion flags fixed to `false`
+- Adds `docs/PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS.md`
+- Adds `tests/phase73.test.ts`
+- **No live replay import. No runtime replay import. No live ingestion. No runtime ingestion. No filesystem import. No runtime collectors. No default live network. No secrets/API keys required. No provider expansion. No live reconciliation. No write methods. No wallet/private key/signing/sending/transaction building/execution logic. No recommendations/signals/investment advice. No real orders/funds/PnL. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/filesystem writes/background jobs.**
+
+**Next phase: Phase 74 — Controlled Live Smoke-Test Harness Expansion v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 72 — adds to Phase 71)
 
@@ -20,7 +33,7 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 - Adds `tests/phase72.test.ts`
 - **No live generation. No runtime generation. No live ingestion. No runtime ingestion. No live replay import. No runtime collectors. No default live network. No secrets/API keys required. No provider expansion. No live reconciliation. No write methods. No wallet/private key/signing/sending/transaction building/execution logic. No recommendations/signals/investment advice. No real orders/funds/PnL. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/filesystem writes/background jobs.**
 
-**Next phase: Phase 73 — Optional Provider-Aware Replay Import Contracts v1 (preview only; not implemented in this phase).**
+**Next phase: Phase 73 — Optional Provider-Aware Replay Import Contracts v1 (implemented in the current phase).**
 
 ## Features (Phase 71 — adds to Phase 70)
 
