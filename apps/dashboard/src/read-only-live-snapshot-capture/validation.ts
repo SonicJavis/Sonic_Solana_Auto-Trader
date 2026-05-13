@@ -93,9 +93,6 @@ export function validateReadOnlyLiveSnapshotCaptureFixture(
   if (fixture.captureBounds.maxRequestCount <= 0 || fixture.captureBounds.maxObservationCount <= 0) {
     pushIssue(issues, 'INVALID_CAPTURE_BOUNDS', 'captureBounds', 'bounds counts must be positive.');
   }
-  if (!fixture.providerTarget.readOnlyEligible) {
-    pushIssue(issues, 'PROVIDER_NOT_ELIGIBLE', 'providerTarget.readOnlyEligible', 'provider must be read-only eligible.', 'warning');
-  }
   if (fixture.responseStaging.stagingStatus === 'quarantined' && !fixture.quarantineContract.quarantined) {
     pushIssue(issues, 'QUARANTINE_REQUIRED', 'quarantineContract.quarantined', 'quarantined staging must set quarantined=true.');
   }

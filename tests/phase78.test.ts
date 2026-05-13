@@ -181,10 +181,10 @@ describe('Phase 78 — Read-Only Live Snapshot Capture Contracts', () => {
     expect(Object.isFrozen(a.sourcePhase77FixtureSnapshot)).toBe(true);
     for (const file of PHASE_78_FILES) {
       const source = readFileSync(resolve(PHASE_78_SRC, file), 'utf8');
-      expect(source).not.toMatch(/Date\\.now\\(/);
-      expect(source).not.toMatch(/Math\\.random\\(/);
-      expect(source).not.toMatch(/randomUUID\\(/);
-      expect(source).not.toMatch(/\\bfetch\\(/);
+      expect(source).not.toMatch(/Date\.now\(/);
+      expect(source).not.toMatch(/Math\.random\(/);
+      expect(source).not.toMatch(/randomUUID\(/);
+      expect(source).not.toMatch(/\bfetch\(/);
     }
   });
 

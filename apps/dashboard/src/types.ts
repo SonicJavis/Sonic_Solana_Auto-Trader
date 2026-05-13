@@ -1772,7 +1772,6 @@ export interface DashboardUiShellCapabilities {
   readonly liveSnapshotRuntimeCollectors: false;
   readonly liveSnapshotProviderExpansion: false;
   readonly liveSnapshotSecretsRequired: false;
-  readonly liveSnapshotApiKeyRequired: false;
   readonly liveSnapshotFilesystemWrites: false;
   readonly liveSnapshotPersistence: false;
   readonly liveSnapshotRouteHandlers: false;

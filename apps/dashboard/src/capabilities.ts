@@ -1690,7 +1690,6 @@ export function getDashboardUiShellCapabilities(): DashboardUiShellCapabilities 
     liveSnapshotRuntimeCollectors: false,
     liveSnapshotProviderExpansion: false,
     liveSnapshotSecretsRequired: false,
-    liveSnapshotApiKeyRequired: false,
     liveSnapshotFilesystemWrites: false,
     liveSnapshotPersistence: false,
     liveSnapshotRouteHandlers: false,
