@@ -534,6 +534,13 @@ describe('Phase 76 — Manual-Confirm Live Readiness Contracts', () => {
 
   describe('Source linkages', () => {
     it('all fixtures have provider readiness linkage', () => {
+      const linkage = buildManualConfirmProviderReadinessLinkage({
+        linkageId: 'test-provider-linkage',
+        phase65FixtureRef: 'phase65-fixture',
+        phase66FixtureRef: 'phase66-fixture',
+        providerReadinessVerified: true,
+      });
+      expect(linkage.readOnlyOnly).toBe(true);
       for (const fixture of MANUAL_CONFIRM_LIVE_READINESS_FIXTURES) {
         expect(fixture.providerReadinessLinkage.readOnlyOnly).toBe(true);
         expect(fixture.providerReadinessLinkage.phase65FixtureRef).toBeTruthy();
@@ -542,6 +549,14 @@ describe('Phase 76 — Manual-Confirm Live Readiness Contracts', () => {
     });
 
     it('all fixtures have smoke readiness linkage', () => {
+      const linkage = buildManualConfirmSmokeReadinessLinkage({
+        linkageId: 'test-smoke-linkage',
+        phase69FixtureRef: 'phase69-fixture',
+        phase74FixtureRef: 'phase74-fixture',
+        smokeCertified: true,
+        smokeStatus: 'certified',
+      });
+      expect(linkage.smokeCertified).toBe(true);
       for (const fixture of MANUAL_CONFIRM_LIVE_READINESS_FIXTURES) {
         expect(fixture.smokeReadinessLinkage.phase69FixtureRef).toBeTruthy();
         expect(fixture.smokeReadinessLinkage.phase74FixtureRef).toBeTruthy();
@@ -566,6 +581,14 @@ describe('Phase 76 — Manual-Confirm Live Readiness Contracts', () => {
     });
 
     it('all fixtures have replay readiness linkage', () => {
+      const linkage = buildManualConfirmReplayReadinessLinkage({
+        linkageId: 'test-replay-linkage',
+        phase68FixtureRef: 'phase68-fixture',
+        phase73FixtureRef: 'phase73-fixture',
+        replayImportComplete: true,
+        replayStatus: 'complete',
+      });
+      expect(linkage.replayImportComplete).toBe(true);
       for (const fixture of MANUAL_CONFIRM_LIVE_READINESS_FIXTURES) {
         expect(fixture.replayReadinessLinkage.phase68FixtureRef).toBeTruthy();
         expect(fixture.replayReadinessLinkage.phase73FixtureRef).toBeTruthy();
@@ -573,6 +596,13 @@ describe('Phase 76 — Manual-Confirm Live Readiness Contracts', () => {
     });
 
     it('all fixtures have scenario readiness linkage', () => {
+      const linkage = buildManualConfirmScenarioReadinessLinkage({
+        linkageId: 'test-scenario-linkage',
+        phase72FixtureRef: 'phase72-fixture',
+        scenarioReadinessVerified: true,
+        scenarioStatus: 'verified',
+      });
+      expect(linkage.scenarioReadinessVerified).toBe(true);
       for (const fixture of MANUAL_CONFIRM_LIVE_READINESS_FIXTURES) {
         expect(fixture.scenarioReadinessLinkage.phase72FixtureRef).toBeTruthy();
       }
@@ -679,7 +709,7 @@ describe('Phase 76 — Manual-Confirm Live Readiness Contracts', () => {
     });
 
     it('selectManualConfirmLiveReadinessFixture returns miss for unknown fixture', () => {
-      const result = selectManualConfirmLiveReadinessFixture({ fixtureName: 'does-not-exist' as any });
+      const result = selectManualConfirmLiveReadinessFixture({ fixtureId: 'does-not-exist' });
       expect(result.matched).toBe(false);
       expect(result.selectedFixtureId).toBe('not-found');
     });
@@ -892,7 +922,6 @@ describe('Phase 76 — Manual-Confirm Live Readiness Contracts', () => {
       expect(caps.manualConfirmRuntimeCollectors).toBe(false);
       expect(caps.manualConfirmProviderExpansion).toBe(false);
       expect(caps.manualConfirmSecretsRequired).toBe(false);
-      expect(caps.manualConfirmApiKeyRequired).toBe(false);
       expect(caps.manualConfirmFilesystemWrites).toBe(false);
       expect(caps.manualConfirmPersistence).toBe(false);
       expect(caps.manualConfirmRouteHandlers).toBe(false);

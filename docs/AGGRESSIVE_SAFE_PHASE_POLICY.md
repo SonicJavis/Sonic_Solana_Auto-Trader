@@ -41,6 +41,8 @@ Phase 73 follows this policy by shipping a complete deterministic provider-aware
 
 Phase 75 follows this policy by shipping a complete deterministic pre-live safety review gate and read-only certification vertical slice (gate/checklist/certification/evidence/signoff/approval/rejection/audit/invariant/linkage/scorecard/report/view/API/selector/validation/test/doc surfaces) while keeping unlock authority, live/manual trading, execution, wallet/signing/sending, advisory, and runtime/network capability locked.
 
+Phase 76 follows this policy by shipping a complete deterministic manual-confirm live readiness contract vertical slice (readiness gate/approval/phrase/role-separation/cooling-off/risk/checklist/evidence/rejection/audit/invariant/linkage/scorecard/report/view/API/selector/validation/test/doc surfaces) while keeping unlock authority, manual/live trading, execution, wallet/signing/sending, advisory, and runtime/network capability locked.
+
 ---
 
 ## What remains forbidden

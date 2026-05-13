@@ -1,8 +1,21 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 75 — Pre-Live Safety Review Gate and Read-Only Certification v1**
+**Phase 76 — Manual-Confirm Live Readiness Contracts v1**
 
-A defensive intelligence and control foundation for Solana trading. No live/manual trading or execution in any phase up to and including Phase 75.
+A defensive intelligence and control foundation for Solana trading. No live/manual trading or execution in any phase up to and including Phase 76.
+
+## Features (Phase 76 — adds to Phase 75)
+
+- Adds `apps/dashboard/src/manual-confirm-live-readiness/` deterministic, fixture-backed, fail-closed manual-confirm readiness contract vertical slice:
+  - 8 deterministic fixtures: manual-confirm-readiness-complete, missing-prelive-certification-blocked, smoke-readiness-warning-review-required, role-separation-violation-rejected, confirmation-phrase-missing-blocked, cooling-off-required-pending, unsafe-capability-rejected, documentation-review-warning
+  - readiness gate / approval policy / confirmation phrase / role separation / cooling-off / risk acknowledgement / operator checklist / preflight evidence / rejection / capability audit / invariant / linkage / scorecard / readiness report / view / API / selector surfaces
+  - practical linkage to Phase 65/66/67/68/69/70/72/73/74/75 fixture snapshots
+- Adds Phase 76 capability flags with unlock/manual-live/live/execution/wallet/signing/sending/advisory/live-network/scheduled/runtime-monitoring/provider-expansion/persistence/filesystem/route/runtime/UI/DOM/background/real-order/real-funds/real-PnL flags fixed to `false`
+- Adds `docs/MANUAL_CONFIRM_LIVE_READINESS.md`
+- Adds `tests/phase76.test.ts`
+- **Manual-confirm readiness is contract-only and does not authorize live trading or execution. READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked. No manual-live implementation. No order creation or transaction building/signing/sending. No recommendations/signals/advice. No real orders/funds/PnL. No live network in standard CI. No scheduled jobs/runtime monitoring. No provider expansion. No secrets/API keys required in deterministic paths. No filesystem/persistence. No route/runtime/UI/DOM/background jobs.**
+
+**Next phase: Phase 77 — Manual-Confirm Live Dry-Run Control Contracts v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 75 — adds to Phase 74)
 
@@ -15,7 +28,7 @@ A defensive intelligence and control foundation for Solana trading. No live/manu
 - Adds `tests/phase75.test.ts`
 - **Certification is contract-only and does not authorize live trading or execution. READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked. No live network in standard CI. No secrets/API keys required in deterministic paths. No provider expansion. No wallet/signing/sending/execution. No recommendations/signals/advice. No real orders/funds/PnL. No scheduled jobs/runtime monitoring/runtime collectors. No filesystem reads/writes. No persistence. No route handlers/runtime requests. No UI/DOM. No background jobs.**
 
-**Next phase: Phase 76 — Manual-Confirm Live Readiness Contracts v1 (preview only; not implemented in this phase).**
+**Next phase: Phase 76 — Manual-Confirm Live Readiness Contracts v1 (implemented in the current phase).**
 
 ## Features (Phase 74 — adds to Phase 73)
 

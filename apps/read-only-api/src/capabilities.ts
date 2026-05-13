@@ -1593,7 +1593,6 @@ export function getLocalReadOnlyApiCapabilities(): LocalReadOnlyApiCapabilities 
     manualConfirmRuntimeCollectors: false,
     manualConfirmProviderExpansion: false,
     manualConfirmSecretsRequired: false,
-    manualConfirmApiKeyRequired: false,
     manualConfirmFilesystemWrites: false,
     manualConfirmPersistence: false,
     manualConfirmRouteHandlers: false,

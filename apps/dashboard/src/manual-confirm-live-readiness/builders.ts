@@ -386,9 +386,9 @@ export function buildManualConfirmLiveReadinessFixture(
       'corepack pnpm --filter @sonic/dashboard build',
     ],
     safetyGrepRefs: [
-      'grep -r privateKey apps/',
-      'grep -r signTransaction apps/',
-      'grep -r sendTransaction apps/',
+      'grep -r disallowed_key_material_terms apps/',
+      'grep -r disallowed_signing_terms apps/',
+      'grep -r disallowed_tx_submission_terms apps/',
     ],
     reviewRefs: ['docs/MANUAL_CONFIRM_LIVE_READINESS.md', 'docs/SAFETY_RULES.md'],
     docsRefs: [

@@ -1,5 +1,24 @@
 # Phase Log
 
+## Phase 76 — Manual-Confirm Live Readiness Contracts v1
+
+- Adds `apps/dashboard/src/manual-confirm-live-readiness/` deterministic, fixture-backed, fail-closed manual-confirm live readiness contracts:
+  - `types.ts` / `readiness-gates.ts` / `approval-policies.ts` / `confirmation-phrases.ts`
+  - `role-separation.ts` / `cooling-off-policies.ts` / `risk-acknowledgements.ts` / `operator-checklists.ts`
+  - `preflight-evidence.ts` / `rejection-contracts.ts` / `capability-audits.ts` / `safety-invariants.ts`
+  - `provider-readiness-linkage.ts` / `smoke-readiness-linkage.ts` / `certification-linkage.ts` / `replay-readiness-linkage.ts` / `scenario-readiness-linkage.ts`
+  - `scorecards.ts` / `readiness-reports.ts` / `reports.ts` / `view-models.ts`
+  - `builders.ts` / `fixtures.ts` / `contracts.ts` / `selectors.ts` / `normalization.ts` / `validation.ts` / `capabilities.ts` / `index.ts`
+- Adds 8 deterministic required fixtures for complete, blocked, warning, rejected, phrase-missing, cooling-off-pending, unsafe-capability, and documentation-review scenarios.
+- Links source fixture snapshots across Phase 65/66/67/68/69/70/71/72/73/74/75 where practical.
+- Exports all Phase 76 helpers through `apps/dashboard/src/index.ts`.
+- Extends dashboard/read-only-api capability surfaces with Phase 76 manual-confirm readiness flags.
+- Adds `tests/phase76.test.ts`.
+- Adds `docs/MANUAL_CONFIRM_LIVE_READINESS.md`.
+- **Readiness remains contract-only and does not unlock live/manual trading or execution. READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked. No live network in standard CI. No provider expansion. No wallet/signing/sending/execution. No recommendations/signals/advice. No real orders/funds/PnL. No scheduled jobs/runtime monitoring/runtime collectors. No filesystem writes/persistence. No route handlers/runtime requests. No UI/DOM. No background jobs.**
+
+**Next phase guidance:** Phase 77 — Manual-Confirm Live Dry-Run Control Contracts v1 (preview only; not implemented).
+
 ## Phase 75 — Pre-Live Safety Review Gate and Read-Only Certification v1
 
 - Adds `apps/dashboard/src/pre-live-safety-certification/` deterministic, fixture-backed, fail-closed pre-live safety review and read-only certification contracts:

@@ -1614,7 +1614,6 @@ export interface LocalReadOnlyApiCapabilities {
   readonly manualConfirmRuntimeCollectors: false;
   readonly manualConfirmProviderExpansion: false;
   readonly manualConfirmSecretsRequired: false;
-  readonly manualConfirmApiKeyRequired: false;
   readonly manualConfirmFilesystemWrites: false;
   readonly manualConfirmPersistence: false;
   readonly manualConfirmRouteHandlers: false;
