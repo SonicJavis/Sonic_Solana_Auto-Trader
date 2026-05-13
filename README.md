@@ -1,8 +1,21 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 74 — Controlled Live Smoke-Test Harness Expansion v1**
+**Phase 75 — Pre-Live Safety Review Gate and Read-Only Certification v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 74.
+A defensive intelligence and control foundation for Solana trading. No live/manual trading or execution in any phase up to and including Phase 75.
+
+## Features (Phase 75 — adds to Phase 74)
+
+- Adds `apps/dashboard/src/pre-live-safety-certification/` deterministic, fixture-backed, fail-closed pre-live review and read-only certification contract vertical slice:
+  - 8 deterministic fixtures: complete-read-only-certification-ready, missing-smoke-certification-blocked, replay-import-incomplete-blocked, reliability-drift-warning-review-required, unsafe-capability-rejected, missing-codeql-review-blocked, manual-approval-required-pending, documentation-gap-warning
+  - safety gate / readiness checklist / certification contract / evidence bundle / signoff / approval / rejection / capability-audit / invariant / linkage / scorecard / report / view / API / selector surfaces
+  - practical linkage to Phase 65/66/67/68/69/70/71/72/73/74 fixture snapshots
+- Adds Phase 75 capability flags with all unlock/trading/execution/wallet/signing/sending/advisory/live-network/scheduled/runtime-monitoring/provider-expansion/persistence/filesystem/route/runtime/UI/DOM/background/real-order/real-funds/real-PnL flags fixed to `false`
+- Adds `docs/PRE_LIVE_SAFETY_CERTIFICATION.md`
+- Adds `tests/phase75.test.ts`
+- **Certification is contract-only and does not authorize live trading or execution. READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked. No live network in standard CI. No secrets/API keys required in deterministic paths. No provider expansion. No wallet/signing/sending/execution. No recommendations/signals/advice. No real orders/funds/PnL. No scheduled jobs/runtime monitoring/runtime collectors. No filesystem reads/writes. No persistence. No route handlers/runtime requests. No UI/DOM. No background jobs.**
+
+**Next phase: Phase 76 — Manual-Confirm Live Readiness Contracts v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 74 — adds to Phase 73)
 
@@ -15,7 +28,7 @@ A defensive intelligence and control foundation for Solana trading. No live trad
 - Adds `tests/phase74.test.ts` (93 tests)
 - **Live smoke disabled/skipped by default. No live network in standard CI. No scheduled smoke jobs. No runtime monitoring. No secrets/API keys required in deterministic paths. No provider expansion. No live replay import. No filesystem reads/writes. No persistence. No wallet/signing/sending/execution. No recommendations/signals/advice. No real orders/funds/PnL. No route handlers. No UI/DOM. No background jobs.**
 
-**Next phase: Phase 75 — Pre-Live Safety Review Gate and Read-Only Certification v1 (preview only; not implemented in this phase).**
+**Next phase: Phase 75 — Pre-Live Safety Review Gate and Read-Only Certification v1 (implemented in the current phase).**
 
 ## Features (Phase 73 — adds to Phase 72)
 

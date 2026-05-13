@@ -39,6 +39,8 @@ Phase 72 follows this policy by shipping a complete deterministic historical sna
 
 Phase 73 follows this policy by shipping a complete deterministic provider-aware replay import contract vertical slice (candidate/manifest/source/compatibility/gate/import-plan/rejection/normalization/validation/integrity/provenance/linkage/report/contract/selector/validation/test/doc surfaces) while keeping live/runtime import and ingestion/network/filesystem/write/wallet/execution/advisory capability locked.
 
+Phase 75 follows this policy by shipping a complete deterministic pre-live safety review gate and read-only certification vertical slice (gate/checklist/certification/evidence/signoff/approval/rejection/audit/invariant/linkage/scorecard/report/view/API/selector/validation/test/doc surfaces) while keeping unlock authority, live/manual trading, execution, wallet/signing/sending, advisory, and runtime/network capability locked.
+
 ---
 
 ## What remains forbidden

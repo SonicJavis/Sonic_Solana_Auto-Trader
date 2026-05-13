@@ -910,10 +910,10 @@ describe('Phase 74 — Controlled Live Smoke-Test Harness Expansion v1', () => {
     });
   });
 
-  describe('Phase 75 preview (not implemented)', () => {
-    it('no phase75 files exist', () => {
+  describe('Phase 76 preview (not implemented)', () => {
+    it('no phase76 files exist', () => {
       expect(() =>
-        readFileSync(resolve(REPO_ROOT, 'apps/dashboard/src/pre-live-safety-review-gate'), 'utf8'),
+        readFileSync(resolve(REPO_ROOT, 'apps/dashboard/src/manual-confirm-live-readiness-contracts'), 'utf8'),
       ).toThrow();
     });
   });
