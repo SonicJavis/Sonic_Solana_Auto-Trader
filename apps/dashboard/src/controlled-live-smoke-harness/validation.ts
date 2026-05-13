@@ -105,6 +105,9 @@ export function validateControlledLiveSmokeHarnessFixture(
   if (fixture.smokePlan.disabledByDefault !== true) {
     pushIssue(issues, 'SMOKE_PLAN_NOT_DISABLED', 'smokePlan.disabledByDefault', 'Smoke plan must be disabled by default.');
   }
+  // Runtime validation guard: liveNetworkDefault is typed as `false` but callers may pass
+  // mutated/deserialized objects where the value could differ at runtime.
+  // The `as unknown` cast preserves the runtime check despite the compile-time guarantee.
   if ((fixture.smokePlan.liveNetworkDefault as unknown) !== false) {
     pushIssue(issues, 'LIVE_NETWORK_DEFAULT_TRUE', 'smokePlan.liveNetworkDefault', 'liveNetworkDefault must be false.');
   }
@@ -141,6 +144,7 @@ export function validateControlledLiveSmokeHarnessSafety(
   const violations: string[] = [];
 
   if (fixture.smokePlan.disabledByDefault !== true) violations.push('smokePlan.disabledByDefault must be true');
+  // Runtime validation guard: see note in validateControlledLiveSmokeHarnessFixture above.
   if ((fixture.smokePlan.liveNetworkDefault as unknown) !== false) violations.push('smokePlan.liveNetworkDefault must be false');
   if (fixture.guardContract.liveNetworkAllowedByDefault !== false) violations.push('guardContract.liveNetworkAllowedByDefault must be false');
   if (fixture.manualEnablePolicy.allowsStandardCi !== false) violations.push('manualEnablePolicy.allowsStandardCi must be false');
