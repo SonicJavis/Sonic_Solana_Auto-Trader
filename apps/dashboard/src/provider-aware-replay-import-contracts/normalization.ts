@@ -1,0 +1,123 @@
+import {
+  PROVIDER_AWARE_REPLAY_IMPORT_CONTRACT_KINDS,
+  PROVIDER_AWARE_REPLAY_IMPORT_CONTRACT_NAMES,
+  PHASE_73_PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_GENERATED_AT,
+  PHASE_73_PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_SCHEMA_VERSION,
+  PHASE_73_PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_SOURCE,
+  type ProviderAwareReplayImportContractFixture,
+  type ProviderAwareReplayImportContractKind,
+  type ProviderAwareReplayImportContractName,
+} from './types.js';
+
+export function stableDeterministicProviderAwareReplayImportContractChecksum(content: string): string {
+  let hash = 2166136261;
+  for (let index = 0; index < content.length; index += 1) {
+    hash ^= content.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return `fnv1a32:${(hash >>> 0).toString(16).padStart(8, '0')}`;
+}
+
+function sortKeysDeep(value: unknown): unknown {
+  if (Array.isArray(value)) return value.map(sortKeysDeep);
+  if (value !== null && typeof value === 'object') {
+    return Object.entries(value as Record<string, unknown>)
+      .sort(([left], [right]) => left.localeCompare(right, 'en-US'))
+      .reduce<Record<string, unknown>>((accumulator, [key, nestedValue]) => {
+        accumulator[key] = sortKeysDeep(nestedValue);
+        return accumulator;
+      }, {});
+  }
+  return value;
+}
+
+function stablePrettyJsonStringify(value: unknown): string {
+  return `${JSON.stringify(sortKeysDeep(value), null, 2)}\n`;
+}
+
+export function isValidProviderAwareReplayImportContractName(
+  value: unknown,
+): value is ProviderAwareReplayImportContractName {
+  return typeof value === 'string' && (PROVIDER_AWARE_REPLAY_IMPORT_CONTRACT_NAMES as readonly string[]).includes(value);
+}
+
+export function isValidProviderAwareReplayImportContractKind(
+  value: unknown,
+): value is ProviderAwareReplayImportContractKind {
+  return typeof value === 'string' && (PROVIDER_AWARE_REPLAY_IMPORT_CONTRACT_KINDS as readonly string[]).includes(value);
+}
+
+export function isValidProviderAwareReplayImportContractGeneratedAt(
+  value: unknown,
+): value is typeof PHASE_73_PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_GENERATED_AT {
+  return value === PHASE_73_PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_GENERATED_AT;
+}
+
+export function isValidProviderAwareReplayImportContractSource(
+  value: unknown,
+): value is typeof PHASE_73_PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_SOURCE {
+  return value === PHASE_73_PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_SOURCE;
+}
+
+export function isValidProviderAwareReplayImportContractSchemaVersion(
+  value: unknown,
+): value is typeof PHASE_73_PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_SCHEMA_VERSION {
+  return value === PHASE_73_PROVIDER_AWARE_REPLAY_IMPORT_CONTRACTS_SCHEMA_VERSION;
+}
+
+export function normalizeProviderAwareReplayImportContractFixture(
+  fixture: ProviderAwareReplayImportContractFixture,
+): ProviderAwareReplayImportContractFixture {
+  return {
+    ...fixture,
+    schemaContract: {
+      ...fixture.schemaContract,
+      requiredFields: [...fixture.schemaContract.requiredFields].sort((left, right) => left.localeCompare(right, 'en-US')),
+      optionalFields: [...fixture.schemaContract.optionalFields].sort((left, right) => left.localeCompare(right, 'en-US')),
+      criticalFields: [...fixture.schemaContract.criticalFields].sort((left, right) => left.localeCompare(right, 'en-US')),
+    },
+    provenanceContract: {
+      ...fixture.provenanceContract,
+      sourcePhaseRefs: [...fixture.provenanceContract.sourcePhaseRefs].sort((left, right) => left - right),
+      sourceFixtureRefs: [...fixture.provenanceContract.sourceFixtureRefs].sort((left, right) => left.localeCompare(right, 'en-US')),
+      providerReliabilityRefs: [...fixture.provenanceContract.providerReliabilityRefs].sort((left, right) =>
+        left.localeCompare(right, 'en-US'),
+      ),
+      replayScenarioRefs: [...fixture.provenanceContract.replayScenarioRefs].sort((left, right) =>
+        left.localeCompare(right, 'en-US'),
+      ),
+      dataQualityRefs: [...fixture.provenanceContract.dataQualityRefs].sort((left, right) => left.localeCompare(right, 'en-US')),
+    },
+    validationContract: {
+      ...fixture.validationContract,
+      rules: [...fixture.validationContract.rules].sort((left, right) => left.localeCompare(right, 'en-US')),
+      rejectionReasons: [...fixture.validationContract.rejectionReasons].sort((left, right) => left.localeCompare(right, 'en-US')),
+      criticalFailureReasons: [...fixture.validationContract.criticalFailureReasons].sort((left, right) =>
+        left.localeCompare(right, 'en-US'),
+      ),
+      warningReasons: [...fixture.validationContract.warningReasons].sort((left, right) => left.localeCompare(right, 'en-US')),
+    },
+    sourcePhase65FixtureSnapshot: [...fixture.sourcePhase65FixtureSnapshot],
+    sourcePhase66FixtureSnapshot: [...fixture.sourcePhase66FixtureSnapshot],
+    sourcePhase67FixtureSnapshot: [...fixture.sourcePhase67FixtureSnapshot],
+    sourcePhase68FixtureSnapshot: [...fixture.sourcePhase68FixtureSnapshot],
+    sourcePhase69FixtureSnapshot: [...fixture.sourcePhase69FixtureSnapshot],
+    sourcePhase70FixtureSnapshot: [...fixture.sourcePhase70FixtureSnapshot],
+  };
+}
+
+export function serializeProviderAwareReplayImportContractFixture(
+  fixture: ProviderAwareReplayImportContractFixture,
+): string {
+  return stablePrettyJsonStringify(normalizeProviderAwareReplayImportContractFixture(fixture));
+}
+
+export function areProviderAwareReplayImportContractFixturesEqual(
+  left: ProviderAwareReplayImportContractFixture,
+  right: ProviderAwareReplayImportContractFixture,
+): boolean {
+  return (
+    stableDeterministicProviderAwareReplayImportContractChecksum(serializeProviderAwareReplayImportContractFixture(left)) ===
+    stableDeterministicProviderAwareReplayImportContractChecksum(serializeProviderAwareReplayImportContractFixture(right))
+  );
+}
