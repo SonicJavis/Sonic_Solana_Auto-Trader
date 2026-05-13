@@ -31,6 +31,8 @@ Phase 66 also follows this policy by shipping a complete multi-provider read-onl
 
 Phase 67 follows this policy by shipping a complete cross-provider data-quality and reconciliation vertical slice (issue taxonomy, comparison, mismatch detection, reconciliation policy/results, confidence scoring, provenance, enrichment contracts, reports, contracts, selectors, validation, tests, and docs) while keeping live/network/write/execution capability locked.
 
+Phase 70 follows this policy by shipping a complete provider reliability telemetry and drift-audit vertical slice (telemetry/freshness/reliability/drift/schema/conformance/linkage/report/contract/selector/validation/test/doc surfaces) while keeping live telemetry/network/runtime monitoring/write/wallet/execution/advisory capability locked.
+
 ---
 
 ## What remains forbidden

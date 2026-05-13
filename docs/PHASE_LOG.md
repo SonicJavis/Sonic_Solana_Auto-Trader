@@ -1,5 +1,23 @@
 # Phase Log
 
+## Phase 70 — Provider Reliability Telemetry and Drift Audit v1
+
+- Adds `apps/dashboard/src/provider-reliability-drift-audit/` deterministic, fixture-derived, read-only provider reliability telemetry and drift-audit vertical slice:
+  - `types.ts` — Phase 70 constants plus telemetry/freshness/reliability/drift/schema/conformance/instability/linkage/report/view/API/selector/validation/capability interfaces
+  - `telemetry-models.ts` / `freshness-models.ts` / `reliability-scoring.ts` / `drift-detection.ts` / `schema-drift.ts` / `confidence-trends.ts` / `instability-events.ts` / `stale-data-audits.ts` / `conformance-drift.ts` / `certification-linkage.ts` / `replay-drift-linkage.ts` / `reports.ts` — deterministic model builders
+  - `builders.ts` / `fixtures.ts` — deterministic fixture builder and list/map/get helpers (8 fixtures)
+  - `view-models.ts` / `contracts.ts` / `selectors.ts` — deterministic derived consumer surfaces
+  - `normalization.ts` / `validation.ts` — deterministic normalization/serialization/equality and structural+safety validation
+  - `capabilities.ts` / `index.ts` — capability flags and public exports
+- Exports all Phase 70 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard/read-only-api capability surfaces with Phase 70 reliability flags
+- Adds `tests/phase70.test.ts`
+- Adds `docs/PROVIDER_RELIABILITY_DRIFT_AUDIT.md`
+- **No live telemetry collection. No runtime monitoring. No default live network. No secrets/API keys required. No provider expansion. No live reconciliation. No live replay import. No write methods. No wallet/signing/sending/execution. No recommendations/signals/investment advice. No real orders/funds/PnL. No route handlers/runtime requests. No UI/DOM. No persistence/background jobs.**
+- FULL_AUTO and LIMITED_LIVE remain locked
+
+**Next phase guidance:** Phase 71 — Read-Only Historical Snapshot Ingestion Contracts v1 (preview only; not implemented).
+
 ## Phase 69 — Live Smoke Harness Expansion and Safety Certification v1
 
 - Adds `apps/dashboard/src/live-smoke-safety-certification/` deterministic, fixture-derived, disabled-by-default, read-only live-smoke safety-certification vertical slice:
