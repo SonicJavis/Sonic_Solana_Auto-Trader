@@ -1,8 +1,21 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 69 — Live Smoke Harness Expansion and Safety Certification v1**
+**Phase 70 — Provider Reliability Telemetry and Drift Audit v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 69.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 70.
+
+## Features (Phase 70 — adds to Phase 69)
+
+- Adds `apps/dashboard/src/provider-reliability-drift-audit/` deterministic, fixture-derived, local-only, read-only provider reliability telemetry and drift-audit vertical slice:
+  - 8 deterministic fixtures covering healthy stable telemetry, stale warning, schema drift fail-closed, conformance regression blocked, intermittent instability, cross-provider mismatch, certification drift blocked, and replay-linked drift scenarios
+  - deterministic telemetry sample, freshness model, reliability score, drift audit, schema drift, confidence trends, instability events, stale-data audits, conformance drift, certification linkage, replay-drift linkage, reports, view models, API contracts, selectors, normalization/serialization/equality, validation, and capabilities
+  - practical linkage to Phase 65/66/67/68/69 fixture snapshots
+- Adds Phase 70 capability flags with live-telemetry/network/runtime-monitoring/secret-requirement/write/wallet/signing/sending/execution/recommendation/signal/advice/route/runtime/UI/DOM/persistence/background/real-order/real-funds/real-PnL/provider-expansion flags fixed to `false`
+- Adds `docs/PROVIDER_RELIABILITY_DRIFT_AUDIT.md`
+- Adds `tests/phase70.test.ts`
+- **No live telemetry collection. No runtime monitoring. No default live network. No secrets/API keys required. No provider expansion. No live reconciliation. No live replay import. No write methods. No wallet/private key/signing/sending/transaction building/execution logic. No recommendations/signals/investment advice. No real orders/funds/PnL. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/background jobs.**
+
+**Next phase: Phase 71 — Read-Only Historical Snapshot Ingestion Contracts v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 69 — adds to Phase 68)
 

@@ -1,5 +1,9 @@
 # Safety Rules
 
+## Phase 70 Safety Extension
+
+Phase 70 provider reliability telemetry and drift-audit surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, telemetry-model-only, drift-audit-only, and non-advisory. Phase 70 does not permit live telemetry collection, runtime monitoring, default live network access, secrets/API key requirements, provider expansion, live reconciliation, live replay import, write methods, wallet/private key handling, signing, transaction sending, transaction building, execution, recommendations, trading signals, investment advice, route handlers, runtime request handling, UI rendering, DOM access, persistence, filesystem writes, queue/background/scheduled jobs, real orders, real funds, or real PnL.
+
 ## Phase 69 Safety Extension
 
 Phase 69 live-smoke safety-certification surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, disabled-by-default, and fail-closed. Phase 69 does not permit live smoke execution in standard CI, default live network access, secrets/API key requirements, provider expansion, live reconciliation, live replay import, write methods, wallet/private key handling, signing, transaction sending, transaction building, execution, recommendations, trading signals, investment advice, route handlers, runtime request handling, UI rendering, DOM access, persistence, filesystem writes, queue/background/scheduled jobs, real orders, real funds, or real PnL.
