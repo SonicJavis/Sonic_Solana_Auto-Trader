@@ -182,7 +182,7 @@ describe('Phase 77 — Manual-Confirm Live Dry-Run Control Contracts', () => {
     const fixture = buildManualConfirmDryRunControlFixture({ fixtureName: 'dry-run-control-ready' });
     const unsafe = {
       ...fixture,
-      dryRunGate: { ...fixture.dryRunGate, unlockAuthority: true as true },
+      dryRunGate: { ...fixture.dryRunGate, unlockAuthority: true as const },
       dryRunReport: { ...fixture.dryRunReport, decisionSummary: 'profit signal recommendation output' },
     };
     const result = validateManualConfirmDryRunControlFixture(unsafe as never);

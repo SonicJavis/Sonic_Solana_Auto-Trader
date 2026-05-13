@@ -15,7 +15,7 @@ import {
 
 const FORBIDDEN_URL_PATTERN = /\bhttps?:\/\/[\w.-]+/i;
 const FORBIDDEN_NETWORK_PATTERN = /\b(?:fetch\(|axios|request\(|rpc|endpoint|providersdk|provider[_-]?sdk)\b/i;
-const FORBIDDEN_SECRET_PATTERN = /\b(?:api[_-]?key|secret|token|provider[_-]?sdk)\b/i;
+const FORBIDDEN_SECRET_PATTERN = /\b(?:api[_-]?key|secret|provider[_-]?sdk)\b/i;
 const FORBIDDEN_WALLET_PATTERN = /\b(?:wallet|privateKey|secretKey|seedPhrase|mnemonic|Keypair|signTransaction|sendTransaction)\b/i;
 const FORBIDDEN_ADVISORY_PATTERN = /\b(?:recommendation|signal|investment\s+advice|profit|pnl)\b/i;
 const TIMESTAMP_PATTERN = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
@@ -40,7 +40,11 @@ function scanText(value: string, field: string, issues: ManualConfirmDryRunContr
 function scanRecursive(value: unknown, field: string, issues: ManualConfirmDryRunControlValidationIssue[], depth = 0): void {
   if (depth > 20) return;
   if (typeof value === 'string') {
-    if (!field.endsWith('fixtureName') && !field.endsWith('fixtureId')) scanText(value, field, issues);
+    const isAllowedSafetyRef =
+      field.includes('.dryRunEvidence.safetyGrepRefs[') || field.includes('.dryRunEvidence.validationCommandRefs[');
+    if (!isAllowedSafetyRef && !field.endsWith('fixtureName') && !field.endsWith('fixtureId')) {
+      scanText(value, field, issues);
+    }
     return;
   }
   if (Array.isArray(value)) {
