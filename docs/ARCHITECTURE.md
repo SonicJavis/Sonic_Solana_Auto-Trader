@@ -1,5 +1,9 @@
 # Architecture
 
+## Phase 77 Update
+
+Phase 77 extends `apps/dashboard/` with `src/manual-confirm-dry-run-control/`, a deterministic, fixture-backed, fail-closed manual-confirm dry-run control contract surface. It adds dry-run gates, operator intent contracts, dry-run preflight checks, dry-run control contracts, dispatch blocks, abort/cancellation contracts, confirmation snapshots, simulated decisions, evidence bundles, capability audits, safety invariants, readiness/certification/smoke/replay linkage models, scorecards, dry-run reports, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs. This layer is dry-run-contract-only, local-only, read-only, deterministic, non-networked in standard CI, non-wallet, non-signing, non-sending, non-executing, non-advisory, non-rendering, non-DOM, and non-persistent. Dry-run control does not unlock live/manual trading or execution.
+
 ## Phase 76 Update
 
 Phase 76 extends `apps/dashboard/` with `src/manual-confirm-live-readiness/`, a deterministic, fixture-backed, fail-closed manual-confirm live readiness contract surface. It adds readiness gates, approval policies, confirmation phrase contracts, role-separation/cooling-off/risk acknowledgement models, operator checklists, preflight evidence bundles, rejection/audit/invariant contracts, provider/smoke/certification/replay/scenario linkage models, scorecards, readiness reports, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs. This layer is readiness-contract-only, local-only, read-only, deterministic, non-networked in standard CI, non-wallet, non-signing, non-sending, non-executing, non-advisory, non-rendering, non-DOM, and non-persistent. Readiness does not unlock live/manual trading or execution.
