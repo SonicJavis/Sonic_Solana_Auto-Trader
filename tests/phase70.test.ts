@@ -399,7 +399,7 @@ describe('Phase 70 — capabilities and propagation', () => {
   it('phase capabilities expose required positive and negative flags', () => {
     const caps = getProviderReliabilityDriftAuditCapabilities();
     expect(caps.providerReliabilityDriftAudit).toBe(true);
-    expect(caps.providerReliabilityDriftDetection).toBe(true);
+    expect(caps.providerDriftDetection).toBe(true);
     expect(caps.providerReliabilityExecution).toBe(false);
     expect(caps.providerReliabilityRecommendations).toBe(false);
     expect(caps.providerReliabilityApiKeyRequired).toBe(false);
