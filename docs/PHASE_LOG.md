@@ -1,5 +1,24 @@
 # Phase Log
 
+## Phase 77 — Manual-Confirm Live Dry-Run Control Contracts v1
+
+- Adds `apps/dashboard/src/manual-confirm-dry-run-control/` deterministic, fixture-backed, fail-closed manual-confirm dry-run control contracts:
+  - `types.ts` / `dry-run-gates.ts` / `intent-contracts.ts` / `operator-intents.ts`
+  - `dry-run-preflight.ts` / `dry-run-controls.ts` / `dispatch-blocks.ts` / `abort-contracts.ts` / `cancellation-contracts.ts`
+  - `confirmation-snapshots.ts` / `simulated-decisions.ts` / `dry-run-evidence.ts`
+  - `capability-audits.ts` / `safety-invariants.ts` / `readiness-linkage.ts` / `certification-linkage.ts` / `smoke-linkage.ts` / `replay-linkage.ts`
+  - `scorecards.ts` / `dry-run-reports.ts` / `reports.ts` / `view-models.ts`
+  - `builders.ts` / `fixtures.ts` / `contracts.ts` / `selectors.ts` / `normalization.ts` / `validation.ts` / `capabilities.ts` / `index.ts`
+- Adds 8 deterministic required fixtures for ready, readiness-missing-blocked, evidence-incomplete-blocked, dispatch-attempt-blocked, cancellation-safe, abort-ready, unsafe-capability-rejected, and documentation-review scenarios.
+- Links source fixture snapshots across Phase 65/66/67/68/69/70/72/73/74/75/76 where practical.
+- Exports all Phase 77 helpers through `apps/dashboard/src/index.ts`.
+- Extends dashboard/read-only-api capability surfaces with Phase 77 dry-run control flags.
+- Adds `tests/phase77.test.ts`.
+- Adds `docs/MANUAL_CONFIRM_DRY_RUN_CONTROL.md`.
+- **Dry-run control remains contract-only and does not unlock live/manual trading or execution. READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked. No live network in standard CI. No provider expansion. No wallet/signing/sending/execution. No recommendations/signals/advice. No real orders/funds/PnL. No scheduled jobs/runtime monitoring/runtime collectors. No filesystem writes/persistence. No route handlers/runtime requests. No UI/DOM. No background jobs.**
+
+**Next phase guidance:** Phase 78 — Read-Only Live Snapshot Capture Contracts v1 (preview only; not implemented).
+
 ## Phase 76 — Manual-Confirm Live Readiness Contracts v1
 
 - Adds `apps/dashboard/src/manual-confirm-live-readiness/` deterministic, fixture-backed, fail-closed manual-confirm live readiness contracts:
@@ -17,7 +36,7 @@
 - Adds `docs/MANUAL_CONFIRM_LIVE_READINESS.md`.
 - **Readiness remains contract-only and does not unlock live/manual trading or execution. READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked. No live network in standard CI. No provider expansion. No wallet/signing/sending/execution. No recommendations/signals/advice. No real orders/funds/PnL. No scheduled jobs/runtime monitoring/runtime collectors. No filesystem writes/persistence. No route handlers/runtime requests. No UI/DOM. No background jobs.**
 
-**Next phase guidance:** Phase 77 — Manual-Confirm Live Dry-Run Control Contracts v1 (preview only; not implemented).
+**Next phase guidance:** Phase 77 — Manual-Confirm Live Dry-Run Control Contracts v1 (implemented in this phase).
 
 ## Phase 75 — Pre-Live Safety Review Gate and Read-Only Certification v1
 

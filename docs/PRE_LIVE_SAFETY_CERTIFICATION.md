@@ -128,4 +128,4 @@ Certification does not authorize live trading or execution.
 
 Next recommended phase (implemented): **Phase 76 — Manual-Confirm Live Readiness Contracts v1**.
 
-Next recommended preview-only phase: **Phase 77 — Manual-Confirm Live Dry-Run Control Contracts v1**.
+Next recommended preview-only phase: **Phase 77 — Manual-Confirm Live Dry-Run Control Contracts v1** (implemented in current repository state).

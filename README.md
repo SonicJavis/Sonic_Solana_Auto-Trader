@@ -1,8 +1,21 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 76 — Manual-Confirm Live Readiness Contracts v1**
+**Phase 77 — Manual-Confirm Live Dry-Run Control Contracts v1**
 
-A defensive intelligence and control foundation for Solana trading. No live/manual trading or execution in any phase up to and including Phase 76.
+A defensive intelligence and control foundation for Solana trading. No live/manual trading or execution in any phase up to and including Phase 77.
+
+## Features (Phase 77 — adds to Phase 76)
+
+- Adds `apps/dashboard/src/manual-confirm-dry-run-control/` deterministic, fixture-backed, fail-closed dry-run control contract vertical slice:
+  - 8 deterministic fixtures: dry-run-control-ready, missing-manual-confirm-readiness-blocked, preflight-evidence-incomplete-blocked, dispatch-attempt-blocked, cancellation-requested-safe, abort-state-ready, unsafe-capability-rejected, documentation-review-required
+  - dry-run gate / operator intent / preflight / dry-run control / dispatch block / abort / cancellation / confirmation snapshot / simulated decision / evidence / capability audit / invariant / linkage / scorecard / report / view / API / selector surfaces
+  - practical linkage to Phase 65/66/67/68/69/70/72/73/74/75/76 fixture snapshots
+- Adds Phase 77 capability flags with unlock/manual-live/live/execution/order/transaction/wallet/signing/sending/dispatch/advisory/live-network/scheduled/runtime-monitoring/provider-expansion/persistence/filesystem/route/runtime/UI/DOM/background/real-order/real-funds/real-PnL flags fixed to `false`
+- Adds `docs/MANUAL_CONFIRM_DRY_RUN_CONTROL.md`
+- Adds `tests/phase77.test.ts`
+- **Dry-run control is contract-only and does not authorize live trading or execution. READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked. No manual-live implementation. No order creation or transaction building/signing/sending. No dispatch/execution. No recommendations/signals/advice. No real orders/funds/PnL. No live network in standard CI. No scheduled jobs/runtime monitoring. No provider expansion. No secrets/API keys required in deterministic paths. No filesystem/persistence. No route/runtime/UI/DOM/background jobs.**
+
+**Next phase: Phase 78 — Read-Only Live Snapshot Capture Contracts v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 76 — adds to Phase 75)
 
