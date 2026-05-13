@@ -210,8 +210,60 @@ export function validateHistoricalSnapshotIngestionContractSafety(
   if (fixture.safety.localOnly !== true) violations.push('safety.localOnly must be true');
   if (fixture.safety.fixtureOnly !== true) violations.push('safety.fixtureOnly must be true');
   if (fixture.manifest.liveData !== false) violations.push('manifest.liveData must be false');
+  if (fixture.capabilityFlags.historicalSnapshotLiveIngestion !== false)
+    violations.push('historicalSnapshotLiveIngestion must be false');
+  if (fixture.capabilityFlags.historicalSnapshotRuntimeIngestion !== false)
+    violations.push('historicalSnapshotRuntimeIngestion must be false');
+  if (fixture.capabilityFlags.historicalSnapshotLiveNetworkAccess !== false)
+    violations.push('historicalSnapshotLiveNetworkAccess must be false');
+  if (fixture.capabilityFlags.historicalSnapshotRuntimeCollectors !== false)
+    violations.push('historicalSnapshotRuntimeCollectors must be false');
+  if (fixture.capabilityFlags.historicalSnapshotSecretsRequired !== false)
+    violations.push('historicalSnapshotSecretsRequired must be false');
+  if (fixture.capabilityFlags.historicalSnapshotApiKeyRequired !== false)
+    violations.push('historicalSnapshotApiKeyRequired must be false');
+  if (fixture.capabilityFlags.historicalSnapshotWriteMethods !== false)
+    violations.push('historicalSnapshotWriteMethods must be false');
+  if (fixture.capabilityFlags.historicalSnapshotWalletLogic !== false)
+    violations.push('historicalSnapshotWalletLogic must be false');
+  if (fixture.capabilityFlags.historicalSnapshotPrivateKeyHandling !== false)
+    violations.push('historicalSnapshotPrivateKeyHandling must be false');
+  if (fixture.capabilityFlags.historicalSnapshotSigning !== false)
+    violations.push('historicalSnapshotSigning must be false');
+  if (fixture.capabilityFlags.historicalSnapshotTransactionSending !== false)
+    violations.push('historicalSnapshotTransactionSending must be false');
   if (fixture.capabilityFlags.historicalSnapshotExecution !== false)
     violations.push('historicalSnapshotExecution must be false');
+  if (fixture.capabilityFlags.historicalSnapshotTradingSignals !== false)
+    violations.push('historicalSnapshotTradingSignals must be false');
+  if (fixture.capabilityFlags.historicalSnapshotRecommendations !== false)
+    violations.push('historicalSnapshotRecommendations must be false');
+  if (fixture.capabilityFlags.historicalSnapshotInvestmentAdvice !== false)
+    violations.push('historicalSnapshotInvestmentAdvice must be false');
+  if (fixture.capabilityFlags.historicalSnapshotRouteHandlers !== false)
+    violations.push('historicalSnapshotRouteHandlers must be false');
+  if (fixture.capabilityFlags.historicalSnapshotRuntimeRequests !== false)
+    violations.push('historicalSnapshotRuntimeRequests must be false');
+  if (fixture.capabilityFlags.historicalSnapshotUiRendering !== false)
+    violations.push('historicalSnapshotUiRendering must be false');
+  if (fixture.capabilityFlags.historicalSnapshotDomAccess !== false)
+    violations.push('historicalSnapshotDomAccess must be false');
+  if (fixture.capabilityFlags.historicalSnapshotPersistence !== false)
+    violations.push('historicalSnapshotPersistence must be false');
+  if (fixture.capabilityFlags.historicalSnapshotFilesystemWrites !== false)
+    violations.push('historicalSnapshotFilesystemWrites must be false');
+  if (fixture.capabilityFlags.historicalSnapshotBackgroundJobs !== false)
+    violations.push('historicalSnapshotBackgroundJobs must be false');
+  if (fixture.capabilityFlags.historicalSnapshotScheduledJobs !== false)
+    violations.push('historicalSnapshotScheduledJobs must be false');
+  if (fixture.capabilityFlags.historicalSnapshotRealOrders !== false)
+    violations.push('historicalSnapshotRealOrders must be false');
+  if (fixture.capabilityFlags.historicalSnapshotRealFunds !== false)
+    violations.push('historicalSnapshotRealFunds must be false');
+  if (fixture.capabilityFlags.historicalSnapshotRealPnL !== false)
+    violations.push('historicalSnapshotRealPnL must be false');
+  if (fixture.capabilityFlags.historicalSnapshotProviderExpansion !== false)
+    violations.push('historicalSnapshotProviderExpansion must be false');
   return { safe: violations.length === 0, violations };
 }
 

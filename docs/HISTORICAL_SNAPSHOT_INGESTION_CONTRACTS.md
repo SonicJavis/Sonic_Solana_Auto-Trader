@@ -2,6 +2,15 @@
 
 ## Phase 71 — Read-Only Historical Snapshot Ingestion Contracts v1
 
+### Post-merge hardening update (Phase 72 preflight)
+
+Phase 72 preflight hardening updates were applied to Phase 71 in this PR:
+
+- source snapshot array order is now preserved in normalization (no implicit sorting)
+- source snapshot arrays are copied and frozen per fixture (no shared references to imported arrays)
+- `validateHistoricalSnapshotIngestionContractSafety()` now rejects each unsafe capability flag independently
+- regression tests were added to lock these behaviors and prevent regressions
+
 ### Purpose
 
 Phase 71 adds `apps/dashboard/src/historical-snapshot-ingestion-contracts/` as a deterministic, fixture-derived, local-only, read-only historical snapshot ingestion contract layer for manifest, schema, provenance, normalization, validation, freshness, integrity, import-plan, rejection, linkage, report, and API/selectors surfaces.

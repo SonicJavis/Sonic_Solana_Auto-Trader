@@ -1,5 +1,28 @@
 # Phase Log
 
+## Phase 72 — Deterministic Scenario Generator from Historical Snapshots v1
+
+- Mandatory preflight hardening completed for Phase 71 in this PR before Phase 72 build:
+  - source snapshot array order preserved during normalization
+  - source snapshot arrays copied/frozen per fixture to avoid shared imported references
+  - `validateHistoricalSnapshotIngestionContractSafety()` expanded to reject each unsafe flag independently
+  - Phase 71 regression tests added for normalized fixture validity, source immutability, and full safety-flag rejection coverage
+- Adds `apps/dashboard/src/historical-snapshot-scenario-generator/` deterministic, fixture-derived, read-only historical snapshot scenario generation vertical slice:
+  - `types.ts` — Phase 72 constants plus generation plan/source selection/scenario descriptor/replay descriptor/lineage/generation rules/integrity/validation/rejection/quality/reliability/risk/report/view/API/selector/validation/capability interfaces
+  - `generation-plans.ts` / `source-selection.ts` / `scenario-descriptors.ts` / `replay-descriptors.ts` / `lineage-models.ts` / `generation-rules.ts` / `integrity-contracts.ts` / `validation-contracts.ts` / `rejection-contracts.ts` / `quality-linkage.ts` / `reliability-linkage.ts` / `risk-linkage.ts` / `reports.ts` — deterministic model builders
+  - `builders.ts` / `fixtures.ts` — deterministic fixture builder and list/map/get helpers (8 fixtures)
+  - `view-models.ts` / `contracts.ts` / `selectors.ts` — deterministic derived consumer surfaces
+  - `normalization.ts` / `validation.ts` — deterministic normalization/serialization/equality and structural+safety validation
+  - `capabilities.ts` / `index.ts` — capability flags and public exports
+- Exports all Phase 72 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard/read-only-api capability surfaces with Phase 72 scenario-generation flags
+- Adds `tests/phase72.test.ts`
+- Adds `docs/HISTORICAL_SNAPSHOT_SCENARIO_GENERATOR.md`
+- **No live generation. No runtime generation. No live ingestion. No runtime ingestion. No live replay import. No runtime collectors. No default live network. No secrets/API keys required. No provider expansion. No live reconciliation. No write methods. No wallet/signing/sending/execution. No recommendations/signals/investment advice. No real orders/funds/PnL. No route handlers/runtime requests. No UI/DOM. No persistence/filesystem writes/background jobs.**
+- FULL_AUTO and LIMITED_LIVE remain locked
+
+**Next phase guidance:** Phase 73 — Optional Provider-Aware Replay Import Contracts v1 (preview only; not implemented).
+
 ## Phase 71 — Read-Only Historical Snapshot Ingestion Contracts v1
 
 - Adds `apps/dashboard/src/historical-snapshot-ingestion-contracts/` deterministic, fixture-derived, read-only historical snapshot ingestion contracts vertical slice:

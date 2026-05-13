@@ -1,5 +1,11 @@
 # Architecture
 
+## Phase 72 Update
+
+Phase 72 extends `apps/dashboard/` with `src/historical-snapshot-scenario-generator/`, a deterministic, fixture-derived, local-only, read-only historical snapshot scenario-generation contract surface built directly on hardened Phase 71 historical snapshot ingestion fixtures and preserving practical linkage to Phase 70 reliability drift fixtures, Phase 68 replay scenarios, Phase 67 cross-provider quality fixtures, Phase 66 multi-provider foundation fixtures, and Phase 65 first adapter fixtures. It bundles generation plans, source selection, generated scenario descriptors, replay descriptors, lineage models, generation rules, integrity/validation/rejection contracts, quality/reliability/risk linkage, audit reports, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs in one aggressive-safe vertical slice. This layer is fixture-only, local-only, read-only, deterministic, fail-closed, non-networked in standard CI, non-wallet, non-signing, non-sending, non-executing, non-advisory, non-rendering, non-DOM, and non-persistent.
+
+Phase 72 preflight also hardens Phase 71 by preserving source snapshot array order in normalization, copying/freezing source snapshot arrays per fixture, and expanding the Phase 71 safety helper to reject each unsafe capability flag independently.
+
 ## Phase 71 Update
 
 Phase 71 extends `apps/dashboard/` with `src/historical-snapshot-ingestion-contracts/`, a deterministic, fixture-derived, local-only, read-only historical snapshot ingestion contract surface built directly on Phase 70 provider reliability drift-audit fixtures and preserving practical linkage to Phase 69 live-smoke safety certification fixtures, Phase 68 provider-aware replay fixtures, Phase 67 cross-provider quality fixtures, Phase 66 multi-provider foundation fixtures, and Phase 65 first adapter fixtures. It bundles snapshot manifest/source metadata/schema/provenance/normalization/validation/freshness/integrity/import/rejection/replay-linkage/reliability-linkage/report/view/API/selector/capability surfaces in one aggressive-safe vertical slice. This layer is fixture-only, local-only, read-only, deterministic, fail-closed, non-networked in standard CI, non-wallet, non-signing, non-sending, non-executing, non-advisory, non-rendering, non-DOM, and non-persistent.

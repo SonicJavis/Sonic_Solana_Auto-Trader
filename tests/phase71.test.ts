@@ -325,6 +325,20 @@ describe('Phase 71 — selectors, normalization, serialization, equality', () =>
     expect(checksum).toMatch(/^fnv1a32:[0-9a-f]{8}$/);
     expect(stableDeterministicHistoricalSnapshotIngestionContractChecksum('phase71-check')).toBe(checksum);
   });
+
+  it('normalization preserves source snapshot array order', () => {
+    const fixture = clone(HISTORICAL_SNAPSHOT_INGESTION_CONTRACT_FIXTURES[0]!);
+    const customOrder = [
+      FIRST_READ_ONLY_PROVIDER_ADAPTER_NAMES[2]!,
+      FIRST_READ_ONLY_PROVIDER_ADAPTER_NAMES[0]!,
+      FIRST_READ_ONLY_PROVIDER_ADAPTER_NAMES[1]!,
+    ];
+    const normalized = normalizeHistoricalSnapshotIngestionContractFixture({
+      ...fixture,
+      sourcePhase65FixtureSnapshot: customOrder as never,
+    } as never);
+    expect(normalized.sourcePhase65FixtureSnapshot).toEqual(customOrder);
+  });
 });
 
 describe('Phase 71 — validation and safety', () => {
@@ -333,6 +347,28 @@ describe('Phase 71 — validation and safety', () => {
       expect(validateHistoricalSnapshotIngestionContractFixture(fixture).valid).toBe(true);
       expect(validateHistoricalSnapshotIngestionContractSafety(fixture).safe).toBe(true);
     }
+  });
+
+  it('source snapshots are copied/frozen and do not share imported source array references', () => {
+    const fixture = HISTORICAL_SNAPSHOT_INGESTION_CONTRACT_FIXTURES[0]!;
+    expect(fixture.sourcePhase65FixtureSnapshot).toEqual(FIRST_READ_ONLY_PROVIDER_ADAPTER_NAMES);
+    expect(fixture.sourcePhase66FixtureSnapshot).toEqual(MULTI_PROVIDER_READ_ONLY_FOUNDATION_NAMES);
+    expect(fixture.sourcePhase67FixtureSnapshot).toEqual(CROSS_PROVIDER_DATA_QUALITY_NAMES);
+    expect(fixture.sourcePhase68FixtureSnapshot).toEqual(PROVIDER_AWARE_REPLAY_SCENARIO_NAMES);
+    expect(fixture.sourcePhase69FixtureSnapshot).toEqual(LIVE_SMOKE_SAFETY_CERTIFICATION_NAMES);
+    expect(fixture.sourcePhase70FixtureSnapshot).toEqual(PROVIDER_RELIABILITY_DRIFT_AUDIT_NAMES);
+    expect(fixture.sourcePhase65FixtureSnapshot).not.toBe(FIRST_READ_ONLY_PROVIDER_ADAPTER_NAMES);
+    expect(fixture.sourcePhase66FixtureSnapshot).not.toBe(MULTI_PROVIDER_READ_ONLY_FOUNDATION_NAMES);
+    expect(fixture.sourcePhase67FixtureSnapshot).not.toBe(CROSS_PROVIDER_DATA_QUALITY_NAMES);
+    expect(fixture.sourcePhase68FixtureSnapshot).not.toBe(PROVIDER_AWARE_REPLAY_SCENARIO_NAMES);
+    expect(fixture.sourcePhase69FixtureSnapshot).not.toBe(LIVE_SMOKE_SAFETY_CERTIFICATION_NAMES);
+    expect(fixture.sourcePhase70FixtureSnapshot).not.toBe(PROVIDER_RELIABILITY_DRIFT_AUDIT_NAMES);
+    expect(Object.isFrozen(fixture.sourcePhase65FixtureSnapshot)).toBe(true);
+    expect(Object.isFrozen(fixture.sourcePhase66FixtureSnapshot)).toBe(true);
+    expect(Object.isFrozen(fixture.sourcePhase67FixtureSnapshot)).toBe(true);
+    expect(Object.isFrozen(fixture.sourcePhase68FixtureSnapshot)).toBe(true);
+    expect(Object.isFrozen(fixture.sourcePhase69FixtureSnapshot)).toBe(true);
+    expect(Object.isFrozen(fixture.sourcePhase70FixtureSnapshot)).toBe(true);
   });
 
   it('rejects unsafe live/runtime/capability drift', () => {
@@ -369,6 +405,25 @@ describe('Phase 71 — validation and safety', () => {
     expect(validation.issues.some(issue => issue.code === 'UNSAFE_WALLET_REFERENCE')).toBe(true);
     expect(validation.issues.some(issue => issue.code === 'UNSAFE_NETWORK_REFERENCE')).toBe(true);
     expect(validation.issues.some(issue => issue.code === 'MUTATED_PHASE70_SOURCE_SNAPSHOT')).toBe(true);
+  });
+
+  it('safety helper rejects each unsafe capability flag independently', () => {
+    const fixture = clone(HISTORICAL_SNAPSHOT_INGESTION_CONTRACT_FIXTURES[0]!);
+    const capabilityEntries = Object.keys(fixture.capabilityFlags).filter(
+      key => key.startsWith('historicalSnapshot') && key !== 'historicalSnapshotIngestionContracts',
+    );
+    const unsafeFlags = capabilityEntries.filter(key => fixture.capabilityFlags[key as keyof typeof fixture.capabilityFlags] === false);
+
+    for (const key of unsafeFlags) {
+      const unsafe = clone(fixture);
+      unsafe.capabilityFlags = {
+        ...unsafe.capabilityFlags,
+        [key]: true,
+      } as never;
+      const safety = validateHistoricalSnapshotIngestionContractSafety(unsafe as never);
+      expect(safety.safe).toBe(false);
+      expect(safety.violations.some(violation => violation.toLowerCase().includes(key.toLowerCase()))).toBe(true);
+    }
   });
 });
 
