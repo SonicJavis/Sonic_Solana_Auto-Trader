@@ -218,6 +218,10 @@ environmentSummary, resultSummary, failureSummary, safetySummary
 
 ## Capability Flags
 
+## Phase 75 Linkage
+
+Phase 75 pre-live safety certification consumes Phase 74 fixture names as deterministic smoke-readiness linkage inputs only. This linkage is contract-only and fail-closed, and does not enable live/manual trading, execution, or any runtime smoke behavior.
+
 ### Positive flags (true)
 `controlledLiveSmokeHarness`, `deterministicSmokeHarnessFixtures`, `disabledByDefaultSmokePlans`,
 `manualEnableSmokePolicies`, `smokeGuardContracts`, `readOnlySmokeCheckContracts`,

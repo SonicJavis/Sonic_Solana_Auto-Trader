@@ -1,5 +1,9 @@
 # Safety Rules
 
+## Phase 75 Safety Extension
+
+Phase 75 pre-live safety certification surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, certification-contract-only, and non-advisory. Phase 75 does not permit unlock authority, live/manual trading, LIMITED_LIVE/FULL_AUTO unlock, transaction building, transaction sending, wallet/private key handling, signing, execution, recommendations, trading signals, investment advice, real orders/funds/PnL, default live network access, scheduled jobs, runtime monitoring/collectors, provider expansion, secrets/API key requirements in deterministic paths, persistence/filesystem writes, route handlers/runtime requests, UI rendering, DOM access, or background jobs. Certification reports do not authorize live trading or execution and do not imply profitability.
+
 ## Phase 74 Safety Extension
 
 Phase 74 controlled live-smoke harness expansion surfaces must remain contract-only in standard CI, local-only, read-only, deterministic, fail-closed, disabled/skipped by default, non-advisory, and fixture-backed. Phase 74 does not permit live smoke execution, live network calls in standard CI, scheduled smoke jobs, runtime monitoring/collectors, secrets/API key requirements in deterministic paths, provider expansion, live replay import, live ingestion, filesystem reads/writes, wallet/private key handling, signing, transaction sending, transaction building, execution, recommendations, trading signals, investment advice, route handlers, runtime request handling, UI rendering, DOM access, persistence, background/scheduled jobs, real orders, real funds, or real PnL. A smoke certification report does not authorize execution or imply trading safety.

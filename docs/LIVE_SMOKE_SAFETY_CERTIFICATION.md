@@ -192,3 +192,7 @@ Phase 69 does not implement live provider smoke execution, runtime request handl
 ## Phase 74 Linkage
 
 Phase 74 controlled live-smoke harness expansion references Phase 69 certification fixture names via `sourceCertificationFixtureName` in each smoke plan. This linkage is deterministic and fixture-backed only — no live certification checks run in standard CI. Phase 74 smoke certification reports do not authorize execution or imply trading safety.
+
+## Phase 75 Linkage
+
+Phase 75 pre-live safety certification references Phase 69 fixture names for smoke readiness certification linkage. This remains deterministic and fixture-backed, with no unlock authority and no execution authorization.

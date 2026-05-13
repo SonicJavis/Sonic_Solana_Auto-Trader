@@ -1,5 +1,24 @@
 # Phase Log
 
+## Phase 75 — Pre-Live Safety Review Gate and Read-Only Certification v1
+
+- Adds `apps/dashboard/src/pre-live-safety-certification/` deterministic, fixture-backed, fail-closed pre-live safety review and read-only certification contracts:
+  - `types.ts` / `safety-gates.ts` / `readiness-checklists.ts` / `certification-contracts.ts`
+  - `evidence-bundles.ts` / `signoff-models.ts` / `approval-policies.ts` / `rejection-contracts.ts`
+  - `capability-audits.ts` / `safety-invariants.ts`
+  - `provider-readiness-linkage.ts` / `replay-readiness-linkage.ts` / `scenario-readiness-linkage.ts` / `smoke-readiness-linkage.ts` / `risk-readiness-linkage.ts`
+  - `scorecards.ts` / `certification-reports.ts` / `reports.ts` / `view-models.ts`
+  - `builders.ts` / `fixtures.ts` / `contracts.ts` / `selectors.ts` / `normalization.ts` / `validation.ts` / `capabilities.ts` / `index.ts`
+- Adds 8 deterministic required fixtures for complete-ready, missing-smoke blocked, replay-import incomplete blocked, reliability warning review-required, unsafe-capability rejected, missing-codeql-review blocked, manual-approval pending, and documentation-gap warning scenarios.
+- Links source fixture snapshots across Phase 65/66/67/68/69/70/71/72/73/74 where practical.
+- Exports all Phase 75 helpers through `apps/dashboard/src/index.ts`.
+- Extends dashboard/read-only-api capability surfaces with Phase 75 pre-live certification flags.
+- Adds `tests/phase75.test.ts`.
+- Adds `docs/PRE_LIVE_SAFETY_CERTIFICATION.md`.
+- **Certification remains contract-only and does not unlock live/manual trading or execution. READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked. No live network in standard CI. No secrets/API keys required in deterministic paths. No provider expansion. No wallet/signing/sending/execution. No recommendations/signals/advice. No real orders/funds/PnL. No scheduled jobs/runtime monitoring/runtime collectors. No filesystem writes/persistence. No route handlers/runtime requests. No UI/DOM. No background jobs.**
+
+**Next phase guidance:** Phase 76 — Manual-Confirm Live Readiness Contracts v1 (preview only; not implemented).
+
 ## Phase 74 — Controlled Live Smoke-Test Harness Expansion v1
 
 - Adds `apps/dashboard/src/controlled-live-smoke-harness/` deterministic, fixture-backed, disabled-by-default live-smoke harness contracts:
