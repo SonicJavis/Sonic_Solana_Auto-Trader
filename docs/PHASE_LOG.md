@@ -1,5 +1,23 @@
 # Phase Log
 
+## Phase 71 — Read-Only Historical Snapshot Ingestion Contracts v1
+
+- Adds `apps/dashboard/src/historical-snapshot-ingestion-contracts/` deterministic, fixture-derived, read-only historical snapshot ingestion contracts vertical slice:
+  - `types.ts` — Phase 71 constants plus manifest/source/schema/provenance/normalization/validation/freshness/integrity/import/rejection/replay-linkage/reliability-linkage/report/view/API/selector/validation/capability interfaces
+  - `snapshot-manifests.ts` / `source-metadata.ts` / `schema-contracts.ts` / `provenance-contracts.ts` / `normalization-contracts.ts` / `validation-contracts.ts` / `freshness-contracts.ts` / `integrity-contracts.ts` / `import-plans.ts` / `rejection-contracts.ts` / `replay-linkage.ts` / `reliability-linkage.ts` / `reports.ts` — deterministic contract builders
+  - `builders.ts` / `fixtures.ts` — deterministic fixture builder and list/map/get helpers (8 fixtures)
+  - `view-models.ts` / `contracts.ts` / `selectors.ts` — deterministic derived consumer surfaces
+  - `normalization.ts` / `validation.ts` — deterministic normalization/serialization/equality and structural+safety validation
+  - `capabilities.ts` / `index.ts` — capability flags and public exports
+- Exports all Phase 71 helpers through `apps/dashboard/src/index.ts`
+- Extends dashboard/read-only-api capability surfaces with Phase 71 snapshot-ingestion flags
+- Adds `tests/phase71.test.ts`
+- Adds `docs/HISTORICAL_SNAPSHOT_INGESTION_CONTRACTS.md`
+- **No live ingestion. No runtime ingestion. No runtime collectors. No default live network. No secrets/API keys required. No provider expansion. No live reconciliation. No live replay import. No write methods. No wallet/signing/sending/execution. No recommendations/signals/investment advice. No real orders/funds/PnL. No route handlers/runtime requests. No UI/DOM. No persistence/filesystem writes/background jobs.**
+- FULL_AUTO and LIMITED_LIVE remain locked
+
+**Next phase guidance:** Phase 72 — Deterministic Scenario Generator from Historical Snapshots v1 (preview only; not implemented).
+
 ## Phase 70 — Provider Reliability Telemetry and Drift Audit v1
 
 - Adds `apps/dashboard/src/provider-reliability-drift-audit/` deterministic, fixture-derived, read-only provider reliability telemetry and drift-audit vertical slice:

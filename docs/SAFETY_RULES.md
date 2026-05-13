@@ -1,5 +1,9 @@
 # Safety Rules
 
+## Phase 71 Safety Extension
+
+Phase 71 historical snapshot ingestion contract surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, contract-only, import-model-only, and non-advisory. Phase 71 does not permit live ingestion, runtime ingestion, runtime collectors, default live network access, secrets/API key requirements, provider expansion, live reconciliation, live replay import, write methods, wallet/private key handling, signing, transaction sending, transaction building, execution, recommendations, trading signals, investment advice, route handlers, runtime request handling, UI rendering, DOM access, persistence, filesystem writes, queue/background/scheduled jobs, real orders, real funds, or real PnL.
+
 ## Phase 70 Safety Extension
 
 Phase 70 provider reliability telemetry and drift-audit surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, telemetry-model-only, drift-audit-only, and non-advisory. Phase 70 does not permit live telemetry collection, runtime monitoring, default live network access, secrets/API key requirements, provider expansion, live reconciliation, live replay import, write methods, wallet/private key handling, signing, transaction sending, transaction building, execution, recommendations, trading signals, investment advice, route handlers, runtime request handling, UI rendering, DOM access, persistence, filesystem writes, queue/background/scheduled jobs, real orders, real funds, or real PnL.
