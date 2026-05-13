@@ -1,5 +1,22 @@
 # Phase Log
 
+## Phase 74 — Controlled Live Smoke-Test Harness Expansion v1
+
+- Adds `apps/dashboard/src/controlled-live-smoke-harness/` deterministic, fixture-backed, disabled-by-default live-smoke harness contracts:
+  - `types.ts` / `smoke-plans.ts` / `manual-enable-policies.ts` / `guard-contracts.ts` / `read-only-check-contracts.ts`
+  - `eligibility-models.ts` / `environment-contracts.ts` / `secret-denial-contracts.ts` / `result-fixtures.ts` / `skip-fixtures.ts`
+  - `failure-taxonomy.ts` / `certification-reports.ts` / `readiness-view-models.ts` / `reports.ts` / `view-models.ts`
+  - `builders.ts` / `fixtures.ts` / `contracts.ts` / `selectors.ts` / `normalization.ts` / `validation.ts` / `capabilities.ts` / `index.ts`
+  - 8 deterministic required fixtures referencing Phase 65/69/70/73 source snapshots
+- Exports all Phase 74 helpers through `apps/dashboard/src/index.ts`
+- Extends `DashboardUiShellCapabilities` and `LocalReadOnlyApiCapabilities` with Phase 74 smoke harness flags
+- Adds `tests/phase74.test.ts` (93 tests, all passing)
+- Adds `docs/CONTROLLED_LIVE_SMOKE_HARNESS.md`
+- **Live smoke disabled/skipped by default. No live network in standard CI. No scheduled smoke jobs. No runtime monitoring. No secrets/API keys required in deterministic paths. No provider expansion. No live replay import. No filesystem reads/writes. No persistence. No wallet/signing/sending/execution. No recommendations/signals/advice. No real orders/funds/PnL. No route handlers/runtime requests. No UI/DOM. No background jobs.**
+- FULL_AUTO and LIMITED_LIVE remain locked
+
+**Next phase guidance:** Phase 75 — Pre-Live Safety Review Gate and Read-Only Certification v1 (preview only; not implemented).
+
 ## Phase 73 — Optional Provider-Aware Replay Import Contracts v1
 
 - Adds `apps/dashboard/src/provider-aware-replay-import-contracts/` deterministic, fixture-backed, read-only replay-import-contract layer:

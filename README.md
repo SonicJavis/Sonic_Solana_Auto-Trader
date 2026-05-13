@@ -1,8 +1,21 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 73 — Optional Provider-Aware Replay Import Contracts v1**
+**Phase 74 — Controlled Live Smoke-Test Harness Expansion v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 73.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 74.
+
+## Features (Phase 74 — adds to Phase 73)
+
+- Adds `apps/dashboard/src/controlled-live-smoke-harness/` deterministic, fixture-backed, disabled-by-default live-smoke harness contract vertical slice:
+  - 8 deterministic fixtures: default-disabled-smoke-plan, manual-trigger-required-plan, standard-ci-smoke-skipped, missing-manual-enable-blocked, unsafe-capability-smoke-rejected, reliability-drift-smoke-warning, replay-import-linked-smoke-plan, read-only-provider-smoke-ready-contract
+  - smoke plan / manual-enable policy / guard contract / read-only check contract / eligibility model / environment contract / secret-denial contract / result fixture / skip fixture / failure taxonomy / certification report / readiness view model / API contract / selector surfaces
+  - Phase 65/69/70/73 source fixture snapshot linkage
+- Adds Phase 74 capability flags with smoke live/network/CI/scheduled/monitoring/secrets/wallet/signing/sending/execution/advisory/route/UI/DOM/persistence/background/real-order/real-funds/real-PnL/provider-expansion flags fixed to `false`
+- Adds `docs/CONTROLLED_LIVE_SMOKE_HARNESS.md`
+- Adds `tests/phase74.test.ts` (93 tests)
+- **Live smoke disabled/skipped by default. No live network in standard CI. No scheduled smoke jobs. No runtime monitoring. No secrets/API keys required in deterministic paths. No provider expansion. No live replay import. No filesystem reads/writes. No persistence. No wallet/signing/sending/execution. No recommendations/signals/advice. No real orders/funds/PnL. No route handlers. No UI/DOM. No background jobs.**
+
+**Next phase: Phase 75 — Pre-Live Safety Review Gate and Read-Only Certification v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 73 — adds to Phase 72)
 
