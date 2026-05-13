@@ -1,5 +1,9 @@
 # Safety Rules
 
+## Phase 72 Safety Extension
+
+Phase 72 historical snapshot scenario generator surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, scenario-generator-contract-only, replay-safe, and non-advisory. Phase 72 does not permit live generation, runtime generation, live ingestion, runtime ingestion, live replay import, runtime collectors, default live network access, secrets/API key requirements, provider expansion, live reconciliation, write methods, wallet/private key handling, signing, transaction sending, transaction building, execution, recommendations, trading signals, investment advice, route handlers, runtime request handling, UI rendering, DOM access, persistence, filesystem writes, queue/background/scheduled jobs, real orders, real funds, or real PnL.
+
 ## Phase 71 Safety Extension
 
 Phase 71 historical snapshot ingestion contract surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, contract-only, import-model-only, and non-advisory. Phase 71 does not permit live ingestion, runtime ingestion, runtime collectors, default live network access, secrets/API key requirements, provider expansion, live reconciliation, live replay import, write methods, wallet/private key handling, signing, transaction sending, transaction building, execution, recommendations, trading signals, investment advice, route handlers, runtime request handling, UI rendering, DOM access, persistence, filesystem writes, queue/background/scheduled jobs, real orders, real funds, or real PnL.

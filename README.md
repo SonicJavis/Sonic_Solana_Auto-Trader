@@ -1,8 +1,26 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 71 — Read-Only Historical Snapshot Ingestion Contracts v1**
+**Phase 72 — Deterministic Scenario Generator from Historical Snapshots v1**
 
-A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 71.
+A defensive intelligence and control foundation for Solana trading. No live trading or execution in any phase up to and including Phase 72.
+
+## Features (Phase 72 — adds to Phase 71)
+
+- Adds `apps/dashboard/src/historical-snapshot-scenario-generator/` deterministic, fixture-derived, local-only, read-only historical snapshot scenario-generation vertical slice:
+  - 8 deterministic fixtures covering healthy clean generation, stale warning generation, schema drift block, missing critical field rejection, partial quarantine, replay-linked replay-ready generation, reliability drift generation, and cross-provider conflict generation
+  - deterministic generation plans, source selection, generated scenario descriptors, replay descriptors, lineage models, generation rules, integrity/validation/rejection contracts, quality/reliability/risk linkage, audit reports, view models, API contracts, selectors, normalization/serialization/equality, validation, and capabilities
+  - practical linkage to Phase 71/70/68/67/66/65 fixture snapshots
+- Includes mandatory Phase 71 preflight hardening in this PR:
+  - source snapshot array order preserved during normalization
+  - source snapshot arrays copied/frozen per fixture (no shared imported array references)
+  - safety helper expanded to reject each unsafe capability flag independently
+  - regression tests for normalized fixture validity, source immutability, and full safety-flag rejection coverage
+- Adds Phase 72 capability flags with live-generation/runtime-generation/live-ingestion/runtime-ingestion/live-replay-import/network/runtime-collector/secret-requirement/write/wallet/signing/sending/execution/recommendation/signal/advice/route/runtime/UI/DOM/persistence/filesystem/background/scheduled/real-order/real-funds/real-PnL/provider-expansion flags fixed to `false`
+- Adds `docs/HISTORICAL_SNAPSHOT_SCENARIO_GENERATOR.md`
+- Adds `tests/phase72.test.ts`
+- **No live generation. No runtime generation. No live ingestion. No runtime ingestion. No live replay import. No runtime collectors. No default live network. No secrets/API keys required. No provider expansion. No live reconciliation. No write methods. No wallet/private key/signing/sending/transaction building/execution logic. No recommendations/signals/investment advice. No real orders/funds/PnL. No endpoints/routes/handlers/runtime request handling. No UI rendering/DOM access. No persistence/filesystem writes/background jobs.**
+
+**Next phase: Phase 73 — Optional Provider-Aware Replay Import Contracts v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 71 — adds to Phase 70)
 

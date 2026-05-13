@@ -35,6 +35,8 @@ Phase 70 follows this policy by shipping a complete provider reliability telemet
 
 Phase 71 follows this policy by shipping a complete historical snapshot ingestion contract vertical slice (manifest/source/schema/provenance/normalization/validation/freshness/integrity/import/rejection/linkage/report/contract/selector/validation/test/doc surfaces) while keeping live ingestion/runtime ingestion/network/write/wallet/execution/advisory capability locked.
 
+Phase 72 follows this policy by shipping a complete deterministic historical snapshot scenario generator vertical slice (generation/source-selection/scenario/replay/lineage/rule/integrity/validation/rejection/linkage/report/contract/selector/validation/test/doc surfaces) while keeping live generation/runtime generation/ingestion/replay-import/network/write/wallet/execution/advisory capability locked.
+
 ---
 
 ## What remains forbidden

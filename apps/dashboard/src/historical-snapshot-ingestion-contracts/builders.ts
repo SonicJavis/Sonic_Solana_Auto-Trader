@@ -471,6 +471,13 @@ export function buildHistoricalSnapshotIngestionContractFixture(
     rejectionContract,
   });
 
+  const sourcePhase65FixtureSnapshot = Object.freeze([...FIRST_READ_ONLY_PROVIDER_ADAPTER_NAMES]);
+  const sourcePhase66FixtureSnapshot = Object.freeze([...MULTI_PROVIDER_READ_ONLY_FOUNDATION_NAMES]);
+  const sourcePhase67FixtureSnapshot = Object.freeze([...CROSS_PROVIDER_DATA_QUALITY_NAMES]);
+  const sourcePhase68FixtureSnapshot = Object.freeze([...PROVIDER_AWARE_REPLAY_SCENARIO_NAMES]);
+  const sourcePhase69FixtureSnapshot = Object.freeze([...LIVE_SMOKE_SAFETY_CERTIFICATION_NAMES]);
+  const sourcePhase70FixtureSnapshot = Object.freeze([...PROVIDER_RELIABILITY_DRIFT_AUDIT_NAMES]);
+
   return {
     fixtureId,
     fixtureName: input.fixtureName,
@@ -502,12 +509,12 @@ export function buildHistoricalSnapshotIngestionContractFixture(
       },
     ],
     capabilityFlags: getHistoricalSnapshotIngestionContractCapabilities(),
-    sourcePhase65FixtureSnapshot: FIRST_READ_ONLY_PROVIDER_ADAPTER_NAMES,
-    sourcePhase66FixtureSnapshot: MULTI_PROVIDER_READ_ONLY_FOUNDATION_NAMES,
-    sourcePhase67FixtureSnapshot: CROSS_PROVIDER_DATA_QUALITY_NAMES,
-    sourcePhase68FixtureSnapshot: PROVIDER_AWARE_REPLAY_SCENARIO_NAMES,
-    sourcePhase69FixtureSnapshot: LIVE_SMOKE_SAFETY_CERTIFICATION_NAMES,
-    sourcePhase70FixtureSnapshot: PROVIDER_RELIABILITY_DRIFT_AUDIT_NAMES,
+    sourcePhase65FixtureSnapshot,
+    sourcePhase66FixtureSnapshot,
+    sourcePhase67FixtureSnapshot,
+    sourcePhase68FixtureSnapshot,
+    sourcePhase69FixtureSnapshot,
+    sourcePhase70FixtureSnapshot,
     sourceRefs: {
       phase65FixtureId: source65.fixtureId,
       phase66FixtureId: source66.fixtureId,

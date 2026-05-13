@@ -97,12 +97,12 @@ export function normalizeHistoricalSnapshotIngestionContractFixture(
       ),
       warningReasons: [...fixture.validationContract.warningReasons].sort((left, right) => left.localeCompare(right, 'en-US')),
     },
-    sourcePhase65FixtureSnapshot: [...fixture.sourcePhase65FixtureSnapshot].sort((left, right) => left.localeCompare(right, 'en-US')),
-    sourcePhase66FixtureSnapshot: [...fixture.sourcePhase66FixtureSnapshot].sort((left, right) => left.localeCompare(right, 'en-US')),
-    sourcePhase67FixtureSnapshot: [...fixture.sourcePhase67FixtureSnapshot].sort((left, right) => left.localeCompare(right, 'en-US')),
-    sourcePhase68FixtureSnapshot: [...fixture.sourcePhase68FixtureSnapshot].sort((left, right) => left.localeCompare(right, 'en-US')),
-    sourcePhase69FixtureSnapshot: [...fixture.sourcePhase69FixtureSnapshot].sort((left, right) => left.localeCompare(right, 'en-US')),
-    sourcePhase70FixtureSnapshot: [...fixture.sourcePhase70FixtureSnapshot].sort((left, right) => left.localeCompare(right, 'en-US')),
+    sourcePhase65FixtureSnapshot: [...fixture.sourcePhase65FixtureSnapshot],
+    sourcePhase66FixtureSnapshot: [...fixture.sourcePhase66FixtureSnapshot],
+    sourcePhase67FixtureSnapshot: [...fixture.sourcePhase67FixtureSnapshot],
+    sourcePhase68FixtureSnapshot: [...fixture.sourcePhase68FixtureSnapshot],
+    sourcePhase69FixtureSnapshot: [...fixture.sourcePhase69FixtureSnapshot],
+    sourcePhase70FixtureSnapshot: [...fixture.sourcePhase70FixtureSnapshot],
   };
 }
 

@@ -11,6 +11,7 @@ Phase 68 adds `apps/dashboard/src/provider-aware-replay-scenarios/` as a determi
 - **Phase 67** supplies sanitized cross-provider quality fixtures as immutable source references.
 - **Phase 57** supplies deterministic replay fixture naming/semantics for parity surfaces.
 - **Phase 56** supplies deterministic lifecycle event kinds and causal-order-compatible preview models.
+- **Phase 72** consumes Phase 68 replay scenario fixture names as deterministic replay linkage inputs for historical snapshot scenario generator descriptors.
 
 ### GitHub/source research summary and decisions
 
