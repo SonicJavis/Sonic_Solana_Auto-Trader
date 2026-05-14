@@ -49,6 +49,8 @@ Phase 78 follows this policy by shipping a complete deterministic read-only live
 
 Phase 80 follows this policy by shipping a complete deterministic live snapshot fixture promotion review contract vertical slice (review gate/candidate/policy/decision/evidence/manifest/blocker/quarantine/parity+snapshot/provenance/integrity/schema linkage/scorecard/report/view/API/selector/validation/test/doc surfaces) while keeping automatic promotion, filesystem/persistence writes, runtime capture/replay, unlock authority, live/manual trading, execution, wallet/signing/sending, advisory, and runtime/network capability locked.
 
+Phase 81 follows this policy by shipping a complete deterministic manual-confirm execution boundary design contract vertical slice (boundary gate/state/construction+signing+dispatch+wallet denial/approval/linkage/abort+rollback/evidence/blocker/audit/scorecard/report/view/API/selector/validation/test/doc surfaces) while keeping transaction construction/signing/sending/dispatch/execution, unlock authority, live/manual trading, advisory outputs, runtime capture/replay, persistence/filesystem writes, and runtime/network capability locked.
+
 ---
 
 ## What remains forbidden

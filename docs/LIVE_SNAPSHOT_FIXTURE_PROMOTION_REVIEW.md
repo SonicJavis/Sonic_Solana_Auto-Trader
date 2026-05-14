@@ -169,4 +169,6 @@ READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked.
 
 ## Next phase guidance
 
-Next recommended phase (**preview only**): **Phase 81 — Manual-Confirm Execution Boundary Design Contracts v1**.
+Phase 81 now consumes Phase 80 promotion-review fixture names as deterministic source references for execution-boundary design contracts in `apps/dashboard/src/manual-confirm-execution-boundary/`.
+
+Next recommended phase (**preview only**): **Phase 82 — Transaction Construction Contract Mocks v1**.

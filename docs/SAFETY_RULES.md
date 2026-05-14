@@ -1,5 +1,10 @@
 # Safety Rules
 
+## Phase 81 Safety Extension
+
+Phase 81 manual-confirm execution boundary design surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, execution-boundary-design-contract-only, and non-advisory. Phase 81 does not permit unlock authority, runtime execution, live/manual trading, LIMITED_LIVE/FULL_AUTO unlock, order creation, transaction construction/serialization/simulation, signing, sending, dispatch, wallet/private key/keypair handling, automatic promotion, runtime capture/replay, recommendations, trading signals, investment advice, real orders/funds/PnL, default live network access, scheduled/runtime jobs, runtime monitoring/collectors, provider expansion, secret/API key requirements in deterministic paths, persistence/filesystem writes, route handlers/runtime requests, UI rendering, DOM access, or background jobs. Boundary reports do not authorize execution or imply profitability.
+Phase 82 transaction construction contract mocks is preview only.
+
 ## Phase 80 Safety Extension
 
 Phase 80 live snapshot fixture promotion review surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, promotion-review-contract-only, and non-advisory. Phase 80 does not permit automatic promotion, runtime capture/replay, unlock authority, filesystem writes/persistence, live/manual trading, LIMITED_LIVE/FULL_AUTO unlock, order creation, transaction building/sending, dispatch, wallet/private key handling, signing, execution, recommendations, trading signals, investment advice, real orders/funds/PnL, default live network access, scheduled/runtime jobs, provider expansion, secret/API key requirements in deterministic paths, route handlers/runtime requests, UI rendering, DOM access, or background jobs. Promotion review reports do not authorize trading or imply profitability.

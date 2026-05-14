@@ -175,3 +175,5 @@ Next recommended phase (implemented): **Phase 78 — Read-Only Live Snapshot Cap
 Historical note: Phase 78 was previously listed as **preview only** before implementation.
 
 Next recommended preview-only phase: **Phase 79 — Live Snapshot to Replay Parity Audit Contracts v1**.
+
+Phase 81 execution-boundary design contracts additionally consume Phase 77 dry-run fixture names for deterministic operator-intent and dry-run linkage references.
