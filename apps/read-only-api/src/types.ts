@@ -2056,7 +2056,6 @@ export interface LocalReadOnlyApiCapabilities {
   readonly signingPrivateKeyHandling: false;
   readonly signingKeypairHandling: false;
   readonly signingSeedPhraseHandling: false;
-  readonly signingMnemonicHandling: false;
   readonly signingSecretStorage: false;
   readonly signingOrderCreation: false;
   readonly signingRuntimeExecution: false;
@@ -2072,7 +2071,6 @@ export interface LocalReadOnlyApiCapabilities {
   readonly signingRuntimeCollectors: false;
   readonly signingProviderExpansion: false;
   readonly signingSecretsRequired: false;
-  readonly signingApiKeyRequired: false;
   readonly signingFilesystemWrites: false;
   readonly signingPersistence: false;
   readonly signingRouteHandlers: false;

@@ -314,7 +314,6 @@ export interface SigningBoundarySafetyCapabilities {
   readonly signingRuntimeCollectors: false;
   readonly signingProviderExpansion: false;
   readonly signingSecretsRequired: false;
-  readonly signingApiKeyRequired: false;
   readonly signingFilesystemWrites: false;
   readonly signingPersistence: false;
   readonly signingRouteHandlers: false;

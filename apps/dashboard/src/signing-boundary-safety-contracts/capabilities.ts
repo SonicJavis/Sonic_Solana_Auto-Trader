@@ -58,7 +58,6 @@ export function getSigningBoundarySafetyCapabilities(): SigningBoundarySafetyCap
     signingRuntimeCollectors: false,
     signingProviderExpansion: false,
     signingSecretsRequired: false,
-    signingApiKeyRequired: false,
     signingFilesystemWrites: false,
     signingPersistence: false,
     signingRouteHandlers: false,
