@@ -1,0 +1,1 @@
+export function buildTransactionSafetyInvariant(input:{safetyInvariantId:string}){return{safetyInvariantId:input.safetyInvariantId,readOnlyDefault:true,failClosedDefault:true,noRealTransactionObjects:true,noSerialization:true,noSigning:true,noDispatch:true,noWallet:true,noExecution:true} as const;}

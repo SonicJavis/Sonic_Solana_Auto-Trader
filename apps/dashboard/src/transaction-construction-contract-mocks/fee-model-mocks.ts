@@ -1,0 +1,1 @@
+export function buildFeeModelMock(input:{feeModelMockId:string;feeSource:string;feeEstimateStatus:string}){return{feeModelMockId:input.feeModelMockId,feeSource:input.feeSource,liveFeeFetchAllowed:false,feeEstimateStatus:input.feeEstimateStatus} as const;}

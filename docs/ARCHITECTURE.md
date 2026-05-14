@@ -600,3 +600,7 @@ Replay Lab (@sonic/replay-lab)
 
 No Solana SDK. No provider SDK. No network calls. No wallet. No execution. No real trade intents.
 `FULL_AUTO` and `LIMITED_LIVE` remain locked.
+
+## Phase 82 — Transaction Construction Contract Mocks v1
+
+Deterministic fixture-backed transaction-construction contract mocks only. No real transaction objects, serialization, signing, sending, dispatch, wallet/keypair handling, execution, persistence, or live network defaults. READ_ONLY remains default; FULL_AUTO and LIMITED_LIVE remain locked.

@@ -585,3 +585,7 @@ Phase 29 report serialization previews must remain local-only, read-only, fixtur
 295. **Phase 23**: Seven new Phase 23 capability flags added: `consumerSdk: true`, `contractFixtures: true`, `typedRequestBuilders: true`, `responseParsers: true`, `fixtureValidation: true`, `inProcessOnlyClient: true`, `externalNetworkClient: false` — all other unsafe capability flags remain permanently `false`
 296. **Phase 23**: `buildReadOnlyApiRequest()` and all query builder helpers are pure, deterministic functions with no side effects, no I/O, no network, no mutation
 297. **Phase 23**: FULL_AUTO and LIMITED_LIVE remain locked. No new Telegram trade/execution commands.
+
+## Phase 82 — Transaction Construction Contract Mocks v1
+
+Deterministic fixture-backed transaction-construction contract mocks only. No real transaction objects, serialization, signing, sending, dispatch, wallet/keypair handling, execution, persistence, or live network defaults. READ_ONLY remains default; FULL_AUTO and LIMITED_LIVE remain locked.

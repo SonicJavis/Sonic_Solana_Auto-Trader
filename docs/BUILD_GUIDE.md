@@ -1030,3 +1030,7 @@ const all = listReadOnlyApiContractFixtures(); // 10 fixtures
 
 ## Phase 23: Test count
 4087 passing tests (336 new Phase 23 tests + 3751 regression tests). 29 test files.
+
+## Phase 82 — Transaction Construction Contract Mocks v1
+
+Deterministic fixture-backed transaction-construction contract mocks only. No real transaction objects, serialization, signing, sending, dispatch, wallet/keypair handling, execution, persistence, or live network defaults. READ_ONLY remains default; FULL_AUTO and LIMITED_LIVE remain locked.

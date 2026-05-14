@@ -177,3 +177,7 @@ Historical note: Phase 78 was previously listed as **preview only** before imple
 Next recommended preview-only phase: **Phase 79 — Live Snapshot to Replay Parity Audit Contracts v1**.
 
 Phase 81 execution-boundary design contracts additionally consume Phase 77 dry-run fixture names for deterministic operator-intent and dry-run linkage references.
+
+## Phase 82 — Transaction Construction Contract Mocks v1
+
+Adds deterministic fixture-backed transaction-construction contract mocks only; no real Transaction/VersionedTransaction creation, serialization, signing, sending, wallet/keypair handling, dispatch, execution, persistence, or live network defaults. READ_ONLY remains default and FULL_AUTO/LIMITED_LIVE stay locked.

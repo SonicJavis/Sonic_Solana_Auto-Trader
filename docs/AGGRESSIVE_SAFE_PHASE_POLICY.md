@@ -100,3 +100,7 @@ Any future live-trading capability must pass these ordered gates:
 6. manual-confirmed tiny live execution
 7. limited-live only after explicit unlock
 8. full-auto remains locked until explicitly authorized
+
+## Phase 82 — Transaction Construction Contract Mocks v1
+
+Adds deterministic fixture-backed transaction-construction contract mocks only; no real Transaction/VersionedTransaction creation, serialization, signing, sending, wallet/keypair handling, dispatch, execution, persistence, or live network defaults. READ_ONLY remains default and FULL_AUTO/LIMITED_LIVE stay locked.
