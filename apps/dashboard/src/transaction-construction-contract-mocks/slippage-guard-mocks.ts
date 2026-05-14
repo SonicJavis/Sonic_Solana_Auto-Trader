@@ -1,0 +1,1 @@
+export function buildSlippageGuardMock(input:{slippageGuardMockId:string;slippageLabel:string}){return{slippageGuardMockId:input.slippageGuardMockId,slippageLabel:input.slippageLabel,liveQuoteRequired:false,recommendationOutput:false} as const;}

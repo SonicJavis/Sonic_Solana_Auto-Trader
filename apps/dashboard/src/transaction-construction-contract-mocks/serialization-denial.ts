@@ -1,0 +1,2 @@
+import { buildExecutionConstructionDenial } from './construction-denial.js';
+export function buildSerializationDenial(input:{serializationDenialId:string}){const denial=buildExecutionConstructionDenial({constructionDenialId:input.serializationDenialId,reasonCodes:['SERIALIZATION_DENIED']});return{serializationDenialId:input.serializationDenialId,serializationBlocked:denial.serializationBlocked,messageSerializationBlocked:true,transactionBytesProduced:false} as const;}

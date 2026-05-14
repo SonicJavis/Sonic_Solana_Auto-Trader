@@ -1,0 +1,1 @@
+export function buildComputeBudgetMock(input:{computeBudgetMockId:string;computeUnitLabel:string;priorityFeeLabel:string}){return{computeBudgetMockId:input.computeBudgetMockId,computeUnitLabel:input.computeUnitLabel,priorityFeeLabel:input.priorityFeeLabel,dynamicFeeFetchAllowed:false,executionReadinessClaimed:false} as const;}

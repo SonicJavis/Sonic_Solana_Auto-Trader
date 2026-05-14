@@ -2193,3 +2193,5 @@ export {
   isValidManualConfirmExecutionBoundarySchemaVersion,
   PHASE_81_MANUAL_CONFIRM_EXECUTION_BOUNDARY_GENERATED_AT,
 } from './manual-confirm-execution-boundary/index.js';
+
+export * from './transaction-construction-contract-mocks/index.js';

@@ -1,0 +1,1 @@
+export function buildAccountMetaMock(input:{accountMetaMockId:string;accountLabel:string}){return{accountMetaMockId:input.accountMetaMockId,accountLabel:input.accountLabel,signer:false,writable:false,privateKeyRequired:false,keypairRequired:false} as const;}
