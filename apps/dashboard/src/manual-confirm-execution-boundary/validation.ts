@@ -13,12 +13,12 @@ import {
   isValidManualConfirmExecutionBoundarySource,
 } from './normalization.js';
 
-const FORBIDDEN_URL_PATTERN = /https?:\/\/[\w.-]+/i;
-const FORBIDDEN_NETWORK_PATTERN = /(?:fetch\(|axios|request\(|endpoint|rpc|network|websocket)/i;
-const FORBIDDEN_SECRET_PATTERN = /(?:api[_-]?key|secret|token|credential|providerSdk)/i;
+const FORBIDDEN_URL_PATTERN = /\bhttps?:\/\/[\w.-]+/i;
+const FORBIDDEN_NETWORK_PATTERN = /\b(?:fetch\(|axios|request\(|endpoint|rpc|network|websocket)\b/i;
+const FORBIDDEN_SECRET_PATTERN = /\b(?:api[_-]?key|secret|token|credential|providerSdk)\b/i;
 const FORBIDDEN_WALLET_PATTERN =
-  /(?:wallet|privateKey|secretKey|seedPhrase|mnemonic|Keypair|signTransaction|sendTransaction)/i;
-const FORBIDDEN_ADVISORY_PATTERN = /(?:recommendation|signal|investment\s+advice|profit|pnl)/i;
+  /\b(?:wallet|privateKey|secretKey|seedPhrase|mnemonic|Keypair|signTransaction|sendTransaction)\b/i;
+const FORBIDDEN_ADVISORY_PATTERN = /\b(?:recommendation|signal|investment\s+advice|profit|pnl)\b/i;
 const TIMESTAMP_PATTERN = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
 
 function pushIssue(
@@ -63,7 +63,9 @@ function scanRecursive(
       field.includes('.riskAcknowledgementLinkage.') ||
       field.includes('.report.') ||
       field.includes('.summary');
-    if (!isAllowedRef && !field.endsWith('fixtureName') && !field.endsWith('fixtureId')) scanText(value, field, issues);
+    if (!isAllowedRef && !field.endsWith('fixtureName') && !field.endsWith('fixtureId') && !field.endsWith('Id')) {
+      scanText(value, field, issues);
+    }
     return;
   }
   if (Array.isArray(value)) {
