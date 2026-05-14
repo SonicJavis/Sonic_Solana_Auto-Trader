@@ -51,6 +51,8 @@ Phase 80 follows this policy by shipping a complete deterministic live snapshot 
 
 Phase 81 follows this policy by shipping a complete deterministic manual-confirm execution boundary design contract vertical slice (boundary gate/state/construction+signing+dispatch+wallet denial/approval/linkage/abort+rollback/evidence/blocker/audit/scorecard/report/view/API/selector/validation/test/doc surfaces) while keeping transaction construction/signing/sending/dispatch/execution, unlock authority, live/manual trading, advisory outputs, runtime capture/replay, persistence/filesystem writes, and runtime/network capability locked.
 
+Phase 83 follows this policy by shipping a complete deterministic signing-boundary safety design contract vertical slice (signing-boundary gate/signing+wallet+key-material+signature-output denial/placeholder+approval+acknowledgement/linkage/abort+rollback/invariant/evidence/blocker/audit/scorecard/report/view/API/selector/validation/test/doc surfaces) while keeping signing runtime, signature output, wallet prompts/adapters, key material handling, sending/dispatch/execution, unlock authority, live/manual trading, advisory outputs, runtime capture/replay, persistence/filesystem writes, and runtime/network capability locked.
+
 ---
 
 ## What remains forbidden
@@ -104,3 +106,7 @@ Any future live-trading capability must pass these ordered gates:
 ## Phase 82 — Transaction Construction Contract Mocks v1
 
 Adds deterministic fixture-backed transaction-construction contract mocks only; no real Transaction/VersionedTransaction creation, serialization, signing, sending, wallet/keypair handling, dispatch, execution, persistence, or live network defaults. READ_ONLY remains default and FULL_AUTO/LIMITED_LIVE stay locked.
+
+## Phase 83 — Signing Boundary Safety Design Contracts v1
+
+Adds deterministic fixture-backed signing-boundary safety design contracts only; no signing, no signature generation/output, no wallet prompt/adapter, no key material handling, no sending/dispatch/execution, no persistence/filesystem writes, and no live network defaults. READ_ONLY remains default and FULL_AUTO/LIMITED_LIVE stay locked.

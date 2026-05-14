@@ -1,8 +1,21 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 81 — Manual-Confirm Execution Boundary Design Contracts v1**
+**Phase 83 — Signing Boundary Safety Design Contracts v1**
 
-A defensive intelligence and control foundation for Solana trading. No live/manual trading or execution in any phase up to and including Phase 81.
+A defensive intelligence and control foundation for Solana trading. No live/manual trading, signing, or execution in any phase up to and including Phase 83.
+
+## Features (Phase 83 — adds to Phase 82)
+
+- Adds `apps/dashboard/src/signing-boundary-safety-contracts/` deterministic, fixture-backed, fail-closed signing boundary safety design contract vertical slice:
+  - 8 deterministic fixtures: signing-boundary-design-ready, missing-transaction-construction-mock-blocked, signing-request-denied, wallet-prompt-denied, key-material-request-denied, signature-output-denied, approval-does-not-authorize-signing, unsafe-capability-rejected
+  - signing boundary gate / signing-request denial / wallet-prompt denial / key-material denial / signature-output denial / signer-identity placeholder / approval boundary / operator acknowledgement / construction+execution+dry-run linkage / abort+rollback / evidence+blocker+capability-audit / scorecard+report / view / API / selector surfaces
+  - practical linkage to Phase 65/66/67/68/69/70/72/73/74/75/76/77/78/79/80/81/82 fixture snapshots
+- Adds Phase 83 capability flags with runtime-signing/unlock/live/signing/sending/dispatch/signature-output/wallet/seed/mnemonic/key/advisory/scheduled/runtime-monitoring/provider-expansion/route/runtime/UI/DOM/background/real-order/real-funds/real-PnL/filesystem/persistence/automatic-promotion flags fixed to `false`
+- Adds `docs/SIGNING_BOUNDARY_SAFETY_CONTRACTS.md`
+- Adds `tests/phase83.test.ts`
+- **Signing boundary contracts are design-only and do not implement signing, signature generation/output, wallet prompt/adapter logic, private-key/keypair/seed/mnemonic handling, transaction sending, dispatch, runtime execution, filesystem writes/persistence, provider expansion, recommendations/signals/advice, or real orders/funds/PnL. READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked. No default live network and no scheduled jobs.**
+
+**Next phase: Phase 84 — Transaction Send Boundary Safety Contracts v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 81 — adds to Phase 80)
 
