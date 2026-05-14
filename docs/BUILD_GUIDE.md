@@ -1,9 +1,14 @@
 # Build Guide
 
+## Phase 80 Note
+
+Phase 80 introduces deterministic live snapshot fixture promotion review contracts in `apps/dashboard/src/live-snapshot-fixture-promotion-review/` as a complete aggressive-safe vertical slice (review gates/candidates/policies/decisions/evidence/manifests/blockers/quarantine/parity+snapshot/provenance/integrity/schema linkage/scorecards/reports builders, fixtures, view models, contracts, selectors, normalization, validation, capabilities, docs, tests). Validation commands include `corepack pnpm@10.17.0 test tests/phase80.test.ts` and `corepack pnpm@10.17.0 test`. Standard CI remains deterministic and offline. Promotion review contracts do not implement automatic promotion, runtime capture/replay, or filesystem writes/persistence. READ_ONLY remains default and FULL_AUTO/LIMITED_LIVE remain locked.
+Phase 81 manual-confirm execution boundary design remains preview only.
+
 ## Phase 79 Note
 
 Phase 79 introduces deterministic live snapshot replay parity audit contracts in `apps/dashboard/src/live-snapshot-replay-parity-audit/` as a complete aggressive-safe vertical slice (parity gates/snapshot inputs/replay+scenario linkage/parity comparison/mismatch taxonomy/drift/provenance/schema/integrity/promotion/quarantine/evidence/scorecard/report builders, fixtures, view models, contracts, selectors, normalization, validation, capabilities, docs, tests). Validation commands include `corepack pnpm@10.17.0 test tests/phase79.test.ts` and `corepack pnpm@10.17.0 test`. Standard CI remains deterministic and offline. Parity audit contracts do not implement runtime replay or automatic promotion. READ_ONLY remains default and FULL_AUTO/LIMITED_LIVE remain locked.
-Phase 80 replay promotion readiness certification remains preview only.
+Phase 80 live snapshot fixture promotion review is implemented in this phase.
 
 ## Phase 78 Note
 

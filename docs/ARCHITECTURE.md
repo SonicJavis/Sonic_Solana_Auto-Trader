@@ -1,9 +1,14 @@
 # Architecture
 
+## Phase 80 Update
+
+Phase 80 extends `apps/dashboard/` with `src/live-snapshot-fixture-promotion-review/`, a deterministic, fixture-backed, fail-closed live snapshot fixture promotion-review contract surface. It adds promotion review gates, fixture candidates, review policies/decisions, evidence/manifest/blocker/quarantine models, parity/snapshot/provenance/integrity/schema linkage reviews, scorecards, reports, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs. This layer is contract-only, local-only, read-only, deterministic, non-networked in standard CI, non-wallet, non-signing, non-sending, non-executing, non-advisory, non-rendering, non-DOM, and non-persistent.
+Next guidance: Phase 81 manual-confirm execution boundary design is preview only.
+
 ## Phase 79 Update
 
 Phase 79 extends `apps/dashboard/` with `src/live-snapshot-replay-parity-audit/`, a deterministic, fixture-backed, fail-closed live snapshot replay parity-audit contract surface. It adds parity gates, snapshot input contracts, replay/scenario expectation linkage, parity comparison and mismatch taxonomy, drift classification, provenance/schema/integrity parity audits, promotion/quarantine/evidence/scorecard/report models, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs. This layer is contract-only, local-only, read-only, deterministic, non-networked in standard CI, non-wallet, non-signing, non-sending, non-executing, non-advisory, non-rendering, non-DOM, and non-persistent.
-Next guidance: Phase 80 replay promotion readiness certification is preview only.
+Next guidance: Phase 80 live snapshot fixture promotion review is implemented in this phase.
 
 ## Phase 78 Update
 

@@ -31,4 +31,6 @@ Fixtures include deterministic source references to Phase 65/66/67/68/69/70/72/7
 
 ## Next Phase Guidance
 
-Next recommended phase (**preview only**): **Phase 80 — Replay Promotion Readiness Certification Contracts v1**.
+Phase 80 now consumes these parity audit fixtures for promotion-review candidate contracts in `apps/dashboard/src/live-snapshot-fixture-promotion-review/`.
+
+Next recommended phase (**preview only**): **Phase 81 — Manual-Confirm Execution Boundary Design Contracts v1**.
