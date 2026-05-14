@@ -1,5 +1,19 @@
 # Phase Log
 
+## Phase 81 — Manual-Confirm Execution Boundary Design Contracts v1
+
+- Adds `apps/dashboard/src/manual-confirm-execution-boundary/` deterministic, fixture-backed, fail-closed execution-boundary design contracts with boundary gates, boundary states, construction/signing/dispatch/wallet denial models, approval boundaries, operator-intent/dry-run/readiness/promotion/risk linkage, abort/rollback contracts, evidence bundles, blocker taxonomy, capability audits, scorecards, reports, selectors, normalization, validation, capabilities, and index exports.
+- Adds 8 deterministic required fixtures: execution-boundary-design-ready, missing-dry-run-control-blocked, missing-manual-readiness-blocked, construction-request-denied, signing-request-denied, dispatch-request-denied, approval-does-not-authorize-execution, unsafe-capability-rejected.
+- Links source fixture snapshots across Phase 65/66/67/68/69/70/72/73/74/75/76/77/78/79/80 where practical.
+- Exports all Phase 81 helpers through `apps/dashboard/src/index.ts`.
+- Extends dashboard/read-only-api capability surfaces with Phase 81 execution-boundary flags.
+- Adds `tests/phase81.test.ts`.
+- Adds `docs/MANUAL_CONFIRM_EXECUTION_BOUNDARY.md`.
+- Documents clean-runner Phase 79/80 verification attempt and environment-only `better-sqlite3` native-binding blocker evidence for full-suite runs.
+- **Execution boundary remains contract-only and does not implement transaction construction, signing, sending, dispatch, wallet logic, runtime execution, automatic promotion, filesystem writes/persistence, runtime capture/replay, provider expansion, recommendations/signals/advice, or real orders/funds/PnL.**
+
+**Next phase guidance:** Phase 82 — Transaction Construction Contract Mocks v1 (preview only; not implemented).
+
 ## Phase 80 — Live Snapshot Fixture Promotion Review Contracts v1
 
 - Adds `apps/dashboard/src/live-snapshot-fixture-promotion-review/` deterministic, fixture-backed, fail-closed promotion-review contracts with review gates, fixture candidates, review policies/decisions, promotion evidence bundles, manifest proposals, blocker taxonomy, quarantine review, parity/snapshot/provenance/integrity/schema linkages, scorecards, reports, selectors, normalization, validation, capabilities, and index exports.

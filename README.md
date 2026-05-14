@@ -1,8 +1,21 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 80 — Live Snapshot Fixture Promotion Review Contracts v1**
+**Phase 81 — Manual-Confirm Execution Boundary Design Contracts v1**
 
-A defensive intelligence and control foundation for Solana trading. No live/manual trading or execution in any phase up to and including Phase 80.
+A defensive intelligence and control foundation for Solana trading. No live/manual trading or execution in any phase up to and including Phase 81.
+
+## Features (Phase 81 — adds to Phase 80)
+
+- Adds `apps/dashboard/src/manual-confirm-execution-boundary/` deterministic, fixture-backed, fail-closed manual-confirm execution-boundary design contract vertical slice:
+  - 8 deterministic fixtures: execution-boundary-design-ready, missing-dry-run-control-blocked, missing-manual-readiness-blocked, construction-request-denied, signing-request-denied, dispatch-request-denied, approval-does-not-authorize-execution, unsafe-capability-rejected
+  - boundary gate / boundary state / construction+signing+dispatch+wallet denial / approval / linkage / abort+rollback / evidence+blocker+capability-audit / scorecard+report / view / API / selector surfaces
+  - practical linkage to Phase 65/66/67/68/69/70/72/73/74/75/76/77/78/79/80 fixture snapshots
+- Adds Phase 81 capability flags with runtime-execution/unlock/live/execution/order/transaction/wallet/signing/sending/dispatch/advisory/scheduled/runtime-monitoring/provider-expansion/route/runtime/UI/DOM/background/real-order/real-funds/real-PnL/filesystem/persistence/automatic-promotion flags fixed to `false`
+- Adds `docs/MANUAL_CONFIRM_EXECUTION_BOUNDARY.md`
+- Adds `tests/phase81.test.ts`
+- **Execution boundary contracts are design-only and do not implement transaction construction, signing/sending, wallet/private-key/keypair handling, order creation, dispatch, runtime execution, runtime capture/replay, filesystem writes/persistence, provider expansion, recommendations/signals/advice, or real orders/funds/PnL. READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked. No default live network and no scheduled jobs.**
+
+**Next phase: Phase 82 — Transaction Construction Contract Mocks v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 80 — adds to Phase 79)
 

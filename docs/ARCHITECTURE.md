@@ -1,5 +1,10 @@
 # Architecture
 
+## Phase 81 Update
+
+Phase 81 extends `apps/dashboard/` with `src/manual-confirm-execution-boundary/`, a deterministic, fixture-backed, fail-closed manual-confirm execution-boundary design contract surface. It adds execution boundary gates/states, construction/signing/dispatch/wallet denial contracts, approval boundaries, operator-intent/dry-run/readiness/promotion/risk linkages, abort/rollback contracts, evidence/blocker/capability-audit models, scorecards, reports, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs. This layer is design-contract-only, local-only, read-only, deterministic, non-networked in standard CI, non-wallet, non-signing, non-sending, non-dispatch, non-executing, non-advisory, non-rendering, non-DOM, and non-persistent.
+Next guidance: Phase 82 transaction construction contract mocks is preview only.
+
 ## Phase 80 Update
 
 Phase 80 extends `apps/dashboard/` with `src/live-snapshot-fixture-promotion-review/`, a deterministic, fixture-backed, fail-closed live snapshot fixture promotion-review contract surface. It adds promotion review gates, fixture candidates, review policies/decisions, evidence/manifest/blocker/quarantine models, parity/snapshot/provenance/integrity/schema linkage reviews, scorecards, reports, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs. This layer is contract-only, local-only, read-only, deterministic, non-networked in standard CI, non-wallet, non-signing, non-sending, non-executing, non-advisory, non-rendering, non-DOM, and non-persistent.
