@@ -1,5 +1,10 @@
 # Safety Rules
 
+## Phase 79 Safety Extension
+
+Phase 79 live snapshot replay parity audit surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, parity-audit-contract-only, and non-advisory. Phase 79 does not permit runtime replay, unlock authority, automatic promotion, live/manual trading, order creation, transaction building/sending, dispatch, wallet/private key handling, signing, execution, recommendations, trading signals, investment advice, real orders/funds/PnL, default network access, scheduled/runtime jobs, provider expansion, secret requirements in deterministic paths, persistence/filesystem writes, route handlers/runtime requests, UI rendering, DOM access, or background jobs. Parity reports do not authorize trading or imply profitability.
+Phase 80 replay promotion readiness certification remains preview only.
+
 ## Phase 78 Safety Extension
 
 Phase 78 read-only live snapshot capture surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, capture-contract-only, and non-advisory. Phase 78 does not permit runtime live capture, unlock authority, live/manual trading, LIMITED_LIVE/FULL_AUTO unlock, order creation, transaction building/sending, dispatch, wallet/private key handling, signing, execution, recommendations, trading signals, investment advice, real orders/funds/PnL, default live network access, scheduled capture jobs, runtime monitoring/collectors, provider expansion, secrets/API key requirements in deterministic paths, persistence/filesystem writes, route handlers/runtime requests, UI rendering, DOM access, or background jobs. Capture reports do not authorize live trading or imply profitability.
