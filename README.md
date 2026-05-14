@@ -1,21 +1,21 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 79 — Live Snapshot Replay Parity Audit Contracts v1**
+**Phase 80 — Live Snapshot Fixture Promotion Review Contracts v1**
 
-A defensive intelligence and control foundation for Solana trading. No live/manual trading or execution in any phase up to and including Phase 79.
+A defensive intelligence and control foundation for Solana trading. No live/manual trading or execution in any phase up to and including Phase 80.
 
-## Features (Phase 79 — adds to Phase 78)
+## Features (Phase 80 — adds to Phase 79)
 
-- Adds `apps/dashboard/src/live-snapshot-replay-parity-audit/` deterministic, fixture-backed, fail-closed live snapshot replay parity audit contract vertical slice:
-  - 8 deterministic fixtures: snapshot-replay-parity-clean, snapshot-schema-mismatch-quarantined, snapshot-provenance-mismatch-blocked, snapshot-integrity-mismatch-blocked, replay-expectation-missing-blocked, scenario-expectation-warning-review-required, promotion-gate-manual-review-required, unsafe-capability-rejected
-  - parity gate / snapshot input / replay+scenario expectation linkage / parity comparison / mismatch taxonomy / drift / provenance+schema+integrity parity / promotion+quarantine+evidence+scorecard+report / view / API / selector surfaces
-  - practical linkage to Phase 65/66/67/68/69/70/72/73/74/75/76/77/78 fixture snapshots
-- Adds Phase 79 capability flags with runtime/network/unlock/live/execution/order/transaction/wallet/signing/sending/dispatch/advisory/scheduled/runtime-monitoring/provider-expansion/persistence/filesystem/route/runtime/UI/DOM/background/real-order/real-funds/real-PnL/automatic-promotion flags fixed to `false`
-- Adds `docs/LIVE_SNAPSHOT_REPLAY_PARITY_AUDIT.md`
-- Adds `tests/phase79.test.ts`
-- **Replay parity audit is contract-only and does not implement runtime replay, automatic promotion, live trading, execution, wallet/signing/sending, or advisory behavior. READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked. No default network, no persistence/filesystem writes, and no real orders/funds/PnL.**
+- Adds `apps/dashboard/src/live-snapshot-fixture-promotion-review/` deterministic, fixture-backed, fail-closed live snapshot fixture promotion review contract vertical slice:
+  - 8 deterministic fixtures: fixture-promotion-review-ready, parity-audit-mismatch-blocked, quarantined-snapshot-blocked, missing-reviewer-decision-pending, manifest-write-path-rejected, provenance-review-warning-required, schema-review-warning-required, unsafe-capability-rejected
+  - review gate / fixture candidate / review policy+decision / evidence+manifest / blocker+quarantine / parity+snapshot+provenance+integrity+schema linkage / scorecard+report / view / API / selector surfaces
+  - practical linkage to Phase 65/66/67/68/69/70/72/73/74/75/76/77/78/79 fixture snapshots
+- Adds Phase 80 capability flags with runtime-capture/runtime-replay/unlock/automatic-promotion/filesystem/persistence/live/execution/order/transaction/wallet/signing/sending/dispatch/advisory/scheduled/runtime-monitoring/provider-expansion/route/runtime/UI/DOM/background/real-order/real-funds/real-PnL flags fixed to `false`
+- Adds `docs/LIVE_SNAPSHOT_FIXTURE_PROMOTION_REVIEW.md`
+- Adds `tests/phase80.test.ts`
+- **Fixture promotion review is contract-only and does not perform promotion, runtime capture/replay, filesystem writes/persistence, live trading, execution, wallet/signing/sending, order creation/transaction building, or advisory behavior. READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked. No default network and no real orders/funds/PnL.**
 
-**Next phase: Phase 80 — Replay Promotion Readiness Certification Contracts v1 (preview only; not implemented in this phase).**
+**Next phase: Phase 81 — Manual-Confirm Execution Boundary Design Contracts v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 77 — adds to Phase 76)
 

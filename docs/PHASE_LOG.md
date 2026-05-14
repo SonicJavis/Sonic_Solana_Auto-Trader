@@ -1,5 +1,19 @@
 # Phase Log
 
+## Phase 80 — Live Snapshot Fixture Promotion Review Contracts v1
+
+- Adds `apps/dashboard/src/live-snapshot-fixture-promotion-review/` deterministic, fixture-backed, fail-closed promotion-review contracts with review gates, fixture candidates, review policies/decisions, promotion evidence bundles, manifest proposals, blocker taxonomy, quarantine review, parity/snapshot/provenance/integrity/schema linkages, scorecards, reports, selectors, normalization, validation, capabilities, and index exports.
+- Adds 8 deterministic required fixtures: fixture-promotion-review-ready, parity-audit-mismatch-blocked, quarantined-snapshot-blocked, missing-reviewer-decision-pending, manifest-write-path-rejected, provenance-review-warning-required, schema-review-warning-required, unsafe-capability-rejected.
+- Links source fixture snapshots across Phase 65/66/67/68/69/70/72/73/74/75/76/77/78/79 where practical.
+- Exports all Phase 80 helpers through `apps/dashboard/src/index.ts`.
+- Extends dashboard/read-only-api capability surfaces with Phase 80 promotion-review flags.
+- Adds `tests/phase80.test.ts`.
+- Adds `docs/LIVE_SNAPSHOT_FIXTURE_PROMOTION_REVIEW.md`.
+- Documents clean-runner Phase 79 verification attempt and environment-only `better-sqlite3` native-binding blocker evidence for full-suite runs.
+- **Promotion review remains contract-only and does not implement automatic promotion, filesystem writes/persistence, runtime capture/replay execution, live trading, execution, wallet/signing/sending, advice/signals, real orders/funds/PnL, or route/runtime/UI/DOM/background behavior.**
+
+**Next phase guidance:** Phase 81 — Manual-Confirm Execution Boundary Design Contracts v1 (preview only; not implemented).
+
 ## Phase 79 — Live Snapshot Replay Parity Audit Contracts v1
 
 - Adds `apps/dashboard/src/live-snapshot-replay-parity-audit/` deterministic, fixture-backed, fail-closed parity audit contracts with parity gates, snapshot inputs, replay/scenario expectation linkages, parity comparison, mismatch taxonomy, drift classification, provenance/schema/integrity parity, promotion/quarantine/evidence/scorecard/report surfaces, fixtures, selectors, normalization, validation, capabilities, and index exports.
@@ -11,7 +25,7 @@
 - Adds `docs/LIVE_SNAPSHOT_REPLAY_PARITY_AUDIT.md`.
 - **Parity audit remains contract-only and does not implement runtime replay, automatic promotion, live trading, execution, wallet/signing/sending, advice/signals, real orders/funds/PnL, persistence/filesystem writes, or route/runtime/UI/DOM/background behavior.**
 
-**Next phase guidance:** Phase 80 — Replay Promotion Readiness Certification Contracts v1 (preview only; not implemented).
+**Next phase guidance:** Phase 80 — Live Snapshot Fixture Promotion Review Contracts v1 (implemented in this phase).
 
 ## Phase 78 — Read-Only Live Snapshot Capture Contracts v1
 

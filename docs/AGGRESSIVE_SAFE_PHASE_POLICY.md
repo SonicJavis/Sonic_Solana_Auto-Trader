@@ -47,6 +47,8 @@ Phase 77 follows this policy by shipping a complete deterministic manual-confirm
 
 Phase 78 follows this policy by shipping a complete deterministic read-only live snapshot capture contract vertical slice (capture gate/request/provider target/scope/bounds/staging/quarantine/normalization/provenance/integrity/schema/promotion/fixture-candidate/certification/report/view/API/selector/validation/test/doc surfaces) while keeping runtime capture, unlock authority, live/manual trading, execution, wallet/signing/sending, advisory, persistence/filesystem, and runtime/network capability locked.
 
+Phase 80 follows this policy by shipping a complete deterministic live snapshot fixture promotion review contract vertical slice (review gate/candidate/policy/decision/evidence/manifest/blocker/quarantine/parity+snapshot/provenance/integrity/schema linkage/scorecard/report/view/API/selector/validation/test/doc surfaces) while keeping automatic promotion, filesystem/persistence writes, runtime capture/replay, unlock authority, live/manual trading, execution, wallet/signing/sending, advisory, and runtime/network capability locked.
+
 ---
 
 ## What remains forbidden

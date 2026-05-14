@@ -135,4 +135,6 @@ READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked.
 
 Phase 79 now consumes Phase 78 snapshot fixture names as deterministic source references for replay-parity audits in `apps/dashboard/src/live-snapshot-replay-parity-audit/`.
 
-Next recommended phase (**preview only**): **Phase 80 — Replay Promotion Readiness Certification Contracts v1**.
+Phase 80 now additionally consumes Phase 78 snapshot fixture names for promotion-review candidate linkage in `apps/dashboard/src/live-snapshot-fixture-promotion-review/`.
+
+Next recommended phase (**preview only**): **Phase 81 — Manual-Confirm Execution Boundary Design Contracts v1**.
