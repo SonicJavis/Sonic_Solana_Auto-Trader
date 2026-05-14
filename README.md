@@ -1,21 +1,21 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 78 — Read-Only Live Snapshot Capture Contracts v1**
+**Phase 79 — Live Snapshot Replay Parity Audit Contracts v1**
 
-A defensive intelligence and control foundation for Solana trading. No live/manual trading or execution in any phase up to and including Phase 78.
+A defensive intelligence and control foundation for Solana trading. No live/manual trading or execution in any phase up to and including Phase 79.
 
-## Features (Phase 78 — adds to Phase 77)
+## Features (Phase 79 — adds to Phase 78)
 
-- Adds `apps/dashboard/src/read-only-live-snapshot-capture/` deterministic, fixture-backed, fail-closed read-only live snapshot capture contract vertical slice:
-  - 8 deterministic fixtures: read-only-snapshot-capture-ready, missing-manual-dry-run-readiness-blocked, provider-not-eligible-blocked, capture-scope-too-wide-rejected, staged-response-quarantined, schema-validation-warning-review-required, promotion-candidate-manual-review-required, unsafe-capability-rejected
-  - capture gate / capture request / provider target / capture scope / capture bounds / response staging / quarantine / normalization / provenance / integrity / schema validation / promotion candidate / fixture candidate / certification report / view / API / selector surfaces
-  - practical linkage to Phase 65/66/67/68/69/70/72/73/74/75/76/77 fixture snapshots
-- Adds Phase 78 capability flags with runtime-capture/unlock/live/execution/order/transaction/wallet/signing/sending/dispatch/advisory/live-network/scheduled/runtime-monitoring/provider-expansion/persistence/filesystem/route/runtime/UI/DOM/background/real-order/real-funds/real-PnL/automatic-promotion flags fixed to `false`
-- Adds `docs/READ_ONLY_LIVE_SNAPSHOT_CAPTURE.md`
-- Adds `tests/phase78.test.ts`
-- **Snapshot capture is contract-only and does not implement runtime live capture. READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked. No live network in standard CI. No scheduled capture. No filesystem writes/persistence. No provider expansion. No wallet/signing/sending/execution. No order creation/transaction building. No dispatch. No recommendations/signals/advice. No real orders/funds/PnL.**
+- Adds `apps/dashboard/src/live-snapshot-replay-parity-audit/` deterministic, fixture-backed, fail-closed live snapshot replay parity audit contract vertical slice:
+  - 8 deterministic fixtures: snapshot-replay-parity-clean, snapshot-schema-mismatch-quarantined, snapshot-provenance-mismatch-blocked, snapshot-integrity-mismatch-blocked, replay-expectation-missing-blocked, scenario-expectation-warning-review-required, promotion-gate-manual-review-required, unsafe-capability-rejected
+  - parity gate / snapshot input / replay+scenario expectation linkage / parity comparison / mismatch taxonomy / drift / provenance+schema+integrity parity / promotion+quarantine+evidence+scorecard+report / view / API / selector surfaces
+  - practical linkage to Phase 65/66/67/68/69/70/72/73/74/75/76/77/78 fixture snapshots
+- Adds Phase 79 capability flags with runtime/network/unlock/live/execution/order/transaction/wallet/signing/sending/dispatch/advisory/scheduled/runtime-monitoring/provider-expansion/persistence/filesystem/route/runtime/UI/DOM/background/real-order/real-funds/real-PnL/automatic-promotion flags fixed to `false`
+- Adds `docs/LIVE_SNAPSHOT_REPLAY_PARITY_AUDIT.md`
+- Adds `tests/phase79.test.ts`
+- **Replay parity audit is contract-only and does not implement runtime replay, automatic promotion, live trading, execution, wallet/signing/sending, or advisory behavior. READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked. No default network, no persistence/filesystem writes, and no real orders/funds/PnL.**
 
-**Next phase: Phase 79 — Live Snapshot to Replay Parity Audit Contracts v1 (preview only; not implemented in this phase).**
+**Next phase: Phase 80 — Replay Promotion Readiness Certification Contracts v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 77 — adds to Phase 76)
 
@@ -28,7 +28,7 @@ A defensive intelligence and control foundation for Solana trading. No live/manu
 - Adds `tests/phase77.test.ts`
 - **Dry-run control is contract-only and does not authorize live trading or execution. READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked. No manual-live implementation. No order creation or transaction building/signing/sending. No dispatch/execution. No recommendations/signals/advice. No real orders/funds/PnL. No live network in standard CI. No scheduled jobs/runtime monitoring. No provider expansion. No secrets/API keys required in deterministic paths. No filesystem/persistence. No route/runtime/UI/DOM/background jobs.**
 
-**Next phase: Phase 78 — Read-Only Live Snapshot Capture Contracts v1 (preview only; not implemented in this phase).**
+**Next phase: Phase 78 — Read-Only Live Snapshot Capture Contracts v1 (implemented in the current phase).**
 
 ## Features (Phase 76 — adds to Phase 75)
 

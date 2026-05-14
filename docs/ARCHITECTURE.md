@@ -1,5 +1,10 @@
 # Architecture
 
+## Phase 79 Update
+
+Phase 79 extends `apps/dashboard/` with `src/live-snapshot-replay-parity-audit/`, a deterministic, fixture-backed, fail-closed live snapshot replay parity-audit contract surface. It adds parity gates, snapshot input contracts, replay/scenario expectation linkage, parity comparison and mismatch taxonomy, drift classification, provenance/schema/integrity parity audits, promotion/quarantine/evidence/scorecard/report models, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs. This layer is contract-only, local-only, read-only, deterministic, non-networked in standard CI, non-wallet, non-signing, non-sending, non-executing, non-advisory, non-rendering, non-DOM, and non-persistent.
+Next guidance: Phase 80 replay promotion readiness certification is preview only.
+
 ## Phase 78 Update
 
 Phase 78 extends `apps/dashboard/` with `src/read-only-live-snapshot-capture/`, a deterministic, fixture-backed, fail-closed read-only live snapshot capture contract surface. It adds capture gates, capture requests, provider targets, capture scope/bounds contracts, staged response + quarantine contracts, normalization/provenance/integrity/schema validation contracts, promotion/fixture-candidate contracts, certification/report models, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs. This layer is capture-contract-only, local-only, read-only, deterministic, non-networked in standard CI, non-wallet, non-signing, non-sending, non-executing, non-advisory, non-rendering, non-DOM, and non-persistent. Phase 78 does not implement runtime live capture.

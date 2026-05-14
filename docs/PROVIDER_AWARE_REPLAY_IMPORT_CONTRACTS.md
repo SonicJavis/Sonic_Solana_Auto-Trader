@@ -126,6 +126,11 @@ No live replay import, runtime ingestion, filesystem import, persistence, provid
 
 **Phase 74 — Controlled Live Smoke-Test Harness Expansion v1** is preview only and not implemented in Phase 73.
 
+## Phase 79 Linkage
+
+Phase 79 replay parity audits reference Phase 73 replay-import fixture names through deterministic source lineage metadata. This linkage remains contract-only and does not enable runtime replay import, execution, or promotion behavior.
+Phase 80 replay promotion readiness certification remains preview only.
+
 ## Phase 75 Linkage
 
 Phase 75 pre-live safety certification references Phase 73 fixture names as replay-readiness linkage inputs. The linkage is deterministic contract metadata only and does not permit live replay import, runtime ingestion, or execution behavior.

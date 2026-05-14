@@ -1,5 +1,18 @@
 # Phase Log
 
+## Phase 79 — Live Snapshot Replay Parity Audit Contracts v1
+
+- Adds `apps/dashboard/src/live-snapshot-replay-parity-audit/` deterministic, fixture-backed, fail-closed parity audit contracts with parity gates, snapshot inputs, replay/scenario expectation linkages, parity comparison, mismatch taxonomy, drift classification, provenance/schema/integrity parity, promotion/quarantine/evidence/scorecard/report surfaces, fixtures, selectors, normalization, validation, capabilities, and index exports.
+- Adds 8 deterministic required fixtures: snapshot-replay-parity-clean, snapshot-schema-mismatch-quarantined, snapshot-provenance-mismatch-blocked, snapshot-integrity-mismatch-blocked, replay-expectation-missing-blocked, scenario-expectation-warning-review-required, promotion-gate-manual-review-required, unsafe-capability-rejected.
+- Links source fixture snapshots across Phase 65/66/67/68/69/70/72/73/74/75/76/77/78 where practical.
+- Exports all Phase 79 helpers through `apps/dashboard/src/index.ts`.
+- Extends dashboard/read-only-api capability surfaces with Phase 79 parity-audit flags.
+- Adds `tests/phase79.test.ts`.
+- Adds `docs/LIVE_SNAPSHOT_REPLAY_PARITY_AUDIT.md`.
+- **Parity audit remains contract-only and does not implement runtime replay, automatic promotion, live trading, execution, wallet/signing/sending, advice/signals, real orders/funds/PnL, persistence/filesystem writes, or route/runtime/UI/DOM/background behavior.**
+
+**Next phase guidance:** Phase 80 — Replay Promotion Readiness Certification Contracts v1 (preview only; not implemented).
+
 ## Phase 78 — Read-Only Live Snapshot Capture Contracts v1
 
 - Adds `apps/dashboard/src/read-only-live-snapshot-capture/` deterministic, fixture-backed, fail-closed read-only live snapshot capture contracts:
@@ -16,7 +29,7 @@
 - Adds `docs/READ_ONLY_LIVE_SNAPSHOT_CAPTURE.md`.
 - **Snapshot capture remains contract-only and does not implement runtime live capture. READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked. No live network in standard CI. No scheduled capture. No provider expansion. No wallet/signing/sending/execution. No order creation/transaction building. No dispatch. No recommendations/signals/advice. No real orders/funds/PnL. No filesystem writes/persistence. No route handlers/runtime requests. No UI/DOM. No background jobs.**
 
-**Next phase guidance:** Phase 79 — Live Snapshot to Replay Parity Audit Contracts v1 (preview only; not implemented).
+**Next phase guidance:** Phase 79 — Live Snapshot to Replay Parity Audit Contracts v1 (implemented in this phase).
 
 ## Phase 77 — Manual-Confirm Live Dry-Run Control Contracts v1
 

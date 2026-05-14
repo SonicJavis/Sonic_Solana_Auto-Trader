@@ -1,5 +1,10 @@
 # Build Guide
 
+## Phase 79 Note
+
+Phase 79 introduces deterministic live snapshot replay parity audit contracts in `apps/dashboard/src/live-snapshot-replay-parity-audit/` as a complete aggressive-safe vertical slice (parity gates/snapshot inputs/replay+scenario linkage/parity comparison/mismatch taxonomy/drift/provenance/schema/integrity/promotion/quarantine/evidence/scorecard/report builders, fixtures, view models, contracts, selectors, normalization, validation, capabilities, docs, tests). Validation commands include `corepack pnpm@10.17.0 test tests/phase79.test.ts` and `corepack pnpm@10.17.0 test`. Standard CI remains deterministic and offline. Parity audit contracts do not implement runtime replay or automatic promotion. READ_ONLY remains default and FULL_AUTO/LIMITED_LIVE remain locked.
+Phase 80 replay promotion readiness certification remains preview only.
+
 ## Phase 78 Note
 
 Phase 78 introduces deterministic read-only live snapshot capture contracts in `apps/dashboard/src/read-only-live-snapshot-capture/` as a complete aggressive-safe vertical slice (capture gates/requests/provider targets/scope/bounds/staging/quarantine/normalization/provenance/integrity/schema/promotion/fixture-candidate/certification/report builders, fixtures, view models, contracts, selectors, normalization, validation, capabilities, docs, tests). Validation commands remain `corepack pnpm typecheck`, `corepack pnpm lint`, `corepack pnpm test`, `corepack pnpm --filter @sonic/dashboard build`, and `corepack pnpm --filter @sonic/offline-intelligence build`. Standard CI remains deterministic and offline. Snapshot capture contracts do not implement runtime live capture. READ_ONLY remains default and FULL_AUTO/LIMITED_LIVE remain locked. No live network default, no scheduled capture, no filesystem/persistence, no provider expansion, no wallet/signing/sending/execution, no recommendations/signals/advice, no real orders/funds/PnL, and no route/runtime/UI/DOM/background job behavior are introduced.
