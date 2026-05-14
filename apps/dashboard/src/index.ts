@@ -2195,3 +2195,4 @@ export {
 } from './manual-confirm-execution-boundary/index.js';
 
 export * from './transaction-construction-contract-mocks/index.js';
+export * from './signing-boundary-safety-contracts/index.js';

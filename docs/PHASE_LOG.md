@@ -1,5 +1,19 @@
 # Phase Log
 
+## Phase 83 — Signing Boundary Safety Design Contracts v1
+
+- Adds `apps/dashboard/src/signing-boundary-safety-contracts/` deterministic, fixture-backed, fail-closed signing-boundary safety design contracts with signing boundary gates, signing/wallet/key-material/signature-output denials, signer identity placeholders, approval boundaries, operator acknowledgements, construction/execution/dry-run linkage, abort/rollback contracts, evidence bundles, blocker taxonomy, capability audits, scorecards, reports, selectors, normalization, validation, capabilities, and index exports.
+- Adds 8 deterministic required fixtures: signing-boundary-design-ready, missing-transaction-construction-mock-blocked, signing-request-denied, wallet-prompt-denied, key-material-request-denied, signature-output-denied, approval-does-not-authorize-signing, unsafe-capability-rejected.
+- Links source fixture snapshots across Phase 65/66/67/68/69/70/72/73/74/75/76/77/78/79/80/81/82 where practical.
+- Exports all Phase 83 helpers through `apps/dashboard/src/index.ts`.
+- Extends dashboard/read-only-api capability surfaces with Phase 83 signing-boundary flags.
+- Adds `tests/phase83.test.ts`.
+- Adds `docs/SIGNING_BOUNDARY_SAFETY_CONTRACTS.md`.
+- Documents clean-runner Phase 79/80/81/82 verification attempt and environment-only `better-sqlite3` native-binding blocker evidence for full-suite runs.
+- **Signing boundary remains contract-only and does not implement signing, signature generation/output, wallet prompts/adapters, private-key/keypair/seed/mnemonic handling, sending/dispatch/execution, filesystem writes/persistence, runtime capture/replay, provider expansion, recommendations/signals/advice, or real orders/funds/PnL.**
+
+**Next phase guidance:** Phase 84 — Transaction Send Boundary Safety Contracts v1 (preview only; not implemented).
+
 ## Phase 81 — Manual-Confirm Execution Boundary Design Contracts v1
 
 - Adds `apps/dashboard/src/manual-confirm-execution-boundary/` deterministic, fixture-backed, fail-closed execution-boundary design contracts with boundary gates, boundary states, construction/signing/dispatch/wallet denial models, approval boundaries, operator-intent/dry-run/readiness/promotion/risk linkage, abort/rollback contracts, evidence bundles, blocker taxonomy, capability audits, scorecards, reports, selectors, normalization, validation, capabilities, and index exports.

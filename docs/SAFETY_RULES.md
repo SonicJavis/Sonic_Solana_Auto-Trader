@@ -1,5 +1,10 @@
 # Safety Rules
 
+## Phase 83 Safety Extension
+
+Phase 83 signing boundary safety design surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, signing-boundary-contract-only, and non-advisory. Phase 83 does not permit unlock authority, runtime signing, signature generation/output, wallet prompts/adapters/browser access, private-key/keypair/seed/mnemonic handling, secret storage, sending, dispatch, execution, recommendations, trading signals, investment advice, real orders/funds/PnL, default live network access, scheduled/runtime jobs, runtime monitoring/collectors, provider expansion, secret/API key requirements in deterministic paths, persistence/filesystem writes, route handlers/runtime requests, UI rendering, DOM access, or background jobs. Signing boundary reports do not authorize signing and do not imply profitability.
+Phase 84 transaction send boundary safety contracts is preview only.
+
 ## Phase 81 Safety Extension
 
 Phase 81 manual-confirm execution boundary design surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, execution-boundary-design-contract-only, and non-advisory. Phase 81 does not permit unlock authority, runtime execution, live/manual trading, LIMITED_LIVE/FULL_AUTO unlock, order creation, transaction construction/serialization/simulation, signing, sending, dispatch, wallet/private key/keypair handling, automatic promotion, runtime capture/replay, recommendations, trading signals, investment advice, real orders/funds/PnL, default live network access, scheduled/runtime jobs, runtime monitoring/collectors, provider expansion, secret/API key requirements in deterministic paths, persistence/filesystem writes, route handlers/runtime requests, UI rendering, DOM access, or background jobs. Boundary reports do not authorize execution or imply profitability.
