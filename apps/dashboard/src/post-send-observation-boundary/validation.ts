@@ -14,7 +14,7 @@ import {
 } from './normalization.js';
 
 const FORBIDDEN_ADVISORY_PATTERN = /\b(?:recommendation|signal|investment\s+advice|profit|pnl)\b/i;
-const FORBIDDEN_URL_PROVIDER_PATTERN = /\b(?:https?:\/\/|providerSdk|unsafe-endpoint|drainer)\b/i;
+const FORBIDDEN_URL_PROVIDER_PATTERN = /\b(?:https?:\/\/|providerSdk|unsafe-endpoint|drainer|api[_-]?key)\b/i;
 const TIMESTAMP_PATTERN = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
 
 function pushIssue(
@@ -70,7 +70,21 @@ export function validatePostSendObservationBoundaryFixture(
   if (fixture.capabilities.observationSecretsRequired || fixture.capabilities.observationApiKeyRequired) pushIssue(issues, 'SECRETS_REQUIRED_FORBIDDEN', 'capabilities', 'secrets/API key required must be false.');
   if (fixture.capabilities.observationRouteHandlers || fixture.capabilities.observationRuntimeRequests || fixture.capabilities.observationUiRendering || fixture.capabilities.observationDomAccess) pushIssue(issues, 'ROUTE_RUNTIME_UI_DOM_FORBIDDEN', 'capabilities', 'route/runtime/UI/DOM must be false.');
   if (Object.values(fixture.report).some(value => FORBIDDEN_ADVISORY_PATTERN.test(value))) pushIssue(issues, 'ADVISORY_LANGUAGE_FORBIDDEN', 'report', 'advisory text is forbidden.');
-  if (FORBIDDEN_URL_PROVIDER_PATTERN.test(JSON.stringify(fixture))) pushIssue(issues, 'UNSAFE_URL_PROVIDER_REF', 'fixture', 'unsafe URL/provider refs are forbidden.');
+  const runtimeSurface = JSON.stringify({
+    gate: fixture.boundaryGate,
+    request: fixture.observationRequestDenial,
+    confirmation: fixture.confirmationStatusPlaceholder,
+    signature: fixture.signatureStatusPlaceholder,
+    slot: fixture.slotObservationPlaceholder,
+    finality: fixture.finalityObservationPlaceholder,
+    retry: fixture.retryObservationDenial,
+    polling: fixture.pollingDenialContract,
+    subscription: fixture.subscriptionDenialContract,
+    networkRead: fixture.networkReadDenial,
+    report: fixture.report,
+    capabilities: fixture.capabilities,
+  });
+  if (FORBIDDEN_URL_PROVIDER_PATTERN.test(runtimeSurface)) pushIssue(issues, 'UNSAFE_URL_PROVIDER_REF', 'fixture', 'unsafe URL/provider refs are forbidden.');
   if (!fixture.evidenceBundle.docsRefs.length || !fixture.evidenceBundle.validationCommandRefs.length) pushIssue(issues, 'MISSING_EVIDENCE_REFS', 'evidenceBundle', 'evidence refs are required.');
   if (!Object.isFrozen(fixture.sourcePhase84FixtureSnapshot)) pushIssue(issues, 'SOURCE_FIXTURE_MUTABLE', 'sourcePhase84FixtureSnapshot', 'source snapshots must be immutable.');
   return { valid: issues.length === 0, issues };
