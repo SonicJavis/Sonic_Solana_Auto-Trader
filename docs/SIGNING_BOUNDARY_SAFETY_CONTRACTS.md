@@ -175,6 +175,6 @@ READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked.
 
 ## Next phase guidance
 
-Next recommended phase (**preview only**): **Phase 84 (implemented) — Transaction Send Boundary Safety Contracts v1**.
+Next recommended phase (**preview only**): **Phase 85 (implemented) — Post-Send Observation Boundary Contracts v1**.
 
-Phase 84 (implemented) is not implemented in this phase.
+Phase 85 (implemented) is not implemented in this phase.
