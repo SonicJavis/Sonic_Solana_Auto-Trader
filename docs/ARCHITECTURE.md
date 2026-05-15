@@ -1,5 +1,13 @@
 # Architecture
 
+## Phase 84 Update
+
+Phase 84 extends `apps/dashboard/` with `src/transaction-send-boundary-safety/`, a deterministic, fixture-backed, fail-closed transaction-send-boundary contract surface. It adds send boundary gates, send-request/network-submit/broadcast/dispatch denials, preflight/retry/confirmation denial contracts, signed-payload denials, operator approval boundaries, signing/construction/execution linkage, abort/rollback contracts, invariants, blocker/audit/scorecard/report models, API contracts, selectors, normalization, and validation.
+This layer is contract-only, local-only, read-only, deterministic, non-networked in standard CI, non-sending, non-dispatching, non-signing, non-executing, non-advisory, non-rendering, non-DOM, and non-persistent.
+Next guidance: Phase 85 post-send observation boundary contracts is preview only.
+
+# Architecture
+
 ## Phase 83 Update
 
 Phase 83 extends `apps/dashboard/` with `src/signing-boundary-safety-contracts/`, a deterministic, fixture-backed, fail-closed signing-boundary safety design contract surface. It adds signing-boundary gates, signing/wallet/key-material/signature-output denial contracts, signer-identity placeholders, approval/operator acknowledgement boundaries, construction/execution/dry-run linkage contracts, abort/rollback contracts, safety invariants, evidence/blocker/capability-audit models, scorecards, reports, view models, API contracts, selectors, normalization, validation, capabilities, tests, and docs. This layer is design-contract-only, local-only, read-only, deterministic, non-networked in standard CI, non-wallet, non-signing, non-signature-output, non-sending, non-dispatching, non-executing, non-advisory, non-rendering, non-DOM, and non-persistent.

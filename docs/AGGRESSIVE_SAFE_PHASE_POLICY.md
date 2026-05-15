@@ -110,3 +110,8 @@ Adds deterministic fixture-backed transaction-construction contract mocks only; 
 ## Phase 83 — Signing Boundary Safety Design Contracts v1
 
 Adds deterministic fixture-backed signing-boundary safety design contracts only; no signing, no signature generation/output, no wallet prompt/adapter, no key material handling, no sending/dispatch/execution, no persistence/filesystem writes, and no live network defaults. READ_ONLY remains default and FULL_AUTO/LIMITED_LIVE stay locked.
+
+
+## Phase 84 — Transaction Send Boundary Safety Contracts v1
+
+Adds deterministic fixture-backed transaction send boundary safety contracts only; no sendTransaction/sendRawTransaction, no network submit/broadcast/dispatch, no retry runtime, no confirmation polling, no live preflight simulation, no signing/wallet/key handling, no execution, no persistence/filesystem writes, and no advisory outputs. READ_ONLY remains default and FULL_AUTO/LIMITED_LIVE stay locked.

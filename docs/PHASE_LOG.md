@@ -1,5 +1,17 @@
 # Phase Log
 
+## Phase 84 — Transaction Send Boundary Safety Contracts v1
+
+- Adds `apps/dashboard/src/transaction-send-boundary-safety/` deterministic, fixture-backed, fail-closed send-boundary contracts with send/network-submit/broadcast/dispatch denials, preflight placeholder denials, signed-payload denials, retry/confirmation denials, operator approval boundaries, signing/construction/execution linkage, abort/rollback contracts, safety invariants, blocker taxonomy, capability audits, scorecards, reports, selectors, normalization, validation, capabilities, and index exports.
+- Adds 8 deterministic required fixtures: send-boundary-design-ready, missing-signing-boundary-blocked, send-request-denied, network-submit-denied, broadcast-denied, dispatch-denied, preflight-retry-confirmation-denied, unsafe-capability-rejected.
+- Links source fixture snapshots across Phase 65/66/67/68/69/70/72/73/74/75/76/77/78/79/80/81/82/83.
+- Adds `tests/phase84.test.ts` and `docs/TRANSACTION_SEND_BOUNDARY_SAFETY.md`.
+- **Send boundary remains contract-only and does not implement sending, network submission, broadcast, dispatch, retry runtime, confirmation polling, live preflight simulation, signing/wallet/key handling, execution, persistence/filesystem writes, advisory behavior, or real orders/funds/PnL.**
+
+**Next phase guidance:** Phase 85 — Post-Send Observation Boundary Contracts v1 (preview only; not implemented).
+
+# Phase Log
+
 ## Phase 83 — Signing Boundary Safety Design Contracts v1
 
 - Adds `apps/dashboard/src/signing-boundary-safety-contracts/` deterministic, fixture-backed, fail-closed signing-boundary safety design contracts with signing boundary gates, signing/wallet/key-material/signature-output denials, signer identity placeholders, approval boundaries, operator acknowledgements, construction/execution/dry-run linkage, abort/rollback contracts, evidence bundles, blocker taxonomy, capability audits, scorecards, reports, selectors, normalization, validation, capabilities, and index exports.
