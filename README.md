@@ -1,5 +1,23 @@
 # Sonic_Solana_Auto-Trader
 
+**Phase 84 — Transaction Send Boundary Safety Contracts v1**
+
+A defensive intelligence and control foundation for Solana trading. No live/manual trading, signing, sending, broadcast, dispatch, or execution in any phase up to and including Phase 84.
+
+## Features (Phase 84 — adds to Phase 83)
+
+- Adds `apps/dashboard/src/transaction-send-boundary-safety/` deterministic, fixture-backed, fail-closed transaction send boundary safety contract vertical slice:
+  - 8 deterministic fixtures: send-boundary-design-ready, missing-signing-boundary-blocked, send-request-denied, network-submit-denied, broadcast-denied, dispatch-denied, preflight-retry-confirmation-denied, unsafe-capability-rejected
+  - send boundary gate / send-request denial / network-submit denial / broadcast denial / dispatch denial / preflight denial placeholder / signed-payload denial / retry+confirmation denials / approval boundary / signing+construction+execution linkage / abort+rollback / evidence+blocker+audit / scorecard+report / view / API / selector surfaces
+  - practical linkage to Phase 65/66/67/68/69/70/72/73/74/75/76/77/78/79/80/81/82/83 fixture snapshots
+- Adds `docs/TRANSACTION_SEND_BOUNDARY_SAFETY.md`
+- Adds `tests/phase84.test.ts`
+- **Send boundary contracts are design-only and do not implement sending, `sendTransaction`, `sendRawTransaction`, network submission, broadcast, dispatch, retry runtime, confirmation polling, live preflight simulation, signing/wallet/key handling, execution, filesystem writes/persistence, provider expansion, recommendations/signals/advice, or real orders/funds/PnL. READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked.**
+
+**Next phase: Phase 85 — Post-Send Observation Boundary Contracts v1 (preview only; not implemented in this phase).**
+
+# Sonic_Solana_Auto-Trader
+
 **Phase 83 — Signing Boundary Safety Design Contracts v1**
 
 A defensive intelligence and control foundation for Solana trading. No live/manual trading, signing, or execution in any phase up to and including Phase 83.

@@ -1,5 +1,13 @@
 # Safety Rules
 
+## Phase 84 Safety Extension
+
+Phase 84 transaction send boundary safety surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, send-boundary-contract-only, and non-advisory.
+Phase 84 does not permit unlock authority, runtime sending, `sendTransaction`/`sendRawTransaction`, network submission, RPC write, endpoint submit, broadcast, dispatch, queue/worker/route dispatch, transaction id output, live preflight simulation, retry runtime, confirmation polling, signing/wallet/key handling, runtime execution, recommendations, trading signals, investment advice, real orders/funds/PnL, default live network access, scheduled/runtime jobs, runtime monitoring/collectors, provider expansion, secret/API key requirements in deterministic paths, persistence/filesystem writes, route handlers/runtime requests, UI rendering, DOM access, or background jobs.
+Phase 85 post-send observation boundary is preview only.
+
+# Safety Rules
+
 ## Phase 83 Safety Extension
 
 Phase 83 signing boundary safety design surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, signing-boundary-contract-only, and non-advisory. Phase 83 does not permit unlock authority, runtime signing, signature generation/output, wallet prompts/adapters/browser access, private-key/keypair/seed/mnemonic handling, secret storage, sending, dispatch, execution, recommendations, trading signals, investment advice, real orders/funds/PnL, default live network access, scheduled/runtime jobs, runtime monitoring/collectors, provider expansion, secret/API key requirements in deterministic paths, persistence/filesystem writes, route handlers/runtime requests, UI rendering, DOM access, or background jobs. Signing boundary reports do not authorize signing and do not imply profitability.

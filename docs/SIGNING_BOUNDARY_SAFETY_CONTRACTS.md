@@ -158,7 +158,7 @@ Validation rejects:
 
 ## Testing summary
 
-`tests/phase83.test.ts` covers constants/surfaces, helper APIs, builders, all 8 required fixtures, fail-closed denials, linkage, abort/rollback, scorecards/reports/view/API/selectors, normalization/serialization/equality, validation rejections, capability propagation, deterministic rebuilds, immutability, clean-runner blocker evidence checks, and Phase 84 preview-only docs guidance.
+`tests/phase83.test.ts` covers constants/surfaces, helper APIs, builders, all 8 required fixtures, fail-closed denials, linkage, abort/rollback, scorecards/reports/view/API/selectors, normalization/serialization/equality, validation rejections, capability propagation, deterministic rebuilds, immutability, clean-runner blocker evidence checks, and Phase 84 (implemented) preview-only docs guidance.
 
 ## Non-goals
 
@@ -175,6 +175,6 @@ READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked.
 
 ## Next phase guidance
 
-Next recommended phase (**preview only**): **Phase 84 — Transaction Send Boundary Safety Contracts v1**.
+Next recommended phase (**preview only**): **Phase 84 (implemented) — Transaction Send Boundary Safety Contracts v1**.
 
-Phase 84 is not implemented in this phase.
+Phase 84 (implemented) is not implemented in this phase.
