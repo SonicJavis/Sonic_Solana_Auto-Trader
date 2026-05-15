@@ -51,7 +51,7 @@ Validation references:
 
 Known runner blocker evidence remains environment-related (`node_modules`/native bindings), including `better-sqlite3` binding resolution on full-suite runners.
 
-## Phase 85 preview
+## Phase 86 preview
 
-Phase 85 preview only: **Post-Send Observation Boundary Contracts v1**.
-No Phase 85 implementation is included here.
+Phase 86 preview only: **Execution Outcome Audit Contracts v1**.
+No Phase 86 implementation is included here.

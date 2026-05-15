@@ -115,3 +115,7 @@ Adds deterministic fixture-backed signing-boundary safety design contracts only;
 ## Phase 84 — Transaction Send Boundary Safety Contracts v1
 
 Adds deterministic fixture-backed transaction send boundary safety contracts only; no sendTransaction/sendRawTransaction, no network submit/broadcast/dispatch, no retry runtime, no confirmation polling, no live preflight simulation, no signing/wallet/key handling, no execution, no persistence/filesystem writes, and no advisory outputs. READ_ONLY remains default and FULL_AUTO/LIMITED_LIVE stay locked.
+
+## Phase 85 — Post-Send Observation Boundary Contracts v1
+
+Adds deterministic fixture-backed post-send observation boundary contracts only; no live observation, no confirmation polling, no getSignatureStatuses/getTransaction runtime lookups, no network reads/subscriptions, no retry runtime, no sending/dispatch/signing/execution, no persistence/filesystem writes, and no advisory outputs. READ_ONLY remains default and FULL_AUTO/LIMITED_LIVE stay locked.

@@ -1,11 +1,11 @@
 # Build Guide
 
-## Phase 84 Note
+## Phase 85 Note
 
-Phase 84 introduces deterministic transaction-send-boundary safety contracts in `apps/dashboard/src/transaction-send-boundary-safety/` as a complete aggressive-safe vertical slice.
-Validation commands include `corepack pnpm@10.17.0 test tests/phase84.test.ts` and the Phase 79-84 targeted suite.
+Phase 85 introduces deterministic post-send-observation-boundary contracts in `apps/dashboard/src/post-send-observation-boundary/` as a complete aggressive-safe vertical slice.
+Validation commands include `corepack pnpm@10.17.0 test tests/phase85.test.ts` and the Phase 79-85 targeted suite.
 Standard CI remains deterministic and offline.
-Phase 84 does not implement sending, network submission, broadcast, dispatch, retry runtime, confirmation polling, live preflight simulation, signing/wallet/key handling, execution, filesystem writes/persistence, or advisory outputs.
+Phase 85 does not implement live observation, confirmation polling, getSignatureStatuses/getTransaction runtime lookups, network reads/subscriptions, retry runtime, sending, dispatch, signing, execution, filesystem writes/persistence, or advisory outputs.
 READ_ONLY remains default and FULL_AUTO/LIMITED_LIVE remain locked.
 
 # Build Guide
@@ -14,7 +14,7 @@ READ_ONLY remains default and FULL_AUTO/LIMITED_LIVE remain locked.
 
 Phase 83 introduces deterministic signing-boundary safety design contracts in `apps/dashboard/src/signing-boundary-safety-contracts/` as a complete aggressive-safe vertical slice (signing-boundary gate/signing+wallet+key-material+signature-output denial/placeholder+approval+acknowledgement/linkage/abort+rollback/safety-invariant/evidence/blocker/audit/scorecard/report builders, fixtures, view models, contracts, selectors, normalization, validation, capabilities, docs, tests). Validation commands include `corepack pnpm@10.17.0 test tests/phase83.test.ts` and `corepack pnpm@10.17.0 test`. Standard CI remains deterministic and offline. Signing boundary contracts do not implement signing, signature generation/output, wallet prompt/adapter, key material handling, sending, dispatch, runtime execution, or filesystem writes/persistence. READ_ONLY remains default and FULL_AUTO/LIMITED_LIVE remain locked.
 
-Phase 84 transaction send boundary safety contracts remains preview only.
+Phase 86 execution outcome audit contracts remains preview only.
 ## Phase 81 Note
 
 Phase 81 introduces deterministic manual-confirm execution-boundary design contracts in `apps/dashboard/src/manual-confirm-execution-boundary/` as a complete aggressive-safe vertical slice (boundary gates/states/construction+signing+dispatch+wallet denial/approval/linkage/abort+rollback/evidence/blocker/audit/scorecard/report builders, fixtures, view models, contracts, selectors, normalization, validation, capabilities, docs, tests). Validation commands include `corepack pnpm@10.17.0 test tests/phase81.test.ts` and `corepack pnpm@10.17.0 test`. Standard CI remains deterministic and offline. Execution boundary contracts do not implement transaction construction, signing, sending, dispatch, runtime execution, wallet handling, or filesystem writes/persistence. READ_ONLY remains default and FULL_AUTO/LIMITED_LIVE remain locked.

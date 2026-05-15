@@ -1,20 +1,20 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 84 — Transaction Send Boundary Safety Contracts v1**
+**Phase 85 — Post-Send Observation Boundary Contracts v1**
 
-A defensive intelligence and control foundation for Solana trading. No live/manual trading, signing, sending, broadcast, dispatch, or execution in any phase up to and including Phase 84.
+A defensive intelligence and control foundation for Solana trading. No live/manual trading, signing, sending, observation polling/subscriptions/network reads, broadcast, dispatch, or execution in any phase up to and including Phase 85.
 
-## Features (Phase 84 — adds to Phase 83)
+## Features (Phase 85 — adds to Phase 84)
 
-- Adds `apps/dashboard/src/transaction-send-boundary-safety/` deterministic, fixture-backed, fail-closed transaction send boundary safety contract vertical slice:
-  - 8 deterministic fixtures: send-boundary-design-ready, missing-signing-boundary-blocked, send-request-denied, network-submit-denied, broadcast-denied, dispatch-denied, preflight-retry-confirmation-denied, unsafe-capability-rejected
-  - send boundary gate / send-request denial / network-submit denial / broadcast denial / dispatch denial / preflight denial placeholder / signed-payload denial / retry+confirmation denials / approval boundary / signing+construction+execution linkage / abort+rollback / evidence+blocker+audit / scorecard+report / view / API / selector surfaces
-  - practical linkage to Phase 65/66/67/68/69/70/72/73/74/75/76/77/78/79/80/81/82/83 fixture snapshots
-- Adds `docs/TRANSACTION_SEND_BOUNDARY_SAFETY.md`
-- Adds `tests/phase84.test.ts`
-- **Send boundary contracts are design-only and do not implement sending, `sendTransaction`, `sendRawTransaction`, network submission, broadcast, dispatch, retry runtime, confirmation polling, live preflight simulation, signing/wallet/key handling, execution, filesystem writes/persistence, provider expansion, recommendations/signals/advice, or real orders/funds/PnL. READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked.**
+- Adds `apps/dashboard/src/post-send-observation-boundary/` deterministic, fixture-backed, fail-closed post-send observation boundary contract vertical slice:
+  - 8 deterministic fixtures: observation-boundary-design-ready, missing-send-boundary-blocked, confirmation-lookup-denied, signature-status-lookup-denied, slot-finality-observation-denied, polling-subscription-denied, retry-observation-denied, unsafe-capability-rejected
+  - observation boundary gate / observation-request denial / confirmation+signature status placeholders / slot+finality placeholders / retry+polling+subscription+network-read denials / send+signing+construction+execution linkage / abort+rollback / safety+blocker+audit / scorecard+report / view / API / selector surfaces
+  - practical linkage to Phase 65/66/67/68/69/70/72/73/74/75/76/77/78/79/80/81/82/83/84 fixture snapshots
+- Adds `docs/POST_SEND_OBSERVATION_BOUNDARY.md`
+- Adds `tests/phase85.test.ts`
+- **Post-send observation boundary contracts are design-only and do not implement live observation, confirmation polling, `getSignatureStatuses`/`getTransaction` runtime calls, network reads/subscriptions, retry runtime, sending/broadcast/dispatch, signing/wallet/key handling, execution, filesystem writes/persistence, provider expansion, recommendations/signals/advice, or real orders/funds/PnL. READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked.**
 
-**Next phase: Phase 85 — Post-Send Observation Boundary Contracts v1 (preview only; not implemented in this phase).**
+**Next phase: Phase 86 — Execution Outcome Audit Contracts v1 (preview only; not implemented in this phase).**
 
 # Sonic_Solana_Auto-Trader
 

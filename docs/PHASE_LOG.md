@@ -1,14 +1,14 @@
 # Phase Log
 
-## Phase 84 — Transaction Send Boundary Safety Contracts v1
+## Phase 85 — Post-Send Observation Boundary Contracts v1
 
-- Adds `apps/dashboard/src/transaction-send-boundary-safety/` deterministic, fixture-backed, fail-closed send-boundary contracts with send/network-submit/broadcast/dispatch denials, preflight placeholder denials, signed-payload denials, retry/confirmation denials, operator approval boundaries, signing/construction/execution linkage, abort/rollback contracts, safety invariants, blocker taxonomy, capability audits, scorecards, reports, selectors, normalization, validation, capabilities, and index exports.
-- Adds 8 deterministic required fixtures: send-boundary-design-ready, missing-signing-boundary-blocked, send-request-denied, network-submit-denied, broadcast-denied, dispatch-denied, preflight-retry-confirmation-denied, unsafe-capability-rejected.
-- Links source fixture snapshots across Phase 65/66/67/68/69/70/72/73/74/75/76/77/78/79/80/81/82/83.
-- Adds `tests/phase84.test.ts` and `docs/TRANSACTION_SEND_BOUNDARY_SAFETY.md`.
-- **Send boundary remains contract-only and does not implement sending, network submission, broadcast, dispatch, retry runtime, confirmation polling, live preflight simulation, signing/wallet/key handling, execution, persistence/filesystem writes, advisory behavior, or real orders/funds/PnL.**
+- Adds `apps/dashboard/src/post-send-observation-boundary/` deterministic, fixture-backed, fail-closed post-send observation boundary contracts with observation/request denials, confirmation/signature placeholders, slot/finality placeholders, retry/polling/subscription/network-read denials, send/signing/construction/execution linkage, abort/rollback contracts, safety invariants, blocker taxonomy, capability audits, scorecards, reports, selectors, normalization, validation, capabilities, and index exports.
+- Adds 8 deterministic required fixtures: observation-boundary-design-ready, missing-send-boundary-blocked, confirmation-lookup-denied, signature-status-lookup-denied, slot-finality-observation-denied, polling-subscription-denied, retry-observation-denied, unsafe-capability-rejected.
+- Links source fixture snapshots across Phase 65/66/67/68/69/70/72/73/74/75/76/77/78/79/80/81/82/83/84.
+- Adds `tests/phase85.test.ts` and `docs/POST_SEND_OBSERVATION_BOUNDARY.md`.
+- **Post-send observation boundary remains contract-only and does not implement live observation, confirmation polling, getSignatureStatuses/getTransaction runtime calls, network reads/subscriptions, retry runtime, sending/dispatch/signing/execution, persistence/filesystem writes, advisory behavior, or real orders/funds/PnL.**
 
-**Next phase guidance:** Phase 85 — Post-Send Observation Boundary Contracts v1 (preview only; not implemented).
+**Next phase guidance:** Phase 86 — Execution Outcome Audit Contracts v1 (preview only; not implemented).
 
 # Phase Log
 
