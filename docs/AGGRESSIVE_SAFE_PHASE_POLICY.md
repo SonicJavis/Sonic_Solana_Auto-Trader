@@ -1,4 +1,8 @@
 
+## Phase 88 — Risk Feedback Safety Gate Re-Evaluation Contracts v1
+
+Adds deterministic fixture-backed risk feedback safety gate re-evaluation contracts only; no automatic gate mutation, no automatic unlock, no live risk update, no live feedback/gate-status lookup, no unlock authority, no network reads/subscriptions, no polling/retry runtime, no sending/dispatch/signing/execution, no filesystem/persistence writes, and no advisory output. READ_ONLY remains default and FULL_AUTO/LIMITED_LIVE stay locked.
+
 ## Phase 87 — Outcome-to-Risk Feedback Loop Contracts v1
 
 Adds deterministic fixture-backed outcome-to-risk feedback loop contracts only; no live feedback ingestion, no live risk updates, no automatic risk/safety-gate mutation, no unlock authority, no network reads/subscriptions, no polling/retry runtime, no sending/dispatch/signing/execution, no filesystem/persistence writes, and no advisory output. READ_ONLY remains default and FULL_AUTO/LIMITED_LIVE stay locked.

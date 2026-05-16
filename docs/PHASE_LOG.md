@@ -1,5 +1,15 @@
 # Phase Log
 
+## Phase 88 — Risk Feedback Safety Gate Re-Evaluation Contracts v1
+
+- Adds `apps/dashboard/src/risk-feedback-safety-gate-reevaluation/` deterministic, fixture-backed, fail-closed risk feedback safety gate re-evaluation contracts with re-evaluation gates, feedback review events, safety gate re-evaluation links, manual review placeholders, gate status placeholders, blocker/escalation review contracts, evidence review bundles, policy/readiness check placeholders, feedback/risk/outcome/certification linkage, abort/rollback contracts, safety invariants, capability audits, scorecards, reports, view-models, API contracts, selectors, normalization, validation, capabilities, and index exports.
+- Adds 8 deterministic required fixtures: reevaluation-design-ready, missing-feedback-loop-blocked, missing-safety-gate-ref-blocked, automatic-gate-mutation-denied, automatic-unlock-denied, manual-review-required, evidence-review-incomplete-blocked, unsafe-capability-rejected.
+- Links source fixture snapshots across Phase 58/59/65/66/67/68/69/70/72/73/74/75/76/77/78/79/80/81/82/83/84/85/86/87.
+- Adds `tests/phase88.test.ts` (60 tests) and `docs/RISK_FEEDBACK_SAFETY_GATE_REEVALUATION.md`.
+- **Phase 88 remains contract-only and does not implement automatic gate mutation, automatic unlock, live risk update, live feedback lookup, live gate status fetch, network reads/subscriptions, polling/retry runtime, sending/dispatch/signing/execution, persistence/filesystem writes, advisory behavior, or real orders/funds/PnL.**
+
+**Next phase guidance:** Phase 89 — Safety Gate Manual Review Dossier Contracts v1 (preview only; not implemented).
+
 ## Phase 87 — Outcome-to-Risk Feedback Loop Contracts v1
 
 - Adds `apps/dashboard/src/outcome-risk-feedback-contracts/` deterministic, fixture-backed, fail-closed outcome-to-risk feedback loop contracts with feedback loop gates, outcome feedback events, risk feedback links, risk reassessment placeholders, safety gate feedback links, risk/confidence delta placeholders, evidence feedback bundles, replay/outcome/observation/risk-engine/evidence-model linkage, abort/rollback/safety invariants, blocker taxonomy, capability audits, scorecards, reports, selectors, normalization, validation, capabilities, and index exports.

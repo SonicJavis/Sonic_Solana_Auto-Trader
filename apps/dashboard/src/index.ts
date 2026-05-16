@@ -2200,3 +2200,4 @@ export * from './transaction-send-boundary-safety/index.js';
 export * from './post-send-observation-boundary/index.js';
 export * from './execution-outcome-audit-contracts/index.js';
 export * from './outcome-risk-feedback-contracts/index.js';
+export * from './risk-feedback-safety-gate-reevaluation/index.js';
