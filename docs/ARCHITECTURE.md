@@ -1,5 +1,9 @@
 # Architecture
 
+## Phase 88 Update
+
+Phase 88 extends `apps/dashboard/` with `src/risk-feedback-safety-gate-reevaluation/`, a deterministic, fixture-backed, fail-closed risk feedback safety gate re-evaluation contract surface. It adds re-evaluation gates, feedback review events, safety gate re-evaluation links, manual review placeholders, gate status placeholders, blocker/escalation review contracts, evidence review bundles, policy/readiness check placeholders, feedback/risk/outcome/certification linkage, abort/rollback contracts, safety invariants, capability audits, scorecards, reports, view-models, API contracts, selectors, normalization, and validation. Phase 88 models how feedback from Phase 87 could trigger manual safety-gate review contracts, while explicitly denying automatic gate mutation, automatic unlock, live risk update, live feedback/gate-status lookup, network reads, and all execution paths.
+
 ## Phase 87 Update
 
 Phase 87 extends `apps/dashboard/` with `src/outcome-risk-feedback-contracts/`, a deterministic, fixture-backed, fail-closed outcome-to-risk feedback loop contract surface. It adds feedback loop gates, outcome feedback events, risk feedback links, risk reassessment placeholders, safety-gate feedback links, risk/confidence delta placeholders, evidence feedback bundles, replay/outcome/observation/risk-engine/evidence-model linkage, abort/rollback contracts, safety invariants, blocker taxonomy, capability audits, scorecards, reports, API contracts, selectors, normalization, and validation.

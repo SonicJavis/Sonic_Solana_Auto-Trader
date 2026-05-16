@@ -1,5 +1,10 @@
 # Safety Rules
 
+## Phase 88 Safety Extension
+
+Phase 88 risk feedback safety gate re-evaluation surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, contract-only, and non-advisory.
+Phase 88 does not permit automatic gate mutation, automatic unlock, live risk update, live feedback lookup, live gate status fetch, unlock authority, network reads, polling runtime, subscription runtime, scheduled timers/jobs, sending, dispatch, signing/wallet/key handling, runtime execution, recommendations, trading signals, investment advice, real orders/funds/PnL, default live network access, runtime monitoring/collectors, provider expansion, secret/API key requirements in deterministic paths, persistence/filesystem writes, route handlers/runtime requests, UI rendering, DOM access, or background jobs.
+
 ## Phase 87 Safety Extension
 
 Phase 87 outcome-to-risk feedback loop surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, feedback-contract-only, and non-advisory.

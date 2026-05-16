@@ -1,5 +1,12 @@
 # Build Guide
 
+## Phase 88 Note
+
+Phase 88 introduces deterministic risk-feedback-safety-gate-reevaluation contracts in `apps/dashboard/src/risk-feedback-safety-gate-reevaluation/` as a complete aggressive-safe vertical slice.
+Validation commands include `corepack pnpm@10.17.0 test tests/phase88.test.ts` and the Phase 79-88 targeted suite.
+
+Phase 88 does not implement automatic gate mutation, automatic unlock, live risk update, live feedback/gate-status lookup, network reads/subscriptions, polling/retry runtime, sending, dispatch, signing, execution, filesystem writes/persistence, or advisory outputs.
+
 ## Phase 87 Note
 
 Phase 87 introduces deterministic outcome-risk-feedback contracts in `apps/dashboard/src/outcome-risk-feedback-contracts/` as a complete aggressive-safe vertical slice.
