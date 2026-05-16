@@ -1,12 +1,17 @@
 # Architecture
 
+## Phase 86 Update
+
+Phase 86 extends `apps/dashboard/` with `src/execution-outcome-audit-contracts/`, a deterministic, fixture-backed, fail-closed execution outcome audit contract surface. It adds outcome audit gates, outcome event/status placeholders, confirmation/finality outcome placeholders, transaction result denials, network observation denials, audit evidence bundles, observation boundary/send/signing/construction/execution linkage, abort/rollback contracts, safety invariants, blocker taxonomy, capability audits, scorecards, reports, API contracts, selectors, normalization, and validation.
+This layer is contract-only, local-only, read-only, deterministic, non-networked in standard CI, no live outcome observation, no transaction/confirmation/finality lookup, non-polling, non-subscription, non-network-read, non-sending, non-dispatching, non-signing, non-executing, non-advisory, non-rendering, non-DOM, and non-persistent.
+Next guidance: Phase 87 outcome-to-risk feedback loop contracts is preview only.
+
 ## Phase 85 Update
 
 Phase 85 extends `apps/dashboard/` with `src/post-send-observation-boundary/`, a deterministic, fixture-backed, fail-closed post-send observation boundary contract surface. It adds observation boundary gates, observation request denials, confirmation/signature placeholders, slot/finality placeholders, retry/polling/subscription/network-read denials, send/signing/construction/execution linkage, abort/rollback contracts, invariants, blocker/audit/scorecard/report models, API contracts, selectors, normalization, and validation.
 This layer is contract-only, local-only, read-only, deterministic, non-networked in standard CI, non-observing at runtime, non-polling, non-subscription, non-network-read, non-sending, non-dispatching, non-signing, non-executing, non-advisory, non-rendering, non-DOM, and non-persistent.
-Next guidance: Phase 86 execution outcome audit contracts is preview only.
+Next guidance: Phase 86 execution outcome audit contracts is complete.
 
-# Architecture
 
 ## Phase 83 Update
 

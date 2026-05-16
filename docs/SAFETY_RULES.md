@@ -1,5 +1,11 @@
 # Safety Rules
 
+## Phase 86 Safety Extension
+
+Phase 86 execution outcome audit surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, audit-contract-only, and non-advisory.
+Phase 86 does not permit unlock authority, live outcome observation, transaction/confirmation/finality lookup, polling runtime, subscription runtime, network read runtime, scheduled timers/jobs, sending, dispatch, signing/wallet/key handling, runtime execution, recommendations, trading signals, investment advice, real orders/funds/PnL, default live network access, runtime monitoring/collectors, provider expansion, secret/API key requirements in deterministic paths, persistence/filesystem writes, route handlers/runtime requests, UI rendering, DOM access, or background jobs.
+Phase 87 outcome-to-risk feedback loop contracts is preview only.
+
 ## Phase 85 Safety Extension
 
 Phase 85 post-send observation boundary surfaces must remain fixture-only in standard CI, local-only, read-only, deterministic, fail-closed, observation-boundary-contract-only, and non-advisory.
