@@ -1,5 +1,15 @@
 # Build Guide
 
+## Phase 87 Note
+
+Phase 87 introduces deterministic outcome-risk-feedback contracts in `apps/dashboard/src/outcome-risk-feedback-contracts/` as a complete aggressive-safe vertical slice.
+Validation commands include `corepack pnpm@10.17.0 test tests/phase87.test.ts` and the Phase 79-87 targeted suite.
+Standard CI remains deterministic and offline.
+Phase 87 does not implement live feedback, live risk updates, automatic risk/safety mutation, live outcome lookup, network reads/subscriptions, polling/retry runtime, sending, dispatch, signing, execution, filesystem writes/persistence, or advisory outputs.
+READ_ONLY remains default and FULL_AUTO/LIMITED_LIVE remain locked.
+
+# Build Guide
+
 ## Phase 86 Note
 
 Phase 86 introduces deterministic execution-outcome-audit contracts in `apps/dashboard/src/execution-outcome-audit-contracts/` as a complete aggressive-safe vertical slice.

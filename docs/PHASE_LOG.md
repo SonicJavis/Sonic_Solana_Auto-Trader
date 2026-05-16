@@ -1,5 +1,17 @@
 # Phase Log
 
+## Phase 87 — Outcome-to-Risk Feedback Loop Contracts v1
+
+- Adds `apps/dashboard/src/outcome-risk-feedback-contracts/` deterministic, fixture-backed, fail-closed outcome-to-risk feedback loop contracts with feedback loop gates, outcome feedback events, risk feedback links, risk reassessment placeholders, safety gate feedback links, risk/confidence delta placeholders, evidence feedback bundles, replay/outcome/observation/risk-engine/evidence-model linkage, abort/rollback/safety invariants, blocker taxonomy, capability audits, scorecards, reports, selectors, normalization, validation, capabilities, and index exports.
+- Adds 8 deterministic required fixtures: feedback-loop-design-ready, missing-outcome-audit-blocked, missing-risk-evidence-blocked, live-risk-update-denied, safety-gate-mutation-denied, risk-delta-live-computation-denied, evidence-feedback-incomplete-blocked, unsafe-capability-rejected.
+- Links source fixture snapshots across Phase 58/59/65/66/67/68/69/70/72/73/74/75/76/77/78/79/80/81/82/83/84/85/86.
+- Adds `tests/phase87.test.ts` and `docs/OUTCOME_RISK_FEEDBACK_CONTRACTS.md`.
+- **Outcome-to-risk feedback contracts remain contract-only and do not implement live feedback, live risk update, automatic mutation/unlock, live outcome lookup, network reads/subscriptions, polling/retry runtime, sending/dispatch/signing/execution, persistence/filesystem writes, advisory behavior, or real orders/funds/PnL.**
+
+**Next phase guidance:** Phase 88 — Risk Feedback Safety Gate Re-Evaluation Contracts v1 (preview only; not implemented).
+
+# Phase Log
+
 ## Phase 86 — Execution Outcome Audit Contracts v1
 
 - Adds `apps/dashboard/src/execution-outcome-audit-contracts/` deterministic, fixture-backed, fail-closed execution outcome audit contracts with outcome audit gates, outcome event/status placeholders, confirmation/finality outcome placeholders, transaction result denials, network observation denials, audit evidence bundles, observation boundary/send/signing/construction/execution linkage, abort/rollback contracts, safety invariants, blocker taxonomy, capability audits, scorecards, reports, selectors, normalization, validation, capabilities, and index exports.

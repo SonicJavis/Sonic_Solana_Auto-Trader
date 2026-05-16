@@ -1,5 +1,13 @@
 # Architecture
 
+## Phase 87 Update
+
+Phase 87 extends `apps/dashboard/` with `src/outcome-risk-feedback-contracts/`, a deterministic, fixture-backed, fail-closed outcome-to-risk feedback loop contract surface. It adds feedback loop gates, outcome feedback events, risk feedback links, risk reassessment placeholders, safety-gate feedback links, risk/confidence delta placeholders, evidence feedback bundles, replay/outcome/observation/risk-engine/evidence-model linkage, abort/rollback contracts, safety invariants, blocker taxonomy, capability audits, scorecards, reports, API contracts, selectors, normalization, and validation.
+This layer is contract-only, local-only, read-only, deterministic, non-networked in standard CI, no live feedback, no live risk updates, no automatic mutation, no live outcome lookup, non-polling, non-subscription, non-network-read, non-sending, non-dispatching, non-signing, non-executing, non-advisory, non-rendering, non-DOM, and non-persistent.
+Next guidance: Phase 88 risk feedback safety gate re-evaluation contracts is preview only.
+
+# Architecture
+
 ## Phase 86 Update
 
 Phase 86 extends `apps/dashboard/` with `src/execution-outcome-audit-contracts/`, a deterministic, fixture-backed, fail-closed execution outcome audit contract surface. It adds outcome audit gates, outcome event/status placeholders, confirmation/finality outcome placeholders, transaction result denials, network observation denials, audit evidence bundles, observation boundary/send/signing/construction/execution linkage, abort/rollback contracts, safety invariants, blocker taxonomy, capability audits, scorecards, reports, API contracts, selectors, normalization, and validation.

@@ -1,3 +1,8 @@
+
+### Phase 87 Linkage Note
+
+Phase 87 outcome-to-risk feedback loop contracts consume Phase 59 explanation/evidence fixture identifiers as immutable lineage references only. No runtime feedback ingestion, no live risk updates, and no advisory behavior are introduced.
+
 # RISK_EXPLANATION_EVIDENCE_MODELS.md
 
 ## Phase 59 — Risk Explanation and Evidence Models v1
