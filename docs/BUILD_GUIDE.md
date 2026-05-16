@@ -1,5 +1,13 @@
 # Build Guide
 
+## Phase 86 Note
+
+Phase 86 introduces deterministic execution-outcome-audit contracts in `apps/dashboard/src/execution-outcome-audit-contracts/` as a complete aggressive-safe vertical slice.
+Validation commands include `corepack pnpm@10.17.0 test tests/phase86.test.ts` and the Phase 79-86 targeted suite.
+Standard CI remains deterministic and offline.
+Phase 86 does not implement live outcome observation, transaction/confirmation/finality lookup, network reads/subscriptions, polling/retry runtime, sending, dispatch, signing, execution, filesystem writes/persistence, or advisory outputs.
+READ_ONLY remains default and FULL_AUTO/LIMITED_LIVE remain locked.
+
 ## Phase 85 Note
 
 Phase 85 introduces deterministic post-send-observation-boundary contracts in `apps/dashboard/src/post-send-observation-boundary/` as a complete aggressive-safe vertical slice.

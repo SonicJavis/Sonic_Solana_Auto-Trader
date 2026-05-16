@@ -45,9 +45,13 @@ This phase is **contract-only** and **read-only**.
 - `corepack pnpm@10.17.0 --filter @sonic/dashboard build`
 - `corepack pnpm@10.17.0 --filter @sonic/offline-intelligence build`
 
-Known runner blockers remain environment-related in full-suite runs (`tests/phase23.test.ts` sanitization and `tests/phase4.test.ts` `better_sqlite3.node` binding), so Phase 79–85 targeted suite is required to pass for this phase.
+Known runner blockers remain environment-related in full-suite runs (`tests/phase23.test.ts` sanitization and `tests/phase4.test.ts` `better_sqlite3.node` binding), so Phase 79–86 targeted suite is required to pass for this phase.
 
-## Phase 86 preview
+## Phase 86
 
-Phase 86 preview only: **Execution Outcome Audit Contracts v1**.
-No Phase 86 implementation is included here.
+Phase 86 is complete: **Execution Outcome Audit Contracts v1** — deterministic, fixture-backed, fail-closed execution outcome audit contract surface in `apps/dashboard/src/execution-outcome-audit-contracts/`.
+
+## Phase 87 preview
+
+Phase 87 preview only: **Outcome-to-Risk Feedback Loop Contracts v1**.
+No Phase 87 implementation is included here.

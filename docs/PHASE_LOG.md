@@ -1,5 +1,15 @@
 # Phase Log
 
+## Phase 86 — Execution Outcome Audit Contracts v1
+
+- Adds `apps/dashboard/src/execution-outcome-audit-contracts/` deterministic, fixture-backed, fail-closed execution outcome audit contracts with outcome audit gates, outcome event/status placeholders, confirmation/finality outcome placeholders, transaction result denials, network observation denials, audit evidence bundles, observation boundary/send/signing/construction/execution linkage, abort/rollback contracts, safety invariants, blocker taxonomy, capability audits, scorecards, reports, selectors, normalization, validation, capabilities, and index exports.
+- Adds 8 deterministic required fixtures: outcome-audit-design-ready, missing-observation-boundary-blocked, transaction-result-lookup-denied, confirmation-outcome-denied, finality-outcome-denied, network-observation-denied, audit-evidence-incomplete-blocked, unsafe-capability-rejected.
+- Links source fixture snapshots across Phase 65/66/67/68/69/70/72/73/74/75/76/77/78/79/80/81/82/83/84/85.
+- Adds `tests/phase86.test.ts` and `docs/EXECUTION_OUTCOME_AUDIT_CONTRACTS.md`.
+- **Execution outcome audit contracts remain contract-only and do not implement live outcome observation, transaction/confirmation/finality lookup, network reads/subscriptions, polling/retry runtime, sending/dispatch/signing/execution, persistence/filesystem writes, advisory behavior, or real orders/funds/PnL.**
+
+**Next phase guidance:** Phase 87 — Outcome-to-Risk Feedback Loop Contracts v1 (preview only; not implemented).
+
 ## Phase 85 — Post-Send Observation Boundary Contracts v1
 
 - Adds `apps/dashboard/src/post-send-observation-boundary/` deterministic, fixture-backed, fail-closed post-send observation boundary contracts with observation/request denials, confirmation/signature placeholders, slot/finality placeholders, retry/polling/subscription/network-read denials, send/signing/construction/execution linkage, abort/rollback contracts, safety invariants, blocker taxonomy, capability audits, scorecards, reports, selectors, normalization, validation, capabilities, and index exports.

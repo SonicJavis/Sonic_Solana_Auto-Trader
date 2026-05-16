@@ -2198,3 +2198,4 @@ export * from './transaction-construction-contract-mocks/index.js';
 export * from './signing-boundary-safety-contracts/index.js';
 export * from './transaction-send-boundary-safety/index.js';
 export * from './post-send-observation-boundary/index.js';
+export * from './execution-outcome-audit-contracts/index.js';

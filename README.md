@@ -1,5 +1,23 @@
 # Sonic_Solana_Auto-Trader
 
+**Phase 86 — Execution Outcome Audit Contracts v1**
+
+A defensive intelligence and control foundation for Solana trading. No live/manual trading, signing, sending, observation polling/subscriptions/network reads, broadcast, dispatch, execution, or live outcome observation in any phase up to and including Phase 86.
+
+## Features (Phase 86 — adds to Phase 85)
+
+- Adds `apps/dashboard/src/execution-outcome-audit-contracts/` deterministic, fixture-backed, fail-closed execution outcome audit contract vertical slice:
+  - 8 deterministic fixtures: outcome-audit-design-ready, missing-observation-boundary-blocked, transaction-result-lookup-denied, confirmation-outcome-denied, finality-outcome-denied, network-observation-denied, audit-evidence-incomplete-blocked, unsafe-capability-rejected
+  - outcome audit gate / outcome event+status placeholders / confirmation+finality outcome placeholders / transaction result denial / network observation denial / audit evidence bundles / observation boundary+send+signing+construction+execution linkage / abort+rollback / safety+blocker+capability-audit / scorecard+report / view / API / selector surfaces
+  - practical linkage to Phase 65/66/67/68/69/70/72/73/74/75/76/77/78/79/80/81/82/83/84/85 fixture snapshots
+- Adds `docs/EXECUTION_OUTCOME_AUDIT_CONTRACTS.md`
+- Adds `tests/phase86.test.ts`
+- **Execution outcome audit contracts are design-only and do not implement live outcome observation, transaction/confirmation/finality lookup, network reads/subscriptions, polling/retry runtime, sending/broadcast/dispatch, signing/wallet/key handling, execution, filesystem writes/persistence, provider expansion, recommendations/signals/advice, or real orders/funds/PnL. READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked.**
+
+**Next phase: Phase 87 — Outcome-to-Risk Feedback Loop Contracts v1 (preview only; not implemented in this phase).**
+
+# Sonic_Solana_Auto-Trader
+
 **Phase 85 — Post-Send Observation Boundary Contracts v1**
 
 A defensive intelligence and control foundation for Solana trading. No live/manual trading, signing, sending, observation polling/subscriptions/network reads, broadcast, dispatch, or execution in any phase up to and including Phase 85.
