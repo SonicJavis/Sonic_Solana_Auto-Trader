@@ -1,3 +1,10 @@
+## Phase 89 Note
+
+Phase 89 introduces deterministic safety-gate-manual-review-dossier contracts in `apps/dashboard/src/safety-gate-manual-review-dossier/` as a complete aggressive-safe vertical slice.
+Validation commands include `corepack pnpm@10.17.0 test tests/phase89.test.ts` and the Phase 79-89 targeted suite.
+
+Phase 89 does not implement approval authority, automatic approval/unlock, safety gate mutation, blocker clearing, live reviewer/risk/feedback/gate/outcome lookup, network reads/subscriptions, polling/retry runtime, sending, dispatch, signing, execution, filesystem writes/persistence, or advisory outputs.
+
 # Build Guide
 
 ## Phase 88 Note

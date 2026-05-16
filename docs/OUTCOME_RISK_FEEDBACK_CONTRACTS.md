@@ -1,3 +1,5 @@
+
+**Phase 89 — Safety Gate Manual Review Dossier Contracts v1** is implemented on top of Phase 88 re-evaluation outputs, preserving fail-closed, read-only, deterministic, non-advisory behavior.
 # Outcome-to-Risk Feedback Loop Contracts
 
 > **Phase 87 — Outcome-to-Risk Feedback Loop Contracts v1**

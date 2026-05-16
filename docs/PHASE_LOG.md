@@ -1,5 +1,15 @@
 # Phase Log
 
+## Phase 89 — Safety Gate Manual Review Dossier Contracts v1
+
+- Adds `apps/dashboard/src/safety-gate-manual-review-dossier/` deterministic, fixture-backed, fail-closed manual review dossier contracts with dossier gates, dossier headers, reviewer checklists, evidence packets, signoff placeholders, unresolved blocker summaries, escalation/policy/readiness placeholders, approval-denial contracts, reevaluation/feedback/risk/outcome/certification/audit-trail linkage, abort/rollback contracts, safety invariants, capability audits, scorecards, reports, view-models, API contracts, selectors, normalization, validation, capabilities, and index exports.
+- Adds 8 deterministic required fixtures: manual-review-dossier-ready, missing-reevaluation-ref-blocked, missing-evidence-packet-blocked, reviewer-checklist-incomplete-blocked, signoff-placeholder-only, unresolved-blockers-preserved, automatic-approval-denied, unsafe-capability-rejected.
+- Links source fixture snapshots across Phase 58/59/65/66/67/68/69/70/72/73/74/75/76/77/78/79/80/81/82/83/84/85/86/87/88.
+- Adds `tests/phase89.test.ts` and `docs/SAFETY_GATE_MANUAL_REVIEW_DOSSIER.md`.
+- **Phase 89 remains contract-only and does not implement approval authority, automatic approval, automatic unlock, safety gate mutation, blocker clearing, live reviewer/risk/feedback/gate/outcome lookup, network reads/subscriptions, polling/retry runtime, sending/dispatch/signing/execution, persistence/filesystem writes, advisory behavior, or real orders/funds/PnL.**
+
+**Next phase guidance:** Phase 90 — Manual Review Decision Record Contracts v1 (preview only; not implemented).
+
 ## Phase 88 — Risk Feedback Safety Gate Re-Evaluation Contracts v1
 
 - Adds `apps/dashboard/src/risk-feedback-safety-gate-reevaluation/` deterministic, fixture-backed, fail-closed risk feedback safety gate re-evaluation contracts with re-evaluation gates, feedback review events, safety gate re-evaluation links, manual review placeholders, gate status placeholders, blocker/escalation review contracts, evidence review bundles, policy/readiness check placeholders, feedback/risk/outcome/certification linkage, abort/rollback contracts, safety invariants, capability audits, scorecards, reports, view-models, API contracts, selectors, normalization, validation, capabilities, and index exports.

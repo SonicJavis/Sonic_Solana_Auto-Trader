@@ -1,8 +1,20 @@
 # Sonic_Solana_Auto-Trader
 
-**Phase 88 — Risk Feedback Safety Gate Re-Evaluation Contracts v1**
+**Phase 89 — Safety Gate Manual Review Dossier Contracts v1**
 
-A defensive intelligence and control foundation for Solana trading. No live/manual trading, signing, sending, observation polling/subscriptions/network reads, broadcast, dispatch, execution, live outcome observation, automatic gate mutation, automatic unlock, or live risk update in any phase up to and including Phase 88.
+A defensive intelligence and control foundation for Solana trading. No live/manual trading, signing, sending, observation polling/subscriptions/network reads, broadcast, dispatch, execution, approval authority, automatic approval/unlock, safety-gate mutation, blocker clearing, or live risk/feedback/gate/outcome lookup in any phase up to and including Phase 89.
+
+## Features (Phase 89 — adds to Phase 88)
+
+- Adds `apps/dashboard/src/safety-gate-manual-review-dossier/` deterministic, fixture-backed, fail-closed manual-review dossier contract vertical slice:
+  - 8 deterministic fixtures: manual-review-dossier-ready, missing-reevaluation-ref-blocked, missing-evidence-packet-blocked, reviewer-checklist-incomplete-blocked, signoff-placeholder-only, unresolved-blockers-preserved, automatic-approval-denied, unsafe-capability-rejected
+  - dossier gates / dossier headers / reviewer checklists / evidence packets / signoff placeholders / unresolved blocker summaries / escalation+policy+readiness placeholders / approval denial contracts / reevaluation+feedback+risk+outcome+certification+audit-trail linkages / abort+rollback / safety+capability-audit / scorecard+report / view-model / API contract / selector surfaces
+  - practical linkage to Phase 58/59/65/66/67/68/69/70/72/73/74/75/76/77/78/79/80/81/82/83/84/85/86/87/88 fixture snapshots
+- Adds `docs/SAFETY_GATE_MANUAL_REVIEW_DOSSIER.md`
+- Adds `tests/phase89.test.ts`
+- **Phase 89 contracts are design-only and do not implement approval authority, automatic approval/unlock, safety-gate mutation, blocker clearing, live reviewer/risk/feedback/gate/outcome lookup, network reads/subscriptions, polling/retry runtime, sending/broadcast/dispatch, signing/wallet/key handling, execution, filesystem writes/persistence, provider expansion, recommendations/signals/advice, or real orders/funds/PnL. READ_ONLY remains default. FULL_AUTO and LIMITED_LIVE remain locked.**
+
+**Next phase: Phase 90 — Manual Review Decision Record Contracts v1 (preview only; not implemented in this phase).**
 
 ## Features (Phase 88 — adds to Phase 87)
 
