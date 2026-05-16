@@ -274,7 +274,9 @@ rg "privateKey|secretKey|seedPhrase|mnemonic|Keypair|signTransaction|sendTransac
 
 ## Next Phase Preview
 
-**Phase 87 — Outcome-to-Risk Feedback Loop Contracts v1** (not implemented in this phase): Will model how audited outcome data feeds back into risk assessment and safety gate re-evaluation, purely as deterministic fixture-backed contracts with no live execution, no real funds, and no live risk updates.
+**Phase 88 — Risk Feedback Safety Gate Re-Evaluation Contracts v1** (preview only; not implemented in this phase).
+
+**Phase 87 — Outcome-to-Risk Feedback Loop Contracts v1** is implemented in this repository as deterministic, fixture-backed, fail-closed contracts with no live feedback, no live risk updates, and no runtime mutation.
 
 ---
 

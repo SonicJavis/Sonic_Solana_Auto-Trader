@@ -1,3 +1,8 @@
+
+### Phase 87 Linkage Note
+
+Phase 87 outcome-to-risk feedback loop contracts consume Phase 58 risk fixture identifiers as immutable source linkage evidence only. No live risk re-scoring, runtime mutation, or automatic gate unlock behavior is introduced by this linkage.
+
 # LAUNCH_RISK_ENGINE.md
 
 ## Phase 58 — Launch Risk Engine v1
