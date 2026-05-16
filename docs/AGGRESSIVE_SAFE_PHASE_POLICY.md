@@ -1,3 +1,7 @@
+## Phase 89 — Safety Gate Manual Review Dossier Contracts v1
+
+Adds deterministic fixture-backed manual-review dossier contracts only; no approval authority, no automatic approval/unlock, no safety gate mutation, no blocker clearing, no live reviewer/risk/feedback/gate/outcome lookup, no network reads/subscriptions, no polling/retry runtime, no sending/dispatch/signing/execution, no filesystem/persistence writes, and no advisory output. READ_ONLY remains default and FULL_AUTO/LIMITED_LIVE stay locked.
+
 
 ## Phase 88 — Risk Feedback Safety Gate Re-Evaluation Contracts v1
 

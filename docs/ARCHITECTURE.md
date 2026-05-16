@@ -1,3 +1,7 @@
+## Phase 89 Update
+
+Phase 89 extends `apps/dashboard/` with `src/safety-gate-manual-review-dossier/`, a deterministic, fixture-backed, fail-closed safety-gate manual review dossier contract surface. It adds dossier gates, review dossier headers, reviewer checklists, evidence packets, signoff placeholders, unresolved blocker summaries, escalation/policy/readiness placeholders, approval-denial contracts, reevaluation/feedback/risk/outcome/certification/audit-trail linkage, abort/rollback contracts, safety invariants, capability audits, scorecards, reports, view-models, API contracts, selectors, normalization, and validation. This layer is contract-only, local-only, read-only, deterministic, non-networked in standard CI, no approval authority, no automatic approval/unlock, no safety-gate mutation, no blocker clearing, no live lookup, no execution paths, and non-advisory.
+
 # Architecture
 
 ## Phase 88 Update

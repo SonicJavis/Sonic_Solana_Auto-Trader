@@ -1,3 +1,8 @@
+## Phase 89 Follow-On
+
+Phase 89 is now implemented as `docs/SAFETY_GATE_MANUAL_REVIEW_DOSSIER.md` and `apps/dashboard/src/safety-gate-manual-review-dossier/`.
+Phase 88 remains re-evaluation contracts only and does not grant approval or unlock authority.
+
 # Phase 88 — Risk Feedback Safety Gate Re-Evaluation Contracts v1
 
 ## Overview
